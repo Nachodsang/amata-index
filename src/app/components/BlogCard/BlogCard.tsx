@@ -3,7 +3,7 @@ import FaFacebookSquare from "react-icons/fa";
 
 export default function BlogCard() {
   return (
-    <div className="card w-[300px] h-[440px] border border-gray-100 p-3 bg-base-100 shadow-md flex flex-col gap-4">
+    <div className="place-content-stretch card max-w-[510px] h-[585px] desktop0:w-[210px] desktop0:h-[384px] desktop2:w-[300px] tablet2:w-[330px] tablet2:h-[465px] desktop1:w-[255px] desktop1:h-[414px] desktop2:h-[441px] border border-gray-100  bg-base-100 shadow-md flex flex-col gap-4">
       <div className="flex gap-4">
         <div>
           <img

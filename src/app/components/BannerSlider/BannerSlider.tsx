@@ -1,18 +1,45 @@
+"use client";
 // core version + navigation, pagination modules:
-import Swiper, { Navigation, Pagination } from "swiper";
+import { Navigation, Pagination, Autoplay } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 // import Swiper and modules styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import BannerCard from "../BannerCard/BannerCard";
 
-// init Swiper:
-const swiper = new Swiper(".swiper", {
-  // configure Swiper to use modules
-  modules: [Navigation, Pagination],
-});
+let banners: number[] = [];
+for (let i = 1; i <= 20; i++) {
+  banners.push(i);
+}
 
-export default function BannerSlider(){
-    return(
-      
-    )
+export default function BannerSlider() {
+  return (
+    <div className="w-full ">
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        autoplay={{
+          delay: 3000,
+          disableOnInteraction: false,
+        }}
+        // navigation
+        spaceBetween={10}
+        slidesPerView={1}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+        breakpoints={{
+          990: {
+            slidesPerView: 2,
+          },
+        }}
+        className="h-full"
+      >
+        {banners.map((i, index) => (
+          <SwiperSlide key={index}>
+            <BannerCard num={i} />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
+  );
 }

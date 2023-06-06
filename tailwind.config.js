@@ -6,7 +6,15 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    screens: {
+      tablet1: "575px",
+      tablet2: "770px",
+      desktop0: "990px",
+      desktop1: "1200px",
+      desktop2: "1440px",
+
+      // => @media (min-width: 1280px) { ... }
+    },
   },
   plugins: [require("daisyui")],
 };

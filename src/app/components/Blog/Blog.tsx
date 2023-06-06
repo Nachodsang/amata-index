@@ -12,9 +12,9 @@ export default function about() {
           <h1 className="text-4xl font-bold mb-5 ">Blog</h1>
         </div>
         {/* Container */}
-        <div className="lg:grid-cols-4 grid gap-6">
-          {blog.map((i) => (
-            <BlogCard />
+        <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-6">
+          {blog.map((i, index) => (
+            <BlogCard key={index} />
           ))}
           <BlogCard />
         </div>
