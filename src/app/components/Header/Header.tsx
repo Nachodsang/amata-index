@@ -4,7 +4,7 @@ import "./Header.css";
 
 export default function Header() {
   return (
-    <div className="relative  bg-no-repeat bg-cover header">
+    <div className="relative  bg-no-repeat bg-cover header px-6">
       <div className=" w-full ">
         <div className="m-auto max-w-[1270px]  py-20 ">
           <div className="flex flex-col gap-4 items-start">

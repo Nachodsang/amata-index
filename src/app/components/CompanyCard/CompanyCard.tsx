@@ -1,74 +1,107 @@
 import { FaGlobe, FaFacebookSquare, FaLine } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 
-export default function CompanyCard() {
+export default function CompanyCard({
+  name,
+  thumbnail,
+  nationality,
+  location,
+  image1,
+  image2,
+  image3,
+  image4,
+  website,
+  line,
+  facebook,
+  details,
+}: {
+  name: string;
+  thumbnail: string;
+  location: string;
+  nationality: string;
+  details: string;
+  facebook: string | null;
+  line: string | null;
+  website: string | null;
+  image1: string;
+  image2: string | null;
+  image3: string | null;
+  image4: string | null;
+}) {
   return (
-    <div className="w-full   bg-white rounded-xl mb-4">
+    <div className="w-full   bg-white rounded-xl mb-4 relative py-4">
+      <div className="flex  gap-2 px-6 justify-end ">
+        <label className="text-sm font-semibold text-gray-500">Select</label>
+        <input
+          className="w-4 h-4 hover:cursor-pointer rounded ring-2 ring-[#EA590C] "
+          type="checkbox"
+        />
+      </div>
       {/* select button */}
-      <div className="flex flex-col w-full py-4">
+      <div className="flex flex-col w-full ">
         <div className="flex p-4 w-full  h-full ">
           {/* thubnail & button */}
           <div className="desktop2:w-[20%] desktop1:w-[17%] destop0:w-[15%] flex flex-col align-start gap-4">
             <div className="w-[150px] h-[150px] p-2 border-1 border shadow-md">
-              <img
-                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_KkX1z0fQ179Ioojn4EwpqJbgr9F-xR0gaA&usqp=CAU"
-                className="w-full h-full object-cover"
-              />
+              <img src={thumbnail} className="w-full h-full object-cover" />
             </div>
             <div className="flex">
-              <MdLocationPin size={20} />
-              <span>Thai Company</span>
+              <span>{nationality}</span>
             </div>
             <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
               <div>
-                <FaGlobe size={28} />
+                <a href={website}>
+                  <FaGlobe
+                    size={28}
+                    fill={`${website ? "#17A2B8" : "#E5E7EB"} `}
+                  />
+                </a>
               </div>
               <div>
-                <FaFacebookSquare size={30} />
+                <a href={facebook}>
+                  <FaFacebookSquare
+                    size={30}
+                    fill={`${facebook ? "#1B73E8" : "#E5E7EB"}`}
+                  />
+                </a>
               </div>
               <div>
-                <FaLine size={30} />
+                <a href={line}>
+                  <FaLine size={30} fill={`${line ? "#33C152" : "#E5E7EB"}`} />
+                </a>
               </div>
             </div>
           </div>
           {/* details */}
-          <div className="w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
-            <h1 className="font-bold text-xl">Company Name</h1>
-            <div className="text-blue-500">Location</div>
-            <p className="max-h-[125px] overflow-hidden">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Iusto,
-              cum commodi fugiat id eius consequatur optio atque quae veniam,
-              expedita, voluptatibus aliquid in. Nesciunt saepe, tempora
-              incidunt porro error fugiat.
-            </p>
+          <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
+            <h1 className="font-bold text-xl">{name}</h1>
+            <div className="text-blue-500 flex gap-1">
+              <MdLocationPin size={20} />
+              <span>{location}</span>
+            </div>
+            <p className="max-h-[125px] overflow-hidden">{details}</p>
           </div>
           {/* more images */}
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">
             <div className="w-full h-full flex flex-wrap gap-3  ">
               <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden">
-                <img
-                  src="/images/roboticFac.jpg"
-                  className="w-full h-full object-cover "
-                />
+                <img src={image1} className="w-full h-full object-cover " />
               </div>
-              <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]   w-full h-[100px] rounded-md overflow-hidden bg-white">
-                <img
-                  src="https://www.kuka.com/-/media/kuka-corporate/images/press/virtual-guided-tours/heller-bearbeitungszentrum-kuka.jpg?rev=730ed644e9e84f50acd62b3e62bef28f&w=1900&hash=4B022AFFE0D4072E2DC4BF11189DE7B6"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px] w-full h-[100px] rounded-md overflow-hidden bg-white">
-                <img
-                  src="https://d1uzk9o9cg136f.cloudfront.net/f/16783577/rc/2022/03/22/a6b09c94b6d18a44af9e63002a8d208c31a7705c_xlarge.jpg"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md overflow-hidden bg-white">
-                <img
-                  src="https://industrytoday.com/wp-content/uploads/2021/04/nextgen-factory-analytics-optimizes-inventory-levels-prevents-late-penalties-and-frees-up-excess-capital-tied-up-in-static-inventory-image009.jpg"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+              {image2 && (
+                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]   w-full h-[100px] rounded-md overflow-hidden bg-white">
+                  <img src={image2} className="w-full h-full object-cover" />
+                </div>
+              )}
+              {image3 && (
+                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px] w-full h-[100px] rounded-md overflow-hidden bg-white">
+                  <img src={image3} className="w-full h-full object-cover" />
+                </div>
+              )}
+              {image4 && (
+                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md overflow-hidden bg-white">
+                  <img src={image4} className="w-full h-full object-cover" />
+                </div>
+              )}
             </div>
 
             <button className=" bg-orange-600 px-4 py-2 w-full rounded-2xl text-white">

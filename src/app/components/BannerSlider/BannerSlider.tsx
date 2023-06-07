@@ -15,7 +15,7 @@ for (let i = 1; i <= 20; i++) {
 
 export default function BannerSlider() {
   return (
-    <div className="w-full ">
+    <div className="w-full  ">
       <Swiper
         modules={[Navigation, Autoplay]}
         autoplay={{

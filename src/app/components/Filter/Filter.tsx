@@ -1,3 +1,4 @@
+import { ImSearch } from "react-icons/im";
 export default function Filter() {
   return (
     <div className="w-full ">
@@ -5,13 +6,14 @@ export default function Filter() {
         {/* form container */}
         <div className="p-4 flex flex-col ">
           {/* label */}
-          <div className="my-5">
+          <div className="my-5 flex gap-1 text-gray-600">
+            <ImSearch size={45} />
             <h1 className="font-bold text-4xl ">Search</h1>
           </div>
           <div className="flex flex-col gap-y-4">
             {/* inputs */}
             <div>
-              <div className="flex flex-col desktop0:flex-row gap-4">
+              <div className="flex flex-col desktop0:flex-row tablet2:flex-row gap-4">
                 <input
                   type="text"
                   className=" rounded-3xl border w-full tablet2:w-[30%] desktop0:w-[20%] border-gray-300 outline-none px-2 py-1 "
@@ -52,7 +54,7 @@ export default function Filter() {
               <button className="w-[25%]  bg-gray-400 rounded-2xl py-2 text-white">
                 Reset
               </button>
-              <button className="w-[75%] desktop-0:w-[25%] bg-orange-600 rounded-2xl text-white">
+              <button className="w-[75%] desktop0:w-[25%] bg-orange-600 rounded-2xl text-white">
                 Search
               </button>
             </div>
