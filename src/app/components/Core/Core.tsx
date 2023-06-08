@@ -1,10 +1,11 @@
 import Ad from "@/app/components/Ad/Ad";
 import CompanyCard from "../CompanyCard/CompanyCard";
 // mockdata
-import mockCompanies from "../../../../public/mockData/mockCompany";
+import mockData from "../../../../public/mockData/mockData";
 import { mock } from "node:test";
 
-export default function core() {
+export default function core({ category }: { category: string }) {
+  const { mockCompanies, mockMachines } = mockData;
   let companies: number[] = [];
   for (let i = 0; i < 100; i++) {
     companies.push(i);
@@ -19,41 +20,14 @@ export default function core() {
           </div>
 
           <div className="w-full h-full bg-[#044ea2] px-4 pb-16 pt-10   flex-col overflow-scroll">
-            {mockCompanies.map((i, index) => {
-              // deconstruct from mockCompanies
-              const {
-                id,
-                name,
-                details,
-                thumbnail,
-                image1,
-                image2,
-                image3,
-                image4,
-                location,
-                nationality,
-                facebook,
-                line,
-                website,
-              } = i;
-              return (
-                <CompanyCard
-                  key={id}
-                  name={name}
-                  location={location}
-                  nationality={nationality}
-                  website={website}
-                  line={line}
-                  facebook={facebook}
-                  image1={image1}
-                  image2={image2}
-                  image3={image3}
-                  image4={image4}
-                  thumbnail={thumbnail}
-                  details={details}
-                />
-              );
-            })}
+            {category === "factory" &&
+              mockCompanies.map((i, index) => {
+                return <CompanyCard props={i} key={i.id} />;
+              })}
+            {category === "machine" &&
+              mockMachines.map((i, index) => {
+                return <CompanyCard props={i} key={i.id} />;
+              })}
           </div>
         </div>
         {/* ad */}

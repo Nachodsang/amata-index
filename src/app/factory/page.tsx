@@ -6,9 +6,9 @@ import Blog from "../components/Blog/Blog";
 export default function about() {
   return (
     <div>
-      <Header />
+      <Header category="factory" />
       <Banner />
-      <Core />
+      <Core category="factory" />
       <Blog />
     </div>
   );

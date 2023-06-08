@@ -15,6 +15,11 @@ module.exports = {
 
       // => @media (min-width: 1280px) { ... }
     },
+    exten: {
+      transitionProperty: {
+        height: "height",
+      },
+    },
   },
   plugins: [require("daisyui")],
 };
