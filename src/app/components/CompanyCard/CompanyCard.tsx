@@ -39,7 +39,7 @@ export default function CompanyCard({ props }: any) {
                 <img src={flag} alt="flag" className="w-[25px] h-[25px]" />
               )}
 
-              <span>{nationality}</span>
+              <span className="font-semibold text-gray-400">{nationality}</span>
             </div>
             <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
               <div>
@@ -82,12 +82,14 @@ export default function CompanyCard({ props }: any) {
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
-            <h1 className="font-bold text-xl">{name}</h1>
+            <h1 className="font-bold text-xl text-gray-700">{name}</h1>
             <div className="text-blue-500 flex gap-1">
               <MdLocationPin size={20} />
               <span>{location}</span>
             </div>
-            <p className="max-h-[125px] overflow-hidden">{details}</p>
+            <p className="max-h-[125px] overflow-hidden font-semibold text-gray-500">
+              {details}
+            </p>
           </div>
           {/* more images */}
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">

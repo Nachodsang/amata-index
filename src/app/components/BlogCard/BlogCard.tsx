@@ -11,8 +11,10 @@ export default function BlogCard() {
           />
         </div>
         <div className="flex flex-col gap-0">
-          <div className=" font-semibold">Company name</div>
-          <div className=" overflow-hidden">Lorem ipsum dolor</div>
+          <div className=" font-medium text-gray-400">Company name</div>
+          <div className=" overflow-hidden  text-gray-400">
+            Lorem ipsum dolor
+          </div>
         </div>
       </div>
 
@@ -26,16 +28,18 @@ export default function BlogCard() {
 
       <div className="flex flex-col px-1 gap-1">
         <div className="flex justify-between">
-          <p>DATE</p>
-          <p>VIEW</p>
+          <p className="text-sm text-gray-400">date</p>
+          <p className="text-sm text-gray-400">view</p>
         </div>
-        <h2 className=" overflow-hidden">Lorem ipsum dolor sit.</h2>
-        <p className=" overflow-hidden">
-          If a dog chews shoes whose shoes does he choose?
+        <h2 className=" overflow-hidden text-lg font-bold text-gray-700">
+          Lorem ipsum dolor sit.
+        </h2>
+        <p className=" overflow-hidden text-base font-medium text-gray-400">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, sit!
         </p>
       </div>
       <div className="flex justify-center">
-        <div className="w-[80%]  h-1 bg-[#FC593B]"></div>
+        <div className="w-[80%] rounded-3xl  h-1 bg-[#FC593B]"></div>
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ export default function Header({ category }: { category: string }) {
                   {category} Index
                 </h1>
               </div>
-              <div className="font-bold text-xl text-white">
+              <div className="font-semibold text-3xl text-white">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
               </div>
             </div>
