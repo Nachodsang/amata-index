@@ -34,7 +34,6 @@ export default function Filter({ category }: { category: string }) {
   // capturing screen change
   useEffect(() => {
     window.addEventListener("resize", () => {
-      console.log(window.innerWidth);
       window.innerWidth > 990 ||
       (window.innerWidth > 575 && window.innerWidth < 770)
         ? setIsFullfilter(true)

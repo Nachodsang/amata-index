@@ -25,8 +25,6 @@ export default function BannerSlider({ category }: { category: string }) {
         // navigation
         spaceBetween={10}
         slidesPerView={1}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
         breakpoints={{
           990: {
             slidesPerView: 2,
