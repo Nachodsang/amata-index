@@ -1,7 +1,7 @@
 import { FaGlobe, FaFacebookSquare, FaLine } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 
-export default function CompanyCard({ props }: any) {
+export default function CompanyCard({ props, category }: any) {
   const {
     name,
     thumbnail,
@@ -22,7 +22,7 @@ export default function CompanyCard({ props }: any) {
       <div className="flex  gap-2 px-6 justify-end ">
         <label className="text-sm font-semibold text-gray-500">Select</label>
         <input
-          className="w-4 h-4 hover:cursor-pointer rounded ring-2 border-none ring-[#EA590C] "
+          className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none ${category}-ring `}
           type="checkbox"
         />
       </div>
@@ -114,13 +114,17 @@ export default function CompanyCard({ props }: any) {
               )}
             </div>
 
-            <button className=" bg-[#FC593B] px-4 py-2 w-full rounded-2xl text-white">
+            <button
+              className={`${category}-background px-4 py-2 w-full rounded-2xl text-white`}
+            >
               Details
             </button>
           </div>
         </div>
         <div className="px-4">
-          <button className=" bg-[#FC593B] desktop0:hidden px-4 py-2 w-full rounded-2xl text-white">
+          <button
+            className={`${category}-background desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
+          >
             Details
           </button>
         </div>

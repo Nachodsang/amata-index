@@ -12,7 +12,7 @@ export default function core({ category }: { category: string }) {
   }
   return (
     <div className=" h-[1200px]  px-6">
-      <div className="mx-auto max-w-[1270px]  h-full overflow-hidden rounded-2xl shadow-md   flex ">
+      <div className="mx-auto max-w-[1270px]  h-full overflow-hidden rounded-2xl shadow-md  relative z-20 flex ">
         <div className=" desktop0:w-[75%] h-full ">
           <div className="w-full h-20 bg-[#192f48] p-6">
             {/* list title and amount */}
@@ -22,11 +22,11 @@ export default function core({ category }: { category: string }) {
           <div className="w-full h-full bg-[#044ea2] px-4 pb-16 pt-10   flex-col overflow-scroll">
             {category === "factory" &&
               mockCompanies.map((i, index) => {
-                return <CompanyCard props={i} key={i.id} />;
+                return <CompanyCard props={i} key={i.id} category={category} />;
               })}
             {category === "machine" &&
               mockMachines.map((i, index) => {
-                return <CompanyCard props={i} key={i.id} />;
+                return <CompanyCard props={i} key={i.id} category={category} />;
               })}
           </div>
         </div>

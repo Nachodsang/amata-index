@@ -15,9 +15,14 @@ module.exports = {
 
       // => @media (min-width: 1280px) { ... }
     },
-    exten: {
+
+    extend: {
       transitionProperty: {
         height: "height",
+      },
+      colors: {
+        machine: "#65493A",
+        factory: "#546E55",
       },
     },
   },

@@ -13,7 +13,7 @@ for (let i = 1; i <= 20; i++) {
   banners.push(i);
 }
 
-export default function BannerSlider() {
+export default function BannerSlider({ category }: { category: string }) {
   return (
     <div className="w-full  ">
       <Swiper
@@ -36,7 +36,7 @@ export default function BannerSlider() {
       >
         {banners.map((i, index) => (
           <SwiperSlide key={index}>
-            <BannerCard num={i} />
+            <BannerCard category={category} num={i} />
           </SwiperSlide>
         ))}
       </Swiper>

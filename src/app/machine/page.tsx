@@ -7,9 +7,9 @@ export default function about() {
   return (
     <div>
       <Header category="machine" />
-      <Banner />
+      <Banner category="machine" />
       <Core category="machine" />
-      <Blog />
+      <Blog category="machine" />
     </div>
   );
 }

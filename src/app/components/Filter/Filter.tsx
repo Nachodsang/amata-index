@@ -9,7 +9,7 @@ import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
 import CollapsedFilter1 from "../collapsedFilter1/CollapsedFilter1";
 import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
 
-export default function Filter() {
+export default function Filter({ category }: { category: string }) {
   const [advanceSearch, setAdvanceSearch] = useState(false);
 
   const [isExpanded, setExpanded] = useState(false);
@@ -21,12 +21,6 @@ export default function Filter() {
     setAdvanceSearch(!advanceSearch);
   };
 
-  // const initialFilter = () => {
-  //   return window.innerWidth > 990 ||
-  //     (window.innerWidth > 575 && window.innerWidth < 770)
-  //     ? true
-  //     : false;
-  // };
   const [isFullFilter, setIsFullfilter] = useState(false);
   useEffect(() => {
     const initialFilter = () => {
@@ -48,13 +42,12 @@ export default function Filter() {
     });
   }, [isFullFilter]);
   return (
-    <div className="w-full ">
-      <div></div>
-      <div className="border  shadow-lg transition-height bg-white rounded-2xl  mx-auto max-w-[1270px] transition-all overflow-hidden   p-4 ">
+    <div className="w-full  ">
+      <div className=" border z-20  shadow-lg  relative bg-white rounded-2xl  mx-auto max-w-[1270px] transition-all overflow-hidden   p-4 ">
         {/* form container */}
-        <div className="p-4 flex flex-col transition-all  ">
+        <div className=" p-4 flex flex-col transition-all   ">
           {/* label */}
-          <div className="my-5 flex gap-1 text-gray-600">
+          <div className=" my-5 flex gap-1 text-gray-600 ">
             <ImSearch size={45} />
             <h1 className="font-bold text-4xl ">Search</h1>
           </div>
@@ -82,7 +75,7 @@ export default function Filter() {
                 </button>
                 <input
                   type="text"
-                  className="rounded-3xl w-full tablet2:w-[70%] desktop0:w-[80%]  border border-gray-300 outline-none px-2 py-1"
+                  className="rounded-3xl w-full focus:ring-2 ring-[rgb(2,131,206)] tablet2:w-[70%] desktop0:w-[80%]  border border-gray-300 outline-none px-2 py-1"
                   placeholder="Search"
                 />
               </div>
@@ -98,11 +91,13 @@ export default function Filter() {
           </div>
           {/* button */}
           <div className="flex justify-end gap-4 w-full mt-4">
-            <button className="gap-2 flex justify-center items-center w-[25%] desktop0:w-[15%]  bg-[#999999] rounded-3xl py-2 text-white">
+            <button className="gap-2 flex justify-center text-sm tablet1:text-lg items-center w-[25%] desktop0:w-[15%]  bg-[#999999] rounded-3xl py-2 text-white">
               <VscDebugRestart size={20} />
               <span>Reset</span>
             </button>
-            <button className="flex justify-center items-center gap-2  w-[75%] desktop0:w-[25%]  bg-[#FC593B] rounded-3xl text-white">
+            <button
+              className={`flex justify-center items-center gap-2  w-[75%] desktop0:w-[25%]  ${category}-background rounded-3xl text-white`}
+            >
               <ImSearch size={20} />
               <span>Search</span>
             </button>
