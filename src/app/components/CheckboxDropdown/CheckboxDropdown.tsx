@@ -36,8 +36,8 @@ export default function CheckboxDropdown({
           <h1 className="text-center ">{title}</h1>
         </div>
         <div className="grid grid-cols-2 tablet2:grid-cols-3 desktop0:grid-cols-4 w-full">
-          {arr.map((i) => (
-            <CheckBox category={category} title={i} />
+          {arr.map((i, index) => (
+            <CheckBox category={category} title={i} key={index} />
           ))}
         </div>
         <div className="flex justify-end px-4 gap-2 text-white">

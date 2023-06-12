@@ -9,8 +9,16 @@ import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
 import CollapsedFilter1 from "../collapsedFilter1/CollapsedFilter1";
 import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
-import Dropdown from "../Dropdown/Dropdown";
 
+interface DropDowns {
+  drop1: boolean;
+  drop2: boolean;
+  drop3: boolean;
+  drop4: boolean;
+  drop5: boolean;
+  drop6: boolean;
+  drop7: boolean;
+}
 const defaultDropDownsState = {
   drop1: false,
   drop2: false,
@@ -20,6 +28,7 @@ const defaultDropDownsState = {
   drop6: false,
   drop7: false,
 };
+
 export default function Filter({ category }: { category: string }) {
   const [advanceSearch, setAdvanceSearch] = useState(false);
   const [dropDowns, setDropDowns] = useState(defaultDropDownsState);
@@ -28,7 +37,7 @@ export default function Filter({ category }: { category: string }) {
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
   // Filter dropdown
-  const onDropDown = (dropNo: string) => {
+  const onDropDown = (dropNo: keyof DropDowns) => {
     setDropDowns({
       drop1: false,
       drop2: false,
