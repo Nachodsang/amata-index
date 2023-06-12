@@ -19,9 +19,15 @@ export default function CheckboxDropdown({
   checkboxes,
   category,
   isHidden,
+  onFoldDropDown,
 }: any) {
+  // second row dropdowns
   const isSecondRow =
     title === "checkbox 5" || title === "checkbox 6" || title === "checkbox 7";
+  // confirm handle
+  const onConfirm = () => {
+    onFoldDropDown();
+  };
 
   return (
     <div
@@ -40,11 +46,16 @@ export default function CheckboxDropdown({
             <CheckBox category={category} title={i} key={index} />
           ))}
         </div>
-        <div className="flex justify-end px-4 gap-2 text-white">
-          <button className={`rounded-md px-4 py-2 bg-green-500`}>
+        <div className="flex justify-end  gap-1 font-semibold text-white">
+          <button
+            className={`rounded-md px-4 py-2 bg-green-500`}
+            onClick={onConfirm}
+          >
             Confirm
           </button>
-          <button className="rounded-md px-4 py-2 bg-red-600">Clear</button>
+          <button className="rounded-md px-4 py-2 font-semibold bg-red-600">
+            Clear
+          </button>
         </div>
       </div>
     </div>

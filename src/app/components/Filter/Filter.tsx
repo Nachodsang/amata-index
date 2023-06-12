@@ -153,42 +153,49 @@ export default function Filter({ category }: { category: string }) {
               title="checkbox 1"
               category={category}
               isHidden={dropDowns.drop1}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 2"
               category={category}
               isHidden={dropDowns.drop2}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 3"
               category={category}
               isHidden={dropDowns.drop3}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 4"
               category={category}
               isHidden={dropDowns.drop4}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 5"
               category={category}
               isHidden={dropDowns.drop5}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 6"
               category={category}
               isHidden={dropDowns.drop6}
+              onFoldDropDown={onFoldDropDown}
             />
 
             <CheckboxDropdown
               title="checkbox 7"
               category={category}
               isHidden={dropDowns.drop7}
+              onFoldDropDown={onFoldDropDown}
             />
           </div>
           {/* button */}

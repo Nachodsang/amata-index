@@ -2,7 +2,6 @@ import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 export default function CollapsedFilter1({
   getCollapseProps,
   onDropDown,
-  dropDowns,
 }: any) {
   return (
     <div className="w-full hidden tablet2:hidden flex-col tablet1:flex desktop0:flex ">
