@@ -140,27 +140,47 @@ export default function Filter({ category }: { category: string }) {
               />
             )}
 
-            {dropDowns.drop1 && (
-              <CheckboxDropdown title="checkbox 1" category={category} />
-            )}
-            {dropDowns.drop2 && (
-              <CheckboxDropdown title="checkbox 2" category={category} />
-            )}
-            {dropDowns.drop3 && (
-              <CheckboxDropdown title="checkbox 3" category={category} />
-            )}
-            {dropDowns.drop4 && (
-              <CheckboxDropdown title="checkbox 4" category={category} />
-            )}
-            {dropDowns.drop5 && (
-              <CheckboxDropdown title="checkbox 5" category={category} />
-            )}
-            {dropDowns.drop6 && (
-              <CheckboxDropdown title="checkbox 6" category={category} />
-            )}
-            {dropDowns.drop7 && (
-              <CheckboxDropdown title="checkbox 7" category={category} />
-            )}
+            <CheckboxDropdown
+              title="checkbox 1"
+              category={category}
+              isHidden={dropDowns.drop1}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 2"
+              category={category}
+              isHidden={dropDowns.drop2}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 3"
+              category={category}
+              isHidden={dropDowns.drop3}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 4"
+              category={category}
+              isHidden={dropDowns.drop4}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 5"
+              category={category}
+              isHidden={dropDowns.drop5}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 6"
+              category={category}
+              isHidden={dropDowns.drop6}
+            />
+
+            <CheckboxDropdown
+              title="checkbox 7"
+              category={category}
+              isHidden={dropDowns.drop7}
+            />
           </div>
           {/* button */}
           <div className="flex justify-end gap-4 w-full mt-4">
