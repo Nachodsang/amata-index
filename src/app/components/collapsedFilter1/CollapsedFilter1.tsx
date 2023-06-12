@@ -13,28 +13,27 @@ export default function CollapsedFilter1({
         >
           Dropdown1
         </button>
-        {dropDowns.drop1 && <CheckboxDropdown title={"dropdown 1"} />}
+
         <button
           onClick={() => onDropDown("drop2")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full  desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex desktop0:flex"
         >
           Dropdown2
         </button>
-        {dropDowns.drop2 && <CheckboxDropdown title={"dropdown 2"} />}
+
         <button
           onClick={() => onDropDown("drop3")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex desktop0:flex"
         >
           Dropdown3
         </button>
-        {dropDowns.drop3 && <CheckboxDropdown title={"dropdown 3"} />}
+
         <button
           onClick={() => onDropDown("drop4")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex desktop0:flex"
         >
           Dropdown4
         </button>
-        {dropDowns.drop4 && <CheckboxDropdown title={"dropdown 4"} />}
       </div>
       {/* advance search desktop0 up */}
       <div
@@ -47,21 +46,20 @@ export default function CollapsedFilter1({
         >
           Dropdown5
         </button>
-        {dropDowns.drop5 && <CheckboxDropdown title={"dropdown 5"} />}
+
         <button
           onClick={() => onDropDown("drop6")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] mb-4 desktop0:mb-0 w-full border border-gray-300 outline-none px-2 py-1  text-start  tablet1:inline desktop0:inline me-4"
         >
           Dropdown6
         </button>
-        {dropDowns.drop6 && <CheckboxDropdown title={"dropdown 6"} />}
+
         <button
           onClick={() => onDropDown("drop7")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] mb-4 desktop0:mb-0 w-full border border-gray-300 outline-none px-2 py-1 text-start tablet1:inline desktop0:inline me-4"
         >
           Dropdown7
         </button>
-        {dropDowns.drop7 && <CheckboxDropdown title={"dropdown 7"} />}
       </div>
     </div>
   );

@@ -140,13 +140,27 @@ export default function Filter({ category }: { category: string }) {
               />
             )}
 
-            {/* {dropDowns.drop1 && <CheckboxDropdown title="checkbox 1" />}
-            {dropDowns.drop2 && <CheckboxDropdown title="checkbox 2" />}
-            {dropDowns.drop3 && <CheckboxDropdown title="checkbox 3" />}
-            {dropDowns.drop4 && <CheckboxDropdown title="checkbox 4" />}
-            {dropDowns.drop5 && <CheckboxDropdown title="checkbox 5" />}
-            {dropDowns.drop6 && <CheckboxDropdown title="checkbox 6" />}
-            {dropDowns.drop7 && <CheckboxDropdown title="checkbox 7" />} */}
+            {dropDowns.drop1 && (
+              <CheckboxDropdown title="checkbox 1" category={category} />
+            )}
+            {dropDowns.drop2 && (
+              <CheckboxDropdown title="checkbox 2" category={category} />
+            )}
+            {dropDowns.drop3 && (
+              <CheckboxDropdown title="checkbox 3" category={category} />
+            )}
+            {dropDowns.drop4 && (
+              <CheckboxDropdown title="checkbox 4" category={category} />
+            )}
+            {dropDowns.drop5 && (
+              <CheckboxDropdown title="checkbox 5" category={category} />
+            )}
+            {dropDowns.drop6 && (
+              <CheckboxDropdown title="checkbox 6" category={category} />
+            )}
+            {dropDowns.drop7 && (
+              <CheckboxDropdown title="checkbox 7" category={category} />
+            )}
           </div>
           {/* button */}
           <div className="flex justify-end gap-4 w-full mt-4">
