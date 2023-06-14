@@ -19,6 +19,15 @@ interface DropDowns {
   drop6: boolean;
   drop7: boolean;
 }
+interface IfilterSelection {
+  drop1: number[];
+  drop2: number[];
+  drop3: number[];
+  drop4: number[];
+  drop5: number[];
+  drop6: number[];
+  drop7: number[];
+}
 const defaultDropDownsState = {
   drop1: false,
   drop2: false,
@@ -28,11 +37,23 @@ const defaultDropDownsState = {
   drop6: false,
   drop7: false,
 };
+const defaultFilterSelection = {
+  drop1: [],
+  drop2: [],
+  drop3: [],
+  drop4: [],
+  drop5: [],
+  drop6: [],
+  drop7: [],
+};
 
 export default function Filter({ category }: { category: string }) {
   const [advanceSearch, setAdvanceSearch] = useState(false);
   const [dropDowns, setDropDowns] = useState(defaultDropDownsState);
   const [isExpanded, setExpanded] = useState(false);
+  const [filterSelection, setFilterSelection] = useState<any>(
+    defaultFilterSelection
+  );
 
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
@@ -62,7 +83,22 @@ export default function Filter({ category }: { category: string }) {
     });
   };
 
-  // Advance Search
+  // Checkbox selection
+  const onCheckBoxSelection = (field: any, item: any) => {
+    console.log(field, item);
+    const r = filterSelection[field];
+    r.push(item);
+
+    setFilterSelection({ ...filterSelection, [field]: r });
+  };
+  // Clear Selection
+  const onClearSelection = (field: any) => {
+    setFilterSelection({
+      [field]: [],
+    });
+  };
+  console.log(filterSelection);
+  //Expand Advance Search
   const collapseAdvanceSearch = () => {
     setExpanded((prevExpanded) => !prevExpanded);
     setAdvanceSearch(!advanceSearch);
@@ -154,6 +190,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop1}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop1"
             />
 
             <CheckboxDropdown
@@ -161,6 +200,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop2}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop2"
             />
 
             <CheckboxDropdown
@@ -168,6 +210,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop3}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop3"
             />
 
             <CheckboxDropdown
@@ -175,6 +220,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop4}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop4"
             />
 
             <CheckboxDropdown
@@ -182,6 +230,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop5}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop5"
             />
 
             <CheckboxDropdown
@@ -189,6 +240,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop6}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop6"
             />
 
             <CheckboxDropdown
@@ -196,6 +250,9 @@ export default function Filter({ category }: { category: string }) {
               category={category}
               isHidden={dropDowns.drop7}
               onFoldDropDown={onFoldDropDown}
+              onCheckBoxSelection={onCheckBoxSelection}
+              onClearSelection={onClearSelection}
+              value="drop7"
             />
           </div>
           {/* button */}

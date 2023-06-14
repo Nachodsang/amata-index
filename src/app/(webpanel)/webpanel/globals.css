@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: white;
+}
+input {
+  background-color: white;
+}
+input[type="checkbox"] {
+  accent-color: white;
+  color: white;
+}
+.factory-background {
+  background-color: #546e55;
+}
+.machine-background {
+  background-color: #65493a;
+}
+.factory-border {
+  border-color: #546e55;
+}
+.machine-border {
+  border-color: #65493a;
+}
+.machine-ring {
+  --tw-ring-color: #65493a;
+}
+.factory-ring {
+  --tw-ring-color: #546e55;
+}
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 15px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 5px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #c1c1c1;
+  border-radius: 20px;
+  border: none;
+}
