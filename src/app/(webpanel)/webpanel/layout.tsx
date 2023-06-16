@@ -2,7 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 import MenuColumn from "@/components/MenuColumn/MenuColumn";
-import SideNav from "@/components/SideNav/SideNav";
+import SideNav from "@/components/webpanel/SideNav/SideNav";
 
 // const SideNav = dynamic(() => import("@/components/SideNav/SideNav"), {
 //   ssr: false,

@@ -1,5 +1,5 @@
-import Search from "@/components/Search/Search";
-import Table from "@/components/Table/Table";
+import Search from "@/components/webpanel/Search/Search";
+import Table from "@/components/webpanel/Table/Table";
 export default function BannerList() {
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">

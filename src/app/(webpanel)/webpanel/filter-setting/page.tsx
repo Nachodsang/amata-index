@@ -1,4 +1,4 @@
-import CheckboxDropdown from "@/components/CheckboxDropdown/CheckboxDropdown";
+import CheckboxDropdown from "@/components/index/CheckboxDropdown/CheckboxDropdown";
 
 export default function FilterSettingPage() {
   return (

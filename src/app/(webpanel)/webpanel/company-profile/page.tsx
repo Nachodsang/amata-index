@@ -1,5 +1,5 @@
-import Search from "@/components/Search/Search";
-import Table from "@/components/Table/Table";
+import Search from "@/components/webpanel/Search/Search";
+import Table from "@/components/webpanel/Table/Table";
 import Link from "next/link";
 export default function CompanyProfile() {
   return (

@@ -6,10 +6,15 @@ export default function FilterInfo() {
       <div className="flex justify-start border-b border-slate-300 py-2">
         <div>Filter</div>
       </div>
-      <div>
-        <DropDown />
+      <div className="py-6 flex flex-wrap  gap-6">
+        <DropDown title="dropdown1" />
+
+        <DropDown title="dropdown1" />
+        <DropDown title="dropdown2" />
+        <DropDown title="dropdown3" />
+        <DropDown title="dropdown4" />
+        <DropDown title="dropdown5" />
       </div>
     </div>
   );
 }
-    
