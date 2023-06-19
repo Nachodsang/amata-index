@@ -1,10 +1,26 @@
+"use client";
 import Link from "next/link";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
+import axios from "axios";
+import { useEffect, useState } from "react";
 export default function BannerList() {
-
-
+  const [bannerList, setBannerList] = useState([]);
   // fetch
+  const bannerFetch = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/api/banner-setting"
+    );
+    // console.log(response.data);
+    setBannerList(response.data);
+  };
+
+  useEffect(() => {
+    bannerFetch();
+  }, []);
+
+  // console.log(bannerList);
+
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -28,7 +44,13 @@ export default function BannerList() {
             Create New Banner
           </button>
         </Link>
-        <Table />
+        <Table
+          list={bannerList}
+          col2="banner"
+          col3="client"
+          col4="title"
+          col5="created on"
+        />
       </div>
     </div>
   );
