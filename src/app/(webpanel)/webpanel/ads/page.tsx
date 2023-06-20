@@ -1,22 +1,12 @@
 "use client";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
+import { AdContext } from "@/contexts/AdContext";
 export default function AdList() {
-  const [adList, setAdList] = useState([]);
-  // fetch
-  const bannerFetch = async () => {
-    const response = await axios.get("http://localhost:3000/api/ad-setting");
-    // console.log(response.data);
-    setAdList(response.data);
-  };
-
-  useEffect(() => {
-    bannerFetch();
-  }, []);
-
+  const { ads }: any = useContext(AdContext);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -39,7 +29,7 @@ export default function AdList() {
           </button>
         </Link>
         <Table
-          list={adList}
+          list={ads}
           col2="banner"
           col3="client"
           col4="title"

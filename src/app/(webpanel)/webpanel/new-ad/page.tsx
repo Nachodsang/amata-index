@@ -1,6 +1,43 @@
+"use client";
 import Input from "@/components/webpanel/Input/Input";
-
+import Swal from "sweetalert2";
+import { useContext, useState } from "react";
+import { AdContext } from "@/contexts/AdContext";
 export default function CreateNewAdPage() {
+  const [adState, setAdState] = useState({});
+  const { addAd }: any = useContext(AdContext);
+
+  const onSetClient = (e: any) => {
+    setAdState({ ...adState, client: e.target.value });
+  };
+  const onSetDescription = (e: any) => {
+    setAdState({ ...adState, description: e.target.value });
+  };
+  const onSetTitle = (e: any) => {
+    setAdState({ ...adState, adTitle: e.target.value });
+  };
+  const onSaveAd = () => {
+    const { client, adTitle, description }: any = adState;
+    if (client?.length > 3 && adTitle?.length > 3 && description?.length > 3) {
+      addAd(client, adTitle, description);
+      setAdState({ adTitle: "", client: "", description: "" });
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Ad has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      console.log("please input valid value");
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter valid inputs!",
+      });
+    }
+  };
+  console.log(adState);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -22,15 +59,28 @@ export default function CreateNewAdPage() {
         </div>
         {/* Client name */}
         <div className="flex flex-col gap-4">
-          <Input label="Client" />
+          <Input
+            label="Client"
+            value={adState?.client}
+            onChange={onSetClient}
+          />
 
           {/* Ad title */}
 
-          <Input label="Ad Title" />
+          <Input
+            label="Ad Title"
+            value={adState?.adTitle}
+            onChange={onSetTitle}
+          />
 
-          <Input label="Description" />
+          <Input
+            label="Description"
+            value={adState?.description}
+            onChange={onSetDescription}
+          />
           <div className="flex justify-end">
             <button
+              onClick={onSaveAd}
               type="button"
               className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
             >

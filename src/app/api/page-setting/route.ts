@@ -7,9 +7,7 @@ import {
 } from "@/service/pageSettingService";
 
 export async function GET() {
-  console.log("in");
   const response = await getPageSetting();
-  console.log("out");
 
   return NextResponse.json(response);
 }
@@ -26,15 +24,10 @@ export async function PUT(req: Request) {
   const response = await req.json();
   console.log(response);
 
-  const filterBy = "_id";
-  const uniqueId = "64911a567476a2ad0d344070";
+  const filterBy = "edition";
+  const edition = "1";
 
   return NextResponse.json(
-    await editPage(
-      filterBy,
-      uniqueId,
-      response.updatingField,
-      response.newValue
-    )
+    await editPage(filterBy, edition, response.updatingField, response.newValue)
   );
 }

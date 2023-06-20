@@ -8,10 +8,9 @@ export const getPageSetting = async () => {
   //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
   //   );
   const pageSetting = await pageSettingModel.findOne({
-    _id: "64911a567476a2ad0d344070",
+    edition: 1,
   });
 
-  console.log(pageSetting);
   return { pageSetting };
   //   console.log("title", pageSetting);
   //   mongoose.disconnect();

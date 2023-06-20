@@ -26,8 +26,6 @@ export default function PageSettingProvider({ children }: any) {
 
     // console.log(response);
   };
-  const testContext = "1234";
-
   useEffect(() => {
     fetchPageSetting();
   }, []);

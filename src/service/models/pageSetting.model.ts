@@ -8,6 +8,8 @@ export interface IpageSetting {
   coverImage?: String;
   themeColor?: String;
   edition?: Number;
+  coreColor?: { type: String };
+  coreHeaderColor?: { type: String };
 }
 
 const pageSettingSchema = new Schema(
@@ -16,6 +18,9 @@ const pageSettingSchema = new Schema(
     description: { type: String },
     coverImage: { type: String },
     themeColor: { type: String },
+    coreColor:{type:String},
+    coreHeaderColor:{type:String},
+
     edition: { type: Number, unique: true },
   },
   { timestamps: true }

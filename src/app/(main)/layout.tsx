@@ -2,6 +2,7 @@ import "./globals.css";
 import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 import PageSettingProvider from "@/contexts/PageSettingContext";
+import AdProvider from "@/contexts/AdContext";
 
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
@@ -25,10 +26,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <PageSettingProvider>
-          {children}
-          <TwElementCom />
-        </PageSettingProvider>
+        <AdProvider>
+          <PageSettingProvider>
+            {children}
+            <TwElementCom />
+          </PageSettingProvider>
+        </AdProvider>
       </body>
     </html>
   );

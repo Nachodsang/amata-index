@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 // import MenuColumn from "@/components/MenuColumn/MenuColumn";
 import SideNav from "@/components/webpanel/SideNav/SideNav";
 import PageSettingProvider from "@/contexts/PageSettingContext";
+import AdProvider from "@/contexts/AdContext";
 
 // const SideNav = dynamic(() => import("@/components/SideNav/SideNav"), {
 //   ssr: false,
@@ -31,15 +32,17 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body className={`${inter.className} `}>
-        <PageSettingProvider>
-          {/* {children} */}
-          {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
-          {/* <MenuColumn /> */}
-          <SideNav _children={children} />
-          {/* </div> */}
+        <AdProvider>
+          <PageSettingProvider>
+            {/* {children} */}
+            {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
+            {/* <MenuColumn /> */}
+            <SideNav _children={children} />
+            {/* </div> */}
 
-          <TwElementCom />
-        </PageSettingProvider>
+            <TwElementCom />
+          </PageSettingProvider>
+        </AdProvider>
       </body>
     </html>
   );
