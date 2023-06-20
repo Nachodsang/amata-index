@@ -1,7 +1,7 @@
 import Ad from "../Ad/Ad";
 import CompanyCard from "../CompanyCard/CompanyCard";
 // mockdata
-import mockData from "../../../public/mockData/mockData";
+import mockData from "../../../../public/mockData/mockData";
 import { mock } from "node:test";
 
 export default function core({ category }: { category: string }) {

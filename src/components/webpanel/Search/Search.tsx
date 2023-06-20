@@ -1,6 +1,6 @@
 export default function Search() {
   return (
-    <div className="mb-3">
+    <div className="">
       <div className="relative mb-4 flex w-full flex-wrap items-stretch">
         <input
           type="search"

@@ -1,8 +1,8 @@
-import Header from "../../../components/Header/Header";
-import Banner from "../../../components/Banner/Banner";
-import Core from "../../../components/Core/Core";
-import Blog from "../../../components/Blog/Blog";
-import AdSection from "@/components/AdSection/AdSection";
+import Header from "../../../components/index/Header/Header";
+import Banner from "../../../components/index/Banner/Banner";
+import Core from "../../../components/index/Core/Core";
+import Blog from "../../../components/index/Blog/Blog";
+import AdSection from "@/components/index/AdSection/AdSection";
 
 export default function about() {
   return (
