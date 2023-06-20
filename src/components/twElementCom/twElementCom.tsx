@@ -8,6 +8,7 @@ import {
   Ripple,
   Sidenav,
   Dropdown,
+  Modal
 } from "tw-elements";
 import { useEffect } from "react";
 const TwElementCom = () => {
@@ -50,7 +51,7 @@ const TwElementCom = () => {
     }
   });
   useEffect(() => {
-    initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown });
+    initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown,Modal });
   }, []);
   return null;
 };

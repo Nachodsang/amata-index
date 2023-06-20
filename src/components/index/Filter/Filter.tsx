@@ -2,7 +2,8 @@
 
 import { useCollapse } from "react-collapsed";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { ImSearch } from "react-icons/im";
 import { VscDebugRestart } from "react-icons/vsc";
 import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
@@ -54,6 +55,8 @@ export default function Filter({ category }: { category: string }) {
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );
+
+  const { pageSetting }: any = useContext(PageSettingContext);
 
   const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
@@ -262,7 +265,8 @@ export default function Filter({ category }: { category: string }) {
               <span>Reset</span>
             </button>
             <button
-              className={`flex justify-center items-center z-20 gap-2  w-[75%] desktop0:w-[25%]  ${category}-background rounded-3xl text-white`}
+              style={{ backgroundColor: `${pageSetting?.themeColor}` }}
+              className={`flex justify-center items-center z-20 gap-2  w-[75%] desktop0:w-[25%]   rounded-3xl text-white`}
             >
               <ImSearch size={20} />
               <span>Search</span>

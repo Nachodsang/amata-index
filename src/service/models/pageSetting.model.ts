@@ -16,7 +16,7 @@ const pageSettingSchema = new Schema(
     description: { type: String },
     coverImage: { type: String },
     themeColor: { type: String },
-    edition: { type: Number },
+    edition: { type: Number, unique: true },
   },
   { timestamps: true }
 );

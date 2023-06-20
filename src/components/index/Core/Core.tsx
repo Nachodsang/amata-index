@@ -1,8 +1,10 @@
+import { useContext } from "react";
 import Ad from "../Ad/Ad";
 import CompanyCard from "../CompanyCard/CompanyCard";
 // mockdata
 import mockData from "../../../../public/mockData/mockData";
 import { mock } from "node:test";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 
 export default function core({ category }: { category: string }) {
   const { mockCompanies, mockMachines } = mockData;

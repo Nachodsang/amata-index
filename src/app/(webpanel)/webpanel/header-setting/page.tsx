@@ -1,5 +1,114 @@
+"use client";
+import { useContext, useState } from "react";
 import Input from "@/components/webpanel/Input/Input";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
+import Swal from "sweetalert2";
 export default function HeaderSettingPage() {
+  const [pageTitle, setPageTitle] = useState("");
+  const [pageDescription, setPageDescription] = useState("");
+  const [coverImage, setCoverImage] = useState("");
+  const [themeColor, setThemeColor] = useState("");
+
+  const { updatePageSetting }: any = useContext(PageSettingContext);
+  // Page title setting
+  const updatePageTitle = (e: any) => {
+    console.log(e.target.value);
+    setPageTitle(e.target.value);
+  };
+  const onSavePageTitle = () => {
+    if (pageTitle.length > 4) {
+      updatePageSetting("pageTitle", pageTitle);
+      setPageTitle("");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Page Title has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter new page title!",
+      });
+      console.log("please enter new page title");
+    }
+  };
+  // Page Description setting
+  const updatePageDescription = (e: any) => {
+    console.log(e.target.value);
+    setPageDescription(e.target.value);
+  };
+  const onSavePageDescription = () => {
+    if (pageDescription.length > 4) {
+      updatePageSetting("description", pageDescription);
+      setPageDescription("");
+      console.log("Description Updated");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Description Updated",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter new page description!",
+      });
+      console.log("please enter new page Description ");
+    }
+  };
+  // Update Theme Color
+  const updateThemeColor = (e: any) => {
+    setThemeColor(e.target.value);
+  };
+  const onSaveThemeColor = () => {
+    if (themeColor.length > 4) {
+      updatePageSetting("themeColor", themeColor);
+      setThemeColor("");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Theme Color has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please select new Theme Color!",
+      });
+      console.log("please enter new theme color");
+    }
+  };
+  // Update Cover Image
+  const updateCoverImage = (e: any) => {
+    setCoverImage(e.target.value);
+  };
+  const onSaveCoverImageURL = () => {
+    if (coverImage.length > 15) {
+      updatePageSetting("coverImage", coverImage);
+      setCoverImage("");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Cover Image has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please select new cover image!",
+      });
+      console.log("please enter new cover image");
+    }
+  };
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -8,8 +117,48 @@ export default function HeaderSettingPage() {
           Header Setting
         </h1>
         {/* title setting */}
-        <div>
-          <Input />
+        <div className="flex flex-col items-start">
+          <label htmlFor="">Page Title</label>
+          <Input onChange={updatePageTitle} value={pageTitle} />
+          <div className="flex justify-end w-full">
+            <button
+              onClick={onSavePageTitle}
+              type="button"
+              className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            >
+              save
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col items-start">
+          <label htmlFor="">Description</label>
+          <Input onChange={updatePageDescription} value={pageDescription} />
+          <div className="flex justify-end w-full">
+            <button
+              onClick={onSavePageDescription}
+              type="button"
+              className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            >
+              save
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col items-start">
+          <label htmlFor="">Theme Color</label>
+          <Input
+            onChange={updateThemeColor}
+            label="hex: #000000"
+            value={themeColor}
+          />
+          <div className="flex justify-end w-full">
+            <button
+              onClick={onSaveThemeColor}
+              type="button"
+              className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            >
+              save
+            </button>
+          </div>
         </div>
         <div className="flex flex-col items-start">
           <div className="py-4 border-b w-full border-black ">
@@ -28,10 +177,25 @@ export default function HeaderSettingPage() {
               type="file"
               id="formFile"
             />
+            <div className="flex justify-end w-full">
+              <button
+                type="button"
+                className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              >
+                save
+              </button>
+            </div>
+
+            <Input
+              label="Image URL"
+              value={coverImage}
+              onChange={updateCoverImage}
+            />
           </div>
         </div>
         <div className="flex justify-end">
           <button
+            onClick={onSaveCoverImageURL}
             type="button"
             className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
           >

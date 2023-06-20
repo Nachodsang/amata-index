@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import dynamic from "next/dynamic";
 // import MenuColumn from "@/components/MenuColumn/MenuColumn";
 import SideNav from "@/components/webpanel/SideNav/SideNav";
+import PageSettingProvider from "@/contexts/PageSettingContext";
 
 // const SideNav = dynamic(() => import("@/components/SideNav/SideNav"), {
 //   ssr: false,
@@ -30,13 +31,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="light">
       <body className={`${inter.className} `}>
-        {/* {children} */}
-        {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
-        {/* <MenuColumn /> */}
-        <SideNav _children={children} />
-        {/* </div> */}
+        <PageSettingProvider>
+          {/* {children} */}
+          {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
+          {/* <MenuColumn /> */}
+          <SideNav _children={children} />
+          {/* </div> */}
 
-        <TwElementCom />
+          <TwElementCom />
+        </PageSettingProvider>
       </body>
     </html>
   );
