@@ -93,7 +93,7 @@ export default function HeaderSettingPage() {
     setCoreHeaderColor(e.target.value);
   };
   const onSaveCoreHeaderColor = () => {
-    if (themeColor.length > 4) {
+    if (coreHeaderColor.length > 4) {
       updatePageSetting("coreHeaderColor", coreHeaderColor);
       setCoreHeaderColor("");
       Swal.fire({
@@ -117,7 +117,7 @@ export default function HeaderSettingPage() {
     setCoreColor(e.target.value);
   };
   const onSaveCoreColor = () => {
-    if (themeColor.length > 4) {
+    if (coreColor.length > 4) {
       updatePageSetting("coreColor", coreColor);
       setCoreColor("");
       Swal.fire({
@@ -191,7 +191,7 @@ export default function HeaderSettingPage() {
 
     body.append("file", file);
     body.append("folderName", "editor");
-    const response = await fetch("/api/image-upload", {
+    const response = await fetch("/api1/file", {
       method: "POST",
       body,
     });

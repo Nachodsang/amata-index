@@ -27,7 +27,8 @@ export default function CompanyCard({ props, category }: any) {
       <div className="flex  gap-2 px-6 justify-end ">
         <label className="text-sm font-semibold text-gray-500">Select</label>
         <input
-          className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none ${category}-ring `}
+          style={{ backgroundColor: `${pageSetting?.coreColor}` }}
+          className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none `}
           type="checkbox"
         />
       </div>

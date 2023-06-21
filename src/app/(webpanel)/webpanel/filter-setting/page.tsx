@@ -1,6 +1,17 @@
+"use client";
 import CheckboxDropdown from "@/components/index/CheckboxDropdown/CheckboxDropdown";
+import AddFilterBox from "@/components/webpanel/AddFilterBox/AddFilterBox";
+import Input from "@/components/webpanel/Input/Input";
+import { useContext } from "react";
+import { FilterContext } from "@/contexts/FilterContext";
 
 export default function FilterSettingPage() {
+  const { filters, onCheckFilter,addFilter }: any = useContext(FilterContext);
+
+  // console.log(filterTypes);
+  const uniqueFilterTypes = new Set(filters.map((i: any) => i.filterType));
+  const filterTypes = Array.from(uniqueFilterTypes);
+
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -9,38 +20,24 @@ export default function FilterSettingPage() {
           Filter Setting
         </h1>
         <div className="flex justify-center w-full gap-4 flex-wrap">
-          <div className="w-[25%] border border-slate-400 rounded-xl ">
-            <div>Filter1</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter2</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter3</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter4</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter4</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter4</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter4</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
-          <div className="w-[25%] border border-slate-400 rounded-xl">
-            <div>Filter4</div>
-            {/* <CheckboxDropdown isHidden="true" /> */}
-          </div>
+          {filterTypes.map((i, index) => {
+            return (
+              <AddFilterBox
+                key={index}
+                label={i}
+                filterList={filters}
+                onCheckFilter={onCheckFilter}
+                onSave = {addFilter}
+              />
+            );
+          })}
+          {/* <AddFilterBox label="Filter1" />
+          <AddFilterBox label="Filter2" />
+          <AddFilterBox label="Filter3" />
+          <AddFilterBox label="Filter4" />
+          <AddFilterBox label="Filter5" />
+          <AddFilterBox label="Filter6" />
+          <AddFilterBox label="Filter7" /> */}
         </div>
         <div className="flex justify-end">
           <button

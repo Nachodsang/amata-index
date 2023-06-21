@@ -7,16 +7,18 @@ import "./Header.css";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 
 export default function Header({ category }: { category: string }) {
-  const { pageSetting, testContext }: any = useContext(PageSettingContext);
+  const { pageSetting }: any = useContext(PageSettingContext);
 
   console.log(pageSetting.themeColor);
   return (
     <div className="w-full relative ">
       <div
         style={{
-          background: ` linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)), url(${pageSetting?.coverImage})`,
+          background: ` linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
         }}
-        className={`absolute z-0 top-0 bg-no-repeat  bg-cover  h-[800px]  w-full `}
+        className={`absolute z-0 top-0 bg-no-repeat  bg-cover  h-[800px] cover-image  w-full `}
       ></div>
       <div className=" px-6 ">
         <div className=" w-full  ">

@@ -6,17 +6,7 @@ import axios from "axios";
 export const PageSettingContext = createContext("");
 const URL = "http://localhost:3000/api/page-setting";
 
-export default function PageSettingProvider({ children }: any) {
-  const [pageSetting, setPageSetting] = useState({});
-
-  //   fetching page setting
-  const fetchPageSetting = async () => {
-    const response = await axios.get(URL);
-    const responseData = await response?.data;
-    console.log(responseData);
-    setPageSetting(responseData.pageSetting);
-  };
-
+export default function PageSettingProvider({ children, pageSetting }: any) {
   //   updating page setting
   const updatePageSetting = async (updatingField: any, newValue: any) => {
     const response = await axios.put(URL, {
@@ -26,13 +16,12 @@ export default function PageSettingProvider({ children }: any) {
 
     // console.log(response);
   };
-  useEffect(() => {
-    fetchPageSetting();
-  }, []);
+
+  const testtest = 1234;
 
   //   const pageSettingCon = { pageSetting, updatePageSetting, testContext };
   return (
-    <PageSettingContext.Provider value={{ pageSetting, updatePageSetting }}>
+    <PageSettingContext.Provider value={{ updatePageSetting, pageSetting }}>
       {children}
     </PageSettingContext.Provider>
   );
