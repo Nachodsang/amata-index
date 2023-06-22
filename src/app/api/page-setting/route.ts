@@ -1,21 +1,33 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { getTitle, setTitle } from "@/service/pageSettingService";
+import {
+  editPage,
+  getPageSetting,
+  setPage,
+} from "@/service/pageSettingService";
 
 export async function GET() {
-  // connecting db
-  const response = await getTitle();
-  // setTitle();
+  const response = await getPageSetting();
 
-  // res.status(200).json({ getTitle });
   return NextResponse.json(response);
-
-  // return NextResponse.json(getTitle());
 }
 
 export async function POST(req: Request) {
   const response = await req.json();
   // console.log(a);
 
-  return NextResponse.json(await setTitle(response));
+  return NextResponse.json(await setPage(response));
+}
+
+// update page setting
+export async function PUT(req: Request) {
+  const response = await req.json();
+  console.log(response);
+
+  const filterBy = "edition";
+  const edition = "1";
+
+  return NextResponse.json(
+    await editPage(filterBy, edition, response.updatingField, response.newValue)
+  );
 }

@@ -1,5 +1,8 @@
+"use client";
+import { useContext } from "react";
 import { FaGlobe, FaFacebookSquare, FaLine } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 
 export default function CompanyCard({ props, category }: any) {
   const {
@@ -17,12 +20,15 @@ export default function CompanyCard({ props, category }: any) {
     image4,
     details,
   } = props;
+
+  const { pageSetting }: any = useContext(PageSettingContext);
   return (
     <div className="w-full   bg-white rounded-xl mb-4 relative py-4">
       <div className="flex  gap-2 px-6 justify-end ">
         <label className="text-sm font-semibold text-gray-500">Select</label>
         <input
-          className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none ${category}-ring `}
+          style={{ backgroundColor: `${pageSetting?.coreColor}` }}
+          className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none `}
           type="checkbox"
         />
       </div>
@@ -115,7 +121,8 @@ export default function CompanyCard({ props, category }: any) {
             </div>
 
             <button
-              className={`${category}-background px-4 py-2 w-full rounded-2xl text-white`}
+              style={{ backgroundColor: `${pageSetting?.themeColor}` }}
+              className={` px-4 py-2 w-full rounded-2xl text-white`}
             >
               Details
             </button>
@@ -123,7 +130,8 @@ export default function CompanyCard({ props, category }: any) {
         </div>
         <div className="px-4">
           <button
-            className={`${category}-background desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
+            style={{ backgroundColor: `${pageSetting?.themeColor}` }}
+            className={` desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
           >
             Details
           </button>

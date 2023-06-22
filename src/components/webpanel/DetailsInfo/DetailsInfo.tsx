@@ -1,5 +1,6 @@
 "use client";
 import Editor from "../Editor/Editor";
+import EditorTest from "../EditorTest/EditorTest";
 export default function DetailsInfo() {
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
@@ -7,7 +8,9 @@ export default function DetailsInfo() {
         <div>Details</div>
       </div>
       <div className="py-10 mb-4">
-        <Editor />
+        {/* <Editor />
+         */}
+        <EditorTest />
       </div>
       <div className="flex justify-end">
         <button

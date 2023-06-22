@@ -1,12 +1,12 @@
-.header-factory {
+/* .header-factory {
   background: linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)),
     url(/images/factory.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-}
-.header-machine {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)),
-    url(/images/machine2.jpg);
+} */
+.cover-image {
+  /* background: linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)),
+    url(/images/machine2.jpg); */
   background-repeat: no-repeat;
   background-size: cover;
 }

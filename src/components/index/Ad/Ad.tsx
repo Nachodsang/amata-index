@@ -1,9 +1,9 @@
-export default function Ad({ index }: { index: number }) {
+export default function Ad({ image, link }: { image: any; link: string }) {
   return (
-    <div className="min-w-[300px] h-[280px] rounded-lg bg-gray-200 flex justify-center items-center">
-      <div className=" text-center  text-2xl font-extrabold text-gray-600  ">
-        Ad {index}
+    <a href={link}>
+      <div className=" overflow-hidden  min-w-[280px] h-[280px] rounded-lg bg-gray-200 ">
+        <img src={image} className="object-cover w-full h-full" />
       </div>
-    </div>
+    </a>
   );
 }

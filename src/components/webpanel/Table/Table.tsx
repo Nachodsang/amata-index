@@ -1,5 +1,5 @@
 import Entry from "../Entry/Entry";
-export default function Table({ list, col2, col3, col4, col5 }: any) {
+export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
   // let arr = [];
   // for (let i = 1; i <= 100; i++) {
   //   arr.push(i);
@@ -49,7 +49,18 @@ export default function Table({ list, col2, col3, col4, col5 }: any) {
               </thead>
               <tbody>
                 {list.map((i: any, index: any) => {
-                  const { _id, bannerTitle, adTitle, updatedAt, client } = i;
+                  const {
+                    _id,
+                    bannerTitle,
+                    adTitle,
+                    updatedAt,
+                    client,
+                    image,
+                    description,
+                    status,
+                    link,
+                  } = i;
+                  // convert date to local
                   const localDate = `${new Date(updatedAt)
                     .getDate()
                     .toString()
@@ -57,14 +68,18 @@ export default function Table({ list, col2, col3, col4, col5 }: any) {
                     .toString()
                     .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
 
-                  console.log(localDate);
                   return (
                     <Entry
+                      onChange={onChange}
                       key={_id}
                       index={index + 1}
                       title={bannerTitle || adTitle}
                       date={localDate}
                       company={client}
+                      image={image}
+                      description={description}
+                      status={status}
+                      link={link}
                     />
                   );
                   0;

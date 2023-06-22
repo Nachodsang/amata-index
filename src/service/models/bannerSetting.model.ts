@@ -7,6 +7,8 @@ export interface IbannerSetting {
   client?: String;
   description?: String;
   image?: String;
+  status?: Boolean;
+  link?: String;
 
   edition?: Number;
 }
@@ -20,6 +22,8 @@ const bannerSettingSchema = new Schema(
     image: { type: String },
 
     edition: { type: Number },
+    status: { type: Boolean },
+    link: { type: String },
   },
   { timestamps: true }
 );
