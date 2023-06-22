@@ -7,16 +7,20 @@ export interface IadSetting {
   client?: String;
   description?: String;
   image?: String;
+  status?: Boolean;
+  link?: String;
 
   edition?: Number;
 }
 
 const adSettingSchema = new Schema(
   {
-    adTitle: { type: String },
+    adTitle: { type: String, required: true },
     description: { type: String },
-    image: { type: String },
-    client: { type: String },
+    image: { type: String, required: true },
+    client: { type: String, required: true },
+    status: { type: Boolean, default: false },
+    link: { type: String, required: true },
 
     edition: { type: Number },
   },

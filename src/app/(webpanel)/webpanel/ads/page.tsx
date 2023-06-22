@@ -6,7 +6,7 @@ import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import { AdContext } from "@/contexts/AdContext";
 export default function AdList() {
-  const { ads }: any = useContext(AdContext);
+  const { ads, changeStatus }: any = useContext(AdContext);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -29,10 +29,11 @@ export default function AdList() {
           </button>
         </Link>
         <Table
+          onChange={changeStatus}
           list={ads}
-          col2="banner"
+          col2="image"
           col3="client"
-          col4="title"
+          col4="description"
           col5="created on"
         />
       </div>

@@ -6,9 +6,11 @@ import CompanyCard from "../CompanyCard/CompanyCard";
 import mockData from "../../../../public/mockData/mockData";
 import { mock } from "node:test";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
+import { AdContext } from "@/contexts/AdContext";
 
 export default function core({ category }: { category: string }) {
   const { pageSetting }: any = useContext(PageSettingContext);
+  const { adsPage }: any = useContext(AdContext);
   const { mockCompanies, mockMachines } = mockData;
   let companies: number[] = [];
   for (let i = 1; i <= 4; i++) {
@@ -45,8 +47,8 @@ export default function core({ category }: { category: string }) {
           style={{ backgroundColor: `${pageSetting?.coreColor}` }}
           className=" desktop0:w-[25%]  bg-[#044ea2] p-4 hidden desktop0:flex flex-col gap-4 min-w-[330px]  "
         >
-          {companies.map((i, index) => (
-            <Ad key={i} index={i} />
+          {adsPage.map((i: any, index: number) => (
+            <Ad key={index} image={i?.image} link={i?.link} />
           ))}
         </div>
       </div>

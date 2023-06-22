@@ -16,7 +16,7 @@ export const getFilter = async () => {
 };
 
 export const addFilter = async (req: IfilterSetting) => {
-  console.log(req);
+  // console.log(req);
   const response = new filterSettingModel(req);
   let status: any = "";
   try {
@@ -28,7 +28,7 @@ export const addFilter = async (req: IfilterSetting) => {
   }
 };
 
-// // active filter
+// // activate filter
 export const activeFilter = async (
   filterBy: string,
   filterValue: any,
@@ -46,5 +46,18 @@ export const activeFilter = async (
     return { status: "200", message: "complete", updatedObj: doc };
   } catch (err) {
     return err;
+  }
+};
+
+// delete Filter
+export const deleteFilter = async (filterBy: string, filterValue: string) => {
+  try {
+    const del = await filterSettingModel.findOneAndDelete({
+      [filterBy]: filterValue,
+    });
+    return { status: "200", message: "deletion complete", deletedValue: del };
+  } catch (err) {
+    console.log("here");
+    console.log(err);
   }
 };

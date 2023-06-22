@@ -31,7 +31,7 @@ export const setAd = async (req: IadSetting) => {
   }
 };
 
-// edit ad
+// edit ad and change ad status
 export const editAd = async (
   filterBy: string,
   filterValue: any,

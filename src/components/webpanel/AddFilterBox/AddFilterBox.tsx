@@ -1,6 +1,7 @@
 import { useState } from "react";
 import FilterCheckBox from "../FilterCheckBox/FilterCheckBox";
 import Input from "../Input/Input";
+import Swal from "sweetalert2";
 
 export default function AddFilterBox({
   label,
@@ -10,8 +11,23 @@ export default function AddFilterBox({
 }: any) {
   const [input, setInput] = useState("");
   const onSaveInput = () => {
-    onSave(label, input);
-    setInput("");
+    if (input.length >= 3) {
+      onSave(label, input);
+      setInput("");
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `New Filter has been added to Type ${label}`,
+        showConfirmButton: false,
+        timer: 3000,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please enter valid Filter Title",
+      });
+    }
   };
   return (
     <div className="w-[25%] border border-slate-400 rounded-xl p-6 ">

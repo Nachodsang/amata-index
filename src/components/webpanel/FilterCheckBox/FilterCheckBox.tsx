@@ -11,7 +11,11 @@ export default function FilterCheckBox({ title, isCheck, onCheckFilter }: any) {
   };
   return (
     <div className="flex justify-between">
-      <p className={`${checkState ? "text-black" : "text-slate-400 "}`}>
+      <p
+        className={`${
+          checkState ? "text-slate-800 font-bold" : "text-slate-400 "
+        }`}
+      >
         {title}
       </p>
       <input

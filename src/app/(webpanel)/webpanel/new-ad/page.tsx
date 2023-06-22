@@ -4,6 +4,13 @@ import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AdContext } from "@/contexts/AdContext";
 export default function CreateNewAdPage() {
+  const defaultAdState = {
+    client: "",
+    description: "",
+    adTitle: "",
+    image: "",
+    link: "",
+  };
   const [adState, setAdState] = useState({});
   const { addAd }: any = useContext(AdContext);
 
@@ -16,11 +23,23 @@ export default function CreateNewAdPage() {
   const onSetTitle = (e: any) => {
     setAdState({ ...adState, adTitle: e.target.value });
   };
+  const onSetLink = (e: any) => {
+    setAdState({ ...adState, link: e.target.value });
+  };
+  const onSetImage = (e: any) => {
+    setAdState({ ...adState, image: e.target.value });
+  };
   const onSaveAd = () => {
-    const { client, adTitle, description }: any = adState;
+    const { client, adTitle, description, image, link }: any = adState;
     if (client?.length > 3 && adTitle?.length > 3 && description?.length > 3) {
-      addAd(client, adTitle, description);
-      setAdState({ adTitle: "", client: "", description: "" });
+      addAd(client, adTitle, description, image, link);
+      setAdState({
+        adTitle: "",
+        client: "",
+        description: "",
+        image: "",
+        link: "",
+      });
       Swal.fire({
         position: "center",
         icon: "success",
@@ -60,6 +79,11 @@ export default function CreateNewAdPage() {
         {/* Client name */}
         <div className="flex flex-col gap-4">
           <Input
+            label="Image URL"
+            value={adState?.image}
+            onChange={onSetImage}
+          />
+          <Input
             label="Client"
             value={adState?.client}
             onChange={onSetClient}
@@ -78,6 +102,7 @@ export default function CreateNewAdPage() {
             value={adState?.description}
             onChange={onSetDescription}
           />
+          <Input label="Link" value={adState?.link} onChange={onSetLink} />
           <div className="flex justify-end">
             <button
               onClick={onSaveAd}
