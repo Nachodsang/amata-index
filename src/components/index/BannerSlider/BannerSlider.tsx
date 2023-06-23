@@ -39,7 +39,7 @@ export default function BannerSlider({
         }}
         className="h-full"
       >
-        {banners.map((i, index) => (
+        {banners.map((i: any, index: any) => (
           <SwiperSlide key={index}>
             <BannerCard
               category={category}

@@ -4,7 +4,7 @@ import { createContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-export const AdContext = createContext("");
+export const AdContext = createContext({});
 const URL = "http://localhost:3000/api/ad-setting";
 
 export default function AdProvider({ children, adsPage }: any) {

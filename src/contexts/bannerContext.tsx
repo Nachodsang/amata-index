@@ -4,10 +4,10 @@ import { createContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-export const BannerContext = createContext("");
+export const BannerContext = createContext({});
 const URL = "http://localhost:3000/api/banner-setting";
 
-export default function BannerProvider({ children }: any) {
+export default function BannerProvider({ children, bannerPage }: any) {
   const path = usePathname();
   const [banners, setBanners] = useState([]);
   // temp active ad list?
@@ -115,8 +115,8 @@ export default function BannerProvider({ children }: any) {
         addBanner,
         changeStatus,
         activatedBanners,
+        bannerPage,
 
-        // searchAd,
         changeOrder,
       }}
     >
