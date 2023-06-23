@@ -5,17 +5,38 @@ import Link from "next/link";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import { AdContext } from "@/contexts/AdContext";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 export default function AdList() {
-  const { ads, changeStatus }: any = useContext(AdContext);
+  const { ads, changeStatus, searchAd, changeOrder }: any =
+    useContext(AdContext);
+  const { pageSetting, updatePageSetting, pageSettingWebpanel }: any =
+    useContext(PageSettingContext);
+  const [numberOfAd, setNumberOfAd] = useState(pageSettingWebpanel?.adAmount);
+  console.log(pageSettingWebpanel?.adAmount);
+
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
       <div className="max-w-[1440px]  px-4 py-6  mx-auto">
         <h1 className="text-center font-semibold text-xl mb-4  ">Ad. List</h1>
 
-        <div className="w-full ">
-          <div className="w-[30%] mx-auto ">
+        <div className="w-full gap-4 flex justify-center items-center  ">
+          <div className="w-[30%] ">
             <Search />
+          </div>
+          <div className="h-8">
+            <label className="font-bold text-xl">
+              No. of Ad:{pageSettingWebpanel?.adAmount}{" "}
+            </label>
+            <input
+              type="number"
+              className="text-center w-10 border border-slate-400 rounded-xl "
+              value={numberOfAd}
+              onChange={(e) => setNumberOfAd(e.target.value)}
+            />
+            <button onClick={() => updatePageSetting("adAmount", numberOfAd)}>
+              SAVE
+            </button>
           </div>
           {/* Create new company profile */}
         </div>
@@ -29,6 +50,7 @@ export default function AdList() {
           </button>
         </Link>
         <Table
+          onChangeOrder={changeOrder}
           onChange={changeStatus}
           list={ads}
           col2="image"

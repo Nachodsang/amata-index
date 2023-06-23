@@ -1,9 +1,13 @@
 import Entry from "../Entry/Entry";
-export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
-  // let arr = [];
-  // for (let i = 1; i <= 100; i++) {
-  //   arr.push(i);
-  // }
+export default function Table({
+  list,
+  col2,
+  col3,
+  col4,
+  col5,
+  onChange,
+  onChangeOrder,
+}: any) {
   return (
     <div className="flex flex-col mx-auto">
       <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -52,6 +56,7 @@ export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
                   const {
                     _id,
                     bannerTitle,
+
                     adTitle,
                     updatedAt,
                     client,
@@ -59,7 +64,10 @@ export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
                     description,
                     status,
                     link,
+                    edition,
                   } = i;
+                  let type;
+                  adTitle ? (type = "ad") : (type = "banner");
                   // convert date to local
                   const localDate = `${new Date(updatedAt)
                     .getDate()
@@ -70,6 +78,7 @@ export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
 
                   return (
                     <Entry
+                      onChangeOrder={onChangeOrder}
                       onChange={onChange}
                       key={_id}
                       index={index + 1}
@@ -80,11 +89,11 @@ export default function Table({ list, col2, col3, col4, col5, onChange }: any) {
                       description={description}
                       status={status}
                       link={link}
+                      order={edition}
+                      type={type}
                     />
                   );
-                  0;
                 })}
-                0{" "}
               </tbody>
             </table>
           </div>

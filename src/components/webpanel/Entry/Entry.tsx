@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Input from "../Input/Input";
 export default function Entry({
   index,
   title,
@@ -10,12 +11,19 @@ export default function Entry({
   onChange,
   status,
   link,
+  order,
+  onChangeOrder,
+  type,
 }: any) {
   const [isCheck, setIsCheck] = useState(status);
+  const [orderState, setOrderState] = useState(order);
 
   const onCheck = () => {
     onChange(title, !isCheck);
     setIsCheck(!isCheck);
+  };
+  const onClickChangeOrder = (e: any) => {
+    setOrderState(e.target.value);
   };
   return (
     <tr
@@ -28,7 +36,9 @@ export default function Entry({
         <a href={link}>
           <img
             src={image}
-            className="h-[150px] w-[150px] object-cover"
+            className={`${
+              type === "ad" ? "h-[150px] w-[150px]" : "h-[50px] w-[175px]"
+            } object-cover`}
             alt="Ad image"
           />
           <h1>{title}</h1>
@@ -48,6 +58,25 @@ export default function Entry({
           id="flexSwitchCheckDefault02"
           checked={isCheck}
         />
+        {isCheck && (
+          <div className="flex items-center gap-3">
+            <label>Order: </label>
+            <input
+              type="number"
+              className="w-10 rounded-xl text-center"
+              onChange={onClickChangeOrder}
+              value={orderState}
+            />
+            <button
+              className="bg-green-200 px-2 py-0 border-2 border-green-400 rounded-xl"
+              onClick={() => {
+                onChangeOrder(title, orderState);
+              }}
+            >
+              Save
+            </button>
+          </div>
+        )}
       </td>
     </tr>
   );

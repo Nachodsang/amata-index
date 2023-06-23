@@ -11,7 +11,7 @@ export default function CreateNewAdPage() {
     image: "",
     link: "",
   };
-  const [adState, setAdState] = useState({});
+  const [adState, setAdState] = useState(defaultAdState);
   const { addAd }: any = useContext(AdContext);
 
   const onSetClient = (e: any) => {

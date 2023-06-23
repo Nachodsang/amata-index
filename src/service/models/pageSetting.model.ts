@@ -10,6 +10,7 @@ export interface IpageSetting {
   edition?: Number;
   coreColor?: { type: String };
   coreHeaderColor?: { type: String };
+  adAmount?: Number;
 }
 
 const pageSettingSchema = new Schema(
@@ -18,8 +19,9 @@ const pageSettingSchema = new Schema(
     description: { type: String },
     coverImage: { type: String },
     themeColor: { type: String },
-    coreColor:{type:String},
-    coreHeaderColor:{type:String},
+    coreColor: { type: String },
+    coreHeaderColor: { type: String },
+    adAmount: { type: Number, required: true },
 
     edition: { type: Number, unique: true },
   },

@@ -8,12 +8,19 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import BannerCard from "../BannerCard/BannerCard";
 
-let banners: number[] = [];
-for (let i = 1; i <= 20; i++) {
-  banners.push(i);
-}
+// let banners: number[] = [];
+// for (let i = 1; i <= 20; i++) {
+//   banners.push(i);
+// }
 
-export default function BannerSlider({ category }: { category: string }) {
+export default function BannerSlider({
+  category,
+  banners,
+}: {
+  category: string;
+  banners: any;
+}) {
+  console.log(banners);
   return (
     <div className="w-full  ">
       <Swiper
@@ -32,9 +39,14 @@ export default function BannerSlider({ category }: { category: string }) {
         }}
         className="h-full"
       >
-        {banners.map((i, index) => (
+        {banners.map((i: any, index: any) => (
           <SwiperSlide key={index}>
-            <BannerCard category={category} num={i} />
+            <BannerCard
+              category={category}
+              title={i?.bannerTitle}
+              image={i?.image}
+              link={i?.link}
+            />
           </SwiperSlide>
         ))}
       </Swiper>
