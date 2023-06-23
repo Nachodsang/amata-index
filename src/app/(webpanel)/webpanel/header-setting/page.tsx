@@ -202,7 +202,7 @@ export default function HeaderSettingPage() {
       {/* container */}
       <div className="max-w-[1440px]  px-4 py-6  mx-auto">
         <h1 className="text-center font-semibold text-xl mb-4  ">
-          Header Setting
+          Page Setting
         </h1>
         {/* title setting */}
         <div className="flex flex-col items-start">

@@ -12,12 +12,12 @@ export default function core({ category }: { category: string }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { adsPage }: any = useContext(AdContext);
   const { mockCompanies, mockMachines } = mockData;
-  let companies: number[] = [];
-  for (let i = 1; i <= 4; i++) {
-    companies.push(i);
-  }
+
   return (
-    <div className=" h-[1200px]  px-6">
+    <div
+      className={`  px-6`}
+      style={{ height: `${pageSetting?.adAmount * 299}px` }}
+    >
       <div className="mx-auto max-w-[1270px]   h-full overflow-hidden  rounded-2xl shadow-md  relative z-10 flex ">
         <div className=" desktop0:w-[75%] h-full ">
           <div

@@ -7,6 +7,7 @@ import PageSettingProvider from "@/contexts/PageSettingContext";
 import AdProvider from "@/contexts/AdContext";
 import FilterContextProvider from "@/contexts/FilterContext";
 import axios from "axios";
+import BannerProvider from "@/contexts/bannerContext";
 
 // const SideNav = dynamic(() => import("@/components/SideNav/SideNav"), {
 //   ssr: false,
@@ -44,19 +45,21 @@ export default async function RootLayout({
   return (
     <html lang="en" className="light">
       <body className={`${inter.className} `}>
-        <AdProvider>
-          <FilterContextProvider filters={filterData}>
-            <PageSettingProvider>
-              {/* {children} */}
-              {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
-              {/* <MenuColumn /> */}
-              <SideNav _children={children} />
-              {/* </div> */}
+        <BannerProvider>
+          <AdProvider>
+            <FilterContextProvider filters={filterData}>
+              <PageSettingProvider>
+                {/* {children} */}
+                {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
+                {/* <MenuColumn /> */}
+                <SideNav _children={children} />
+                {/* </div> */}
 
-              <TwElementCom />
-            </PageSettingProvider>
-          </FilterContextProvider>
-        </AdProvider>
+                <TwElementCom />
+              </PageSettingProvider>
+            </FilterContextProvider>
+          </AdProvider>
+        </BannerProvider>
       </body>
     </html>
   );

@@ -23,6 +23,7 @@ export default function FilterCheckBox({ title, isCheck, onCheckFilter }: any) {
         // checked={i?.active}
         checked={checkState}
         onChange={onCheck}
+        className="hover:cursor-pointer"
       />
     </div>
   );

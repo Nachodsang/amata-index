@@ -14,7 +14,7 @@ export default function Header({ category }: { category: string }) {
     <div className="w-full relative ">
       <div
         style={{
-          background: ` linear-gradient(rgba(0, 0, 0, 0.2), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
+          background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}

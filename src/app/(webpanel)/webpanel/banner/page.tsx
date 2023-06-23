@@ -3,21 +3,23 @@ import Link from "next/link";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { BannerContext } from "@/contexts/bannerContext";
 export default function BannerList() {
   const [bannerList, setBannerList] = useState([]);
+  const { banners, changeStatus, changeOrder }: any = useContext(BannerContext);
   // fetch
-  const bannerFetch = async () => {
-    const response = await axios.get(
-      "http://localhost:3000/api/banner-setting"
-    );
-    // console.log(response.data);
-    setBannerList(response.data);
-  };
+  // const bannerFetch = async () => {
+  //   const response = await axios.get(
+  //     "http://localhost:3000/api/banner-setting"
+  //   );
+  //   // console.log(response.data);
+  //   setBannerList(response.data);
+  // };
 
-  useEffect(() => {
-    bannerFetch();
-  }, []);
+  // useEffect(() => {
+  //   bannerFetch();
+  // }, []);
 
   // console.log(bannerList);
 
@@ -45,11 +47,13 @@ export default function BannerList() {
           </button>
         </Link>
         <Table
-          list={bannerList}
+          list={banners}
           col2="banner"
           col3="client"
-          col4="title"
+          col4="description"
           col5="created on"
+          onChange={changeStatus}
+          onChangeOrder={changeOrder}
         />
       </div>
     </div>

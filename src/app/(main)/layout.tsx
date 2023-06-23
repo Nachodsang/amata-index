@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import PageSettingProvider from "@/contexts/PageSettingContext";
 import AdProvider from "@/contexts/AdContext";
 import axios from "axios";
+import BannerProvider from "@/contexts/bannerContext";
 
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
@@ -29,6 +30,17 @@ const fetchAd = async () => {
     console.log(err);
   }
 };
+const fetchAdTry = async () => {
+  const response = await fetch("http://localhost:3000/api/ad-setting", {
+    cache: "no-store",
+  });
+
+  const data = await response.json();
+  const displayedAds = data
+    .filter((i: any) => i?.status)
+    .sort((a: any, b: any) => a.edition - b.edition);
+  return displayedAds;
+};
 // fetchPageSetting
 const fetchPageSetting = async () => {
   const response = await fetch("http://localhost:3000/api/page-setting", {
@@ -47,17 +59,19 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const pageSettingData = await fetchPageSetting();
-  const adData = await fetchAd();
+  const adData = await fetchAdTry();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <AdProvider adsPage={adData}>
-          <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-            {children}
-            <TwElementCom />
-          </PageSettingProvider>
-        </AdProvider>
+        <BannerProvider>
+          <AdProvider adsPage={adData}>
+            <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
+              {children}
+              <TwElementCom />
+            </PageSettingProvider>
+          </AdProvider>
+        </BannerProvider>
       </body>
     </html>
   );

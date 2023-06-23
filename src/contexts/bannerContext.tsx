@@ -4,27 +4,28 @@ import { createContext, useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
-export const AdContext = createContext("");
-const URL = "http://localhost:3000/api/ad-setting";
+export const BannerContext = createContext("");
+const URL = "http://localhost:3000/api/banner-setting";
 
-export default function AdProvider({ children, adsPage }: any) {
+export default function BannerProvider({ children }: any) {
   const path = usePathname();
-  const [ads, setAds] = useState([]);
+  const [banners, setBanners] = useState([]);
   // temp active ad list?
-  const [activatedAds, setActivatedAds] = useState([]);
+  const [activatedBanners, setActivatedBanners] = useState([]);
 
   //   fetch Ad
-  const fetchAd = async () => {
+  const fetchBanner = async () => {
     try {
       const response = await axios.get(URL);
       const responseData = response.data;
-      setAds(responseData);
-      // console.log(responseData);
+      setBanners(responseData);
+      console.log("banner");
+      console.log(responseData);
       // ads with active status
-      const activeAds = responseData.filter((i: any) => {
+      const activeBanners = responseData.filter((i: any) => {
         return i?.status;
       });
-      setActivatedAds(activeAds);
+      setActivatedBanners(activeBanners);
     } catch (err) {
       console.log(err);
     }
@@ -40,22 +41,26 @@ export default function AdProvider({ children, adsPage }: any) {
   //         description.includes(search)
   //       );
   //     });
-  //     setAds(result);
+  //     setBanners(result);
   //   } else {
   //     console.log("no input accepted");
   //   }
   // };
   //   Add new ad
-  const addAd = async (
+  const addBanner = async (
     client: string,
-    adTitle: string,
+    bannerTitle: string,
     description: string,
     image: string,
     link: string
   ) => {
     try {
-      if (client.length > 3 && adTitle.length > 3 && description.length > 3) {
-        const pushData = { client, adTitle, description, image, link };
+      if (
+        client.length > 3 &&
+        bannerTitle.length > 3 &&
+        description.length > 3
+      ) {
+        const pushData = { client, bannerTitle, description, image, link };
         const response = await axios.post(URL, pushData);
         console.log(response);
       } else {
@@ -67,13 +72,13 @@ export default function AdProvider({ children, adsPage }: any) {
   };
 
   useEffect(() => {
-    fetchAd();
+    fetchBanner();
   }, [path]);
   // change ad status
   const changeStatus = async (title: string, newStatus: boolean) => {
     try {
       const response = await axios.put(URL, {
-        filterCat: "adTitle",
+        filterCat: "bannerTitle",
         filterValue: title,
         updatingField: "status",
         newValue: newStatus,
@@ -86,7 +91,7 @@ export default function AdProvider({ children, adsPage }: any) {
   const changeOrder = async (title: string, newOrder: number) => {
     try {
       const response = await axios.put(URL, {
-        filterCat: "adTitle",
+        filterCat: "bannerTitle",
         filterValue: title,
         updatingField: "edition",
         newValue: newOrder,
@@ -104,18 +109,18 @@ export default function AdProvider({ children, adsPage }: any) {
     }
   };
   return (
-    <AdContext.Provider
+    <BannerContext.Provider
       value={{
-        ads,
-        addAd,
+        banners,
+        addBanner,
         changeStatus,
-        activatedAds,
-        adsPage,
+        activatedBanners,
+
         // searchAd,
         changeOrder,
       }}
     >
       {children}
-    </AdContext.Provider>
+    </BannerContext.Provider>
   );
 }

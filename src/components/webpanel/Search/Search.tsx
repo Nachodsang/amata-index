@@ -1,4 +1,12 @@
-export default function Search() {
+"use client";
+import { useState } from "react";
+export default function Search({ onSearch }: any) {
+  const [searchState, setSearchState] = useState("");
+  const onClickSearch = () => {
+    onSearch(searchState);
+    setSearchState("");
+  };
+
   return (
     <div className="">
       <div className="relative mb-4 flex w-full flex-wrap items-stretch">
@@ -8,6 +16,10 @@ export default function Search() {
           placeholder="Search"
           aria-label="Search"
           aria-describedby="button-addon3"
+          onChange={(e) => {
+            setSearchState(e.target.value);
+          }}
+          value={searchState}
         />
 
         <button
@@ -15,6 +27,7 @@ export default function Search() {
           type="button"
           id="button-addon3"
           data-te-ripple-init
+          onClick={onClickSearch}
         >
           Search
         </button>
