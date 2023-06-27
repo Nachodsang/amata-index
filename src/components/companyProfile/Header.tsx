@@ -1,6 +1,6 @@
 export default function Header() {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-10 py-10">
       {/* cover image */}
       <div className="h-[50vh] bg-white w-full">
         <img
@@ -8,7 +8,7 @@ export default function Header() {
           className="w-full"
         />
       </div>
-      ;{/* company info */}
+      {/* company info */}
       <div className="max-w-[1440px] w-full h-[300px] mx-auto flex gap-4 ">
         <div className="w-[75%] bg-slate-200 rounded-xl p-6 flex gap-6 items-start shadow-lg">
           <div className="  w-[25%] h-full p-4 bg-white rounded-xl">
