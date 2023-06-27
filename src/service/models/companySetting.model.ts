@@ -3,13 +3,12 @@ import { Interface } from "readline";
 
 export interface IadSetting {
   _id?: Types.ObjectId;
-  companyTitle?: String;
-  contact?: String;
+  adTitle?: String;
+  client?: String;
   description?: String;
   image?: String;
   status?: Boolean;
   link?: String;
-  companyPage?: String;
 
   edition?: Number;
 }

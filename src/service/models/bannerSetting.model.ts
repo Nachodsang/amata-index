@@ -21,8 +21,8 @@ const bannerSettingSchema = new Schema(
     description: { type: String },
     image: { type: String },
 
-    edition: { type: Number },
-    status: { type: Boolean },
+    edition: { type: Number, default: 0 },
+    status: { type: Boolean, default: false },
     link: { type: String },
   },
   { timestamps: true }

@@ -10,7 +10,7 @@ import {
 
 import axios from "axios";
 
-export const PageSettingContext = createContext("");
+export const PageSettingContext = createContext({});
 const URL = "http://localhost:3000/api/page-setting";
 
 export default function PageSettingProvider({ children, pageSetting }: any) {

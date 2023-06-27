@@ -13,7 +13,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
   // temp active ad list?
   const [activatedBanners, setActivatedBanners] = useState([]);
 
-  //   fetch Ad
+  //   fetch banner
   const fetchBanner = async () => {
     try {
       const response = await axios.get(URL);
