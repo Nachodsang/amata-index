@@ -1,52 +1,114 @@
+"use client";
+import { useState } from "react";
 import Input from "../Input/Input";
 import InputGroup from "../InputGroup/InputGroup";
+import FileInput from "../FileInput/FileInput";
+import DropDown from "../DropDown/DropDown";
+const mockData = [1, 2, 3, 4, 5, 6, 7];
 
 export default function GeneralInfo() {
+  const defaultImgState = { logoImg: undefined, coverImg: undefined };
+  const [imgState, setImgState] = useState(defaultImgState);
+  const logoImageChange = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImgState({ ...imgState, logoImg: e.target.files[0] });
+    }
+  };
+  const coverImageChange = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setImgState({ ...imgState, coverImg: e.target.files[0] });
+    }
+  };
+
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md flex flex-col p-4 gap-2">
       <div className="flex justify-start border-b border-slate-300 py-2">
         <div>General</div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between w-full">
         {/* logo */}
-        <div>
-          <img
-            src="https://cdn.logo.com/hotlink-ok/logo-social.png"
-            className="w-[300px] h-[300px] object-cover"
-          />
-          <div className="mb-3">
-            <label className="mb-2 inline-block   text-xs text-red-500 dark:text-neutral-200">
-              Dimension: 500 x 500 pixel (auto resize & crop)
-            </label>
-            <input
-              className="relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-              type="file"
-              id="formFile"
+        <div className="w-[25%]">
+          {imgState?.logoImg ? (
+            <img
+              src={URL.createObjectURL(imgState?.logoImg)}
+              className="w-[300px] h-[300px] object-cover"
             />
+          ) : (
+            <img
+              src="https://cdn.logo.com/hotlink-ok/logo-social.png"
+              className="w-[300px] h-[300px] object-cover"
+            />
+          )}
+          <div className="mb-3">
+            <p className="mb-2 inline-block text-xs text-red-500 dark:text-neutral-200 ">
+              Dimension: 500 x 500 pixel (auto resize & crop)
+            </p>
+            <FileInput imageChange={logoImageChange} />
           </div>
           {/* logo upload */}
         </div>
         {/* cover */}
-        <div>
-          <img
-            src="https://industrial.frasersproperty.co.th/storage/updates/blog/2022/10/5-factors-to-consider-when-choosing-a-location-to-rent-a-Factory/img-08.jpg"
-            className="w-[1500px] h-[300px] object-cover"
-          />
+        <div className="w-[75%]">
+          {imgState?.coverImg ? (
+            <img
+              src={URL.createObjectURL(imgState?.coverImg)}
+              className="w-[1500px] h-[300px] object-cover"
+            />
+          ) : (
+            <img
+              src="https://industrial.frasersproperty.co.th/storage/updates/blog/2022/10/5-factors-to-consider-when-choosing-a-location-to-rent-a-Factory/img-08.jpg"
+              className="w-[1500px] h-[300px] object-cover"
+            />
+          )}
+
           <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
             Dimension: 1920 x 500 pixel (auto resize & crop)
           </label>
-          <input
-            className="mb-2 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-            type="file"
-            id="formFile"
-          />
+          <FileInput imageChange={coverImageChange} />
           {/* video */}
+
           <Input label="Video URL" />
         </div>
       </div>
 
-      <div>
-        <InputGroup />
+      <div className="flex flex-col gap-2">
+        {/* <InputGroup /> */}
+
+        <div className="border-l-4 border-red-400 bg-slate-100 rounded-md p-4">
+          <Input label="*Profile URL:eg.factory-name-thailand" />
+        </div>
+        <div className="flex flex-flow justify-between w-full">
+          <div className="w-[30%]">
+            <Input label="Company Name(TH)" />
+          </div>
+          <div className="w-[30%]">
+            <Input label="Company Name(EN)" />
+          </div>
+          <div className="w-[30%]">
+            <Input label="Company Name(JP)" />
+          </div>
+        </div>
+        <div className="flex flex-flow justify-between w-full">
+          <div className="w-[30%]">
+            <Input label="Company Name(CN)" />
+          </div>
+          <div className="w-[30%]">
+            <DropDown
+              title={"Industry"}
+              checkBox={false}
+              filterList={mockData}
+              type="dropdown"
+            />
+          </div>
+          <div className="w-[30%]">
+            <DropDown
+              title={"Nationality"}
+              checkBox={false}
+              filterList={mockData}
+              type="dropdown"
+            />
+          </div>
+        </div>
       </div>
       {/* save button */}
       <div className="flex justify-end">

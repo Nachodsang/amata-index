@@ -3,14 +3,18 @@ import DropDownFilterBox from "../DropDownFilterBox/DropDownFilterBox";
 export default function DropDown({
   title,
   filterList,
+  checkBox,
+  type,
 }: {
   title: string;
   filterList: any;
+  checkBox: boolean;
+  type: string;
 }) {
   return (
     <div className="relative" data-te-dropdown-ref>
       <button
-        className="flex min-w-[300px] justify-between items-center whitespace-nowrap rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
+        className="flex min-w-[250px] justify-between items-center whitespace-nowrap rounded bg-primary px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] motion-reduce:transition-none dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]"
         type="button"
         id="dropdownMenuButton1"
         data-te-dropdown-toggle-ref
@@ -39,11 +43,21 @@ export default function DropDown({
         aria-labelledby="dropdownMenuButton1"
         data-te-dropdown-menu-ref
       >
-        {filterList.map((i: any) => {
-          if (i?.filterType === title && i?.active === true) {
-            return <DropDownFilterBox filterTitle={i?.filterTitle} />;
-          }
-        })}
+        {type === "filterCheckbox" &&
+          filterList.map((i: any) => {
+            if (i?.filterType === title && i?.active === true) {
+              return (
+                <DropDownFilterBox
+                  filterTitle={i?.filterTitle}
+                  checkBox={checkBox}
+                />
+              );
+            }
+          })}
+        {type === "dropdown" &&
+          filterList.map((i: any) => (
+            <DropDownFilterBox checkBox={checkBox} filterTitle={i} />
+          ))}
       </ul>
     </div>
   );

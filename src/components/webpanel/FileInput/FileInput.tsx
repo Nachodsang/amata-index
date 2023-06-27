@@ -29,8 +29,16 @@ export default function FileInput({
       });
 
       // handle the error
-      if (!res.ok) throw new Error(await res.text());
-      else {
+      if (!res.ok) {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter valid inputs!",
+          timer: 1500,
+        });
+        throw new Error(await res.text());
+      } else {
         Swal.fire({
           position: "center",
           icon: "success",

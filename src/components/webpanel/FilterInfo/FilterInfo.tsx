@@ -15,7 +15,12 @@ export default function FilterInfo() {
       </div>
       <div className="py-6 flex flex-wrap  gap-6">
         {uniqueFilterType.map((i: any) => (
-          <DropDown title={i} filterList={filtersState} />
+          <DropDown
+            checkBox={true}
+            title={i}
+            type="filterCheckbox"
+            filterList={filtersState}
+          />
         ))}
       </div>
       <div className="flex justify-end">
