@@ -4,15 +4,24 @@ import Input from "@/components/webpanel/Input/Input";
 
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import Swal from "sweetalert2";
+import FileInput from "@/components/webpanel/FileInput/FileInput";
+import { imageConfigDefault } from "next/dist/shared/lib/image-config";
 export default function HeaderSettingPage() {
+  const { updatePageSetting, pageSettingWebpanel }: any =
+    useContext(PageSettingContext);
   const [pageTitle, setPageTitle] = useState("");
   const [pageDescription, setPageDescription] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [themeColor, setThemeColor] = useState("");
   const [coreColor, setCoreColor] = useState("");
   const [coreHeaderColor, setCoreHeaderColor] = useState("");
+  const [selectedImage, setSelectedImage] = useState();
+  const imageChange = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setSelectedImage(e.target.files[0]);
+    }
+  };
 
-  const { updatePageSetting }: any = useContext(PageSettingContext);
   // Page title setting
   const updatePageTitle = (e: any) => {
     console.log(e.target.value);
@@ -286,35 +295,38 @@ export default function HeaderSettingPage() {
           <div className="py-4 border-b w-full border-black ">
             <h1 className="text-start">Cover Image</h1>
           </div>
-          <div className="py-4">
-            <img
-              src="https://industrial.frasersproperty.co.th/storage/updates/blog/2022/10/5-factors-to-consider-when-choosing-a-location-to-rent-a-Factory/img-08.jpg"
-              className="w-[1500px] h-[300px] object-cover"
-            />
+          <div className="py-4 w-full">
+            {selectedImage ? (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                className="w-full h-[300px] object-cover"
+              />
+            ) : (
+              <div className="w-full h-[300px] bg-slate-200 flex ">
+                <h1 className="m-auto font-bold text-slate-400 text-4xl">
+                  Select Image to Preview
+                </h1>
+              </div>
+            )}
+
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
               Dimension: 1920 x 500 pixel (auto resize & crop)
             </label>
-            <input
-              className="mb-2 relative m-0 block w-full min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-clip-padding px-3 py-[0.32rem] text-base font-normal text-neutral-700 transition duration-300 ease-in-out file:-mx-3 file:-my-[0.32rem] file:overflow-hidden file:rounded-none file:border-0 file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-              type="file"
-              id="formFile"
-              onChange={uploadToClient}
-            />
-            <div className="flex justify-end w-full">
-              <button
-                onClick={handleClickSubmitImg}
-                type="button"
-                className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-              >
-                save
-              </button>
-            </div>
+            <div className="flex flex-col gap-4">
+              <FileInput
+                path="upload-cover-images"
+                imageChange={imageChange}
+                state={coverImage}
+                setState={setCoverImage}
+                objectState={false}
+              />
 
-            <Input
-              label="Image URL"
-              value={coverImage}
-              onChange={updateCoverImage}
-            />
+              <Input
+                label="Image URL"
+                value={coverImage}
+                onChange={updateCoverImage}
+              />
+            </div>
           </div>
         </div>
         <div className="flex justify-end">

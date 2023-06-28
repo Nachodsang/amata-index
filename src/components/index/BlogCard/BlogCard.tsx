@@ -3,7 +3,7 @@ import { useContext } from "react";
 import Image from "next/image";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 
-export default function BlogCard({ category }: { category: string }) {
+export default function BlogCard({}: {}) {
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
     <div className=" hover:scale-105 transition-all hover:cursor-pointer duration-300 place-content-stretch card max-w-[510px] h-[585px] desktop0:w-[220px] desktop0:h-[384px] desktop2:w-[300px]  tablet2:w-[330px] tablet2:h-[465px] desktop1:w-[255px] desktop1:h-[414px] desktop2:h-[441px] border border-gray-100  bg-white shadow-md flex flex-col justify-around gap-1 p-4">
@@ -47,7 +47,7 @@ export default function BlogCard({ category }: { category: string }) {
       <div className="flex justify-center">
         <div
           style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-          className={`w-[80%] rounded-3xl  h-1 ${category}-background`}
+          className={`w-[80%] rounded-3xl  h-1 `}
         ></div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import PageSettingProvider from "@/contexts/PageSettingContext";
 import AdProvider from "@/contexts/AdContext";
 import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
+import CompanyContextProvider from "@/contexts/CompanyContext";
 
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
@@ -66,6 +67,18 @@ const fetchPageSetting = async () => {
   return data;
 };
 
+// fetchCompanyProfile
+// const fetchCompany = async () => {
+//   const response = await fetch("http://localhost:3000/api/company-setting", {
+//     cache: "no-store",
+//     // next: { revalidate: 5 },
+//   });
+//   const data = await response.json();
+//   console.log("fetching setting");
+//   console.log(data);
+//   return data;
+// };
+
 export default async function RootLayout({
   children,
 }: {
@@ -74,18 +87,21 @@ export default async function RootLayout({
   const pageSettingData = await fetchPageSetting();
   const adData = await fetchAdTry();
   const bannerData = await fetchBanner();
+  // const companyPageData = await fetchCompany();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <BannerProvider bannerPage={bannerData}>
-          <AdProvider adsPage={adData}>
-            <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-              {children}
-              <TwElementCom />
-            </PageSettingProvider>
-          </AdProvider>
-        </BannerProvider>
+        <CompanyContextProvider>
+          <BannerProvider bannerPage={bannerData}>
+            <AdProvider adsPage={adData}>
+              <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
+                {children}
+                <TwElementCom />
+              </PageSettingProvider>
+            </AdProvider>
+          </BannerProvider>
+        </CompanyContextProvider>
       </body>
     </html>
   );

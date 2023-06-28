@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useContext, createContext, useState, useEffect } from "react";
 
-export const FilterContext = createContext("");
+export const FilterContext = createContext({});
 const URL = "http://localhost:3000/api/filter-setting";
 const FilterContextProvider = ({ children, filters }: any) => {
   const [filtersState, setFiltersState] = useState(filters);
