@@ -5,11 +5,15 @@ export default function DropDown({
   filterList,
   checkBox,
   type,
+  onChange,
+  selected,
 }: {
   title: string;
   filterList: any;
   checkBox: boolean;
   type: string;
+  onChange: any;
+  selected: any;
 }) {
   return (
     <div className="relative" data-te-dropdown-ref>
@@ -22,7 +26,15 @@ export default function DropDown({
         data-te-ripple-init
         data-te-ripple-color="light"
       >
+        {/* {selected &&
+          selected.map((i: any) => {
+            if (i?.filterType === title) {
+              return <span>{i?.filterTitle},</span>;
+            }
+          })} */}
         {title}
+
+        {/* {selected.length < 1 && title} */}
         <span className="ml-2 w-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +62,19 @@ export default function DropDown({
                 <DropDownFilterBox
                   filterTitle={i?.filterTitle}
                   checkBox={checkBox}
+                  onChange={onChange}
+                  filterType={i?.filterType}
                 />
               );
             }
           })}
         {type === "dropdown" &&
           filterList.map((i: any) => (
-            <DropDownFilterBox checkBox={checkBox} filterTitle={i} />
+            <DropDownFilterBox
+              checkBox={checkBox}
+              filterTitle={i}
+              onChange={onChange}
+            />
           ))}
       </ul>
     </div>

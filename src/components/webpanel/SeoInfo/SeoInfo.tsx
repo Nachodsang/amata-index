@@ -1,15 +1,33 @@
+"use client";
+import { useState } from "react";
 export default function SeoInfo() {
+  const [keywordState, setKeywordState] = useState([]);
+  const onChangeKeyword = (e: any) => {
+    setKeywordState(e.target.value.split(", "));
+  };
+  console.log(keywordState);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
         <div>SEO</div>
       </div>
-      <div className="py-4">
+      <div className="py-4 flex flex-col gap-4">
+        {keywordState && (
+          <div className="flex gap-2 items-center">
+            <h1>Seo Keywords: </h1>
+            {keywordState.map((i: any) => (
+              <span className="text-white  font-bold text-xs p-2 bg-red-500 rounded-2xl">
+                {i}
+              </span>
+            ))}
+          </div>
+        )}
         <textarea
           id="message"
-          rows="4"
+          rows={5}
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="SEO Keywords...."
+          onChange={onChangeKeyword}
         ></textarea>
       </div>
       <div className="flex justify-end">

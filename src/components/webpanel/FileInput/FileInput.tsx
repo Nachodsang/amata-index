@@ -8,6 +8,7 @@ export default function FileInput({
   setState,
   state,
   objectState,
+  stateValue,
 }: any) {
   const [file, setFile] = useState<File>();
 
@@ -50,7 +51,7 @@ export default function FileInput({
         const response = await res.json();
         console.log(response);
         objectState
-          ? setState({ ...state, image: response.image })
+          ? setState({ ...state, [stateValue]: response.image })
           : setState(response.image);
       }
     } catch (e: any) {

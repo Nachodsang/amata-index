@@ -1,11 +1,23 @@
 "use client";
 import { useState } from "react";
 
-export default function DropDownFilterBox({ filterTitle, checkBox }: any) {
+export default function DropDownFilterBox({
+  filterTitle,
+  checkBox,
+  onChange,
+  filterType,
+}: any) {
   const [check, setCheck] = useState(false);
 
+  const onSelectCheckbox = () => {
+    onChange(filterTitle, filterType);
+    checkBox && setCheck(!check);
+  };
   return (
-    <li className="py-1 px-5 hover:bg-neutral-100 dark:hover:bg-neutral-600">
+    <li
+      className="py-1 px-5 hover:bg-neutral-100 dark:hover:bg-neutral-600 "
+      onClick={onSelectCheckbox}
+    >
       <div className="flex justify-between">
         <span
           className={`${
@@ -20,9 +32,7 @@ export default function DropDownFilterBox({ filterTitle, checkBox }: any) {
             className="hover:cursor-pointer"
             checked={check}
             type="checkbox"
-            onChange={() => {
-              setCheck(!check);
-            }}
+            onChange={onSelectCheckbox}
           />
         )}
       </div>

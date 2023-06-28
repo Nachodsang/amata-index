@@ -8,7 +8,7 @@ export default function CompanyCard({ props, category }: any) {
   const {
     name,
     thumbnail,
-    flag,
+flag,
     nationality,
     website,
     facebook,

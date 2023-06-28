@@ -1,6 +1,12 @@
+import { set } from "mongoose";
 import { BsCheck2Circle, BsCheckLg } from "react-icons/bs";
 
-export default function Filter() {
+export default function Filter({ companyData }: any) {
+  const { filters } = companyData;
+  const uniqueFilterTypes = Array.from(
+    new Set(filters.map((i: any) => i?.filterType))
+  );
+
   return (
     <div className="w-full ">
       {/* container */}
@@ -16,20 +22,18 @@ export default function Filter() {
             <BsCheckLg size={25} />
             <p className="text-xl font-semibold ">Service in Thailand</p>
           </div>
-          <div className="flex justify-start w-full items-center ">
-            <div className="w-[25%] flex items-center  gap-2 text-green-600">
-              <BsCheckLg size={25} />
-              <span className="text-xl font-semibold">lorem</span>
+          {uniqueFilterTypes.map((i: any) => (
+            <div className="flex justify-start w-full items-center ">
+              <div className="w-[25%] flex items-center  gap-2 text-green-600">
+                <BsCheckLg size={25} />
+                <span className="text-xl font-semibold">{i}</span>
+              </div>
+              {filters.map((j: any) => {
+                if (j?.filterType === i)
+                  return <span>{j?.filterTitle} &nbsp;&nbsp;</span>;
+              })}
             </div>
-            <span>Lorem ipsum dolor sit amet.</span>
-          </div>
-          <div className="flex justify-start items-center  w-full ">
-            <div className="w-[25%] flex items-center gap-2 text-green-600">
-              <BsCheckLg size={25} />
-              <span className="text-xl font-semibold">lorem asdfs</span>
-            </div>
-            <span>Lorem ipsum dolor sit amet.</span>
-          </div>
+          ))}
         </div>
       </div>
     </div>

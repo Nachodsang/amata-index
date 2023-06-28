@@ -9,8 +9,14 @@ export interface IcompanySetting {
   details?: IdetailsInfo;
   contacts?: IcontactData;
   seo?: IseoInfo;
+  gallery?: IgalleryInfo;
 
   edition?: Number;
+}
+export interface IgalleryInfo {
+  _id?: Types.ObjectId;
+  URL?: String;
+  order?: Number;
 }
 export interface IcompanyGeneralInfo {
   profileUrl?: String;
@@ -25,6 +31,7 @@ export interface IcompanyGeneralInfo {
   nationality?: String;
 }
 export interface IfilterInfo {
+  _id?: Types.ObjectId;
   filterTitle?: String;
   filterType?: String;
 }
@@ -48,6 +55,7 @@ export interface IcontactData {
   province?: String;
 }
 export interface IbusinessHour {
+  _id?: Types.ObjectId;
   day?: String;
   status?: Boolean;
   time?: String;
@@ -59,27 +67,31 @@ export interface IseoInfo {
   cn?: IcnSeo;
 }
 export interface IthSeo {
-  keyword: String;
+  keyword?: String;
 }
 export interface IenSeo {
-  keyword: String;
+  _id?: Types.ObjectId;
+  keyword?: String;
 }
 export interface IjpSeo {
-  keyword: String;
+  _id?: Types.ObjectId;
+  keyword?: String;
 }
 export interface IcnSeo {
-  keyword: String;
+  _id?: Types.ObjectId;
+  keyword?: String;
 }
 const companySettingSchema = new Schema(
   {
     companyTitle: { type: String, required: true },
     description: { type: String },
-    image: { type: String, required: true },
-    client: { type: String, required: true },
+    // image: { type: String, required: true },
+    // client: { type: String, required: true },
     status: { type: Boolean, default: false },
-    link: { type: String, required: true },
+    // link: { type: String, required: true },
 
     edition: { type: Number },
+    gallery: [{ URL: { type: String }, order: { type: Number } }],
     seo: [
       {
         th: [{ keyword: { type: String } }],
@@ -94,48 +106,45 @@ const companySettingSchema = new Schema(
         filterType: { type: String },
       },
     ],
-    generalInfo: [
-      {
-        profileUrl: { type: String },
-        coverImage: { type: String },
-        video: { type: String },
-        logo: { type: String },
-        companyNameTh: { type: String },
-        companyNameEn: { type: String },
-        companyNameJp: { type: String },
-        companyNameCn: { type: String },
-        industry: { type: String },
-        nationality: { type: String },
-      },
-    ],
+    generalInfo: {
+      profileUrl: { type: String },
 
-    contacts: [
-      {
-        businessHour: [
-          {
-            day: { type: String },
-            status: { type: Boolean },
-            time: { type: String },
-          },
-        ],
-        tel: { type: String },
-        sms: { type: String },
-        email: { type: String },
-        website: { type: String },
-        facebook: { type: String },
-        line: { type: String },
+      coverImage: { type: String },
+      video: { type: String },
+      logo: { type: String },
+      companyNameTh: { type: String },
+      companyNameEn: { type: String },
+      companyNameJp: { type: String },
+      companyNameCn: { type: String },
+      industry: { type: String },
+      nationality: { type: String },
+    },
 
-        addressTh: { type: String },
-        addressEn: { type: String },
-        addressJp: { type: String },
-        addressCn: { type: String },
-        googleMap: { type: String },
-        postcode: { type: String },
-        tambol: { type: String },
-        district: { type: String },
-        province: { type: String },
-      },
-    ],
+    contacts: {
+      businessHour: [
+        {
+          day: { type: String },
+          status: { type: Boolean },
+          time: { type: String },
+        },
+      ],
+      tel: { type: String },
+      sms: { type: String },
+      email: { type: String },
+      website: { type: String },
+      facebook: { type: String },
+      line: { type: String },
+
+      addressTh: { type: String },
+      addressEn: { type: String },
+      addressJp: { type: String },
+      addressCn: { type: String },
+      googleMap: { type: String },
+      postcode: { type: String },
+      tambol: { type: String },
+      district: { type: String },
+      province: { type: String },
+    },
   },
   { timestamps: true }
 );
