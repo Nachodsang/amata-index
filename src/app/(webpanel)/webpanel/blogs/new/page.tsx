@@ -10,7 +10,7 @@ import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
 import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
-export default function addCompany() {
+export default function addBlog() {
   const [companyState, setCompanyState] = useState({});
 
   const addCompany = async () => {
@@ -25,7 +25,7 @@ export default function addCompany() {
   return (
     <div className="">
       <div className="mx-auto max-w-[1440px] min-h-[100vh] rounded-md gap-4 flex flex-col px-4">
-        <div>New Company</div>
+        <div>New Blog</div>
         {/* general */}
 
         <GeneralInfo state={companyState} setState={setCompanyState} />

@@ -61,10 +61,10 @@ export interface IbusinessHour {
   time?: String;
 }
 export interface IseoInfo {
-  th?: IthSeo;
-  en?: IenSeo;
-  jp?: IjpSeo;
-  cn?: IcnSeo;
+  th?: String[];
+  en?: String[];
+  jp?: String[];
+  cn?: String[];
 }
 export interface IthSeo {
   keyword?: String;
@@ -92,14 +92,13 @@ const companySettingSchema = new Schema(
 
     edition: { type: Number },
     gallery: [{ URL: { type: String }, order: { type: Number } }],
-    seo: [
-      {
-        th: [{ keyword: { type: String } }],
-        en: [{ keyword: { type: String } }],
-        jp: [{ keyword: { type: String } }],
-        cn: [{ keyword: { type: String } }],
-      },
-    ],
+    seo: {
+      th: { type: [] },
+      en: { type: [] },
+      jp: { type: [] },
+      cn: { type: [] },
+    },
+
     filters: [
       {
         filterTitle: { type: String },

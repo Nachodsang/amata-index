@@ -1,17 +1,16 @@
 import { FaGlobeAmericas, FaLine, FaFacebook } from "react-icons/fa";
 import { ImLocation2 } from "react-icons/im";
-export default function Footer() {
+export default function Footer({ companyData }: any) {
   return (
     <div className="py-10 flex flex-col  items-center  mt-10">
-      <div className="mx-auto max-w-[800px] flex flex-col gap-4 items-center">
+      <div className="mx-auto min-w-[800px] flex flex-col gap-4 items-center">
         <div className="flex flex-col gap-4">
-          <h1 className="text-center text-4xl font-bold">Something Express</h1>
+          <h1 className="text-center text-4xl font-bold">
+            {companyData?.companyTitle}
+          </h1>
           <div className="text-center flex items-center">
             <ImLocation2 size={30} className="text-orange-500" />
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laboriosam natus nisi magnam
-            </p>
+            <p>{companyData?.contacts?.addressTh}</p>
           </div>
         </div>
         <div className="flex justify-center gap-4 w-full ">
@@ -49,35 +48,16 @@ export default function Footer() {
             <div className="h-[20%] bg-slate-800 p-4">
               <h1 className="text-xl font-bold text-white">Business Hours</h1>
             </div>
-            <div className="px-6 m-auto flex flex-col gap-1  w-full">
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
-              <div className="flex justify-around">
-                <span>MON</span>
-                <span>08:30 - 17:30</span>
-              </div>
+            <div className="px-10 justify-start m-auto flex flex-col gap-1   w-full">
+              {companyData?.contacts?.businessHour.map(
+                (i: any) =>
+                  i?.status && (
+                    <div className="flex justify-between ">
+                      <span>{i?.day}</span>
+                      <span>{i?.time}</span>
+                    </div>
+                  )
+              )}
             </div>
           </div>
         </div>

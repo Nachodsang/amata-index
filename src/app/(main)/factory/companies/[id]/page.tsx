@@ -30,10 +30,15 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <CompanyContextProvider companyData={companyData}>
       <Header companyData={companyData} />
+      <div className="py-10">
+        <div className="bg-slate-100 h-[100vh] w-full flex mx-auto max-w-[1440px]">
+          <div className="m-auto text-6xl font-bold">Company Content Here</div>
+        </div>
+      </div>
       <Gallery />
       <Filter companyData={companyData} />
       <Blogs />
-      <Footer />
+      <Footer companyData={companyData} />
     </CompanyContextProvider>
   );
 }

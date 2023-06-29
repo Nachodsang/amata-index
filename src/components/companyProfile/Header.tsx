@@ -41,21 +41,21 @@ export default function Header({ companyData }: any) {
             </div>
           </div>
         </div>
-        <div className="w-[25%] bg-slate-200 p-6 rounded-xl flex flex-col gap-4 shadow-lg ">
-          <div className="flex flex-col gap-4">
-            <button className="rounded-3xl w-full bg-orange-500 py-2">
+        <div className="w-[25%] bg-slate-200 p-8 rounded-xl flex flex-col gap-4 shadow-lg ">
+          <div className="flex flex-col gap-4 text-white font-semibold">
+            <button className="rounded-3xl w-full bg-orange-400 py-2 ">
               asdf
             </button>
-            <button className="rounded-3xl w-full bg-orange-500 py-2 ">
+            <button className="rounded-3xl w-full bg-orange-400 py-2 ">
               asdf
             </button>
-            <button className="rounded-3xl w-full bg-orange-500 py-2">
+            <button className="rounded-3xl w-full bg-orange-400 py-2">
               asdf
             </button>
             {/* <button className="rounded-2xl w-full"></button> */}
           </div>
-          <div className="border-t border-slate-400 py-4">
-            <button className="rounded-3xl w-full bg-orange-500 py-2">
+          <div className="border-t-2 border-white py-4">
+            <button className="rounded-3xl w-full bg-orange-400 py-2 text-white font-semibold">
               asdf
             </button>
           </div>

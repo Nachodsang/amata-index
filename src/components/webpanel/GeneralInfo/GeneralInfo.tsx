@@ -88,7 +88,7 @@ export default function GeneralInfo({ state, setState }: any) {
             />
           ) : (
             <img
-              src="https://industrial.frasersproperty.co.th/storage/updates/blog/2022/10/5-factors-to-consider-when-choosing-a-location-to-rent-a-Factory/img-08.jpg"
+              src="https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png"
               className="w-[1500px] h-[300px] object-cover"
             />
           )}

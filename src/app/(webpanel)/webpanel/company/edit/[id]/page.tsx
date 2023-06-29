@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputGroup from "@/components/webpanel/InputGroup/InputGroup";
 import Input from "@/components/webpanel/Input/Input";
 import DropDown from "@/components/webpanel/DropDown/DropDown";
@@ -10,22 +10,52 @@ import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
 import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
-export default function addCompany() {
+export default async function EditCompanyPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const companyURL = params.id;
   const [companyState, setCompanyState] = useState({});
 
-  const addCompany = async () => {
-    const response = await axios.post(
-      "http://localhost:3000/api/company-setting",
-      companyState
+  const fetchCompany = async () => {
+    const response = await fetch("http://localhost:3000/api/company-setting", {
+      cache: "no-store",
+      // next: { revalidate: 5 },
+    });
+    const data = await response.json();
+    console.log("fetching setting");
+    // console.log(data.companySetting);
+    const thisCompany = data.companySetting.find(
+      (i: any) => i?.generalInfo?.profileUrl === companyURL
     );
+    console.log(thisCompany);
+    setCompanyState(thisCompany);
 
-    console.log(response);
+    return thisCompany;
   };
-  console.log(companyState);
+  // const companyData = await fetchCompany();
+  // console.log(companyState);
+
+  //   change this one to put method for editing company
+  // const addCompany = async () => {
+  //   const response = await axios.post(
+  //     "http://localhost:3000/api/company-setting",
+  //     companyState
+  //   );
+
+  //   console.log(response);
+  // };
+  // useEffect(() => {
+  //   fetchCompany();
+  // }, []);
+
+  // console.log(companyData);
+
   return (
     <div className="">
       <div className="mx-auto max-w-[1440px] min-h-[100vh] rounded-md gap-4 flex flex-col px-4">
-        <div>New Company</div>
+        <div>Edit </div>
         {/* general */}
 
         <GeneralInfo state={companyState} setState={setCompanyState} />
@@ -42,7 +72,7 @@ export default function addCompany() {
       </div>
       <div className="flex justify-center">
         <button
-          onClick={addCompany}
+          // onClick={addCompany}
           type="button"
           className="mt-10 hover:scale-105 w-[200px] h-[70px] text-2xl inline-block rounded bg-success px-6 pb-2 pt-2.5  font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
         >
