@@ -54,12 +54,11 @@ export default async function RootLayout({
                 {/* <MenuColumn /> */}
                 <SideNav _children={children} />
                 {/* </div> */}
-
-                <TwElementCom />
               </PageSettingProvider>
             </FilterContextProvider>
           </AdProvider>
         </BannerProvider>
+        <TwElementCom />
       </body>
     </html>
   );

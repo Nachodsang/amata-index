@@ -5,26 +5,29 @@ import Gallery from "@/components/companyProfile/Gallery";
 import Header from "@/components/companyProfile/Header";
 import CompanyContextProvider from "@/contexts/CompanyContext";
 
+const fetchCompany = async (company: string) => {
+  const response = await fetch("http://localhost:3000/api/company-setting", {
+    cache: "no-store",
+    // next: { revalidate: 5 },
+  });
+  const data = await response.json();
+  console.log("fetching setting");
+  // console.log(data.companySetting);
+  const thisCompany = data.companySetting.find(
+    (i: any) => i?.generalInfo?.profileUrl === company
+  );
+  console.log('thisCompany');
+
+  console.log(thisCompany);
+
+  return thisCompany;
+};
+
 export default async function Page({ params }: { params: { id: string } }) {
   const company = params.id;
   // fetchCompanyProfile
-  const fetchCompany = async () => {
-    const response = await fetch("http://localhost:3000/api/company-setting", {
-      cache: "no-store",
-      // next: { revalidate: 5 },
-    });
-    const data = await response.json();
-    console.log("fetching setting");
-    // console.log(data.companySetting);
-    const thisCompany = data.companySetting.find(
-      (i: any) => i?.generalInfo?.profileUrl === company
-    );
-    console.log(thisCompany);
 
-    return thisCompany;
-  };
-
-  const companyData = await fetchCompany();
+  const companyData = await fetchCompany(company);
 
   console.log(companyData);
   return (
