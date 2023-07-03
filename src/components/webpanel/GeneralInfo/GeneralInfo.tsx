@@ -66,55 +66,33 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     }
   }, [state]);
 
-  const [s, setS] = useState(true)
-  const [v, setV] = useState('')
+
   useEffect(() => {
-    init()
-  }, [s]);
-  const init = () => {
-    // initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown, Modal });
-    console.log("init doing from page");
-    document.getElementById("initTw")?.click();
-  };
 
-  const sClick = () => {
-    setS(true)
-    setV('v')
-  }
-  useEffect(() => {
-    console.log('init V');
 
-    const myInput = new Input(document.getElementById("testV"))
-    myInput.update()
-  }, [v]);
-  // console.log("state from upper com");
-  // console.log(state);
 
-  // console.log("print generalInfo state");
-  // console.log(generalInfoState);
+    const videoURLInput = new Input(document.getElementById("videoURL"))
+    videoURLInput.update()
+    const profileUrlInput = new Input(document.getElementById("profileURL"))
+    profileUrlInput.update()
+    const companyNameEnInput = new Input(document.getElementById("companyNameEn"))
+    companyNameEnInput.update()
+    const companyNameThInput = new Input(document.getElementById("companyNameTh"))
+    companyNameThInput.update()
+    const companyNameJpInput = new Input(document.getElementById("companyNameJp"))
+    companyNameJpInput.update()
+    const companyNameCnInput = new Input(document.getElementById("companyNameCn"))
+    companyNameCnInput.update()
+  }, [generalInfoState]);
+
+
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div>
         <div className="flex justify-start border-b border-slate-300 py-2">
-          <div>General</div>
-          <button onClick={init}>Init</button>
-          <button onClick={sClick}>Set s</button>
-          {s ? (<div>
-            <div className="relative mb-3" id="testV">
-              <input
-                type="text"
-                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+          <div className="font-bold text-xl">General</div>
 
-                placeholder="Example label"
-                value={v}
-              />
-              <label
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              >Example label
-              </label>
-            </div>
-          </div>) : null}
         </div>
         <div className="flex w-full justify-between">
           {/* logo */}
@@ -124,6 +102,8 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 src={URL.createObjectURL(imgState?.logoImg)}
                 className="h-[300px] w-[300px] object-cover"
               />
+            ) : edit && generalInfoState?.logo ? (
+              <img src={generalInfoState?.logo} className="h-[300px] w-[300px] object-cover" />
             ) : (
               <img
                 src="https://cdn.logo.com/hotlink-ok/logo-social.png"
@@ -152,7 +132,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 src={URL.createObjectURL(imgState?.coverImg)}
                 className="h-[300px] w-[1500px] object-cover"
               />
-            ) : edit && state?.generalInfo?.coverImage ? (
+            ) : edit && generalInfoState?.coverImage ? (
               <img
                 src={generalInfoState?.coverImage}
                 className="h-[300px] w-[1500px] object-cover"
@@ -166,6 +146,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
 
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
               Dimension: 1920 x 500 pixel (auto resize & crop)
+
             </label>
             <FileInput
               imageChange={coverImageChange}
@@ -176,8 +157,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               stateValue={"coverImage"}
             />
             {/* video */}
-            <label>Video URL</label>
+
             <Ip
+              id="videoURL"
               label="Video URL"
               onChange={(e: any) => {
                 setGeneralInfoState({
@@ -196,6 +178,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
 
           <div className="rounded-md border-l-4 border-red-400 bg-slate-100/60 p-4">
             <Ip
+              id="profileURL"
               placeholder="...."
               value={generalInfoState?.profileUrl}
               label="*Profile URL:eg.factory-name-thailand"
@@ -209,8 +192,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
-              <label>Company Name(TH)</label>
+
               <Ip
+                id="companyNameTh"
                 placeholder="...."
                 value={generalInfoState?.companyNameTh}
                 label="Company Name(TH)"
@@ -222,22 +206,11 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 }}
               />
             </div>
-            <div className="relative mb-3" data-te-input-wrapper-init>
-              <input
-                type="text"
-                className="peer block min-h-[auto] w-full rounded border-0 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
-                id="exampleFormControlInput1"
-                placeholder="Example label"
-                value={generalInfoState?.companyNameEn}
-              />
-              <label
-                className="pointer-events-none absolute left-3 top-0 mb-0 max-w-[90%] origin-[0_0] truncate pt-[0.37rem] leading-[1.6] text-neutral-500 transition-all duration-200 ease-out peer-focus:-translate-y-[0.9rem] peer-focus:scale-[0.8] peer-focus:text-primary peer-data-[te-input-state-active]:-translate-y-[0.9rem] peer-data-[te-input-state-active]:scale-[0.8] motion-reduce:transition-none dark:text-neutral-200 dark:peer-focus:text-primary"
-              >Example label
-              </label>
-            </div>
+
             <div className="w-[30%]">
-              <label>Company Name(EN)</label>
+
               <Ip
+                id="companyNameEn"
                 placeholder="...."
                 value={generalInfoState?.companyNameEn}
                 label="Company Name(EN)"
@@ -250,8 +223,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               />
             </div>
             <div className="w-[30%] flex-col ">
-              <label className="">Company Name(JP)</label>
+
               <Ip
+                id="companyNameJp"
                 placeholder="...."
                 value={generalInfoState?.companyNameJp}
                 label="Company Name(JP)"
@@ -266,8 +240,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
-              <label>Company Name(CN)</label>
+
               <Ip
+                id="companyNameCn"
                 placeholder="...."
                 value={generalInfoState?.companyNameCn}
                 label="Company Name(CN)"
@@ -280,8 +255,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               />
             </div>
             <div className="w-[30%]">
-              <label>Industry</label>
-              {/* <DropDown
+
+              <DropDown
+                selected={null}
                 title={generalInfoState?.industry || "Industry"}
                 checkBox={false}
                 filterList={mockData}
@@ -292,11 +268,12 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                     industry: value,
                   });
                 }}
-              /> */}
+              />
             </div>
             <div className="w-[30%]">
-              <label>Nationality</label>
-              {/* <DropDown
+
+              <DropDown
+                selected={null}
                 title={generalInfoState?.nationality || "Nationality"}
                 checkBox={false}
                 filterList={mockData}
@@ -307,7 +284,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                     nationality: value,
                   });
                 }}
-              /> */}
+              />
             </div>
           </div>
         </div>

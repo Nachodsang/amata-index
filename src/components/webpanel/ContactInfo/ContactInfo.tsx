@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
-import Input from "../Input/Input";
+import { Input } from "tw-elements"
+import { useEffect, useState } from "react";
+import Ip from "../Input/Input";
 import DayBox from "../DayBox/DayBox";
 
-export default function ContactInfo({ state, setState }: any) {
+export default function ContactInfo({ state, setState, edit }: any) {
   const defaultContactInfo = {
     businessHour: [] as { day?: any; time?: any; status?: any }[],
     tel: "",
@@ -24,69 +25,8 @@ export default function ContactInfo({ state, setState }: any) {
   };
 
   const [contactInfoState, setContactInfoState] = useState(defaultContactInfo);
-  // const onCheckBusinessHour = (box: any) => {
-  //   const newBusinessHour = {
-  //     day: box?.day,
-  //     time: box?.time,
-  //     status: box?.status,
-  //   };
 
-  //   if (
-  //     contactInfoState?.businessHour.find(
-  //       (i: any) => i?.day === newBusinessHour.day
-  //     )
-  //   ) {
-  //     setContactInfoState((prevState) => ({
-  //       ...prevState,
-  //       businessHour: prevState.businessHour.map((i) =>
-  //         i?.day === newBusinessHour.day
-  //           ? {
-  //               ...i,
-  //               time: newBusinessHour?.time,
-  //               status: newBusinessHour.status,
-  //             }
-  //           : {
-  //               day: box?.day,
-  //               time: box?.time,
-  //               status: box?.status,
-  //             }
-  //       ),
-  //     }));
-  //     console.log("exists");
-  //   } else {
-  //     console.log("new");
-  //     setContactInfoState((prevState) => ({
-  //       ...prevState,
-  //       businessHour: [...prevState.businessHour, newBusinessHour],
-  //     }));
-  //   }
 
-  //   // setContactInfoState((prevState) => ({
-  //   //   ...prevState,
-  //   //   businessHour: prevState.businessHour.map((item) => {
-  //   //     if (item.day === newBusinessHour.day) {
-  //   //       console.log("change only time and stat");
-  //   //       console.log(item.day);
-  //   //       return {
-  //   //         ...item,
-  //   //         time: newBusinessHour.time,
-  //   //         status: newBusinessHour.status,
-  //   //       };
-  //   //     } else {
-  //   //       console.log("change whole");
-  //   //       console.log(item.day);
-  //   //       return newBusinessHour;
-  //   //     }
-  //   //   }
-  //   //   ),
-  //   // })
-  //   // );
-
-  //   // setContactInfoState((prevState) => ({
-  //   //   ...prevState,
-  //   //   businessHour: [...prevState.businessHour, newBusinessHour],
-  //   // }));
-  // };
   const onCheckBusinessHour = (box: any) => {
     const { day, time, status } = box;
 
@@ -96,7 +36,7 @@ export default function ContactInfo({ state, setState }: any) {
       );
 
       if (existingIndex !== -1) {
-        console.log("exists");
+        // console.log("exists");
         setContactInfoState((prevState) => {
           const updatedBusinessHour = prevState.businessHour.map(
             (item, index) => {
@@ -131,7 +71,33 @@ export default function ContactInfo({ state, setState }: any) {
     }
   };
 
+
+  useEffect(() => {
+    edit && state && setContactInfoState(state?.contacts)
+  }, [state])
+
+
+  useEffect(() => {
+
+
+
+    const telLInput = new Input(document.getElementById("tel"))
+    telLInput.update()
+    const smsInput = new Input(document.getElementById("sms"))
+    smsInput.update()
+    const emailInput = new Input(document.getElementById("email"))
+    emailInput.update()
+    const websiteInput = new Input(document.getElementById("website"))
+    websiteInput.update()
+    const facebookInput = new Input(document.getElementById("facebook"))
+    facebookInput.update()
+    const lineInput = new Input(document.getElementById("line"))
+    lineInput.update()
+  }, [contactInfoState]);
+
+
   console.log(contactInfoState);
+  console.log("state", state)
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -144,18 +110,21 @@ export default function ContactInfo({ state, setState }: any) {
           </label>
           {/* day / time boxes */}
           <div className="flex-col flex gap-2 items-center w-full mb-4">
-            <DayBox day="Sunday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Monday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Tuesday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Wednesday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Thursday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Friday" onCheck={onCheckBusinessHour} />
-            <DayBox day="Saturday" onCheck={onCheckBusinessHour} />
+            <DayBox day="Sunday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Sunday")} />
+            <DayBox day="Monday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Monday")} />
+            <DayBox day="Tuesday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Tuesday")} />
+            <DayBox day="Wednesday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Wednesday")} />
+            <DayBox day="Thursday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Thursday")} />
+            <DayBox day="Friday " edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Friday")} />
+            <DayBox day="Saturday" edit={true} onCheck={onCheckBusinessHour} state={contactInfoState?.businessHour.find((i: any) => i.day === "Saturday")} />
           </div>
         </div>
         <div className="flex flex-wrap gap-6 mt-2">
           <div className="flex flex-col w-[400px] gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="tel"
+              value={contactInfoState?.tel}
               label="Tel"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -166,7 +135,10 @@ export default function ContactInfo({ state, setState }: any) {
             />
           </div>
           <div className="flex flex-col  w-[400px]  gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="sms"
+              value={contactInfoState?.sms}
               label="SMS"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -177,7 +149,10 @@ export default function ContactInfo({ state, setState }: any) {
             />
           </div>
           <div className="flex flex-col  w-[400px]  gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="email"
+              value={contactInfoState?.email}
               label="E-mail"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -188,7 +163,10 @@ export default function ContactInfo({ state, setState }: any) {
             />
           </div>
           <div className="flex flex-col  w-[400px]  gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="website"
+              value={contactInfoState?.website}
               label="Website"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -199,7 +177,10 @@ export default function ContactInfo({ state, setState }: any) {
             />
           </div>
           <div className="flex flex-col  w-[400px]  gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="facebook"
+              value={contactInfoState?.facebook}
               label="Facebook"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -210,7 +191,10 @@ export default function ContactInfo({ state, setState }: any) {
             />
           </div>
           <div className="flex flex-col  w-[400px]  gap-2 items-start">
-            <Input
+            <Ip
+              placeholder=""
+              id="line"
+              value={contactInfoState?.line}
               label="Line"
               onChange={(e: any) =>
                 setContactInfoState({
@@ -227,6 +211,7 @@ export default function ContactInfo({ state, setState }: any) {
               Address
             </label>
             <textarea
+              value={contactInfoState?.addressTh}
               onChange={(e) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -244,6 +229,7 @@ export default function ContactInfo({ state, setState }: any) {
               Google Map
             </label>
             <textarea
+              value={contactInfoState?.googleMap}
               onChange={(e) =>
                 setContactInfoState({
                   ...contactInfoState,

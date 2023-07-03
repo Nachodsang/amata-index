@@ -1,9 +1,9 @@
 "use client";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import DropDown from "../DropDown/DropDown";
 import { FilterContext } from "@/contexts/FilterContext";
 
-export default function FilterInfo({ state, setState }: any) {
+export default function FilterInfo({ state, setState, edit }: any) {
   const { filtersState }: any = useContext(FilterContext);
   const [selectedFilter, setSelectedFilter] = useState<
     Array<{
@@ -29,7 +29,11 @@ export default function FilterInfo({ state, setState }: any) {
       );
     }
   };
+  console.log(state?.filters)
   console.log(selectedFilter);
+  useEffect(() => {
+    edit && setSelectedFilter(state?.filters)
+  }, [state])
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -38,6 +42,7 @@ export default function FilterInfo({ state, setState }: any) {
       <div className="py-6 flex flex-wrap  gap-6">
         {uniqueFilterType.map((i: any) => (
           <DropDown
+          edit={edit}
             selected={selectedFilter}
             checkBox={true}
             title={i}

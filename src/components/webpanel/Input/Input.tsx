@@ -5,11 +5,13 @@ export default function Input({
   onChange,
   value,
   placeholder,
+  id
 }: {
   label: string;
   onChange: any;
   value: string;
   placeholder: string;
+  id: string;
 }) {
 
   // useEffect(() => {
@@ -19,7 +21,7 @@ export default function Input({
   //   }
   // }, [value]);
   return (
-    <div className="   relative mb-3 w-full " data-te-input-wrapper-init>
+    <div id={id} className="   relative mb-3 w-full " data-te-input-wrapper-init>
       <input
         value={value}
         onChange={onChange}

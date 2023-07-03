@@ -7,6 +7,7 @@ export default function DropDown({
   type,
   onChange,
   selected,
+  edit
 }: {
   title: string;
   filterList: any;
@@ -14,7 +15,9 @@ export default function DropDown({
   type: string;
   onChange: any;
   selected: any;
+  edit: any
 }) {
+  console.log(selected)
   return (
     <div className="relative" data-te-dropdown-ref>
       <button
@@ -26,15 +29,9 @@ export default function DropDown({
         data-te-ripple-init
         data-te-ripple-color="light"
       >
-        {/* {selected &&
-          selected.map((i: any) => {
-            if (i?.filterType === title) {
-              return <span>{i?.filterTitle},</span>;
-            }
-          })} */}
+
         {title}
 
-        {/* {selected.length < 1 && title} */}
         <span className="ml-2 w-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -60,6 +57,8 @@ export default function DropDown({
             if (i?.filterType === title && i?.active === true) {
               return (
                 <DropDownFilterBox
+                  edit={edit}
+                  selected={selected}
                   key={index}
                   filterTitle={i?.filterTitle}
                   checkBox={checkBox}
@@ -70,8 +69,9 @@ export default function DropDown({
             }
           })}
         {type === "dropdown" &&
-          filterList.map((i: any,index:any) => (
+          filterList.map((i: any, index: any) => (
             <DropDownFilterBox
+              edit={edit}
               key={index}
               checkBox={checkBox}
               filterTitle={i}

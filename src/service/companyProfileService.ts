@@ -29,23 +29,25 @@ export const addCompany = async (req: IcompanySetting) => {
   }
 };
 
-// edit banner
-// export const editPage = async (
-//   filterBy: string,
-//   filterValue: any,
-//   updatingField: any,
-//   newValue: string
-// ) => {
-//   const filter = { [filterBy]: filterValue };
-//   const update = { [updatingField]: newValue };
+// edit company
+export const editCompany = async (
+  filterBy: string,
+  filterValue: any,
 
-//   try {
-//     const doc = await pageSettingModel.findOneAndUpdate(filter, update, {
-//       new: true,
-//     });
+  newValue: any
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = newValue;
 
-//     return { status: "200", message: "complete", updatedObj: doc };
-//   } catch (err) {
-//     return err;
-//   }
-// };
+  try {
+    // console.log("try edit");
+    const doc = await companySettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    // console.log(doc);
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

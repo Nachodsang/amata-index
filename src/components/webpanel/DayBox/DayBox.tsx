@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-export default function DayBox({ day, onCheck }: any) {
+export default function DayBox({ day, onCheck, edit, state }: any) {
   const defaultBoxState = { day: "", time: "", status: false };
   const [boxState, setBoxState] = useState(defaultBoxState);
+  const [stat, setStat] = useState(true)
 
   //   useEffect to set day to box state
   useEffect(() => {
@@ -9,10 +10,26 @@ export default function DayBox({ day, onCheck }: any) {
       setBoxState({ ...boxState, day: day });
     }
   }, [boxState.status]);
+
+
   useEffect(() => {
-    onCheck(boxState);
+    !edit && onCheck(boxState);
+
   }, [boxState]);
-  console.log(boxState);
+  useEffect(() => {
+
+    if (edit && state && stat) {
+      setBoxState(state)
+      setStat(false)
+    }
+
+
+  }, [state])
+
+
+  useEffect(() => {
+    edit && onCheck(boxState)
+  }, [boxState?.time, boxState?.status])
   return (
     <div className="flex  border w-[50%] border-slate-200 py-1   ">
       <div className="flex w-[50%] justify-between px-10 ">
@@ -25,11 +42,13 @@ export default function DayBox({ day, onCheck }: any) {
           className=" hover:cursor-pointer"
         />
         <h1 className="">{day}</h1>
+
       </div>
       <div className="w-[50%]   border-l  border-slate-300 px-6 ">
         {boxState.status ? (
           <div className="flex justfiy-between items-center gap2s">
             <input
+              value={boxState?.time}
               onChange={(e) =>
                 setBoxState({ ...boxState, time: e.target.value })
               }

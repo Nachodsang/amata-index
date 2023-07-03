@@ -14,7 +14,7 @@ module.exports = {
       desktop0: "990px",
       desktop1: "1200px",
       desktop2: "1440px",
-
+      lg: "1200px",
       // => @media (min-width: 1280px) { ... }
     },
 

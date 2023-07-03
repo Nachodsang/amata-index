@@ -81,6 +81,39 @@ export interface IcnSeo {
   _id?: Types.ObjectId;
   keyword?: String;
 }
+
+export interface IHomePage {
+  title?: string;
+  title2?: string;
+  group: IGroup[];
+}
+
+export interface IGroup {
+  groupName?: string;
+  title?: string;
+  detail?: string;
+  brandImg?: string;
+  countryName?: string;
+  countryImg?: string;
+  className?: string;
+  grid: IGrid[];
+}
+
+export interface IGrid {
+  className?: string;
+  contents: IContent[];
+}
+export interface IContent {
+  type?: string;
+  className?: string;
+  contentHTML?: string;
+  url?: string;
+  show?: boolean;
+  width?: string;
+  maxWidth?: string;
+  height?: string;
+  maxHeight?: string;
+}
 const companySettingSchema = new Schema(
   {
     companyTitle: { type: String, required: true },

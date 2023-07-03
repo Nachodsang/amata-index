@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { addCompany, getCompanySetting } from "@/service/companyProfileService";
+import {
+  addCompany,
+  getCompanySetting,
+  editCompany,
+} from "@/service/companyProfileService";
 
 export async function GET() {
   const response = await getCompanySetting();
@@ -16,14 +20,15 @@ export async function POST(req: Request) {
 }
 
 // update page setting
-// export async function PUT(req: Request) {
-//   const response = await req.json();
-//   console.log(response);
+export async function PUT(req: Request) {
+  const response = await req.json();
+  console.log("in put function");
+  console.log(response);
 
-//   const filterBy = "edition";
-//   const edition = "1";
+  const filterBy = "_id";
+  // const edition = "1";
 
-//   return NextResponse.json(
-//     await editPage(filterBy, edition, response.updatingField, response.newValue)
-//   );
-// }
+  return NextResponse.json(
+    await editCompany(filterBy, response._id, response.newValue)
+  );
+}

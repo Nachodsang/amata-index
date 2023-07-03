@@ -1,7 +1,9 @@
 "use client";
 import Editor from "../Editor/Editor";
+import EditHomePage from "../Editor2/editHomePage";
 import EditorTest from "../EditorTest/EditorTest";
 export default function DetailsInfo() {
+
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -32,7 +34,7 @@ export default function DetailsInfo() {
         </div>
         {/* <Editor />
          */}
-        <EditorTest />
+        <EditHomePage />
       </div>
       <div className="flex justify-end">
         <button
