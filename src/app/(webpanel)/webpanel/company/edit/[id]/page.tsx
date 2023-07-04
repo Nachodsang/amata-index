@@ -50,28 +50,38 @@ export default function EditCompanyPage({
     console.log(response);
   };
 
-  console.log(companyState)
+  console.log(companyState);
   return (
     <div className="">
       {/* {companyState && (
         <> */}
       <div className="mx-auto flex min-h-[100vh] max-w-[1440px] flex-col gap-4 rounded-md px-4">
-        <div className="text-2xl font-bold">
-          {companyState?.companyTitle}
-        </div>
+        <div className="text-2xl font-bold">{companyState?.companyTitle}</div>
         {/* general */}
 
-        <GeneralInfo state={companyState} setState={setCompanyState} edit={true} />
+        <GeneralInfo
+          state={companyState}
+          setState={setCompanyState}
+          edit={true}
+        />
         {/* filter */}
-        <FilterInfo state={companyState} setState={setCompanyState} edit={true} />
+        <FilterInfo
+          state={companyState}
+          setState={setCompanyState}
+          edit={true}
+        />
         {/* details */}
         <DetailsInfo state={companyState} setState={setCompanyState} />
         {/* gallery */}
         <GalleryInfo state={companyState} setState={setCompanyState} />
         {/* contact */}
-        <ContactInfo state={companyState} setState={setCompanyState} edit={true} />
+        <ContactInfo
+          state={companyState}
+          setState={setCompanyState}
+          edit={true}
+        />
         {/* SEO */}
-        {/* <SeoInfo state={companyState} setState={setCompanyState} /> */}
+        <SeoInfo state={companyState} setState={setCompanyState} edit={true} />
       </div>
       <div className="flex justify-center">
         <button

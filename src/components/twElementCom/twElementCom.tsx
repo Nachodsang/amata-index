@@ -59,9 +59,8 @@ const TwElementCom = () => {
     console.log("init doing");
   };
 
-
   return (
-    <div>
+    <div className="hidden">
       <button type="button" id="initTw" onClick={init}>
         twelemtnt
       </button>

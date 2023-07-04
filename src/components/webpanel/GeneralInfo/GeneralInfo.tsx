@@ -4,18 +4,10 @@ import Ip from "../Input/Input";
 import InputGroup from "../InputGroup/InputGroup";
 import FileInput from "../FileInput/FileInput";
 import DropDown from "../DropDown/DropDown";
+import Swal from "sweetalert2";
 const mockData = [1, 2, 3, 4, 5, 6, 7];
 // Initialization for ES Users
-import {
-  Input,
-  Timepicker,
-  initTE,
-  Datepicker,
-  Ripple,
-  Sidenav,
-  Dropdown,
-  Modal,
-} from "tw-elements";
+import { Input } from "tw-elements";
 export default function GeneralInfo({ state, setState, edit }: any) {
   const defaultGeneralInfoState: any = {
     profileUrl: "",
@@ -54,7 +46,44 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     }
   };
 
-
+  const onHandleSave = () =>{
+    if(edit){
+      setState({
+                ...state,
+                generalInfo: generalInfoState,
+                companyTitle: generalInfoState?.companyNameEn,
+              });
+                Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "General Info. has been updated!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    }else if (!edit&&generalInfoState?.profileUrl&&generalInfoState?.companyNameTh&&generalInfoState?.companyNameEn){
+       setState({
+                ...state,
+                generalInfo: generalInfoState,
+                companyTitle: generalInfoState?.companyNameEn,
+              });
+                Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "General Info. has been saved!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+    } else{
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter Profile URL, Company Name(TH) and Company Name(EN)",
+          timer: 2500,
+        });
+    }
+  }
+  
 
   useEffect(() => {
     if (state != null) {
@@ -66,33 +95,34 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     }
   }, [state]);
 
-
   useEffect(() => {
-
-
-
-    const videoURLInput = new Input(document.getElementById("videoURL"))
-    videoURLInput.update()
-    const profileUrlInput = new Input(document.getElementById("profileURL"))
-    profileUrlInput.update()
-    const companyNameEnInput = new Input(document.getElementById("companyNameEn"))
-    companyNameEnInput.update()
-    const companyNameThInput = new Input(document.getElementById("companyNameTh"))
-    companyNameThInput.update()
-    const companyNameJpInput = new Input(document.getElementById("companyNameJp"))
-    companyNameJpInput.update()
-    const companyNameCnInput = new Input(document.getElementById("companyNameCn"))
-    companyNameCnInput.update()
+    const videoURLInput = new Input(document.getElementById("videoURL"));
+    videoURLInput.update();
+    const profileUrlInput = new Input(document.getElementById("profileURL"));
+    profileUrlInput.update();
+    const companyNameEnInput = new Input(
+      document.getElementById("companyNameEn")
+    );
+    companyNameEnInput.update();
+    const companyNameThInput = new Input(
+      document.getElementById("companyNameTh")
+    );
+    companyNameThInput.update();
+    const companyNameJpInput = new Input(
+      document.getElementById("companyNameJp")
+    );
+    companyNameJpInput.update();
+    const companyNameCnInput = new Input(
+      document.getElementById("companyNameCn")
+    );
+    companyNameCnInput.update();
   }, [generalInfoState]);
-
-
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div>
         <div className="flex justify-start border-b border-slate-300 py-2">
-          <div className="font-bold text-xl">General</div>
-
+          <div className="text-xl font-bold">General</div>
         </div>
         <div className="flex w-full justify-between">
           {/* logo */}
@@ -103,7 +133,10 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 className="h-[300px] w-[300px] object-cover"
               />
             ) : edit && generalInfoState?.logo ? (
-              <img src={generalInfoState?.logo} className="h-[300px] w-[300px] object-cover" />
+              <img
+                src={generalInfoState?.logo}
+                className="h-[300px] w-[300px] object-cover"
+              />
             ) : (
               <img
                 src="https://cdn.logo.com/hotlink-ok/logo-social.png"
@@ -146,7 +179,6 @@ export default function GeneralInfo({ state, setState, edit }: any) {
 
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
               Dimension: 1920 x 500 pixel (auto resize & crop)
-
             </label>
             <FileInput
               imageChange={coverImageChange}
@@ -192,12 +224,11 @@ export default function GeneralInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
-
               <Ip
                 id="companyNameTh"
                 placeholder="...."
                 value={generalInfoState?.companyNameTh}
-                label="Company Name(TH)"
+                label="*Company Name(TH)"
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -208,12 +239,11 @@ export default function GeneralInfo({ state, setState, edit }: any) {
             </div>
 
             <div className="w-[30%]">
-
               <Ip
                 id="companyNameEn"
                 placeholder="...."
                 value={generalInfoState?.companyNameEn}
-                label="Company Name(EN)"
+                label="*Company Name(EN)"
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -223,7 +253,6 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               />
             </div>
             <div className="w-[30%] flex-col ">
-
               <Ip
                 id="companyNameJp"
                 placeholder="...."
@@ -240,7 +269,6 @@ export default function GeneralInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
-
               <Ip
                 id="companyNameCn"
                 placeholder="...."
@@ -255,7 +283,6 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               />
             </div>
             <div className="w-[30%]">
-
               <DropDown
                 selected={null}
                 title={generalInfoState?.industry || "Industry"}
@@ -271,7 +298,6 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               />
             </div>
             <div className="w-[30%]">
-
               <DropDown
                 selected={null}
                 title={generalInfoState?.nationality || "Nationality"}
@@ -291,13 +317,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
         {/* save button */}
         <div className="flex justify-end">
           <button
-            onClick={() => {
-              setState({
-                ...state,
-                generalInfo: generalInfoState,
-                companyTitle: generalInfoState?.companyNameEn,
-              });
-            }}
+            onClick={onHandleSave}
             type="button"
             className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
           >
