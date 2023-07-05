@@ -14,16 +14,15 @@ export async function GET() {
 
 export async function POST(req: Request) {
   // const a = await req.json();
-  // console.log(a);
+  //
   const response = await req.json();
-  console.log(response);
 
   return NextResponse.json(await setAd(response));
 }
 
 export async function PUT(req: Request) {
   const response = await req.json();
-  console.log(response);
+
   return NextResponse.json(
     await editAd(
       response.filterCat,

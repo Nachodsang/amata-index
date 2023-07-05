@@ -22,7 +22,7 @@ export default function PageSettingProvider({ children, pageSetting }: any) {
       newValue: newValue,
     });
 
-    // console.log(response);
+    //
   };
 
   const pageSettingFetch = async () => {

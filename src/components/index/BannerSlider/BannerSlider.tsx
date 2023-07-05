@@ -20,7 +20,6 @@ export default function BannerSlider({
   category: string;
   banners: any;
 }) {
-  console.log(banners);
   return (
     <div className="w-full  ">
       <Swiper

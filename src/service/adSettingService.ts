@@ -9,12 +9,11 @@ export const getAd = async () => {
   //   );
   const ads = await adSettingModel.find();
   return ads;
-  //   console.log("title", pageSetting);
+  //
   //   mongoose.disconnect();
 };
 
 export const setAd = async (req: IadSetting) => {
-  console.log(req);
   const ad = new adSettingModel(req);
   let status: any = "";
   try {
@@ -26,7 +25,6 @@ export const setAd = async (req: IadSetting) => {
       saveAd: ad,
     });
   } catch (err) {
-    console.log(err);
     return (status = err);
   }
 };

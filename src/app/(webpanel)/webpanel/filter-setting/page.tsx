@@ -12,7 +12,7 @@ export default function FilterSettingPage() {
   const { filtersState, onCheckFilter, addFilter }: any =
     useContext(FilterContext);
 
-  // console.log(filterTypes);
+  //
   const uniqueFilterTypes = new Set(filtersState.map((i: any) => i.filterType));
   const filterTypes = Array.from(uniqueFilterTypes);
 
@@ -37,10 +37,10 @@ export default function FilterSettingPage() {
     }
   };
   return (
-    <div className="bg-white rounded-xl min-h-[100vh] ">
+    <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
-      <div className="max-w-[1440px]  px-4 py-6  mx-auto">
-        <h1 className="text-center font-semibold text-xl mb-4  ">
+      <div className="mx-auto  max-w-[1440px] px-4  py-6">
+        <h1 className="mb-4 text-center text-xl font-semibold  ">
           Filter Setting
         </h1>
         <div className="flex gap-2">
@@ -59,12 +59,12 @@ export default function FilterSettingPage() {
           <button
             onClick={onSaveNewFilterType}
             type="button"
-            className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
           >
             save
           </button>
         </div>
-        <div className="flex justify-center w-full gap-4 flex-wrap">
+        <div className="flex w-full flex-wrap justify-center gap-4">
           {filterTypes.map((i, index) => {
             return (
               <AddFilterBox

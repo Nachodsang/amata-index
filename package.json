@@ -41,6 +41,7 @@
   "devDependencies": {
     "@types/formidable": "^2.0.6",
     "@types/react-collapse": "^5.0.1",
-    "daisyui": "^3.0.3"
+    "daisyui": "^3.0.3",
+    "prettier": "^2.8.8"
   }
 }

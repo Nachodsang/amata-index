@@ -8,7 +8,6 @@ const FilterContextProvider = ({ children, filters }: any) => {
   const [filtersState, setFiltersState] = useState(filters);
   const onCheckFilter = async (filterSet: any) => {
     const response = await axios.put(URL, filterSet);
-    console.log(response);
   };
 
   const fetchFilter = async () => {
@@ -16,7 +15,7 @@ const FilterContextProvider = ({ children, filters }: any) => {
     const data = await response.data.filters;
 
     setFiltersState(data);
-    console.log(data);
+
     return data;
   };
 
@@ -27,11 +26,9 @@ const FilterContextProvider = ({ children, filters }: any) => {
         filterType: type,
         filterTitle: title,
       });
-      console.log(response);
+
       fetchFilter();
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   return (

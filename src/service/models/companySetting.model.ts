@@ -35,7 +35,11 @@ export interface IfilterInfo {
   filterTitle?: String;
   filterType?: String;
 }
-export interface IdetailsInfo {}
+export interface IdetailsInfo {
+  shortDescription?: String;
+  fullDescription?: String;
+  customDetails?: IGrid;
+}
 export interface IcontactData {
   businessHour?: IbusinessHour;
   tel?: String;
@@ -61,10 +65,10 @@ export interface IbusinessHour {
   time?: String;
 }
 export interface IseoInfo {
-  th?: IthSeo;
-  en?: IenSeo;
-  jp?: IjpSeo;
-  cn?: IcnSeo;
+  th?: String[];
+  en?: String[];
+  jp?: String[];
+  cn?: String[];
 }
 export interface IthSeo {
   keyword?: String;
@@ -81,6 +85,39 @@ export interface IcnSeo {
   _id?: Types.ObjectId;
   keyword?: String;
 }
+
+export interface IHomePage {
+  title?: string;
+  title2?: string;
+  group: IGroup[];
+}
+
+export interface IGroup {
+  groupName?: string;
+  title?: string;
+  detail?: string;
+  brandImg?: string;
+  countryName?: string;
+  countryImg?: string;
+  className?: string;
+  grid: IGrid[];
+}
+
+export interface IGrid {
+  className?: string;
+  contents: IContent[];
+}
+export interface IContent {
+  type?: string;
+  className?: string;
+  contentHTML?: string;
+  url?: string;
+  show?: boolean;
+  width?: string;
+  maxWidth?: string;
+  height?: string;
+  maxHeight?: string;
+}
 const companySettingSchema = new Schema(
   {
     companyTitle: { type: String, required: true },
@@ -92,14 +129,13 @@ const companySettingSchema = new Schema(
 
     edition: { type: Number },
     gallery: [{ URL: { type: String }, order: { type: Number } }],
-    seo: [
-      {
-        th: [{ keyword: { type: String } }],
-        en: [{ keyword: { type: String } }],
-        jp: [{ keyword: { type: String } }],
-        cn: [{ keyword: { type: String } }],
-      },
-    ],
+    seo: {
+      th: { type: [] },
+      en: { type: [] },
+      jp: { type: [] },
+      cn: { type: [] },
+    },
+
     filters: [
       {
         filterTitle: { type: String },
@@ -118,6 +154,10 @@ const companySettingSchema = new Schema(
       companyNameCn: { type: String },
       industry: { type: String },
       nationality: { type: String },
+    },
+    details: {
+      shortDescription: { type: String },
+      fullDescription: { type: String },
     },
 
     contacts: {

@@ -8,11 +8,19 @@ import { mock } from "node:test";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { AdContext } from "@/contexts/AdContext";
 
-export default function core({ category }: { category: string }) {
+export default function core({
+  category,
+  companyList,
+}: {
+  category: string;
+  companyList: any;
+}) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { adsPage }: any = useContext(AdContext);
   const { mockCompanies, mockMachines } = mockData;
+  const onCompanies = companyList.filter((i: any) => i?.status);
 
+  console.log(onCompanies);
   return (
     <div
       className={`  px-6`}
@@ -33,13 +41,27 @@ export default function core({ category }: { category: string }) {
             className="w-full h-full bg-[#044ea2] px-4 pb-16 pt-10   flex-col overflow-scroll"
           >
             {category === "factory" &&
-              mockCompanies.map((i, index) => {
-                return <CompanyCard props={i} key={i.id} category={category} />;
+              onCompanies.map((i: any, index: any) => {
+                const { generalInfo, details, _id, contacts } = i;
+                return (
+                  <CompanyCard
+                    companyTitle={generalInfo?.companyNameEn}
+                    logo={generalInfo?.logo}
+                    key={_id}
+                    category={category}
+                    nationality={generalInfo?.nationality}
+                    details={details?.shortDescription}
+                    location={contacts?.province}
+                    website={contacts?.website}
+                    line={contacts?.line}
+                    facebook={contacts?.facebook}
+                  />
+                );
               })}
-            {category === "machine" &&
+            {/* {category === "machine" &&
               mockMachines.map((i, index) => {
                 return <CompanyCard props={i} key={i.id} category={category} />;
-              })}
+              })} */}
           </div>
         </div>
         {/* ad */}

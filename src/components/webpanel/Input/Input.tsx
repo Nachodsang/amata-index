@@ -1,11 +1,35 @@
-export default function Input({ label, onChange, value, placeholder }: any) {
+"use client";
+import { useEffect } from "react";
+export default function Input({
+  label,
+  onChange,
+  value,
+  placeholder,
+  id,
+}: {
+  label: string;
+  onChange: any;
+  value: string;
+  placeholder: string;
+  id: string;
+}) {
+  // useEffect(() => {
+  //   if (value != null) {
+  //     document.getElementById("initTw")?.click();
+  //
+  //   }
+  // }, [value]);
   return (
-    <div className="relative w-full mb-3" data-te-input-wrapper-init>
+    <div
+      id={id}
+      className="   relative mb-3 w-full "
+      data-te-input-wrapper-init
+    >
       <input
         value={value}
         onChange={onChange}
         type="text"
-        className="peer block min-h-[auto] w-full rounded border border-gray-400 bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
+        className="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 peer-focus:text-primary data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:peer-focus:text-primary [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0"
         id="exampleFormControlInput1"
         // placeholder={placeholder}
       />

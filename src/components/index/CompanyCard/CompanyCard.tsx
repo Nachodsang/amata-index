@@ -4,22 +4,33 @@ import { FaGlobe, FaFacebookSquare, FaLine } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 
-export default function CompanyCard({ props, category }: any) {
-  const {
-    name,
-    thumbnail,
-flag,
-    nationality,
-    website,
-    facebook,
-    line,
-    location,
-    image1,
-    image2,
-    image3,
-    image4,
-    details,
-  } = props;
+export default function CompanyCard({
+  props,
+  category,
+  companyTitle,
+  logo,
+  nationality,
+  location,
+  details,
+  website,
+  line,
+  facebook,
+}: any) {
+  // const {
+  //   name,
+  //   thumbnail,
+  //   flag,
+  //   nationality,
+  //   website,
+  //   facebook,
+  //   line,
+  //   location,
+  //   image1,
+  //   image2,
+  //   image3,
+  //   image4,
+  //   details,
+  // } = props;
 
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
@@ -38,12 +49,12 @@ flag,
           {/* thubnail & button */}
           <div className="desktop2:w-[20%] desktop1:w-[17%] destop0:w-[15%] flex flex-col align-start gap-4">
             <div className="w-[150px] h-[150px] p-1 border-1 border shadow-md">
-              <img src={thumbnail} className="w-full h-full object-cover" />
+              <img src={logo} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-1">
-              {flag && (
+              {/* {flag && (
                 <img src={flag} alt="flag" className="w-[25px] h-[25px]" />
-              )}
+              )} */}
 
               <span className="font-semibold text-gray-400">{nationality}</span>
             </div>
@@ -74,8 +85,7 @@ flag,
               </div>
               <div>
                 {line ? (
-                  <a>
-                    {" "}
+                  <a href={line}>
                     <FaLine size={30} fill="#33C152" />
                   </a>
                 ) : (
@@ -88,7 +98,7 @@ flag,
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
-            <h1 className="font-bold text-xl text-gray-700">{name}</h1>
+            <h1 className="font-bold text-xl text-gray-700">{companyTitle}</h1>
             <div className="text-blue-500 flex gap-1">
               <MdLocationPin size={20} />
               <span>{location}</span>
@@ -101,21 +111,21 @@ flag,
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">
             <div className="w-full h-full flex flex-wrap desktop2:gap-3 desktop0:gap-2  ">
               <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden">
-                <img src={image1} className="w-full h-full object-cover " />
+                <img src={logo} className="w-full h-full object-cover " />
               </div>
-              {image2 && (
+              {logo && (
                 <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]   w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={image2} className="w-full h-full object-cover" />
+                  <img src={logo} className="w-full h-full object-cover" />
                 </div>
               )}
-              {image3 && (
+              {logo && (
                 <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px] w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={image3} className="w-full h-full object-cover" />
+                  <img src={logo} className="w-full h-full object-cover" />
                 </div>
               )}
-              {image4 && (
+              {logo && (
                 <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={image4} className="w-full h-full object-cover" />
+                  <img src={logo} className="w-full h-full object-cover" />
                 </div>
               )}
             </div>

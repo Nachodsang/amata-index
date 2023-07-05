@@ -2,7 +2,7 @@
 import { useState } from "react";
 import FileInput from "../FileInput/FileInput";
 
-export default function GalleryInfo() {
+export default function GalleryInfo({ state, setState, edit }: any) {
   const [selectedImage, setSelectedImage] = useState();
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -12,12 +12,19 @@ export default function GalleryInfo() {
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
-        <div>Gallery</div>
+        <div className="font-bold text-2xl text-slate-700">Gallery</div>
       </div>
-      {selectedImage && (
-        <img className="w-[300px]" src={URL.createObjectURL(selectedImage)} />
-      )}
-      <div>
+      <div className="p-4 flex flex-col gap-4">
+        {selectedImage ? (
+          <img className="w-[300px]" src={URL.createObjectURL(selectedImage)} />
+        ) : (
+          <div className="w-full h-[300px] bg-slate-300 rounded-2xl flex ">
+            <h1 className="m-auto text-2xl font-bold text-white">
+              No image selected
+            </h1>
+          </div>
+        )}
+
         <FileInput imageChange={imageChange} />
       </div>
     </div>

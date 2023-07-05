@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const response = await req.json();
-  // console.log(a);
+  //
 
   return NextResponse.json(await setPage(response));
 }
@@ -22,7 +22,6 @@ export async function POST(req: Request) {
 // update page setting
 export async function PUT(req: Request) {
   const response = await req.json();
-  console.log(response);
 
   const filterBy = "edition";
   const edition = "1";

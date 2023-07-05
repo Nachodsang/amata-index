@@ -54,7 +54,6 @@ export default function CreateNewBannerPage() {
         timer: 1500,
       });
     } else {
-      console.log("please input valid value");
       Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -67,23 +66,21 @@ export default function CreateNewBannerPage() {
       setSelectedImage(e.target.files[0]);
     }
   };
-  console.log(bannerState);
-  useEffect(() => {
-    console.log(bannerState);
-  }, [bannerState]);
+
+  useEffect(() => {}, [bannerState]);
   return (
-    <div className="bg-white rounded-xl min-h-[100vh] ">
+    <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
-      <div className="max-w-[1440px]  px-4 py-6  mx-auto">
-        <h1 className="text-center font-semibold text-xl mb-4  ">New Banner</h1>
+      <div className="mx-auto  max-w-[1440px] px-4  py-6">
+        <h1 className="mb-4 text-center text-xl font-semibold  ">New Banner</h1>
         <div>
           {selectedImage ? (
             <img
               src={URL.createObjectURL(selectedImage)}
-              className="w-full h-[300px] object-cover"
+              className="h-[300px] w-full object-cover"
             />
           ) : (
-            <div className="w-full h-[300px] bg-slate-200"></div>
+            <div className="h-[300px] w-full bg-slate-200"></div>
           )}
 
           <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
@@ -98,7 +95,7 @@ export default function CreateNewBannerPage() {
           />
         </div>
         {/* Client name */}
-        <div className="flex flex-col gap-4 mt-4">
+        <div className="mt-4 flex flex-col gap-4">
           <Input
             label="Image URL"
             value={bannerState?.image}
@@ -125,7 +122,7 @@ export default function CreateNewBannerPage() {
             <button
               onClick={onSaveBanner}
               type="button"
-              className="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
             >
               save
             </button>

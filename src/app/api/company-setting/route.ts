@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
-import { addCompany, getCompanySetting } from "@/service/companyProfileService";
+import {
+  addCompany,
+  getCompanySetting,
+  editCompany,
+  editCompanyStatus,
+} from "@/service/companyProfileService";
 
 export async function GET() {
   const response = await getCompanySetting();
@@ -10,20 +15,25 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const response = await req.json();
-  // console.log(a);
+  //
 
   return NextResponse.json(await addCompany(response));
 }
 
 // update page setting
-// export async function PUT(req: Request) {
-//   const response = await req.json();
-//   console.log(response);
+export async function PUT(req: Request) {
+  const response = await req.json();
 
-//   const filterBy = "edition";
-//   const edition = "1";
+  const filterBy = "_id";
+  // const edition = "1";
 
-//   return NextResponse.json(
-//     await editPage(filterBy, edition, response.updatingField, response.newValue)
-//   );
-// }
+  if (response.type === "status") {
+    return NextResponse.json(
+      await editCompanyStatus(filterBy, response.filterValue, response.newValue)
+    );
+  } else {
+    return NextResponse.json(
+      await editCompany(filterBy, response._id, response.newValue)
+    );
+  }
+}

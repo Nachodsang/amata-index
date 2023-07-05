@@ -8,7 +8,7 @@ export function ImageUploader({ limit }: { limit: number }) {
 
   const onChange = (imageList: any, addUpdateIndex: any) => {
     // data for submit
-    console.log(imageList, addUpdateIndex);
+
     setImages(imageList);
   };
 
@@ -33,7 +33,7 @@ export function ImageUploader({ limit }: { limit: number }) {
           // write your building UI
           <div className="upload__image-wrapper flex flex-col">
             <button
-              className="border border-slate-300 rounded-xl px-4 py-4 "
+              className="rounded-xl border border-slate-300 px-4 py-4 "
               style={isDragging ? { backgroundColor: "red" } : undefined}
               onClick={onImageUpload}
               {...dragProps}
@@ -43,7 +43,7 @@ export function ImageUploader({ limit }: { limit: number }) {
             &nbsp;
             <button
               onClick={onImageRemoveAll}
-              className="border border-slate-300 rounded-xl px-4 py-4 "
+              className="rounded-xl border border-slate-300 px-4 py-4 "
             >
               Remove all images
             </button>
@@ -52,13 +52,13 @@ export function ImageUploader({ limit }: { limit: number }) {
                 <img src={image["data_url"]} alt="" width="1920" height="500" />
                 <div className="image-item__btn-wrapper">
                   <button
-                    className="border border-slate-300 rounded-xl px-4 py-4 "
+                    className="rounded-xl border border-slate-300 px-4 py-4 "
                     onClick={() => onImageUpdate(index)}
                   >
                     Update
                   </button>
                   <button
-                    className="border border-slate-300 rounded-xl px-4 py-4 "
+                    className="rounded-xl border border-slate-300 px-4 py-4 "
                     onClick={() => onImageRemove(index)}
                   >
                     Remove

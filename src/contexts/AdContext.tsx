@@ -19,15 +19,13 @@ export default function AdProvider({ children, adsPage }: any) {
       const response = await axios.get(URL);
       const responseData = response.data;
       setAds(responseData);
-      // console.log(responseData);
+      //
       // ads with active status
       const activeAds = responseData.filter((i: any) => {
         return i?.status;
       });
       setActivatedAds(activeAds);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   //  search Ad
   // const searchAd = (search: any) => {
@@ -42,7 +40,7 @@ export default function AdProvider({ children, adsPage }: any) {
   //     });
   //     setAds(result);
   //   } else {
-  //     console.log("no input accepted");
+  //
   //   }
   // };
   //   Add new ad
@@ -57,13 +55,9 @@ export default function AdProvider({ children, adsPage }: any) {
       if (client.length > 3 && adTitle.length > 3 && description.length > 3) {
         const pushData = { client, adTitle, description, image, link };
         const response = await axios.post(URL, pushData);
-        console.log(response);
       } else {
-        console.log("please input valid value");
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -78,9 +72,7 @@ export default function AdProvider({ children, adsPage }: any) {
         updatingField: "status",
         newValue: newStatus,
       });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   // change order
   const changeOrder = async (title: string, newOrder: number) => {
@@ -99,9 +91,7 @@ export default function AdProvider({ children, adsPage }: any) {
         timer: 2500,
       });
       return response;
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   return (
     <AdContext.Provider

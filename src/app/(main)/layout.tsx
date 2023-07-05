@@ -28,7 +28,7 @@ export const metadata = {
 //     const displayedAds = responseData.filter((i: any) => i?.status);
 //     return displayedAds;
 //   } catch (err) {
-//     console.log(err);
+//
 //   }
 // };
 
@@ -62,8 +62,7 @@ const fetchPageSetting = async () => {
     next: { revalidate: 5 },
   });
   const data = await response.json();
-  console.log("fetching setting");
-  console.log(data);
+
   return data;
 };
 
@@ -74,8 +73,8 @@ const fetchPageSetting = async () => {
 //     // next: { revalidate: 5 },
 //   });
 //   const data = await response.json();
-//   console.log("fetching setting");
-//   console.log(data);
+//
+//
 //   return data;
 // };
 

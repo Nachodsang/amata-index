@@ -13,7 +13,7 @@ export default function BannerList() {
   //   const response = await axios.get(
   //     "http://localhost:3000/api/banner-setting"
   //   );
-  //   // console.log(response.data);
+  //   //
   //   setBannerList(response.data);
   // };
 
@@ -21,18 +21,18 @@ export default function BannerList() {
   //   bannerFetch();
   // }, []);
 
-  // console.log(bannerList);
+  //
 
   return (
-    <div className="bg-white rounded-xl min-h-[100vh] ">
+    <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
-      <div className="max-w-[1440px]  px-4 py-6  mx-auto">
-        <h1 className="text-center font-semibold text-xl mb-4  ">
+      <div className="mx-auto  max-w-[1440px] px-4  py-6">
+        <h1 className="mb-4 text-center text-xl font-semibold  ">
           Banner List
         </h1>
 
         <div className="w-full ">
-          <div className="w-[30%] mx-auto ">
+          <div className="mx-auto w-[30%] ">
             <Search />
           </div>
           {/* Create new company profile */}
@@ -40,7 +40,7 @@ export default function BannerList() {
         <Link href="/webpanel/new-banner">
           <button
             type="button"
-            className="inline-block rounded-full border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+            className="hover:border-primary-600 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 active:border-primary-700 active:text-primary-700 inline-block rounded-full border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 focus:outline-none focus:ring-0 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
             data-te-ripple-init
           >
             Create New Banner

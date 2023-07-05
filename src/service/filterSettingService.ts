@@ -11,19 +11,18 @@ export const getFilter = async () => {
   //   );
   const filters = await filterSettingModel.find();
   return { filters };
-  //   console.log("title", pageSetting);
+  //
   //   mongoose.disconnect();
 };
 
 export const addFilter = async (req: IfilterSetting) => {
-  // console.log(req);
+  //
   const response = new filterSettingModel(req);
   let status: any = "";
   try {
     await response.save();
     return { status: "200", message: "complete", addedValue: response };
   } catch (err) {
-    console.log(err);
     return (status = err);
   }
 };
@@ -56,8 +55,5 @@ export const deleteFilter = async (filterBy: string, filterValue: string) => {
       [filterBy]: filterValue,
     });
     return { status: "200", message: "deletion complete", deletedValue: del };
-  } catch (err) {
-    console.log("here");
-    console.log(err);
-  }
+  } catch (err) {}
 };

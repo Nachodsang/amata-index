@@ -12,9 +12,9 @@ export default function Gallery() {
           <h1 className="font-semibold text-2xl">Gallery</h1>
         </div>
         <div className="flex justify-between">
-          <div className="h-[300px] w-[30%] rounded-xl bg-red-200"></div>
-          <div className="h-[300px] w-[30%] rounded-xl bg-red-200"></div>
-          <div className="h-[300px] w-[30%] rounded-xl bg-red-200"></div>
+          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
+          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
+          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
         </div>
       </div>
     </div>

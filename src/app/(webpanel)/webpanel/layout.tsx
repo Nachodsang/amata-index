@@ -18,7 +18,6 @@ const fetchFilter = async () => {
   const response = await axios.get(filterURL);
   const data = await response.data.filters;
 
-  console.log(data);
   return data;
 };
 
@@ -54,12 +53,11 @@ export default async function RootLayout({
                 {/* <MenuColumn /> */}
                 <SideNav _children={children} />
                 {/* </div> */}
-
-                <TwElementCom />
               </PageSettingProvider>
             </FilterContextProvider>
           </AdProvider>
         </BannerProvider>
+        <TwElementCom />
       </body>
     </html>
   );

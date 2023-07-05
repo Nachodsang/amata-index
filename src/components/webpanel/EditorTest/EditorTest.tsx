@@ -38,28 +38,28 @@ const EditorTest = () => {
   const [modelEditor, setModelEditor] = useState<any>();
   const [modelEditorContent, setModelEditorContent] = useState<any>();
   const returnOnchangeContent = (content: string) => {
-    console.log(content);
+    
     if (content.length > 0 && modelEditor) {
       setModelEditorContent(content);
-      // console.log(b);
+      // 
     }
   };
 
   useEffect(() => {
-    console.log("modelEditorContent");
+    
 
     if (modelEditor) {
       let a = [...model];
-      console.log("editort");
+      
 
-      console.log(
+      
         `index: ${modelEditor.index},indexContent: ${modelEditor.indexContent},content:${modelEditorContent}`
       );
 
       a[modelEditor.index]["contents"][modelEditor.indexContent][
         "contentHTML"
       ] = modelEditorContent;
-      console.log(a);
+      
       setModel(a);
     }
   }, [modelEditorContent]);
@@ -80,7 +80,7 @@ const EditorTest = () => {
   //       }
   //     ]
   //   })
-  //   console.log(model);
+  //   
 
   //   setModel(editModel)
   // }
@@ -98,11 +98,11 @@ const EditorTest = () => {
 
   useEffect(() => {
     let ms = new Date("2023-06-19T10:04:30.180Z").toString();
-    console.log(ms);
+    
 
     if (modelAdd) {
-      console.log("test123");
-      console.log(modelAdd);
+      
+      
       // let editModel: any[] = model
       // editModel.push({
       //   tagName: 'div',
@@ -122,12 +122,12 @@ const EditorTest = () => {
       setModel((old) => [...old, modelAdd]);
 
       // setModel(e => editModel)
-      console.log(model);
+      
     }
   }, [modelAdd]);
 
   useEffect(() => {
-    console.log("testModel");
+    
   }, [model]);
 
   return (

@@ -1,11 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function DropDownFilterBox({
   filterTitle,
   checkBox,
   onChange,
   filterType,
+  selected,
+  edit,
 }: any) {
   const [check, setCheck] = useState(false);
 
@@ -13,9 +15,18 @@ export default function DropDownFilterBox({
     onChange(filterTitle, filterType);
     checkBox && setCheck(!check);
   };
+  useEffect(() => {
+    const filterFromDb = selected?.find(
+      (i: any) => i?.filterTitle === filterTitle && i?.filterType === filterType
+    );
+    if (edit && filterFromDb) {
+      setCheck(!check);
+    }
+  }, [selected]);
+
   return (
     <li
-      className="py-1 px-5 hover:bg-neutral-100 dark:hover:bg-neutral-600 "
+      className="px-5 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-600 "
       onClick={onSelectCheckbox}
     >
       <div className="flex justify-between">
@@ -30,7 +41,13 @@ export default function DropDownFilterBox({
         {checkBox && (
           <input
             className="hover:cursor-pointer"
-            checked={check}
+            checked={
+              selected &&
+              selected?.find(
+                (i: any) =>
+                  i?.filterTitle === filterTitle && i?.filterType === filterType
+              )
+            }
             type="checkbox"
             onChange={onSelectCheckbox}
           />

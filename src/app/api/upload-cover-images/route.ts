@@ -32,7 +32,6 @@ export async function GET(req: Request) {
 // update page setting
 export async function PUT(req: Request) {
   const response = await req.json();
-  console.log(response);
 
   const filterBy = "edition";
   const edition = "1";
