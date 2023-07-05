@@ -12,19 +12,17 @@ export const getPageSetting = async () => {
   });
 
   return { pageSetting };
-  //   console.log("title", pageSetting);
+  //
   //   mongoose.disconnect();
 };
 
 export const setPage = async (req: IpageSetting) => {
-  console.log(req);
   const pageSetting = new pageSettingModel(req);
   let status: any = "";
   try {
     await pageSetting.save();
     return { status: "200", message: "complete", addedValue: pageSetting };
   } catch (err) {
-    console.log(err);
     return (status = err);
   }
 };

@@ -11,12 +11,11 @@ export const getBanner = async () => {
   //   );
   const ads = await bannerSettingModel.find();
   return ads;
-  //   console.log("title", pageSetting);
+  //
   //   mongoose.disconnect();
 };
 
 export const setBanner = async (req: IbannerSetting) => {
-  console.log(req);
   const banner = new bannerSettingModel(req);
   let status: any = "";
   try {
@@ -28,7 +27,6 @@ export const setBanner = async (req: IbannerSetting) => {
     });
     // (status = "complete");
   } catch (err) {
-    console.log(err);
     return (status = err);
   }
 };

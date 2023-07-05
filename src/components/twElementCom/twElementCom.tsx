@@ -51,12 +51,10 @@ const TwElementCom = () => {
     }
   });
   useEffect(() => {
-    console.log("init doing useEffect");
     initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown, Modal });
   }, []);
   const init = () => {
     initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown, Modal });
-    console.log("init doing");
   };
 
   return (

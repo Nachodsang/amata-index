@@ -10,8 +10,8 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
   useEffect(() => {
     // Insert Image(selected by user) to quill
     const insertToEditor = (url: any) => {
-      // console.log('insertToEditor');
-      // console.log(url);
+      //
+      //
 
       if (quill) {
         const range = quill.getSelection();
@@ -23,7 +23,7 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
 
     // Upload Image to Image Server such as AWS S3, Cloudinary, Cloud Storage, etc..
     const saveToServer = async (file: any) => {
-      // console.log('saveToServer');
+      //
       const body = new FormData();
       body.append("file", file);
       body.append("folderName", "product_detail");
@@ -33,13 +33,13 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
       });
 
       const json: any = await response.json();
-      // console.log(json.fileName);
+      //
       insertToEditor("/api/img?Id=" + json.fileName);
     };
 
     // Open Dialog to select Image File
     const selectLocalImage = () => {
-      // console.log('selectLocalImage');
+      //
 
       const input: any = document.createElement("input");
       input.setAttribute("type", "file");
@@ -56,17 +56,17 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
       quill.getModule("toolbar").addHandler("image", selectLocalImage);
       // quill.clipboard.dangerouslyPasteHTML(contentInit.toString().replace(/(<? *script)/gi, 'illegalscript') ?? '' );
       quill.on("text-change", () => {
-        // console.log('Text change!');
-        // console.log(quill.getText()); // Get text only
-        // console.log(quill.getContents()); // Get delta contents
-        // console.log(quill.root.innerHTML); // Get innerHTML using quill
-        // console.log(modelAdd);
+        //
+        //
+        //
+        //
+        //
         // setModelAdd({ ...modelAdd, description: quill.root.innerHTML })
-        // console.log(quillRef.current.firstChild.innerHTML); // Get innerHTML using quillRef
+        //
         // textRef.current = quill.root.innerHTML
-        // console.log(textRef.current);
+        //
         // quillGetTextFunction(textRef.current)
-        // console.log(quillRef.current.firstChild.innerHTML);
+        //
         // if (quillRef.current.firstChild.innerHTML != text) setText(quillRef.current.firstChild.innerHTML)
         // returnOnchangeContent(quill.root.innerHTML)
       });
@@ -80,7 +80,6 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
   }, [contentInit, quill]);
 
   useEffect(() => {
-    console.log(text);
     if (quill) {
       quill.clipboard.dangerouslyPasteHTML(
         text.toString().replace(/(<? *script)/gi, "illegalscript") ?? ""
@@ -90,9 +89,9 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
 
   return (
     <>
-      <div className="w-full mb-4" style={{ height: 300, width: "100%" }}>
+      <div className="mb-4 w-full" style={{ height: 300, width: "100%" }}>
         <div
-          className=" overflow-y-auto break-all whitespace-break-spaces text-black"
+          className=" overflow-y-auto whitespace-break-spaces break-all text-black"
           style={{ backgroundColor: "#efefff", height: "300px" }}
           ref={quillRef}
 

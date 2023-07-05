@@ -9,11 +9,8 @@ import "quill/dist/quill.snow.css"; // Add css for snow theme
 export default function Editor() {
   const { quill, quillRef } = useQuill();
 
-  console.log(quill); // undefined > Quill Object
-  console.log(quillRef); // { current: undefined } > { current: Quill Editor Reference }
-
   return (
-    <div className="w-full h-[500px]">
+    <div className="h-[500px] w-full">
       <div ref={quillRef} />
     </div>
   );

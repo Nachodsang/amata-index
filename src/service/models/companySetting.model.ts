@@ -35,7 +35,11 @@ export interface IfilterInfo {
   filterTitle?: String;
   filterType?: String;
 }
-export interface IdetailsInfo {}
+export interface IdetailsInfo {
+  shortDescription?: String;
+  fullDescription?: String;
+  customDetails?: IGrid;
+}
 export interface IcontactData {
   businessHour?: IbusinessHour;
   tel?: String;
@@ -150,6 +154,10 @@ const companySettingSchema = new Schema(
       companyNameCn: { type: String },
       industry: { type: String },
       nationality: { type: String },
+    },
+    details: {
+      shortDescription: { type: String },
+      fullDescription: { type: String },
     },
 
     contacts: {

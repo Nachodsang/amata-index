@@ -88,7 +88,6 @@ export default function Filter({ category }: { category: string }) {
 
   // Checkbox selection
   const onCheckBoxSelection = (field: any, item: any) => {
-    console.log(field, item);
     const r = filterSelection[field];
     r.push(item);
 
@@ -100,7 +99,7 @@ export default function Filter({ category }: { category: string }) {
       [field]: [],
     });
   };
-  console.log(filterSelection);
+
   //Expand Advance Search
   const collapseAdvanceSearch = () => {
     setExpanded((prevExpanded) => !prevExpanded);
@@ -130,29 +129,29 @@ export default function Filter({ category }: { category: string }) {
 
   return (
     <div className="w-full  ">
-      <div className=" border z-20  shadow-lg  relative bg-white rounded-2xl  mx-auto max-w-[1270px] transition-all   p-4 ">
+      <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
         <div
           onClick={onFoldDropDown}
-          className="absolute w-full h-full  z-0 top-0 left-0 right-0 buttom-0"
+          className="buttom-0 absolute left-0  right-0 top-0 z-0 h-full w-full"
         ></div>
         {/* form container */}
-        <div className=" p-4 flex flex-col transition-all  ">
+        <div className=" flex flex-col p-4 transition-all  ">
           {/* label */}
           <div className=" my-5 flex gap-1   text-gray-600 ">
             <ImSearch size={45} className="z-20" />
-            <span className="font-bold text-4xl z-20   ">Search</span>
+            <span className="z-20 text-4xl font-bold   ">Search</span>
           </div>
-          <div className=" flex flex-col gap-y-4 relative ">
+          <div className=" relative flex flex-col gap-y-4 ">
             {/* inputs */}
             <div>
-              <div className="flex flex-col desktop0:flex-row tablet2:flex-row gap-4">
+              <div className="flex flex-col gap-4 tablet2:flex-row desktop0:flex-row">
                 <button
                   {...getToggleProps({
                     onClick: () => {
                       collapseAdvanceSearch();
                     },
                   })}
-                  className="text-[rgb(2,131,206)] focus:ring-2 ring-[rgb(2,131,206)] flex items-center hover:cursor-pointer rounded-3xl border w-full tablet2:w-[30%] desktop0:w-[20%] justify-center hover:text-white  hover:bg-[rgb(2,131,206)] transition-all border-[rgb(2,131,206)] outline-none px-2 py-1 "
+                  className="flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)] px-2 py-1 text-[rgb(2,131,206)] outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer hover:bg-[rgb(2,131,206)] hover:text-white focus:ring-2 tablet2:w-[30%] desktop0:w-[20%] "
                 >
                   Advance Search
                   <RxTriangleLeft
@@ -166,7 +165,7 @@ export default function Filter({ category }: { category: string }) {
                 </button>
                 <input
                   type="text"
-                  className="rounded-3xl w-full focus:ring-2 ring-[rgb(2,131,206)] tablet2:w-[70%] desktop0:w-[80%]  border border-gray-300 outline-none px-2 py-1"
+                  className="w-full rounded-3xl border border-gray-300 px-2 py-1  outline-none ring-[rgb(2,131,206)] focus:ring-2 tablet2:w-[70%] desktop0:w-[80%]"
                   placeholder="Search"
                 />
               </div>
@@ -259,14 +258,14 @@ export default function Filter({ category }: { category: string }) {
             />
           </div>
           {/* button */}
-          <div className="flex justify-end gap-4 w-full mt-4">
-            <button className="gap-2 flex justify-center text-sm z-20 tablet1:text-lg items-center w-[25%] desktop0:w-[15%]  bg-[#999999] rounded-3xl py-2 text-white">
+          <div className="mt-4 flex w-full justify-end gap-4">
+            <button className="z-20 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]">
               <VscDebugRestart size={20} />
               <span>Reset</span>
             </button>
             <button
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-              className={`flex justify-center items-center z-20 gap-2  w-[75%] desktop0:w-[25%]   rounded-3xl text-white`}
+              className={`z-20 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
             >
               <ImSearch size={20} />
               <span>Search</span>

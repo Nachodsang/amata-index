@@ -22,12 +22,12 @@ const CheckBox = ({
       // onCheckBoxSelection(value, title);
     };
 
-  // console.log({ title, isChecked });
+  //
   return (
-    <div className="flex gap-2 items-center">
+    <div className="flex items-center gap-2">
       <input
         type="checkbox"
-        className={`w-4 h-4 checkbox checkbox-accent hover:cursor-pointer rounded ring-2 border-none ${category}-ring`}
+        className={`checkbox-accent checkbox h-4 w-4 rounded border-none ring-2 hover:cursor-pointer ${category}-ring`}
         value={title}
         onClick={onCheck}
         checked={isChecked}
@@ -69,15 +69,15 @@ export default function CheckboxDropdown({
     <div
       className={`${
         isSecondRow ? "top-[150px]" : "top-[100px]"
-      } w-full bg-white absolute   border ${category}-border rounded-md z-40 ${
+      } absolute w-full border   bg-white ${category}-border z-40 rounded-md ${
         isHidden ? "flex" : "hidden"
       }`}
     >
-      <div className="flex flex-col gap-y-6 p-6 w-full  ">
+      <div className="flex w-full flex-col gap-y-6 p-6  ">
         <div className={`border-b-4 pb-6  ${category}-border`}>
           <h1 className="text-center ">{title}</h1>
         </div>
-        <div className="grid grid-cols-2 tablet2:grid-cols-3 desktop0:grid-cols-4 w-full">
+        <div className="grid w-full grid-cols-2 tablet2:grid-cols-3 desktop0:grid-cols-4">
           {arr.map((i, index) => (
             <CheckBox
               onCheckBoxSelection={onCheckBoxSelection}
@@ -90,14 +90,14 @@ export default function CheckboxDropdown({
         </div>
         <div className="flex justify-end  gap-1 font-semibold text-white">
           <button
-            className={`rounded-md px-4 py-2 bg-green-500`}
+            className={`rounded-md bg-green-500 px-4 py-2`}
             onClick={onConfirm}
           >
             Confirm
           </button>
           <button
             onClick={onClearSelection}
-            className="rounded-md px-4 py-2 font-semibold bg-red-600"
+            className="rounded-md bg-red-600 px-4 py-2 font-semibold"
           >
             Clear
           </button>

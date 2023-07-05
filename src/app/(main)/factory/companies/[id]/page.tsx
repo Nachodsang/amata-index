@@ -11,14 +11,11 @@ const fetchCompany = async (company: string) => {
     // next: { revalidate: 5 },
   });
   const data = await response.json();
-  console.log("fetching setting");
-  // console.log(data.companySetting);
+
+  //
   const thisCompany = data.companySetting.find(
     (i: any) => i?.generalInfo?.profileUrl === company
   );
-  console.log('thisCompany');
-
-  console.log(thisCompany);
 
   return thisCompany;
 };
@@ -29,12 +26,11 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const companyData = await fetchCompany(company);
 
-  console.log(companyData);
   return (
     <CompanyContextProvider companyData={companyData}>
       <Header companyData={companyData} />
       <div className="py-10">
-        <div className="bg-slate-100 h-[100vh] w-full flex mx-auto max-w-[1440px]">
+        <div className="mx-auto flex h-[100vh] w-full max-w-[1440px] bg-slate-100">
           <div className="m-auto text-6xl font-bold">Company Content Here</div>
         </div>
       </div>

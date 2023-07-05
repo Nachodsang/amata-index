@@ -19,16 +19,13 @@ export default function BannerProvider({ children, bannerPage }: any) {
       const response = await axios.get(URL);
       const responseData = response.data;
       setBanners(responseData);
-      console.log("banner");
-      console.log(responseData);
+
       // ads with active status
       const activeBanners = responseData.filter((i: any) => {
         return i?.status;
       });
       setActivatedBanners(activeBanners);
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   //  search Ad
   // const searchAd = (search: any) => {
@@ -43,7 +40,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
   //     });
   //     setBanners(result);
   //   } else {
-  //     console.log("no input accepted");
+  //
   //   }
   // };
   //   Add new ad
@@ -62,13 +59,9 @@ export default function BannerProvider({ children, bannerPage }: any) {
       ) {
         const pushData = { client, bannerTitle, description, image, link };
         const response = await axios.post(URL, pushData);
-        console.log(response);
       } else {
-        console.log("please input valid value");
       }
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   useEffect(() => {
@@ -83,9 +76,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
         updatingField: "status",
         newValue: newStatus,
       });
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   // change order
   const changeOrder = async (title: string, newOrder: number) => {
@@ -104,9 +95,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
         timer: 2500,
       });
       return response;
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
   return (
     <BannerContext.Provider

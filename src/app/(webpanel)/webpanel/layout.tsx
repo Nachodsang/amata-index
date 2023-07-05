@@ -18,7 +18,6 @@ const fetchFilter = async () => {
   const response = await axios.get(filterURL);
   const data = await response.data.filters;
 
-  console.log(data);
   return data;
 };
 

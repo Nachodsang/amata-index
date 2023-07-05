@@ -4,6 +4,7 @@ import {
   addCompany,
   getCompanySetting,
   editCompany,
+  editCompanyStatus,
 } from "@/service/companyProfileService";
 
 export async function GET() {
@@ -14,7 +15,7 @@ export async function GET() {
 
 export async function POST(req: Request) {
   const response = await req.json();
-  // console.log(a);
+  //
 
   return NextResponse.json(await addCompany(response));
 }
@@ -22,13 +23,17 @@ export async function POST(req: Request) {
 // update page setting
 export async function PUT(req: Request) {
   const response = await req.json();
-  console.log("in put function");
-  console.log(response);
 
   const filterBy = "_id";
   // const edition = "1";
 
-  return NextResponse.json(
-    await editCompany(filterBy, response._id, response.newValue)
-  );
+  if (response.type === "status") {
+    return NextResponse.json(
+      await editCompanyStatus(filterBy, response.filterValue, response.newValue)
+    );
+  } else {
+    return NextResponse.json(
+      await editCompany(filterBy, response._id, response.newValue)
+    );
+  }
 }

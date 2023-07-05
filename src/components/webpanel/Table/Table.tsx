@@ -7,6 +7,7 @@ export default function Table({
   col5,
   onChange,
   onChangeOrder,
+  type,
 }: any) {
   return (
     <div className="flex flex-col mx-auto">
@@ -51,50 +52,94 @@ export default function Table({
                   </th>
                 </tr>
               </thead>
-              <tbody>
-                {list.map((i: any, index: any) => {
-                  const {
-                    _id,
-                    bannerTitle,
+              {type === "company" ? (
+                <tbody>
+                  {list.map((i: any, index: any) => {
+                    const {
+                      _id,
+                      companyTitle,
+                      updatedAt,
+                      status,
 
-                    adTitle,
-                    updatedAt,
-                    client,
-                    image,
-                    description,
-                    status,
-                    link,
-                    edition,
-                  } = i;
-                  let type;
-                  adTitle ? (type = "ad") : (type = "banner");
-                  // convert date to local
-                  const localDate = `${new Date(updatedAt)
-                    .getDate()
-                    .toString()
-                    .padStart(2, "0")}/${(new Date(updatedAt).getMonth() + 1)
-                    .toString()
-                    .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
+                      edition,
+                      generalInfo,
+                    } = i;
 
-                  return (
-                    <Entry
-                      onChangeOrder={onChangeOrder}
-                      onChange={onChange}
-                      key={_id}
-                      index={index + 1}
-                      title={bannerTitle || adTitle}
-                      date={localDate}
-                      company={client}
-                      image={image}
-                      description={description}
-                      status={status}
-                      link={link}
-                      order={edition}
-                      type={type}
-                    />
-                  );
-                })}
-              </tbody>
+                    // convert date to local
+                    const localDate = `${new Date(updatedAt)
+                      .getDate()
+                      .toString()
+                      .padStart(2, "0")}/${(new Date(updatedAt).getMonth() + 1)
+                      .toString()
+                      .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
+
+                    return (
+                      <Entry
+                        _id={_id}
+                        onChangeOrder={onChangeOrder}
+                        onChange={onChange}
+                        key={_id}
+                        index={index + 1}
+                        title={companyTitle}
+                        date={localDate}
+                        company={generalInfo?.companyNameEn}
+                        companyNameTh={generalInfo?.companyNameTh}
+                        image={generalInfo?.logo}
+                        description={companyTitle}
+                        status={status}
+                        link={`${generalInfo?.profileUrl}`}
+                        order={edition}
+                        type={type}
+                      />
+                    );
+                  })}
+                </tbody>
+              ) : (
+                <tbody>
+                  {list.map((i: any, index: any) => {
+                    const {
+                      _id,
+                      bannerTitle,
+
+                      adTitle,
+                      updatedAt,
+                      client,
+                      image,
+                      description,
+                      status,
+                      link,
+                      edition,
+                    } = i;
+                    let type;
+                    adTitle ? (type = "ad") : (type = "banner");
+                    // convert date to local
+                    const localDate = `${new Date(updatedAt)
+                      .getDate()
+                      .toString()
+                      .padStart(2, "0")}/${(new Date(updatedAt).getMonth() + 1)
+                      .toString()
+                      .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
+
+                    return (
+                      <Entry
+                        onChangeOrder={onChangeOrder}
+                        onChange={onChange}
+                        key={_id}
+                        index={index + 1}
+                        title={bannerTitle || adTitle}
+                        date={localDate}
+                        company={client}
+                        image={image}
+                        description={description}
+                        status={status}
+                        link={link}
+                        order={edition}
+                        type={type}
+                      />
+                    );
+                  })}
+                </tbody>
+              )}
             </table>
           </div>
         </div>

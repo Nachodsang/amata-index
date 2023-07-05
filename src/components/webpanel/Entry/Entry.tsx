@@ -14,12 +14,15 @@ export default function Entry({
   order,
   onChangeOrder,
   type,
+  companyNameTh,
+  _id,
 }: any) {
   const [isCheck, setIsCheck] = useState(status);
   const [orderState, setOrderState] = useState(order);
 
   const onCheck = () => {
-    onChange(title, !isCheck);
+    console.log("checking", _id);
+    type === "company" ? onChange(_id, !isCheck) : onChange(title, !isCheck);
     setIsCheck(!isCheck);
   };
   const onClickChangeOrder = (e: any) => {
@@ -37,18 +40,45 @@ export default function Entry({
           <img
             src={image}
             className={`${
-              type === "ad" ? "h-[150px] w-[150px]" : "h-[50px] w-[175px]"
+              type === "banner" ? "h-[50px] w-[175px] " : "h-[150px] w-[150px]"
             } object-cover`}
             alt="Ad image"
           />
-          <h1>{title}</h1>
+          {type === "company" ? (
+            <div className="">
+              <h1>{company}</h1>
+              <h1>{companyNameTh}</h1>
+            </div>
+          ) : (
+            <h1>{title}</h1>
+          )}
         </a>
       </td>
       <td className="whitespace-nowrap px-6 py-4 ">{company}</td>
       <td className="whitespace-nowrap px-6 py-4">
-        <p>{description}</p>
+        {type === "company" ? <p>{date}</p> : <p>{description}</p>}
       </td>
-      <td className="whitespace-nowrap px-6 py-4">{date}</td>
+      <td className="whitespace-nowrap px-6 py-2">
+        {type === "company" ? (
+          <div className="flex gap-1">
+            <a href={`/factory/companies/${link}`}>
+              <button className="bg-green-400 px-4 py-2 rounded-xl font-bold text-white">
+                Preview
+              </button>
+            </a>
+            <a href={`/webpanel/company/edit/${link}`}>
+              <button className="bg-yellow-400 px-4  py-2 rounded-xl font-bold text-white">
+                Edit
+              </button>
+            </a>
+            <button className="bg-red-400 px-4  py-2 rounded-xl font-bold text-white">
+              Delete
+            </button>
+          </div>
+        ) : (
+          date
+        )}
+      </td>
       <td className="whitespace-nowrap px-6 py-4">
         <input
           onChange={onCheck}
@@ -58,7 +88,7 @@ export default function Entry({
           id="flexSwitchCheckDefault02"
           checked={isCheck}
         />
-        {isCheck && (
+        {isCheck && type !== "company" && (
           <div className="flex items-center gap-3">
             <label>Order: </label>
             <input

@@ -17,9 +17,9 @@ export async function GET() {
 
 export async function POST(req: Request) {
   // const a = await req.json();
-  // console.log(a);
+  //
   const response = await req.json();
-  // console.log(response);
+  //
 
   return NextResponse.json(await addFilter(response));
 }
@@ -27,7 +27,7 @@ export async function POST(req: Request) {
 // on active filter
 export async function PUT(req: Request) {
   const response = await req.json();
-  // console.log(response);
+  //
 
   const filterBy = "filterTitle";
   // const edition = req.filterTitle;
@@ -44,9 +44,8 @@ export async function PUT(req: Request) {
 
 // deletion
 export async function DELETE(req: Request) {
-  console.log("delete function");
   const response = await req.json();
-  // console.log(response);
+  //
 
   return NextResponse.json(
     await deleteFilter(response.deleteBy, response.deleteValue)
