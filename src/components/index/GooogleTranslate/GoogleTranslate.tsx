@@ -26,11 +26,8 @@ export default function GoogleTranslate() {
   }, []);
 
   return (
-    <div className="w-[100px] fixed  ">
-      <div
-        className=" z-20 right-0 m-4 top-0"
-        id="google_translate_element"
-      ></div>
+    <div className="absolute top-0 right-0 ">
+      <div className=" z-20  w-full" id="google_translate_element"></div>
     </div>
   );
 }

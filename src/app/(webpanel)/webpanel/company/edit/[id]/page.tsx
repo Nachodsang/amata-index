@@ -10,6 +10,7 @@ import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
 import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export default function EditCompanyPage({
   params,
@@ -39,11 +40,30 @@ export default function EditCompanyPage({
 
   //   change this one to put method for editing company
   const editCompany = async () => {
-    const response = await axios.put(
-      "http://localhost:3000/api/company-setting",
-      { _id: companyState?._id, newValue: companyState }
-    );
+    try {
+      const response = await axios.put(
+        "http://localhost:3000/api/company-setting",
+        { _id: companyState?._id, newValue: companyState }
+      );
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `${companyState?.companyTitle} company profile has been edited`,
+        showConfirmButton: true,
+        timer: 3000,
+      });
+    } catch (err) {
+      console.log(err);
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong.",
+        timer: 2500,
+      });
+    }
   };
+  console.log(companyState);
 
   return (
     <div className="">
@@ -85,11 +105,11 @@ export default function EditCompanyPage({
         {/* SEO */}
         <SeoInfo state={companyState} setState={setCompanyState} edit={true} />
       </div>
-      <div className="fixed top-28 right-60">
+      <div className="fixed top-28 right-10">
         <button
           onClick={editCompany}
           type="button"
-          className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 mt-10 inline-block h-[150px] w-[200px] rounded bg-success px-6 pb-2  pt-2.5 text-2xl font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:scale-105 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+          className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 mt-10 inline-block h-[80px] w-[100px] rounded bg-success px-6 pb-2  pt-2.5 text-2xl font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:scale-105 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
         >
           Edit
         </button>

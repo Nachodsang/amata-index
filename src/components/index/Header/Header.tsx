@@ -23,7 +23,7 @@ export default function Header({ category }: { category: string }) {
       <div className=" px-6 ">
         <div className=" relative  w-full ">
           <div className="m-auto max-w-[1270px]  py-20 ">
-            <div className="flex flex-col items-start gap-4   ">
+            <div className="flex flex-col items-start gap-4 relative">
               <div className="z-20  ">
                 <h1
                   style={{ backgroundColor: `${pageSetting?.themeColor}` }}
@@ -31,8 +31,8 @@ export default function Header({ category }: { category: string }) {
                 >
                   {pageSetting?.pageTitle}
                 </h1>
-                {/* <GoogleTranslate /> */}
               </div>
+              <GoogleTranslate />
               <div className=" z-20 text-3xl font-semibold text-white">
                 {pageSetting?.description}
               </div>

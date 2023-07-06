@@ -9,56 +9,115 @@ export default function FileInput({
   state,
   objectState,
   stateValue,
+  multiple,
 }: any) {
-  const [file, setFile] = useState<File>();
+  const [file, setFile] = useState<File[]>([]);
+  const [singleFile, setSingleFile] = useState();
 
   const onBrowseImage = (e: any) => {
-    setFile(e.target.files?.[0]);
+    if (multiple) {
+      let file1: File[] = [];
+      for (let i = 0; i < e.target.files?.length; i++) {
+        file1.push(e.target.files?.[i]);
+      }
+      setFile(file1);
+    } else {
+      setSingleFile(e.target.files?.[0]);
+    }
+
     imageChange(e);
   };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!file) return;
+    if (!file && !singleFile) {
+      console.log("no file");
+      return;
+    } else if (multiple) {
+      let images = [];
+      // file tbd
+      for (let i = 0; i < file?.length; i++) {
+        try {
+          const data = new FormData();
+          data.set("file", file[i]);
 
-    try {
-      const data = new FormData();
-      data.set("file", file);
+          const res = await fetch(`/api/${path}`, {
+            method: "POST",
+            body: data,
+          });
 
-      const res = await fetch(`/api/${path}`, {
-        method: "POST",
-        body: data,
-      });
-
-      // handle the error
-      if (!res.ok) {
-        Swal.fire({
-          position: "center",
-          icon: "error",
-          title: "Oops...",
-          text: "Please enter valid inputs!",
-          timer: 1500,
-        });
-        throw new Error(await res.text());
-      } else {
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "New Image has been uploaded",
-          showConfirmButton: false,
-          timer: 1500,
-        });
-        // response return
-        const response = await res.json();
-
+          // handle the error
+          if (!res.ok) {
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "Oops...",
+              text: "Please enter valid inputs!",
+              timer: 1500,
+            });
+            throw new Error(await res.text());
+          } else {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "New Image has been uploaded",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            // response return
+            const response = await res.json();
+            images.push(response.image);
+          }
+        } catch (e: any) {
+          // Handle errors here
+          console.error(e);
+        }
+        console.log(images);
         objectState
-          ? setState({ ...state, [stateValue]: response.image })
-          : setState(response.image);
+          ? setState({ ...state, [stateValue]: images })
+          : setState([...state, ...images]);
+        // fix later for single file
       }
-    } catch (e: any) {
-      // Handle errors here
-      console.error(e);
+    } else {
+      try {
+        const data = new FormData();
+        data.set("file", singleFile);
+
+        const res = await fetch(`/api/${path}`, {
+          method: "POST",
+          body: data,
+        });
+
+        // handle the error
+        if (!res.ok) {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "Oops...",
+            text: "Please enter valid inputs!",
+            timer: 1500,
+          });
+          throw new Error(await res.text());
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "New Image has been uploaded",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          // response return
+          const response = await res.json();
+          objectState
+            ? setState({ ...state, [stateValue]: response.image })
+            : setState(response.image);
+        }
+      } catch (e: any) {
+        // Handle errors here
+        console.error(e);
+      }
     }
   };
+  console.log(state);
   return (
     <form onSubmit={onSubmit}>
       <input
@@ -67,6 +126,7 @@ export default function FileInput({
         name="file"
         id="formFile"
         onChange={onBrowseImage}
+        multiple
       />
 
       <div className="flex w-full justify-end">

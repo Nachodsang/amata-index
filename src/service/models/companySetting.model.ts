@@ -9,7 +9,7 @@ export interface IcompanySetting {
   details?: IdetailsInfo;
   contacts?: IcontactData;
   seo?: IseoInfo;
-  gallery?: IgalleryInfo;
+  gallery?: String[];
 
   edition?: Number;
 }
@@ -38,7 +38,7 @@ export interface IfilterInfo {
 export interface IdetailsInfo {
   shortDescription?: String;
   fullDescription?: String;
-  customDetails?: IGrid;
+  content?: IGroup;
 }
 export interface IcontactData {
   businessHour?: IbusinessHour;
@@ -86,19 +86,13 @@ export interface IcnSeo {
   keyword?: String;
 }
 
-export interface IHomePage {
-  title?: string;
-  title2?: string;
-  group: IGroup[];
-}
+// export interface IHomePage {
+//   title?: string;
+//   title2?: string;
+//   group: IGroup[];
+// }
 
 export interface IGroup {
-  groupName?: string;
-  title?: string;
-  detail?: string;
-  brandImg?: string;
-  countryName?: string;
-  countryImg?: string;
   className?: string;
   grid: IGrid[];
 }
@@ -128,7 +122,7 @@ const companySettingSchema = new Schema(
     // link: { type: String, required: true },
 
     edition: { type: Number },
-    gallery: [{ URL: { type: String }, order: { type: Number } }],
+    // gallery: [{ URL: { type: String }, order: { type: Number } }],
     seo: {
       th: { type: [] },
       en: { type: [] },
@@ -155,9 +149,30 @@ const companySettingSchema = new Schema(
       industry: { type: String },
       nationality: { type: String },
     },
+    gallery: [{ type: String }],
     details: {
       shortDescription: { type: String },
       fullDescription: { type: String },
+      content: {
+        grid: [
+          {
+            className: { type: String },
+            contents: [
+              {
+                type: { type: String },
+                className: { type: String },
+                contentHTML: { type: String },
+                url: { type: String },
+                width: { type: String },
+
+                maxwidth: { type: String },
+                height: { type: String, default: "200px" },
+                maxHeight: { type: String },
+              },
+            ],
+          },
+        ],
+      },
     },
 
     contacts: {
