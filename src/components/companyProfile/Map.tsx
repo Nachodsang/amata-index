@@ -12,7 +12,7 @@ export default function Map({ companyData }: any) {
   //   console.log(mapState);
   //   console.log(companyData?.contacts?.googleMap);
   return (
-    <div className="pt-10 w-full">
+    <div className="pb-40 w-full">
       <div className="max-w-[1440px] mx-auto rounded-2xl overflow-hidden ">
         {/* <iframe
           src={mapState}

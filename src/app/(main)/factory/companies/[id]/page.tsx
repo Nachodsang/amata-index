@@ -43,11 +43,11 @@ export default async function Page({ params }: { params: { id: string } }) {
         </div>
       </div> */}
       <Content companyData={companyData} />
-      <Gallery />
+      <Gallery companyData={companyData} />
       <Filter companyData={companyData} />
       <Blogs />
-      <Map companyData={companyData} />
       <Footer companyData={companyData} />
+      <Map companyData={companyData} />
     </CompanyContextProvider>
   );
 }

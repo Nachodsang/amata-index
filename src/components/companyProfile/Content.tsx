@@ -115,25 +115,19 @@ export default function Content({ companyData }: any) {
                             itemContent.type == "vdo" ? (
                               <div className="mx-auto">
                                 {itemContent.url &&
-                                itemContent.url.split("http").length > 1 ? (
-                                  <iframe
-                                    width="420"
-                                    height="315"
-                                    style={{
-                                      width: `${itemContent.width ?? "auto"}`,
-                                      maxWidth: `${
-                                        itemContent.maxWidth ?? "auto"
-                                      }`,
-                                      height: `${
-                                        itemContent.height ?? "200px"
-                                      }`,
-                                      maxHeight: `${
-                                        itemContent.maxHeight ?? "auto"
-                                      }`,
+                                itemContent.url.split("iframe").length > 1 ? (
+                                  <div
+                                    dangerouslySetInnerHTML={{
+                                      __html:
+                                        itemContent?.url
+                                          ?.toString()
+                                          .split("<p>#</p>")[0]
+                                          .replace(
+                                            /(<? *script)/gi,
+                                            "illegalscript"
+                                          ) ?? "",
                                     }}
-                                    className=" mx-auto block object-contain"
-                                    src={`${itemContent.url}`}
-                                  ></iframe>
+                                  ></div>
                                 ) : (
                                   <video
                                     controls

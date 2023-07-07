@@ -1,6 +1,7 @@
 import { GrGallery } from "react-icons/gr";
 import { TfiGallery } from "react-icons/tfi";
-export default function Gallery() {
+import ImageCourousel from "./ImageCorousel";
+export default function Gallery({ companyData }: any) {
   return (
     <div className="w-full bg-slate-100">
       {/* container */}
@@ -11,10 +12,8 @@ export default function Gallery() {
           </div>
           <h1 className="font-semibold text-2xl">Gallery</h1>
         </div>
-        <div className="flex justify-between">
-          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
-          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
-          <div className="h-[300px] w-[30%] rounded-xl bg-slate-400"></div>
+        <div className="rounded-3xl overflow-hidden">
+          <ImageCourousel images={companyData?.gallery} />
         </div>
       </div>
     </div>
