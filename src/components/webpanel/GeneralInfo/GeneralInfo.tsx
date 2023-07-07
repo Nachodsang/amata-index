@@ -318,6 +318,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 setState={setGeneralInfoState}
                 path="company-logo-upload"
                 stateValue={"logo"}
+                multiple={false}
               />
             </div>
             {/* logo upload */}
@@ -351,6 +352,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
               setState={setGeneralInfoState}
               path="company-cover-upload"
               stateValue={"coverImage"}
+              multiple={false}
             />
             {/* video */}
 

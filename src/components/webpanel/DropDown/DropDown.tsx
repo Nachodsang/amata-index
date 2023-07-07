@@ -50,6 +50,12 @@ export default function DropDown({
         aria-labelledby="dropdownMenuButton1"
         data-te-dropdown-menu-ref
       >
+        {/* {type === "test" &&
+          filterList.map((i: any) => (
+            <li>
+              <div>{i}</div>
+            </li>
+          ))} */}
         {type === "filterCheckbox" &&
           filterList.map((i: any, index: any) => {
             if (i?.filterType === title && i?.active === true) {

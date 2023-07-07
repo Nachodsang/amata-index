@@ -36,8 +36,10 @@ export default function DetailsInfo({ state, setState, edit }: any) {
   };
   useEffect(() => {
     edit && setDetailsState(state?.details);
+    console.log("yyyy");
+    console.log(state);
   }, [state]);
-
+  console.log(detailsState);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -82,7 +84,16 @@ export default function DetailsInfo({ state, setState, edit }: any) {
         </div>
         {/* <Editor />
          */}
-        <EditHomePage />
+        <div className="w-full flex justify-start ">
+          <h1 className="text-slate-600 font-bold text-2xl">
+            Content Template
+          </h1>
+        </div>
+        <EditHomePage
+          state={detailsState}
+          setState={setDetailsState}
+          edit={edit}
+        />
       </div>
       <div className="flex justify-end">
         <button
