@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Ip from "../Input/Input";
 import DayBox from "../DayBox/DayBox";
 import Swal from "sweetalert2";
+import Map from "@/components/companyProfile/Map";
 
 export default function ContactInfo({ state, setState, edit }: any) {
   const defaultContactInfo = {
@@ -410,7 +411,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex flex-col items-start">
             <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Google Map
+              Google Map (set width="100%")
             </label>
             <textarea
               value={contactInfoState?.googleMap}
@@ -426,6 +427,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder="Googlemap . . . "
             ></textarea>
           </div>
+          <Map companyData={state} />
         </div>
         <div className="mt-4 flex justify-end">
           <button

@@ -3,6 +3,9 @@ import { useContext, useEffect, useState } from "react";
 import DropDown from "../DropDown/DropDown";
 import { FilterContext } from "@/contexts/FilterContext";
 import Swal from "sweetalert2";
+import { Dropdown, Ripple, initTE } from "tw-elements";
+
+initTE({ Dropdown, Ripple });
 
 export default function FilterInfo({ state, setState, edit }: any) {
   const { filtersState }: any = useContext(FilterContext);
@@ -81,6 +84,7 @@ export default function FilterInfo({ state, setState, edit }: any) {
           </div>
         ))}
       </div>
+
       <div className="flex justify-end">
         <button
           onClick={onHandleSave}

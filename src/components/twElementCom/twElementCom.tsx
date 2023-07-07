@@ -54,7 +54,7 @@ const TwElementCom = () => {
     initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown, Modal });
   }, []);
   const init = () => {
-    initTE({ Input, Timepicker, Datepicker, Ripple, Sidenav, Dropdown, Modal });
+    initTE({ Input });
   };
 
   return (

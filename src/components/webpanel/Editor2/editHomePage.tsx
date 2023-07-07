@@ -26,18 +26,18 @@ const EditHomePage = ({ state, setState, edit }: any) =>
     };
     useEffect(() => {
       // !isStop && edit && setModel(state?.content);
-      console.log("set model");
-      console.log(state?.content?.grid?.length);
-      console.log(!isStop);
-      console.log(edit);
+      // console.log("set model");
+      // console.log(state?.content?.grid?.length);
+      // console.log(!isStop);
+      // console.log(edit);
       if (!isStop && edit && state?.content?.grid?.length > 0) {
         setModel(state?.content);
-        console.log("set model2");
+        // console.log("set model2");
         setIsStop(true);
       }
 
-      console.log("xxxx");
-      console.log(state);
+      // console.log("xxxx");
+      // console.log(state);
     }, [state]);
     useEffect(() => {
       if (modelEditor) {
