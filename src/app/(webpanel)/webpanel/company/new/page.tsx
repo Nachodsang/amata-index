@@ -61,6 +61,7 @@ export default function addCompany() {
           state={companyState}
           setState={setCompanyState}
           edit={false}
+          content={"companyProfile"}
         />
         {/* gallery */}
         <GalleryInfo

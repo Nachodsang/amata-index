@@ -7,7 +7,7 @@ import { Interface } from "readline";
 
 import { IGroup, IGrid, IContent } from "@/service/models/companySetting.model";
 
-const EditHomePage = ({ state, setState, edit }: any) =>
+const EditHomePage = ({ state, setState, edit, content }: any) =>
   // { _model }: { _model: IHomePage }
   {
     // const [model, setModel] = useState<IHomePage>(_model != null ? _model : { title: '', title2: '', group: [] })
@@ -109,7 +109,13 @@ const EditHomePage = ({ state, setState, edit }: any) =>
       }
     };
 
+    // dynamically allocate api for blog and company profile
+    const imageUploadApi =
+      content === "blog"
+        ? `/api/blog-image-upload`
+        : "/api/company-profile-content-image-upload";
     const uploadToServer = async (file: any) => {
+      // commented code below is P'Ake's model to dynamicly save photo via the same api path
       // const body = new FormData();
 
       // body.append("file", file);
@@ -121,7 +127,7 @@ const EditHomePage = ({ state, setState, edit }: any) =>
       const data = new FormData();
       data.set("file", file);
 
-      const res = await fetch(`/api/company-cover-upload`, {
+      const res = await fetch(imageUploadApi, {
         method: "POST",
         body: data,
       });

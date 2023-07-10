@@ -88,7 +88,7 @@ export default function GalleryInfo({ state, setState, edit }: any) {
           objectState={false}
           state={galleryState}
           setState={setGalleryState}
-          path="company-logo-upload"
+          path="gallery-upload"
           stateValue={"gallery"}
           multiple={true}
         />

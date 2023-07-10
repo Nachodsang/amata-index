@@ -1,12 +1,17 @@
 "use client";
-import { useState, useEffect } from "react";
-import Editor from "../Editor/Editor";
+import { useState } from "react";
 import EditHomePage from "../Editor2/editHomePage";
-import EditorTest from "../EditorTest/EditorTest";
 import Swal from "sweetalert2";
-export default function DetailsInfo({ state, setState, edit,content }: any) {
-  const defaultDetailsState = { shortDescription: "", fullDescription: "" };
-  const [detailsState, setDetailsState] = useState(defaultDetailsState);
+import Input from "../Input/Input";
+
+export default function BlogDetailsInfo({
+  state,
+  setState,
+  edit,
+  content,
+}: any) {
+  const [detailsState, setDetailsState] = useState({});
+
   const onHandleSave = () => {
     if (edit) {
       setState({
@@ -34,12 +39,6 @@ export default function DetailsInfo({ state, setState, edit,content }: any) {
       });
     }
   };
-  useEffect(() => {
-    edit && setDetailsState(state?.details);
-    console.log("yyyy");
-    console.log(state);
-  }, [state]);
-  console.log(detailsState);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -48,28 +47,10 @@ export default function DetailsInfo({ state, setState, edit,content }: any) {
       <div className="py-10 mb-4 flex flex-col gap-4">
         <div className="flex flex-col  items-start">
           <label htmlFor="" className="font-semibold text-xl text-slate-700">
-            SEO Description (short)
+            Article
           </label>
           <textarea
-            value={detailsState?.shortDescription || ""}
-            onChange={(e) => {
-              setDetailsState({
-                ...detailsState,
-                shortDescription: e.target.value,
-              });
-            }}
-            id="message"
-            rows={4}
-            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            placeholder="Short Description . . . "
-          ></textarea>
-        </div>
-        <div className="flex flex-col  items-start">
-          <label htmlFor="" className="font-semibold text-xl text-slate-700">
-            SEO Description (full)
-          </label>
-          <textarea
-            value={detailsState?.fullDescription || ""}
+            // value={detailsState?.fullDescription || ""}
             onChange={(e) => {
               setDetailsState({
                 ...detailsState,
@@ -95,6 +76,44 @@ export default function DetailsInfo({ state, setState, edit,content }: any) {
           edit={edit}
           content={content}
         />
+        <div className="flex flex-col  items-start">
+          <label htmlFor="" className="font-semibold text-xl text-slate-700">
+            Recommend
+          </label>
+          <textarea
+            // value={detailsState?.shortDescription || ""}
+            onChange={(e) => {
+              setDetailsState({
+                ...detailsState,
+                shortDescription: e.target.value,
+              });
+            }}
+            id="message"
+            rows={4}
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Short Description . . . "
+          ></textarea>
+        </div>
+        <div className="flex flex-col  items-start">
+          <label htmlFor="" className="font-semibold text-xl text-slate-700">
+            Reference
+          </label>
+          <textarea
+            // value={detailsState?.shortDescription || ""}
+            onChange={(e) => {
+              setDetailsState({
+                ...detailsState,
+                shortDescription: e.target.value,
+              });
+            }}
+            id="message"
+            rows={4}
+            className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            placeholder="Short Description . . . "
+          ></textarea>
+        </div>
+        <Input label="Facebook" />
+        <Input label="Tags" />
       </div>
       <div className="flex justify-end">
         <button

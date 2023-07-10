@@ -10,6 +10,9 @@ import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
 import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
+import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
+import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo.tsx/BlogDetailsInfo";
+import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 export default function addBlog() {
   const [companyState, setCompanyState] = useState({});
 
@@ -25,19 +28,19 @@ export default function addBlog() {
       <div className="mx-auto flex min-h-[100vh] max-w-[1440px] flex-col gap-4 rounded-md px-4">
         <div>New Blog</div>
         {/* general */}
+        <BlogGeneralInfo edit={false} />
+        {/* <GeneralInfo state={companyState} setState={setCompanyState} /> */}
 
-        <GeneralInfo state={companyState} setState={setCompanyState} />
-        {/* filter */}
-        <FilterInfo state={companyState} setState={setCompanyState} />
         {/* details */}
-        <DetailsInfo state={companyState} setState={setCompanyState} />
-        {/* gallery */}
-        <GalleryInfo state={companyState} setState={setCompanyState} />
-        {/* contact */}
-        <ContactInfo state={companyState} setState={setCompanyState} />
-        {/* SEO */}
-        <SeoInfo state={companyState} setState={setCompanyState} />
+        {/* <DetailsInfo
+          state={companyState}
+          setState={setCompanyState}
+          content={"blog"}
+        /> */}
+        <BlogDetailsInfo edit={false} content="blog" />
+        <BlogSeoInfo />
       </div>
+
       <div className="flex justify-center">
         <button
           onClick={addCompany}
