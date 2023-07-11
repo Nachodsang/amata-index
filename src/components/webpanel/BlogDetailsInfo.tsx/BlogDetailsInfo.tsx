@@ -54,7 +54,7 @@ export default function BlogDetailsInfo({
             onChange={(e) => {
               setDetailsState({
                 ...detailsState,
-                fullDescription: e.target.value,
+                article: e.target.value,
               });
             }}
             id="message"
@@ -85,7 +85,7 @@ export default function BlogDetailsInfo({
             onChange={(e) => {
               setDetailsState({
                 ...detailsState,
-                shortDescription: e.target.value,
+                recomendation: e.target.value,
               });
             }}
             id="message"
@@ -103,7 +103,7 @@ export default function BlogDetailsInfo({
             onChange={(e) => {
               setDetailsState({
                 ...detailsState,
-                shortDescription: e.target.value,
+                references: [{}],
               });
             }}
             id="message"
@@ -112,8 +112,19 @@ export default function BlogDetailsInfo({
             placeholder="Short Description . . . "
           ></textarea>
         </div>
-        <Input label="Facebook" />
-        <Input label="Tags" />
+        <Input
+          label="Facebook"
+          onChange={(e: any) =>
+            setDetailsState({ ...detailsState, facebook: e.target.value })
+          }
+        />
+        {/* tbt */}
+        <Input
+          label="Tags"
+          onChange={(e: any) =>
+            setDetailsState({ ...detailsState, tags: [{}] })
+          }
+        />
       </div>
       <div className="flex justify-end">
         <button

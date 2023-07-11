@@ -212,5 +212,5 @@ const blogSettingSchema = new Schema(
 );
 
 const blogSettingModel: Model<IblogSetting> =
-  models.company_lists || model("blog_lists", blogSettingSchema);
+  models.blog_lists || model("blog_lists", blogSettingSchema);
 export default blogSettingModel;

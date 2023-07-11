@@ -185,6 +185,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     industry: "",
     nationality: "",
   };
+  // tbt
   const [generalInfoState, setGeneralInfoState] = useState(
     edit ? state : defaultGeneralInfoState
   );
