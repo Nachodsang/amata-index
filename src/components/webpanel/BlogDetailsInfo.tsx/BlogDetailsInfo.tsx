@@ -3,6 +3,8 @@ import { useState } from "react";
 import EditHomePage from "../Editor2/editHomePage";
 import Swal from "sweetalert2";
 import Input from "../Input/Input";
+import AddTextBox from "../AddTextBox/AddTextBox";
+import AddTextBox2 from "../AddTextBox2/AddTextBox2";
 
 export default function BlogDetailsInfo({
   state,
@@ -11,6 +13,8 @@ export default function BlogDetailsInfo({
   content,
 }: any) {
   const [detailsState, setDetailsState] = useState({});
+  const [tagState, setTagState] = useState([]);
+  const [referenceState, setRefenceState] = useState([{}]);
 
   const onHandleSave = () => {
     if (edit) {
@@ -37,6 +41,15 @@ export default function BlogDetailsInfo({
         showConfirmButton: false,
         timer: 1500,
       });
+    }
+  };
+
+  // inputing tag and reference
+  const listInput = (field: string, items: any) => {
+    if (field === "tags") {
+      const tagsArray = items.split(",");
+
+      setDetailsState({ ...detailsState, tags: tagsArray });
     }
   };
   return (
@@ -80,7 +93,14 @@ export default function BlogDetailsInfo({
           <label htmlFor="" className="font-semibold text-xl text-slate-700">
             Recommend
           </label>
-          <textarea
+          <AddTextBox2
+            label={"Add Recommendation"}
+            type={"nested"}
+            state={detailsState}
+            setState={setDetailsState}
+            modalTitle={"New Recommendation"}
+          />
+          {/* <textarea
             // value={detailsState?.shortDescription || ""}
             onChange={(e) => {
               setDetailsState({
@@ -92,13 +112,22 @@ export default function BlogDetailsInfo({
             rows={4}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Short Description . . . "
-          ></textarea>
+          ></textarea> */}
         </div>
         <div className="flex flex-col  items-start">
           <label htmlFor="" className="font-semibold text-xl text-slate-700">
             Reference
           </label>
-          <textarea
+
+          <AddTextBox
+            label={"Add Reference"}
+            modalTitle={"New Reference"}
+            state={detailsState}
+            setState={setDetailsState}
+            type={"single"}
+          />
+
+          {/* <textarea
             // value={detailsState?.shortDescription || ""}
             onChange={(e) => {
               setDetailsState({
@@ -110,7 +139,7 @@ export default function BlogDetailsInfo({
             rows={4}
             className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="Short Description . . . "
-          ></textarea>
+          ></textarea> */}
         </div>
         <Input
           label="Facebook"
@@ -119,11 +148,22 @@ export default function BlogDetailsInfo({
           }
         />
         {/* tbt */}
+        {detailsState?.tags && (
+          <div className="flex w-full flex-wrap items-center gap-2 ">
+            <h1 className="text-xl font-semibold text-slate-700">Tags: </h1>
+            {detailsState?.tags.map((i: any, index: any) => (
+              <span
+                className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
+                key={index}
+              >
+                {i}
+              </span>
+            ))}
+          </div>
+        )}
         <Input
           label="Tags"
-          onChange={(e: any) =>
-            setDetailsState({ ...detailsState, tags: [{}] })
-          }
+          onChange={(e: any) => listInput("tags", e.target.value)}
         />
       </div>
       <div className="flex justify-end">

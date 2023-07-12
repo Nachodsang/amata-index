@@ -38,13 +38,13 @@ export interface IdetailsInfo {
   recommendation?: Irecommendation[];
   content?: IGroup;
   references?: Iref[];
-  tags?: Itag;
+  tags?: String[];
   facebook?: String;
   article?: String;
 }
-export interface Itag {
-  title?: String;
-}
+// export interface Itag {
+//   title?: String;
+// }
 export interface Iref {
   title?: String;
   link?: String;
@@ -130,12 +130,6 @@ const blogSettingSchema = new Schema(
       description: { type: String },
     },
 
-    // filters: [
-    //   {
-    //     filterTitle: { type: String },
-    //     filterType: { type: String },
-    //   },
-    // ],
     generalInfo: {
       blogUrl: { type: String },
 
@@ -147,7 +141,7 @@ const blogSettingSchema = new Schema(
       industry: { type: String },
       language: { type: String },
     },
-    // gallery: [{ type: String }],
+
     details: {
       recommendation: [
         {
@@ -156,8 +150,8 @@ const blogSettingSchema = new Schema(
         },
       ],
       references: [{ title: { type: String }, link: { type: String } }],
-      //   shortDescription: { type: String },
-      tags: [{ title: { type: String } }],
+
+      tags: [{ type: String }],
       facebook: { type: String },
       article: { type: String },
       content: {
