@@ -12,7 +12,7 @@ export default function FileInput({
   multiple,
 }: any) {
   const [file, setFile] = useState<File[]>([]);
-  const [singleFile, setSingleFile] = useState();
+  const [singleFile, setSingleFile] = useState(null);
 
   const onBrowseImage = (e: any) => {
     if (multiple) {
@@ -80,7 +80,7 @@ export default function FileInput({
     } else {
       try {
         const data = new FormData();
-        data.set("file", singleFile);
+        singleFile && data.set("file", singleFile);
 
         const res = await fetch(`/api/${path}`, {
           method: "POST",

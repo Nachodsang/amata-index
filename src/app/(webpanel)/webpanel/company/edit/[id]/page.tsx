@@ -89,6 +89,7 @@ export default function EditCompanyPage({
           state={companyState}
           setState={setCompanyState}
           edit={true}
+          content={"companyProfile"}
         />
         {/* gallery */}
         <GalleryInfo

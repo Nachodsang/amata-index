@@ -13,11 +13,11 @@ export interface IcompanySetting {
 
   edition?: Number;
 }
-export interface IgalleryInfo {
-  _id?: Types.ObjectId;
-  URL?: String;
-  order?: Number;
-}
+// export interface IgalleryInfo {
+//   _id?: Types.ObjectId;
+//   URL?: String;
+//   order?: Number;
+// }
 export interface IcompanyGeneralInfo {
   profileUrl?: String;
   coverImage?: String;

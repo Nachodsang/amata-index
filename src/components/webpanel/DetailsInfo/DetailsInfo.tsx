@@ -4,7 +4,7 @@ import Editor from "../Editor/Editor";
 import EditHomePage from "../Editor2/editHomePage";
 import EditorTest from "../EditorTest/EditorTest";
 import Swal from "sweetalert2";
-export default function DetailsInfo({ state, setState, edit }: any) {
+export default function DetailsInfo({ state, setState, edit,content }: any) {
   const defaultDetailsState = { shortDescription: "", fullDescription: "" };
   const [detailsState, setDetailsState] = useState(defaultDetailsState);
   const onHandleSave = () => {
@@ -93,6 +93,7 @@ export default function DetailsInfo({ state, setState, edit }: any) {
           state={detailsState}
           setState={setDetailsState}
           edit={edit}
+          content={content}
         />
       </div>
       <div className="flex justify-end">

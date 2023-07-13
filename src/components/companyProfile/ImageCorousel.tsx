@@ -28,7 +28,7 @@ export default function ImageCourousel({ images }: any) {
       >
         {images.map((i: any, index: any) => (
           <SwiperSlide key={index}>
-            <img src={i} className="w-full h-[400px] object-cover rounded-xl" />
+            <img src={i} className="w-full h-[300px] object-cover rounded-xl" />
           </SwiperSlide>
         ))}
       </Swiper>
