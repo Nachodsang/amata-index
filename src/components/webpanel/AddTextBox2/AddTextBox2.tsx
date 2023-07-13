@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "../Input/Input";
 
 export default function AddTextBox2({
@@ -9,17 +9,20 @@ export default function AddTextBox2({
   setState,
 }: any) {
   const [companyState, setCompanyState] = useState({});
+  const [companyList, setCompanyList] = useState([] as any);
   //   const [companyListState, setCompanyListState] = useState([]);
 
-//   tbt
+  //   tbt
   const onSave = () => {
-    setState({
-      ...state,
-      recommendation: [...state?.recomendation, companyState],
-    });
+    // console.log("saved");
+    setCompanyList([...companyList, companyState]);
     setCompanyState({ title: "", link: "" });
   };
-  console.log(state);
+  useEffect(() => {
+    // console.log("use effectr");
+    setState({ ...state, recommendation: companyList });
+  }, [companyList]);
+  // console.log(companyList);
   return (
     <div className="w-full flex flex-col items-end  p-6 border border-slate-300 rounded-lg">
       <div className="space-y-2">

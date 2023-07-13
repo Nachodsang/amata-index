@@ -146,7 +146,7 @@ const blogSettingSchema = new Schema(
       recommendation: [
         {
           title: { type: String },
-          items: [{ itemTitle: { type: String }, link: { type: String } }],
+          link: { type: String },
         },
       ],
       references: [{ title: { type: String }, link: { type: String } }],

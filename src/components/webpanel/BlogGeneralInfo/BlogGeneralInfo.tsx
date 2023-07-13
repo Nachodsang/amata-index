@@ -58,29 +58,29 @@ export default function BlogGeneralInfo({
         <div className="flex flex-cols justify-start border-b border-slate-300 py-2">
           <div className="text-2xl font-bold text-slate-600">General</div>
         </div>
-        <div className="flex gap-4   ">
+        <div className="flex flex-col gap-4 mt-4  ">
           <div className="">
             {/* blog Image */}
-            <div className="flex-col flex ">
+            <div className="flex-col items-center flex ">
               {imgState ? (
                 <img
                   src={URL.createObjectURL(imgState)}
-                  className="h-[300px] w-[800px] object-cover"
+                  className="h-[600px] w-[1200px] object-cover"
                 />
               ) : edit && generalInfoState?.coverImage ? (
                 <img
                   src={generalInfoState?.coverImage}
-                  className="h-[300px] w-[800px] object-cover"
+                  className="h-[600px] w-[1200px] object-cover"
                 />
               ) : (
                 <img
-                  src="https://cdn.logo.com/hotlink-ok/logo-social.png"
-                  className="h-[300px] w-[800px] object-cover"
+                  src="https://i0.wp.com/theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png?fit=1200%2C800&ssl=1"
+                  className="h-[600px] w-[1200px] object-cover"
                 />
               )}
-              <div className="mb-3">
+              <div className="mb-3  w-full">
                 <p className="mb-2 inline-block text-xs text-red-500 dark:text-neutral-200 ">
-                  Dimension: 500 x 500 pixel (auto resize & crop)
+                  Dimension: height x width pixel (auto resize & crop)
                 </p>
                 <FileInput
                   imageChange={coverImageChange}
@@ -96,10 +96,10 @@ export default function BlogGeneralInfo({
             </div>
           </div>
           {/* Inputs */}
-          <div className=" w-full flex flex-col p-4">
+          <div className=" w-full flex flex-col ">
             <Input
               placeholder="blog title"
-              label={"Blog Title"}
+              label={"**Blog Title"}
               onChange={(e: any) =>
                 setState({ ...state, blogTitle: e.target.value })
               }
@@ -115,7 +115,7 @@ export default function BlogGeneralInfo({
               />
               <Input
                 placeholder="blog URL"
-                label={"Blog URL"}
+                label={"**Blog URL"}
                 onChange={(e: any) =>
                   setGeneralInfoState({
                     ...generalInfoState,

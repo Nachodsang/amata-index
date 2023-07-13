@@ -52,6 +52,7 @@ export default function BlogDetailsInfo({
       setDetailsState({ ...detailsState, tags: tagsArray });
     }
   };
+  console.log(detailsState);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
