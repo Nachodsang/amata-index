@@ -1,6 +1,22 @@
+"use client";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
+import { useEffect, useState } from "react";
 export default function BlogList() {
+  const [blogListState, setBlogListState] = useState([]);
+  const fetchBlog = async () => {
+    const response = await fetch("http://localhost:3000/api/blogs", {
+      method: "GET",
+      cache: "no-store",
+    });
+    const data = await response.json();
+    setBlogListState(data?.blogSetting);
+    // console.log(data?.blogSetting);
+  };
+
+  useEffect(() => {
+    fetchBlog();
+  }, []);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -20,7 +36,14 @@ export default function BlogList() {
         >
           Create New Profile
         </button>
-        <Table />
+        <Table
+          list={blogListState}
+          col2={"Blog Title"}
+          col3={"Company"}
+          col4={"Industry"}
+          col5={"Updated On"}
+          type="blog"
+        />
       </div>
     </div>
   );

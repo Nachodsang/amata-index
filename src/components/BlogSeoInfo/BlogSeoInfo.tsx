@@ -44,7 +44,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
           id="message"
           rows={3}
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="SEO Keywords(TH)...."
+          placeholder="SEO Keywords . . ."
           onChange={(e: any) =>
             setSeoState({ ...seoState, keyword: e.target.value })
           }
@@ -73,7 +73,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
           id="message"
           rows={3}
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-          placeholder="SEO Keywords(EN)...."
+          placeholder="SEO Description . . . "
           onChange={(e: any) =>
             setSeoState({ ...seoState, description: e.target.value })
           }

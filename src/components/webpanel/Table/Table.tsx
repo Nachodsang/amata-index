@@ -94,6 +94,49 @@ export default function Table({
                     );
                   })}
                 </tbody>
+              ) : type === "blog" ? (
+                <tbody>
+                  {list.map((i: any, index: any) => {
+                    const {
+                      _id,
+                      blogTitle,
+                      updatedAt,
+                      status,
+                      company,
+
+                      edition,
+                      generalInfo,
+                    } = i;
+
+                    // convert date to local
+                    const localDate = `${new Date(updatedAt)
+                      .getDate()
+                      .toString()
+                      .padStart(2, "0")}/${(new Date(updatedAt).getMonth() + 1)
+                      .toString()
+                      .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
+
+                    return (
+                      <Entry
+                        _id={_id}
+                        onChangeOrder={onChangeOrder}
+                        onChange={onChange}
+                        key={_id}
+                        index={index + 1}
+                        title={blogTitle}
+                        date={localDate}
+                        company={company}
+                        companyNameTh={generalInfo?.companyNameTh}
+                        image={generalInfo?.coverImage}
+                        description={generalInfo?.industry}
+                        status={status}
+                        link={`${generalInfo?.profileUrl}`}
+                        order={edition}
+                        type={type}
+                      />
+                    );
+                  })}
+                </tbody>
               ) : (
                 <tbody>
                   {list.map((i: any, index: any) => {

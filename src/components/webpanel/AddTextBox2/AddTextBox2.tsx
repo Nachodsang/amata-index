@@ -7,8 +7,9 @@ export default function AddTextBox2({
   modalTitle,
   state,
   setState,
+  edit,
 }: any) {
-  const [companyState, setCompanyState] = useState({});
+  const [companyState, setCompanyState] = useState({} as any);
   const [companyList, setCompanyList] = useState([] as any);
   //   const [companyListState, setCompanyListState] = useState([]);
 
@@ -22,6 +23,9 @@ export default function AddTextBox2({
     // console.log("use effectr");
     setState({ ...state, recommendation: companyList });
   }, [companyList]);
+  useEffect(() => {
+    edit && state?.recommendation && setCompanyList(state?.recommendation);
+  }, [state]);
   // console.log(companyList);
   return (
     <div className="w-full flex flex-col items-end  p-6 border border-slate-300 rounded-lg">
@@ -133,9 +137,13 @@ export default function AddTextBox2({
         </div>
       </div>
       <div className="w-full  flex flex-col items-start ">
-        {state?.recommendation &&
-          state?.recommendation.map((i: any, index: any) => (
-            <a href={i?.link} key={index}>
+        {companyList &&
+          companyList.map((i: any, index: any) => (
+            <a
+              className="text-slate-400 font-semibold "
+              href={i?.link}
+              key={index}
+            >
               {i?.title}
             </a>
           ))}

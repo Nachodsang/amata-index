@@ -40,7 +40,11 @@ export default function Entry({
           <img
             src={image}
             className={`${
-              type === "banner" ? "h-[50px] w-[175px] " : "h-[150px] w-[150px]"
+              type === "banner"
+                ? "h-[50px] w-[175px] "
+                : type === "blog"
+                ? "h-[100px] w-[180px] "
+                : "h-[150px] w-[150px]"
             } object-cover`}
             alt="Ad image"
           />
@@ -48,6 +52,11 @@ export default function Entry({
             <div className="">
               <h1>{company}</h1>
               <h1>{companyNameTh}</h1>
+            </div>
+          ) : type === "blog" ? (
+            <div className="">
+              <h1>{title}</h1>
+              <h1>{company}</h1>
             </div>
           ) : (
             <h1>{title}</h1>

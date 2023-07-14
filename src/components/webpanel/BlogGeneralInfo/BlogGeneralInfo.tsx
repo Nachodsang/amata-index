@@ -1,7 +1,8 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Input } from "tw-elements";
 import FileInput from "../FileInput/FileInput";
-import Input from "../Input/Input";
+import Ip from "../Input/Input";
 import { IblogGeneralInfo } from "@/service/models/blogSetting.model";
 import Swal from "sweetalert2";
 export default function BlogGeneralInfo({
@@ -52,6 +53,29 @@ export default function BlogGeneralInfo({
     }
   };
 
+  useEffect(() => {
+    edit && state && setGeneralInfoState(state?.generalInfo);
+  }, [state]);
+
+  useEffect(() => {
+    const blogTitleInput = new Input(document.getElementById("blogTitle"));
+    blogTitleInput.update();
+    const companyInput = new Input(document.getElementById("company"));
+    companyInput.update();
+    const typeInput = new Input(document.getElementById("type"));
+    typeInput.update();
+    const blogUrlInput = new Input(document.getElementById("blogUrl"));
+    blogUrlInput.update();
+    // initial as input type
+    const companyReviewInput = new Input(
+      document.getElementById("companyReview")
+    );
+    companyReviewInput.update();
+    const industryInput = new Input(document.getElementById("industry"));
+    industryInput.update();
+    const languageInput = new Input(document.getElementById("language"));
+    languageInput.update();
+  }, [generalInfoState]);
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div className="max-w-[1440px]  mx-auto w-full">
@@ -97,23 +121,10 @@ export default function BlogGeneralInfo({
           </div>
           {/* Inputs */}
           <div className=" w-full flex flex-col ">
-            <Input
-              placeholder="blog title"
-              label={"**Blog Title"}
-              onChange={(e: any) =>
-                setState({ ...state, blogTitle: e.target.value })
-              }
-            />
-
-            <div className="flex gap-4">
-              <Input
-                placeholder="company"
-                label={"Company"}
-                onChange={(e: any) =>
-                  setState({ ...state, company: e.target.value })
-                }
-              />
-              <Input
+            <div className="bg-slate-100/50 p-4 mb-4 rounded-lg border-l-4 border-red-300 ">
+              <Ip
+                id="blogUrl"
+                value={generalInfoState?.blogUrl}
                 placeholder="blog URL"
                 label={"**Blog URL"}
                 onChange={(e: any) =>
@@ -125,7 +136,30 @@ export default function BlogGeneralInfo({
               />
             </div>
             <div className="flex gap-4">
-              <Input
+              <Ip
+                id="blogTitle"
+                value={state?.blogTitle}
+                placeholder="blog title"
+                label={"**Blog Title"}
+                onChange={(e: any) =>
+                  setState({ ...state, blogTitle: e.target.value })
+                }
+              />
+
+              <Ip
+                id="company"
+                value={state?.company}
+                placeholder="company"
+                label={"Company"}
+                onChange={(e: any) =>
+                  setState({ ...state, company: e.target.value })
+                }
+              />
+            </div>
+            <div className="flex gap-4">
+              <Ip
+                id="type"
+                value={generalInfoState?.type}
                 placeholder="blog type"
                 label={"Type"}
                 onChange={(e: any) =>
@@ -135,7 +169,9 @@ export default function BlogGeneralInfo({
                   })
                 }
               />
-              <Input
+              <Ip
+                id="companyReview"
+                value={generalInfoState?.companyReview}
                 placeholder="company review"
                 label={"Review"}
                 onChange={(e: any) =>
@@ -147,7 +183,10 @@ export default function BlogGeneralInfo({
               />
             </div>
             <div className="flex gap-4">
-              <Input
+              <Ip
+                placeholder="industry"
+                id="industry"
+                value={generalInfoState?.industry}
                 label={"Industry"}
                 onChange={(e: any) =>
                   setGeneralInfoState({
@@ -156,7 +195,10 @@ export default function BlogGeneralInfo({
                   })
                 }
               />
-              <Input
+              <Ip
+                id="language"
+                placeholder="language"
+                value={generalInfoState?.language}
                 label={"Language"}
                 onChange={(e: any) =>
                   setGeneralInfoState({

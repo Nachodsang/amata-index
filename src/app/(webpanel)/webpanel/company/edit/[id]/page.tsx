@@ -63,7 +63,7 @@ export default function EditCompanyPage({
       });
     }
   };
-  console.log(companyState);
+  // console.log(companyState);
 
   return (
     <div className="">
