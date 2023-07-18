@@ -1,11 +1,16 @@
 "use client";
+import BounceLoader from "react-spinners/BounceLoader";
+
+import _, { divide } from "lodash";
 import { useState, useEffect } from "react";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import axios from "axios";
 import Link from "next/link";
 export default function CompanyProfile() {
-  const [companyList, setCompanyList] = useState([]);
+  const [companyList, setCompanyList] = useState([] as any);
+  const [searchState, setSearchState] = useState("");
+  const [loading, setLoading] = useState(true);
   const fetchCompany = async () => {
     const response = await axios.get(
       "http://localhost:3000/api/company-setting"
@@ -16,7 +21,20 @@ export default function CompanyProfile() {
   };
 
   // const companyList = await fetchCompany();
+  const onClickSearch = () => {
+    const filteredList = _.filter(companyList, (i: any) => {
+      return (
+        i?.generalInfo?.companyNameTh
+          ?.toLowerCase()
+          .includes(searchState.toLowerCase()) ||
+        i?.generalInfo?.companyNameEn
+          ?.toLowerCase()
+          .includes(searchState.toLowerCase())
+      );
+    });
 
+    searchState ? setCompanyList(filteredList) : fetchCompany();
+  };
   // change company status
   const onChangeStatus = async (id: string, newStatus: boolean) => {
     try {
@@ -30,22 +48,33 @@ export default function CompanyProfile() {
           type: "status",
         }
       );
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   useEffect(() => {
     fetchCompany();
+  }, [searchState]);
+  useEffect(() => {
+    fetchCompany();
+    setLoading(false);
   }, []);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
       <div className="max-w-[1440px]  px-4 py-6  mx-auto">
         <h1 className="text-center font-semibold text-xl mb-4  ">
-          Company List
+          Company List{" "}
+          {companyList.length > 0 && <span>({companyList.length})</span>}
         </h1>
 
         <div className="w-full ">
           <div className="w-[30%] mx-auto ">
-            <Search />
+            <Search
+              searchState={searchState}
+              setSearchState={setSearchState}
+              onClick={onClickSearch}
+            />
           </div>
           {/* Create new company profile */}
         </div>
@@ -58,15 +87,25 @@ export default function CompanyProfile() {
             Create New Profile
           </button>
         </Link>
-        <Table
-          list={companyList}
-          type="company"
-          col2="company"
-          col3=""
-          col4="Last Edited"
-          col5="Actions"
-          onChange={onChangeStatus}
-        />
+        {!loading ? (
+          <Table
+            list={companyList}
+            type="company"
+            col2="company"
+            col3=""
+            col4="Last Edited"
+            col5="Actions"
+            onChange={onChangeStatus}
+          />
+        ) : (
+          <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
+            <BounceLoader
+              color="rgb(87,12,248)"
+              size={100}
+              speedMultiplier={3}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

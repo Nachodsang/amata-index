@@ -6,6 +6,8 @@ import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import { AdContext } from "@/contexts/AdContext";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
+import _ from "lodash";
+import { BounceLoader } from "react-spinners";
 export default function AdList() {
   const { ads, changeStatus, searchAd, changeOrder }: any =
     useContext(AdContext);
@@ -13,19 +15,44 @@ export default function AdList() {
     useContext(PageSettingContext);
   const [numberOfAd, setNumberOfAd] = useState(pageSettingWebpanel?.adAmount);
 
+  const [adListState, setAdListState] = useState([] as any);
+  const [loading, setLoading] = useState(true);
+  const [searchState, setSearchState] = useState("");
+  const onClickSearch = () => {
+    const filteredList = _.filter(ads, (i: any) => {
+      return (
+        i?.adTitle?.toLowerCase().includes(searchState.toLowerCase()) ||
+        i?.client?.toLowerCase().includes(searchState.toLowerCase())
+      );
+    });
+
+    searchState ? setAdListState(filteredList) : setAdListState(ads);
+  };
+
+  useEffect(() => {
+    setAdListState(ads);
+    setLoading(false);
+  }, [ads]);
+  useEffect(() => {
+    searchState.length === 0 && setAdListState(ads);
+  }, [searchState]);
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
         <h1 className="mb-4 text-center text-xl font-semibold  ">Ad. List</h1>
 
-        <div className="flex w-full items-center justify-center gap-4  ">
+        <div className="flex w-full flex-col items-center justify-center gap-2 mb-4  ">
           <div className="w-[30%] ">
-            <Search />
+            <Search
+              searchState={searchState}
+              setSearchState={setSearchState}
+              onClick={onClickSearch}
+            />
           </div>
-          <div className="h-8">
-            <label className="text-xl font-bold">
-              No. of Ad:{pageSettingWebpanel?.adAmount}{" "}
+          <div className="h-8 flex gap-2">
+            <label className="text-xl font-bold text-slate-600">
+              Ad Displayed: <u className="">{pageSettingWebpanel?.adAmount}</u>
             </label>
             <input
               type="number"
@@ -33,7 +60,10 @@ export default function AdList() {
               value={numberOfAd}
               onChange={(e) => setNumberOfAd(e.target.value)}
             />
-            <button onClick={() => updatePageSetting("adAmount", numberOfAd)}>
+            <button
+              className="rounded-md px-4 bg-green-300 text-white font-bold"
+              onClick={() => updatePageSetting("adAmount", numberOfAd)}
+            >
               SAVE
             </button>
           </div>
@@ -48,15 +78,25 @@ export default function AdList() {
             Create New Ad.
           </button>
         </Link>
-        <Table
-          onChangeOrder={changeOrder}
-          onChange={changeStatus}
-          list={ads}
-          col2="image"
-          col3="client"
-          col4="description"
-          col5="created on"
-        />
+        {!loading ? (
+          <Table
+            onChangeOrder={changeOrder}
+            onChange={changeStatus}
+            list={adListState}
+            col2="image"
+            col3="client"
+            col4="description"
+            col5="created on"
+          />
+        ) : (
+          <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
+            <BounceLoader
+              color="rgb(87,12,248)"
+              size={100}
+              speedMultiplier={3}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

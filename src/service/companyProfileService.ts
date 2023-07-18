@@ -16,6 +16,15 @@ export const getCompanySetting = async () => {
   //   mongoose.disconnect();
 };
 
+export const getSingleCompanySetting = async (link: any) => {
+  const companySetting = await companySettingModel.findOne({
+    "generalInfo.profileUrl" :link
+  });
+
+  return { companySetting };
+  //
+  //   mongoose.disconnect();
+};
 export const addCompany = async (req: IcompanySetting) => {
   const companySetting = new companySettingModel(req);
   let status: any = "";

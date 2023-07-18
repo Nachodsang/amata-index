@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-export default function Search({ onSearch }: any) {
-  const [searchState, setSearchState] = useState("");
-  const onClickSearch = () => {
-    onSearch(searchState);
-    setSearchState("");
-  };
+export default function Search({ searchState, setSearchState, onClick }: any) {
+  // const [searchState, setSearchState] = useState("");
+  // const onClickSearch = () => {
+  //   // onSearch(searchState);
+
+  //   setSearchState("");
+  // };
 
   return (
     <div className="">
@@ -20,6 +21,7 @@ export default function Search({ onSearch }: any) {
             setSearchState(e.target.value);
           }}
           value={searchState}
+          onKeyDown={(e) => e.key === "Enter" && onClick()}
         />
 
         <button
@@ -27,7 +29,7 @@ export default function Search({ onSearch }: any) {
           type="button"
           id="button-addon3"
           data-te-ripple-init
-          onClick={onClickSearch}
+          onClick={onClick}
         >
           Search
         </button>

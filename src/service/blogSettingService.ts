@@ -11,6 +11,13 @@ export const getBlogSetting = async () => {
   //   mongoose.disconnect();
 };
 
+export const getSingleBlogSetting = async (link: any) => {
+  const blogSetting = await blogSettingModel.findOne({
+    "generalInfo.blogUrl": link,
+  });
+
+  return { blogSetting };
+};
 export const addBlog = async (req: IblogSetting) => {
   const blogSetting = new blogSettingModel(req);
   let status: any = "";

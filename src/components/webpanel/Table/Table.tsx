@@ -128,9 +128,9 @@ export default function Table({
                         company={company}
                         companyNameTh={generalInfo?.companyNameTh}
                         image={generalInfo?.coverImage}
-                        description={generalInfo?.industry}
+                        industry={generalInfo?.industry}
                         status={status}
-                        link={`${generalInfo?.profileUrl}`}
+                        link={`${generalInfo?.blogUrl}`}
                         order={edition}
                         type={type}
                       />

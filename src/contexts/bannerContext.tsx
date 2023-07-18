@@ -105,6 +105,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
         changeStatus,
         activatedBanners,
         bannerPage,
+        fetchBanner,
 
         changeOrder,
       }}
