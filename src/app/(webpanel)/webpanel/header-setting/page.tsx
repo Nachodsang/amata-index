@@ -16,9 +16,23 @@ export default function HeaderSettingPage() {
   const [coreColor, setCoreColor] = useState("");
   const [coreHeaderColor, setCoreHeaderColor] = useState("");
   const [selectedImage, setSelectedImage] = useState();
+  const [topBannerImage, setTopBannerImage] = useState();
+  const [lowBannerImage, setLowBannerImage] = useState();
+  const [topBanner, setTopBanner] = useState();
+  const [lowBanner, setLowBanner] = useState();
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setSelectedImage(e.target.files[0]);
+    }
+  };
+  const topBannerChange = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setTopBannerImage(e.target.files[0]);
+    }
+  };
+  const lowBannerChange = (e: any) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setLowBannerImage(e.target.files[0]);
     }
   };
 
@@ -162,38 +176,45 @@ export default function HeaderSettingPage() {
     }
   };
 
+  const onTopBannerSave = () => {
+    updatePageSetting("topBanner", topBanner);
+  };
+  const onLowBannerSave = () => {
+    updatePageSetting("footerBanner", lowBanner);
+  };
+
   // save image
-  const handleClickSubmitImg = async (event: SyntheticEvent) => {
-    event.preventDefault();
-    let img_fileName = "";
-    if (coverImage) {
-      const json = await uploadToServer(coverImage);
+  // const handleClickSubmitImg = async (event: SyntheticEvent) => {
+  //   event.preventDefault();
+  //   let img_fileName = "";
+  //   if (coverImage) {
+  //     const json = await uploadToServer(coverImage);
 
-      img_fileName = json.fileName;
+  //     img_fileName = json.fileName;
 
-      // setModelEditorImg(img_fileName);
-    }
-  };
-  const uploadToClient = (event: any) => {
-    if (event.target.files && event.target.files[0]) {
-      const i = event.target.files[0];
+  //     // setModelEditorImg(img_fileName);
+  //   }
+  // };
+  // const uploadToClient = (event: any) => {
+  //   if (event.target.files && event.target.files[0]) {
+  //     const i = event.target.files[0];
 
-      setCoverImage(i);
-      //  setCreateObjectURL(URL.createObjectURL(i));
-    }
-    event.target.value = null;
-  };
-  const uploadToServer = async (file: any) => {
-    const body = new FormData();
+  //     setCoverImage(i);
+  //     //  setCreateObjectURL(URL.createObjectURL(i));
+  //   }
+  //   event.target.value = null;
+  // };
+  // const uploadToServer = async (file: any) => {
+  //   const body = new FormData();
 
-    body.append("file", file);
-    body.append("folderName", "editor");
-    const response = await fetch("/api1/file", {
-      method: "POST",
-      body,
-    });
-    return response.json();
-  };
+  //   body.append("file", file);
+  //   body.append("folderName", "editor");
+  //   const response = await fetch("/api1/file", {
+  //     method: "POST",
+  //     body,
+  //   });
+  //   return response.json();
+  // };
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
@@ -280,7 +301,7 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <div className="w-full border-b border-black py-4 ">
+          <div className="w-full border-b border-slate-300 py-4 ">
             <h1 className="text-start">Cover Image</h1>
           </div>
           <div className="w-full py-4">
@@ -317,6 +338,7 @@ export default function HeaderSettingPage() {
             </div>
           </div>
         </div>
+
         <div className="flex justify-end">
           <button
             onClick={onSaveCoverImageURL}
@@ -325,6 +347,89 @@ export default function HeaderSettingPage() {
           >
             save
           </button>
+        </div>
+        {/* banner for blog page */}
+        <div className="flex flex-col items-start">
+          <div className="w-full border-b border-slate-300 py-4 ">
+            <h1 className="text-start">Top Banner (Blog Page)</h1>
+          </div>
+          <div className="w-full py-4">
+            {topBannerImage ? (
+              <img
+                src={URL.createObjectURL(topBannerImage)}
+                className="h-[300px] w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-[300px] w-full bg-slate-200 ">
+                <h1 className="m-auto text-4xl font-bold text-slate-400">
+                  Select Image to Preview
+                </h1>
+              </div>
+            )}
+
+            <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
+              Dimension: 1920 x 500 pixel (auto resize & crop)
+            </label>
+            <div className="flex flex-col gap-4">
+              <FileInput
+                path="upload-cover-images"
+                imageChange={topBannerChange}
+                state={topBanner}
+                setState={setTopBanner}
+                objectState={false}
+              />
+            </div>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={onTopBannerSave}
+                type="button"
+                className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              >
+                save
+              </button>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col items-start">
+          <div className="w-full border-b border-slate-300 py-4 ">
+            <h1 className="text-start">Footer Banner (Blog Page)</h1>
+          </div>
+          <div className="w-full py-4">
+            {lowBannerImage ? (
+              <img
+                src={URL.createObjectURL(lowBannerImage)}
+                className="h-[300px] w-full object-cover"
+              />
+            ) : (
+              <div className="flex h-[300px] w-full bg-slate-200 ">
+                <h1 className="m-auto text-4xl font-bold text-slate-400">
+                  Select Image to Preview
+                </h1>
+              </div>
+            )}
+
+            <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
+              Dimension: 1920 x 500 pixel (auto resize & crop)
+            </label>
+            <div className="flex flex-col gap-4">
+              <FileInput
+                path="upload-cover-images"
+                imageChange={lowBannerChange}
+                state={lowBanner}
+                setState={setLowBanner}
+                objectState={false}
+              />
+            </div>
+            <div className="flex justify-end mt-4">
+              <button
+                onClick={onLowBannerSave}
+                type="button"
+                className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              >
+                save
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

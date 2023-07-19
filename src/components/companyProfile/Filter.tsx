@@ -10,7 +10,7 @@ export default function Filter({ companyData }: any) {
   return (
     <div className="w-full ">
       {/* container */}
-      <div className="max-w-[1440px] mx-auto py-10 flex-col flex gap-6">
+      <div className="max-w-[1440px] mx-auto py-10 flex-col flex gap-6 px-4">
         <div className=" flex gap-5 items-center">
           <div className="p-4 rounded-full bg-orange-500 text-white">
             <BsCheck2Circle size={25} className="" />

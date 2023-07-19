@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { FaGlobe, FaFacebookSquare, FaLine } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
+import Link from "next/link";
 
 export default function CompanyCard({
   props,
@@ -15,35 +16,21 @@ export default function CompanyCard({
   website,
   line,
   facebook,
+  gallery,
+  profileUrl,
 }: any) {
-  // const {
-  //   name,
-  //   thumbnail,
-  //   flag,
-  //   nationality,
-  //   website,
-  //   facebook,
-  //   line,
-  //   location,
-  //   image1,
-  //   image2,
-  //   image3,
-  //   image4,
-  //   details,
-  // } = props;
-
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
     <div className="w-full   bg-white rounded-xl mb-4 relative py-4">
-      <div className="flex  gap-2 px-6 justify-end ">
+      {/* <div className="flex  gap-2 px-6 justify-end ">
         <label className="text-sm font-semibold text-gray-500">Select</label>
         <input
           // style={{ backgroundColor: `${pageSetting?.coreColor}` }}
           className={`w-4 h-4 checkbox checkbox-success bg-white hover:cursor-pointer rounded ring-slate-400 ring-2 border-none `}
           type="checkbox"
         />
-      </div>
-      {/* select button */}
+      </div> */}
+
       <div className="flex flex-col w-full ">
         <div className="flex p-4 w-full  h-full ">
           {/* thubnail & button */}
@@ -52,10 +39,6 @@ export default function CompanyCard({
               <img src={logo} className="w-full h-full object-cover" />
             </div>
             <div className="flex items-center gap-1">
-              {/* {flag && (
-                <img src={flag} alt="flag" className="w-[25px] h-[25px]" />
-              )} */}
-
               <span className="font-semibold text-gray-400">{nationality}</span>
             </div>
             <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
@@ -110,41 +93,34 @@ export default function CompanyCard({
           {/* more images */}
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">
             <div className="w-full h-full flex flex-wrap desktop2:gap-3 desktop0:gap-2  ">
-              <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden">
-                <img src={logo} className="w-full h-full object-cover " />
-              </div>
-              {logo && (
-                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]   w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={logo} className="w-full h-full object-cover" />
+              {gallery?.slice(0, 4).map((i: any) => (
+                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden">
+                  <img src={i} className="w-full h-full object-cover " />
                 </div>
-              )}
-              {logo && (
-                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px] w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={logo} className="w-full h-full object-cover" />
-                </div>
-              )}
-              {logo && (
-                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md overflow-hidden bg-white">
-                  <img src={logo} className="w-full h-full object-cover" />
-                </div>
-              )}
+              ))}
             </div>
-
-            <button
-              style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-              className={` px-4 py-2 w-full rounded-2xl text-white`}
+            <Link
+              href={profileUrl ? `factory/companies/${profileUrl}` : "no link"}
+              className="w-full"
             >
-              Details
-            </button>
+              <button
+                style={{ backgroundColor: `${pageSetting?.themeColor}` }}
+                className={` px-4 py-2 w-full rounded-2xl text-white `}
+              >
+                Details
+              </button>
+            </Link>
           </div>
         </div>
         <div className="px-4">
-          <button
-            style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-            className={` desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
-          >
-            Details
-          </button>
+          <Link href={profileUrl ? `/companies/${profileUrl}` : "no link"}>
+            <button
+              style={{ backgroundColor: `${pageSetting?.themeColor}` }}
+              className={` desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
+            >
+              Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

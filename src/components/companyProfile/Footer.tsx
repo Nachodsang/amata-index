@@ -3,7 +3,7 @@ import { ImLocation2 } from "react-icons/im";
 export default function Footer({ companyData }: any) {
   return (
     <div className="mt-10 flex flex-col  items-center  py-10">
-      <div className="mx-auto flex w-[800px] flex-col flex-wrap items-center gap-4">
+      <div className="mx-auto flex w-[800px] flex-col flex-wrap items-center px-4 gap-4">
         <div className="flex flex-col gap-4">
           <h1 className="text-center text-4xl font-bold">
             {companyData?.companyTitle}

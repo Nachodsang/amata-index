@@ -12,13 +12,18 @@ export default async function about() {
     );
     return response?.data?.companySetting;
   };
+
+  const fetchBlog = async () => {
+    const response = await axios.get("http://localhost:3000/api/blogs");
+    return response?.data?.blogSetting;
+  };
   return (
     <div>
       <Header category="factory" />
       <Banner category="factory" />
       <Core category="factory" companyList={await fetchCompany()} />
       <AdSection />
-      <Blog category="factory" />
+      <Blog category="factory" blogList={await fetchBlog()} />
     </div>
   );
 }

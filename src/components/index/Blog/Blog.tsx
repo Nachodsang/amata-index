@@ -7,7 +7,13 @@ for (let i = 0; i < 12; i++) {
   blogs.push(i);
 }
 
-export default function blog({ category }: { category: string }) {
+export default function blog({
+  category,
+  blogList,
+}: {
+  category: string;
+  blogList: any;
+}) {
   const { pageSetting }: any = useContext(PageSettingContext);
 
   return (
@@ -23,8 +29,8 @@ export default function blog({ category }: { category: string }) {
         </div>
         {/* Grid Container */}
         <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-y-4 gap-x-0">
-          {blogs.map((i, index) => (
-            <BlogCard key={index} category={category} />
+          {blogList.map((i: any, index: any) => (
+            <BlogCard key={index} category={category} item={i} />
           ))}
         </div>
       </div>

@@ -9,26 +9,21 @@ import _ from "lodash";
 import { BounceLoader } from "react-spinners";
 export default function BannerList() {
   const [searchState, setSearchState] = useState("");
-  const { banners, changeStatus, changeOrder, fetchBanner }: any =
-    useContext(BannerContext);
+  const {
+    banners: b,
+    changeStatus,
+    changeOrder,
+    fetchBanner,
+  }: any = useContext(BannerContext);
   const [bannerState, setBannerState] = useState([] as any);
   const [loading, setLoading] = useState(true);
   const [showOnline, setShowOnline] = useState(false);
 
-  // fetch
-  // const bannerFetch = async () => {
-  //   const response = await axios.get(
-  //     "http://localhost:3000/api/banner-setting"
-  //   );
-  //   //
-  //   setBannerList(response.data);
-  // };
-
-  // useEffect(() => {
-  //   bannerFetch();
-  // }, []);
-
-  //
+  const banners = b.sort((a: any, b: any) => {
+    const dateA = new Date(a.updatedAt);
+    const dateB = new Date(b.updatedAt);
+    return dateB.getTime() - dateA.getTime();
+  });
 
   const onClickSearch = () => {
     const filteredList = _.filter(banners, (i: any) => {
@@ -45,14 +40,21 @@ export default function BannerList() {
   useEffect(() => {
     fetchBanner();
   }, [showOnline]);
+
   useEffect(() => {
+    // show offline and set state to initial list
+    // or filter banner to show online only
+    // then set loading to false
     !showOnline
       ? setBannerState(banners)
       : setBannerState(banners.filter((i: any) => i.status));
     setLoading(false);
   }, [banners]);
+
   useEffect(() => {
+    // when empty set state to initial list
     searchState.length === 0 && setBannerState(banners);
+    // and show all without online filter
     searchState.length === 0 && setShowOnline(false);
   }, [searchState]);
   return (
@@ -61,7 +63,13 @@ export default function BannerList() {
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
         <h1 className="mb-4 text-center text-xl font-semibold  ">
           Banner List{" "}
-          {bannerState.length > 0 && <span>({bannerState.length})</span>}
+          {bannerState.length > 0 && (
+            <span
+              className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
+            >
+              ({bannerState.length})
+            </span>
+          )}
         </h1>
 
         <div className="w-full ">

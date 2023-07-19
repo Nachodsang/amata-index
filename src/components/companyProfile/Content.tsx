@@ -9,7 +9,7 @@ export default function Content({ companyData }: any) {
 
   return (
     <div className="w-full py-10 ">
-      <div className="max-w-[1440px] mx-auto ">
+      <div className="max-w-[1440px] mx-auto px-4 ">
         <div className="content">
           {model
             ? model.grid.map((itemGrid: IGrid, indexGrid: number) => (

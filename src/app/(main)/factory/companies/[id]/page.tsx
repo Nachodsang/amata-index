@@ -6,6 +6,7 @@ import Gallery from "@/components/companyProfile/Gallery";
 import Header from "@/components/companyProfile/Header";
 import CompanyContextProvider from "@/contexts/CompanyContext";
 import Map from "@/components/companyProfile/Map";
+import axios from "axios";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -23,7 +24,12 @@ const fetchCompany = async (company: string) => {
 export default async function Page({ params }: { params: { id: string } }) {
   const company = params.id;
   // fetchCompanyProfile
+  const fetchBlog = async () => {
+    const response = await axios.get("http://localhost:3000/api/blogs");
+    return response?.data?.blogSetting;
+  };
 
+  const blogs = await fetchBlog();
   const companyData = await fetchCompany(company);
 
   return (
@@ -41,7 +47,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Content companyData={companyData} />
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
-          <Blogs />
+          <Blogs blogList={blogs} />
           <Footer companyData={companyData} />
           <Map companyData={companyData} />
         </>

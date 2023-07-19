@@ -67,7 +67,7 @@ export default function CreateNewBannerPage() {
     }
   };
 
-  useEffect(() => {}, [bannerState]);
+  // useEffect(() => {}, [bannerState]);
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
@@ -100,24 +100,38 @@ export default function CreateNewBannerPage() {
             label="Image URL"
             value={bannerState?.image}
             onChange={onSetImage}
+            placeholder={"url"}
+            id="image-url"
           />
           <Input
             label="Client"
             value={bannerState?.client}
             onChange={onSetClient}
+            placeholder={"client"}
+            id="clinet"
           />
           {/* Banner title */}
           <Input
             label="Banner Title"
             value={bannerState?.bannerTitle}
             onChange={onSetTitle}
+            placeholder={"title"}
+            id="title"
           />
           <Input
             label="Description"
             value={bannerState?.description}
             onChange={onSetDescription}
+            placeholder={"description"}
+            id="description"
           />
-          <Input label="Link" value={bannerState?.link} onChange={onSetLink} />
+          <Input
+            label="Link"
+            value={bannerState?.link}
+            onChange={onSetLink}
+            placeholder={"link"}
+            id="link"
+          />
           <div className="flex justify-end">
             <button
               onClick={onSaveBanner}

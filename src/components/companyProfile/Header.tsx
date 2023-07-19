@@ -14,19 +14,23 @@ export default function Header({ companyData }: any) {
         />
       </div>
       {/* company info */}
-      <div className="mx-auto flex h-[300px] w-full max-w-[1440px] gap-4 ">
-        <div className="flex w-[75%] items-start gap-6 rounded-xl bg-slate-200 p-6 shadow-lg">
-          <div className="  h-full w-[25%] rounded-xl bg-white p-2">
+      <div className="mx-auto flex desktop0:flex-row flex-col w-full max-w-[1440px] gap-4 px-4">
+        <div className="flex desktop-0:w-[75%] w-full  gap-6 rounded-xl items-center bg-slate-200 p-6 shadow-lg">
+          <div className=" aspect-square desktop0:w-[25%] w-[50%] tablet-1:w-[40%]  rounded-xl bg-white p-2">
             <img
               src={companyData?.generalInfo?.logo}
               className="h-full w-full rounded-lg object-cover
               "
             />
           </div>
-          <div className="flex w-[75%] flex-col gap-4">
-            <h1 className="text-xl font-bold">{companyData?.companyTitle}</h1>
-            <div className="w-full rounded-xl bg-white px-20 py-10">
-              {companyData?.details?.fullDescription}
+          <div className="flex desktop0:w-[75%] w-[50%] tablet-1:w-[60%]  flex-col gap-4">
+            <h1 className="text-2xl  text-slate-700 font-bold">
+              {companyData?.companyTitle}
+            </h1>
+            <div className="w-full rounded-xl bg-white px-4 py-20 desktop0:px-20  desktop0:py-10">
+              <div className="mx-auto">
+                {companyData?.details?.fullDescription}
+              </div>
             </div>
             <div className="flex gap-2">
               {/* <div className="rounded-3xl bg-green-400 px-4 py-2 font-semibold text-white">
@@ -38,11 +42,8 @@ export default function Header({ companyData }: any) {
             </div>
           </div>
         </div>
-        <div className="flex w-[25%] flex-col gap-4 rounded-xl bg-slate-200 p-8 shadow-lg ">
+        <div className="flex desktop0:w-[25%] w-full flex-col gap-4 rounded-xl bg-slate-200 p-8 shadow-lg ">
           <div className="flex flex-col gap-4 font-semibold text-white">
-            <button className="w-full rounded-3xl bg-orange-400 py-2 ">
-              asdf
-            </button>
             <button className="w-full rounded-3xl bg-orange-400 py-2 ">
               asdf
             </button>

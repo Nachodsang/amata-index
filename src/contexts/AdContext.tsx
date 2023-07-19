@@ -103,6 +103,7 @@ export default function AdProvider({ children, adsPage }: any) {
         adsPage,
         // searchAd,
         changeOrder,
+        fetchAd,
       }}
     >
       {children}

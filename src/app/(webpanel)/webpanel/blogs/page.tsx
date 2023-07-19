@@ -1,9 +1,9 @@
 "use client";
-import { find, filter } from "lodash";
+import { find, filter, initial } from "lodash";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import axios from "axios";
-import { on } from "events";
+
 import { useEffect, useState } from "react";
 import _ from "lodash";
 import Link from "next/link";
@@ -12,13 +12,21 @@ export default function BlogList() {
   const [blogListState, setBlogListState] = useState([] as any);
   const [searchState, setSearchState] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showOnline, setShowOnline] = useState(false);
+  const [initialBlogState, setInitialBlogState] = useState([] as any);
   const fetchBlog = async () => {
     const response = await fetch("http://localhost:3000/api/blogs", {
       method: "GET",
       cache: "no-store",
     });
     const data = await response.json();
-    setBlogListState(data?.blogSetting);
+    setInitialBlogState(
+      data?.blogSetting?.sort((a: any, b: any) => {
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return dateB.getTime() - dateA.getTime();
+      })
+    );
     // console.log(data?.blogSetting);
   };
   // change blog status
@@ -43,23 +51,41 @@ export default function BlogList() {
       );
     });
 
-    searchState ? setBlogListState(filteredList) : fetchBlog();
+    !showOnline
+      ? setBlogListState(filteredList)
+      : setBlogListState(filteredList.filter((i: any) => i.status));
   };
   useEffect(() => {
     fetchBlog();
-  }, [searchState]);
+  }, [showOnline]);
   useEffect(() => {
     fetchBlog();
     setLoading(false);
   }, []);
 
+  useEffect(() => {
+    !showOnline
+      ? setBlogListState(initialBlogState)
+      : setBlogListState(initialBlogState.filter((i: any) => i.status));
+  }, [initialBlogState]);
+  useEffect(() => {
+    searchState.length === 0 && setBlogListState(initialBlogState);
+    // show online to false
+    searchState.length === 0 && setShowOnline(false);
+  }, [searchState]);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
       <div className="max-w-[1440px]  px-4 py-6  mx-auto">
         <h1 className="text-center font-semibold text-xl mb-4  ">
           Blog List{" "}
-          {blogListState.length > 0 && <span>({blogListState.length})</span>}
+          {blogListState.length > 0 && (
+            <span
+              className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
+            >
+              ({blogListState.length})
+            </span>
+          )}
         </h1>
 
         <div className="w-full ">
@@ -81,6 +107,18 @@ export default function BlogList() {
             Create New Blog
           </button>
         </Link>
+        <div className="w-full  flex justify-end">
+          <button
+            onClick={() => {
+              setShowOnline(!showOnline);
+            }}
+            className={`${
+              showOnline ? "bg-green-300" : "bg-slate-500"
+            } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all shadow-md`}
+          >
+            Online
+          </button>
+        </div>
         {!loading ? (
           <Table
             list={blogListState}

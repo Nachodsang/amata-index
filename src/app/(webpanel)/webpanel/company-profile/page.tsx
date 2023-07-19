@@ -11,13 +11,20 @@ export default function CompanyProfile() {
   const [companyList, setCompanyList] = useState([] as any);
   const [searchState, setSearchState] = useState("");
   const [loading, setLoading] = useState(true);
+  const [showOnline, setShowOnline] = useState(false);
+  const [initialCompanyList, setInitialCompanyList] = useState([] as any);
   const fetchCompany = async () => {
     const response = await axios.get(
       "http://localhost:3000/api/company-setting"
     );
 
-    setCompanyList(response.data.companySetting);
-    return response.data.companySetting;
+    setInitialCompanyList(
+      response.data.companySetting.sort((a: any, b: any) => {
+        const dateA = new Date(a.updatedAt);
+        const dateB = new Date(b.updatedAt);
+        return dateB.getTime() - dateA.getTime();
+      })
+    );
   };
 
   // const companyList = await fetchCompany();
@@ -33,7 +40,9 @@ export default function CompanyProfile() {
       );
     });
 
-    searchState ? setCompanyList(filteredList) : fetchCompany();
+    !showOnline
+      ? setCompanyList(filteredList)
+      : setCompanyList(filteredList.filter((i: any) => i.status));
   };
   // change company status
   const onChangeStatus = async (id: string, newStatus: boolean) => {
@@ -54,18 +63,33 @@ export default function CompanyProfile() {
   };
   useEffect(() => {
     fetchCompany();
+  }, [showOnline]);
+  useEffect(() => {
+    searchState.length === 0 && fetchCompany();
+    searchState.length === 0 && setShowOnline(false);
   }, [searchState]);
   useEffect(() => {
     fetchCompany();
     setLoading(false);
   }, []);
+  useEffect(() => {
+    !showOnline
+      ? setCompanyList(initialCompanyList)
+      : setCompanyList(initialCompanyList?.filter((i: any) => i.status));
+  }, [initialCompanyList]);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
       <div className="max-w-[1440px]  px-4 py-6  mx-auto">
         <h1 className="text-center font-semibold text-xl mb-4  ">
           Company List{" "}
-          {companyList.length > 0 && <span>({companyList.length})</span>}
+          {companyList.length > 0 && (
+            <span
+              className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
+            >
+              ({companyList.length})
+            </span>
+          )}
         </h1>
 
         <div className="w-full ">
@@ -87,6 +111,18 @@ export default function CompanyProfile() {
             Create New Profile
           </button>
         </Link>
+        <div className="w-full  flex justify-end">
+          <button
+            onClick={() => {
+              setShowOnline(!showOnline);
+            }}
+            className={`${
+              showOnline ? "bg-green-300" : "bg-slate-500"
+            } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all shadow-md`}
+          >
+            Online
+          </button>
+        </div>
         {!loading ? (
           <Table
             list={companyList}

@@ -6,18 +6,6 @@ import Content from "@/components/companyProfile/Content";
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
   const blog = params.id;
-  // const fetchBlog = async () => {
-  //   const response = await fetch("http://localhost:3000/api/blogs", {
-  //     method: "GET",
-  //     cache: "no-store",
-  //   });
-  //   const data = await response.json();
-  //   const thisBlog = data.blogSetting.find(
-  //     (i: any) => i?.generalInfo?.blogUrl === blog
-  //   );
-  //   return thisBlog;
-  //   // console.log(data?.blogSetting);
-  // };
 
   const fetchSingleBlog = async () => {
     const response = await fetch(
@@ -32,17 +20,21 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
     return data.blogSetting;
   };
   const blogData = await fetchSingleBlog();
-  // console.log(blog);
-  // console.log(blogData);
+
+  const fetchPageSetting = async () => {
+    const response = await fetch("http://localhost:3000/api/page-setting");
+    const data = await response.json();
+    return data.pageSetting;
+  };
   return (
     <>
       {blogData ? (
         <>
           <meta name="keywords" content={blogData?.seo?.keyword} />
           <meta name="description" content={blogData?.seo?.description} />
-          <Header blogData={blogData} />
+          <Header blogData={blogData} pageSetting={await fetchPageSetting()} />
           <BlogBody blogData={blogData} />
-          <Footer />
+          <Footer pageSetting={await fetchPageSetting()} />
         </>
       ) : (
         <div className="flex  h-[100vh]">

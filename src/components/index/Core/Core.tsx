@@ -27,7 +27,7 @@ export default function core({
       style={{ height: `${pageSetting?.adAmount * 299}px` }}
     >
       <div className="mx-auto max-w-[1270px]   h-full overflow-hidden  rounded-2xl shadow-md  relative z-10 flex ">
-        <div className=" desktop0:w-[75%] h-full ">
+        <div className=" desktop0:w-[75%] w-full h-full ">
           <div
             style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
             className="w-full h-20 bg-[#192f48] p-6"
@@ -42,7 +42,7 @@ export default function core({
           >
             {category === "factory" &&
               onCompanies.map((i: any, index: any) => {
-                const { generalInfo, details, _id, contacts } = i;
+                const { generalInfo, details, _id, contacts, gallery } = i;
                 return (
                   <CompanyCard
                     companyTitle={generalInfo?.companyNameEn}
@@ -55,6 +55,8 @@ export default function core({
                     website={contacts?.website}
                     line={contacts?.line}
                     facebook={contacts?.facebook}
+                    gallery={gallery}
+                    profileUrl={generalInfo?.profileUrl}
                   />
                 );
               })}
