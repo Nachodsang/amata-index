@@ -34,6 +34,7 @@ export interface IfilterInfo {
   _id?: Types.ObjectId;
   filterTitle?: String;
   filterType?: String;
+  filterID?: String;
 }
 export interface IdetailsInfo {
   shortDescription?: String;
@@ -134,6 +135,7 @@ const companySettingSchema = new Schema(
       {
         filterTitle: { type: String },
         filterType: { type: String },
+        filterID: { type: String },
       },
     ],
     generalInfo: {

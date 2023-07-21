@@ -8,11 +8,12 @@ export default function AddFilterBox({
   filterList,
   onCheckFilter,
   onSave,
+  category,
 }: any) {
   const [input, setInput] = useState("");
   const onSaveInput = () => {
     if (input.length >= 3) {
-      onSave(label, input);
+      onSave(label, input, category);
       setInput("");
       Swal.fire({
         position: "center",
@@ -30,54 +31,46 @@ export default function AddFilterBox({
     }
   };
   return (
-    <div className="w-[25%] rounded-xl border border-slate-400 p-6 ">
-      <div className="flex flex-col items-start">
+    <div className="w-[45%] rounded-xl border border-slate-200 p-6 ">
+      <div className="flex flex-col items-start justify-between">
+        {/* <label className="text-slate-300 text-sm text-center">{category}</label> */}
         <label className="w-full border-b border-slate-300">{label}</label>
         {/* filter list */}
-        <div className="mb-4 w-full border-b border-slate-300 py-4">
+        <div className="mb-4 w-full border-b border-slate-300 py-4 h-[300px] overflow-scroll ">
           {filterList?.map((i: any) => {
             return (
-              i?.filterType === label && (
+              i?.filterType === label &&
+              i?.filterCategory === category && (
                 <FilterCheckBox
+                  _id={i?._id}
                   title={i?.filterTitle}
                   onCheckFilter={onCheckFilter}
                   isCheck={i?.active}
                 />
               )
-              //   <div className="flex justify-between">
-              //     <p>{i?.filterTitle}</p>
-              //     <input
-              //       type="checkbox"
-
-              //       onChange={() =>
-              //         onCheckFilter({
-              //           filterTitle: i?.filterTitle,
-              //           newValue: !i?.active,
-              //         })
-              //       }
-              //     />
-              //   </div>
-              // )
             );
           })}
         </div>
         {/* add filter */}
-        <Input
-          value={input}
-          label="Add Filter"
-          onChange={(e: any) => setInput(e.target.value)}
-        />
-        <div className="flex w-full justify-end">
-          <button
-            onClick={onSaveInput}
-            type="button"
-            className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-          >
-            save
-          </button>
+        <div className="w-full">
+          <Input
+            placeholder="Add filter"
+            id="addFilter"
+            value={input}
+            label="Add Filter"
+            onChange={(e: any) => setInput(e.target.value)}
+          />
+          <div className="flex w-full justify-end">
+            <button
+              onClick={onSaveInput}
+              type="button"
+              className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            >
+              save
+            </button>
+          </div>
         </div>
       </div>
-      {/* <CheckboxDropdown isHidden="true" /> */}
     </div>
   );
 }

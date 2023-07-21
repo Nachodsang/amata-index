@@ -1,11 +1,16 @@
 "use context";
 import { useState } from "react";
-export default function FilterCheckBox({ title, isCheck, onCheckFilter }: any) {
+export default function FilterCheckBox({
+  _id,
+  title,
+  isCheck,
+  onCheckFilter,
+}: any) {
   const [checkState, setCheckState] = useState(isCheck);
   const onCheck = () => {
     setCheckState(!checkState);
     onCheckFilter({
-      filterTitle: title,
+      _id: _id,
       newValue: !checkState,
     });
   };

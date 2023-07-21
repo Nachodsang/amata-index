@@ -3,6 +3,7 @@ import { Interface } from "readline";
 
 export interface IfilterSetting {
   _id?: Types.ObjectId;
+  filterCategory?: String;
   filterType?: String;
   filterTitle?: String;
   active?: Boolean;
@@ -16,6 +17,7 @@ const filterSettingSchema = new Schema(
     // themeColor: { type: String },
     // coreColor: { type: String },
     // coreHeaderColor: { type: String },
+    filterCategory: { type: String, required: true },
     filterType: { type: String, required: true },
     filterTitle: { type: String, required: true },
     active: { type: Boolean, default: false },

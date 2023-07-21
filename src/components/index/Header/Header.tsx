@@ -7,7 +7,13 @@ import "./Header.css";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import GoogleTranslate from "../GooogleTranslate/GoogleTranslate";
 
-export default function Header({ category }: { category: string }) {
+export default function Header({
+  category,
+  filters,
+}: {
+  category: string;
+  filters: any;
+}) {
   const { pageSetting }: any = useContext(PageSettingContext);
 
   return (
@@ -39,7 +45,7 @@ export default function Header({ category }: { category: string }) {
             </div>
           </div>
         </div>
-        <Filter category={category} />
+        <Filter category={category} filtersState={filters} />
       </div>
     </div>
   );

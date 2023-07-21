@@ -225,7 +225,13 @@ export default function HeaderSettingPage() {
         {/* title setting */}
         <div className="flex flex-col items-start">
           <label htmlFor="">Page Title</label>
-          <Input onChange={updatePageTitle} value={pageTitle} />
+          <Input
+            onChange={updatePageTitle}
+            value={pageTitle}
+            placeholder="image url"
+            id="image-url"
+            label="Page Title"
+          />
           <div className="flex w-full justify-end">
             <button
               onClick={onSavePageTitle}
@@ -238,7 +244,13 @@ export default function HeaderSettingPage() {
         </div>
         <div className="flex flex-col items-start">
           <label htmlFor="">Description</label>
-          <Input onChange={updatePageDescription} value={pageDescription} />
+          <Input
+            label="Description"
+            onChange={updatePageDescription}
+            value={pageDescription}
+            placeholder="image url"
+            id="image-url"
+          />
           <div className="flex w-full justify-end">
             <button
               onClick={onSavePageDescription}
@@ -255,6 +267,8 @@ export default function HeaderSettingPage() {
             onChange={updateThemeColor}
             label="hex: #000000"
             value={themeColor}
+            placeholder="image url"
+            id="image-url"
           />
           <div className="flex w-full justify-end">
             <button
@@ -272,6 +286,8 @@ export default function HeaderSettingPage() {
             onChange={updateCoreHeaderColor}
             label="hex: #000000"
             value={coreHeaderColor}
+            placeholder="image url"
+            id="image-url"
           />
           <div className="flex w-full justify-end">
             <button
@@ -289,6 +305,8 @@ export default function HeaderSettingPage() {
             onChange={updateCoreColor}
             label="hex: #000000"
             value={coreColor}
+            placeholder="image url"
+            id="image-url"
           />
           <div className="flex w-full justify-end">
             <button
@@ -334,6 +352,8 @@ export default function HeaderSettingPage() {
                 label="Image URL"
                 value={coverImage}
                 onChange={updateCoverImage}
+                placeholder="image url"
+                id="image-url"
               />
             </div>
           </div>

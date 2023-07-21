@@ -8,6 +8,7 @@ export default function DropDown({
   onChange,
   selected,
   edit,
+  category,
 }: {
   title: string;
   filterList: any;
@@ -16,6 +17,7 @@ export default function DropDown({
   onChange: any;
   selected: any;
   edit: any;
+  category: any;
 }) {
   return (
     <div className="relative" data-te-dropdown-ref>
@@ -50,15 +52,13 @@ export default function DropDown({
         aria-labelledby="dropdownMenuButton1"
         data-te-dropdown-menu-ref
       >
-        {/* {type === "test" &&
-          filterList.map((i: any) => (
-            <li>
-              <div>{i}</div>
-            </li>
-          ))} */}
         {type === "filterCheckbox" &&
           filterList.map((i: any, index: any) => {
-            if (i?.filterType === title && i?.active === true) {
+            if (
+              i?.filterType === title &&
+              i?.filterCategory === category &&
+              i?.active === true
+            ) {
               return (
                 <DropDownFilterBox
                   edit={edit}
@@ -68,6 +68,7 @@ export default function DropDown({
                   checkBox={checkBox}
                   onChange={onChange}
                   filterType={i?.filterType}
+                  _id={i?._id}
                 />
               );
             }

@@ -29,16 +29,11 @@ export async function PUT(req: Request) {
   const response = await req.json();
   //
 
-  const filterBy = "filterTitle";
-  // const edition = req.filterTitle;
+  const filterBy = "_id";
+
 
   return NextResponse.json(
-    await activeFilter(
-      filterBy,
-      response.filterTitle,
-      "active",
-      response.newValue
-    )
+    await activeFilter(filterBy, response._id, "active", response.newValue)
   );
 }
 

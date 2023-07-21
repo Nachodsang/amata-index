@@ -20,11 +20,12 @@ const FilterContextProvider = ({ children, filters }: any) => {
   };
 
   //   Add Filter
-  const addFilter = async (type: any, title: any) => {
+  const addFilter = async (type: any, title: any, category: any) => {
     try {
       const response = await axios.post(URL, {
         filterType: type,
         filterTitle: title,
+        filterCategory: category,
       });
 
       fetchFilter();

@@ -17,9 +17,15 @@ export default async function about() {
     const response = await axios.get("http://localhost:3000/api/blogs");
     return response?.data?.blogSetting;
   };
+  const fetchFilter = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/api/filter-setting"
+    );
+    return response?.data?.filters;
+  };
   return (
     <div>
-      <Header category="factory" />
+      <Header category="factory" filters={await fetchFilter()} />
       <Banner category="factory" />
       <Core category="factory" companyList={await fetchCompany()} />
       <AdSection />

@@ -1,10 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Ip from "../Input/Input";
 import InputGroup from "../InputGroup/InputGroup";
 import FileInput from "../FileInput/FileInput";
 import DropDown from "../DropDown/DropDown";
 import Swal from "sweetalert2";
+import { FilterContext } from "@/contexts/FilterContext";
+
 const mockData = [1, 2, 3, 4, 5, 6, 7];
 const nationalities = [
   { NationalityID: 1, CountryCode: "GB", Nationality: "British" },
@@ -172,7 +174,16 @@ const nationalityList = nationalities.map((i: any) => i.Nationality);
 
 // Initialization for ES Users
 import { Input } from "tw-elements";
-export default function GeneralInfo({ state, setState, edit }: any) {
+
+export default function GeneralInfo({
+  categoryState,
+  setCategoryState,
+  state,
+  setState,
+  edit,
+}: any) {
+  const { filtersState, onCheckFilter, addFilter }: any =
+    useContext(FilterContext);
   const defaultGeneralInfoState: any = {
     profileUrl: "",
     logo: "",
@@ -194,6 +205,19 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     logoImg: undefined,
     coverImg: undefined,
   });
+  // Types Array
+  const uniqueFilterTypes = new Set(
+    filtersState
+      .filter((i: any) => i?.filterCategory === categoryState)
+      .map((i: any) => i.filterType)
+  );
+  // const filterTypes = Array.from(uniqueFilterTypes);
+
+  //  Categories Array
+  const uniqueFilterCategories = new Set(
+    filtersState.map((i: any) => i?.filterCategory)
+  );
+  const filterCategories = Array.from(uniqueFilterCategories);
   const logoImageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setImgState({
@@ -260,6 +284,9 @@ export default function GeneralInfo({ state, setState, edit }: any) {
     }
   }, [state]);
 
+  useEffect(() => {
+    setCategoryState(generalInfoState?.industry);
+  }, [generalInfoState?.industry]);
   useEffect(() => {
     const videoURLInput = new Input(document.getElementById("videoURL"));
     videoURLInput.update();
@@ -455,7 +482,7 @@ export default function GeneralInfo({ state, setState, edit }: any) {
                 selected={null}
                 title={generalInfoState?.industry || "Industry"}
                 checkBox={false}
-                filterList={mockData}
+                filterList={filterCategories}
                 type="dropdown"
                 onChange={(value: any) => {
                   setGeneralInfoState({

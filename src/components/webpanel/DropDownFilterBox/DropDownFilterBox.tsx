@@ -8,11 +8,12 @@ export default function DropDownFilterBox({
   filterType,
   selected,
   edit,
+  _id,
 }: any) {
   const [check, setCheck] = useState(false);
 
   const onSelectCheckbox = () => {
-    onChange(filterTitle, filterType);
+    onChange(filterTitle, filterType, _id);
     checkBox && setCheck(!check);
   };
   useEffect(() => {
@@ -26,7 +27,7 @@ export default function DropDownFilterBox({
 
   return (
     <li
-      className="px-5 py-1 hover:bg-neutral-100 dark:hover:bg-neutral-600 "
+      className="px-5 py-1  hover:bg-neutral-100 dark:hover:bg-neutral-600 "
       onClick={onSelectCheckbox}
     >
       <div className="flex justify-between">

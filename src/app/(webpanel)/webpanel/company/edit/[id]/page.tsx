@@ -19,6 +19,7 @@ export default function EditCompanyPage({
 }) {
   const companyURL = params.id;
   const [companyState, setCompanyState] = useState<any>(null);
+  const [categoryState, setCategoryState] = useState("");
   useEffect(() => {
     const fetchCompany = async () => {
       try {
@@ -77,9 +78,12 @@ export default function EditCompanyPage({
           state={companyState}
           setState={setCompanyState}
           edit={true}
+          categoryState={categoryState}
+          setCategoryState={setCategoryState}
         />
         {/* filter */}
         <FilterInfo
+          categoryState={categoryState}
           state={companyState}
           setState={setCompanyState}
           edit={true}

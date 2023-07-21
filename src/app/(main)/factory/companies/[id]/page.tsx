@@ -7,6 +7,7 @@ import Header from "@/components/companyProfile/Header";
 import CompanyContextProvider from "@/contexts/CompanyContext";
 import Map from "@/components/companyProfile/Map";
 import axios from "axios";
+import ShareModal from "@/components/companyProfile/ShareModal";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -48,8 +49,9 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
           <Blogs blogList={blogs} />
-          <Footer companyData={companyData} />
+          <Footer companyData={companyData} blogList={blogs} />
           <Map companyData={companyData} />
+          
         </>
       ) : (
         <div className="flex  h-[100vh]">

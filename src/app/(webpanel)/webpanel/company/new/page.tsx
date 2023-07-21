@@ -13,6 +13,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 export default function addCompany() {
   const [companyState, setCompanyState] = useState(null);
+  const [categoryState, setCategoryState] = useState("");
 
   const addCompany = async () => {
     try {
@@ -49,12 +50,15 @@ export default function addCompany() {
           state={companyState}
           setState={setCompanyState}
           edit={false}
+          categoryState={categoryState}
+          setCategoryState={setCategoryState}
         />
         {/* filter */}
         <FilterInfo
           state={companyState}
           setState={setCompanyState}
           edit={false}
+          categoryState={categoryState}
         />
         {/* details */}
         <DetailsInfo

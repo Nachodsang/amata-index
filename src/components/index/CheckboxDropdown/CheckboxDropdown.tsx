@@ -6,11 +6,13 @@ const CheckBox = ({
   title,
   onCheckBoxSelection,
   value,
+  filterID,
 }: {
   category: string;
   title: any;
   onCheckBoxSelection: any;
   value: any;
+  filterID: any;
   // isChecked: any;
   // setIsChecked: any;
 }) => {
@@ -37,6 +39,7 @@ const CheckBox = ({
         }}
       />
       <label>{title}</label>
+      {/* <label>{filterID}</label> */}
     </div>
   );
 };
@@ -55,11 +58,13 @@ export default function CheckboxDropdown({
   onCheckBoxSelection,
   onClearSelection,
   value,
+  list,
+  categoryState,
 }: any) {
   // const [isChecked, setIsChecked] = useState(false);
   // second row dropdowns
-  const isSecondRow =
-    title === "checkbox 5" || title === "checkbox 6" || title === "checkbox 7";
+  // const isSecondRow =
+  //   title === "checkbox 5" || title === "checkbox 6" || title === "checkbox 7";
   // confirm handle
   const onConfirm = () => {
     onFoldDropDown();
@@ -67,10 +72,9 @@ export default function CheckboxDropdown({
 
   return (
     <div
-      className={`${
-        isSecondRow ? "top-[150px]" : "top-[100px]"
-      } absolute w-full border   bg-white ${category}-border z-40 rounded-md ${
-        isHidden ? "flex" : "hidden"
+      className={`
+      top-[100px] absolute w-full border   bg-white ${category}-border z-40 rounded-md ${
+        isHidden ? "hidden" : "flex"
       }`}
     >
       <div className="flex w-full flex-col gap-y-6 p-6  ">
@@ -78,15 +82,23 @@ export default function CheckboxDropdown({
           <h1 className="text-center ">{title}</h1>
         </div>
         <div className="grid w-full grid-cols-2 tablet2:grid-cols-3 desktop0:grid-cols-4">
-          {arr.map((i, index) => (
-            <CheckBox
-              onCheckBoxSelection={onCheckBoxSelection}
-              category={category}
-              title={i}
-              key={index}
-              value={value}
-            />
-          ))}
+          {list.map((i: any, index: any) => {
+            if (
+              i?.filterType === title &&
+              i?.filterCategory === categoryState &&
+              i?.active === true
+            )
+              return (
+                <CheckBox
+                  onCheckBoxSelection={onCheckBoxSelection}
+                  category={category}
+                  title={i?.filterTitle}
+                  key={index}
+                  value={value}
+                  filterID={i?._id}
+                />
+              );
+          })}
         </div>
         <div className="flex justify-end  gap-1 font-semibold text-white">
           <button
