@@ -39,11 +39,8 @@ export default function Header({ companyData }: any) {
               </div>
             </div>
             <div className="flex gap-2">
-              {/* <div className="rounded-3xl bg-green-400 px-4 py-2 font-semibold text-white">
+              <div className="rounded-3xl bg-orange-400 py-2 px-2 text-center min-w-[100px] font-semibold text-white">
                 {companyData?.generalInfo?.industry}
-              </div> */}
-              <div className="rounded-3xl bg-orange-400 py-2 text-center min-w-[100px] font-semibold text-white">
-                {companyData?.generalInfo?.nationality}
               </div>
             </div>
           </div>

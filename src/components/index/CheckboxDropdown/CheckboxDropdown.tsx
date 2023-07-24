@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import _ from "lodash";
 // checkbox component
 const CheckBox = ({
   category,
@@ -7,36 +8,52 @@ const CheckBox = ({
   onCheckBoxSelection,
   value,
   filterID,
+  filtersApplied,
+  onClickReset,
+  clear,
+  setFiltersApplied,
+  type,
+  onMiniClear,
 }: {
+  filtersApplied: any;
   category: string;
   title: any;
   onCheckBoxSelection: any;
   value: any;
+  onClickReset: any;
+  clear: any;
   filterID: any;
+  type: any;
+  setFiltersApplied: any;
+  onMiniClear: any;
   // isChecked: any;
   // setIsChecked: any;
 }) => {
   const [isChecked, setIsChecked] = useState(false);
-  const onCheck = () =>
-    // value: any, title: any
-    {
-      setIsChecked(!isChecked);
-      // onCheckBoxSelection(value, title);
-    };
 
-  //
+  useEffect(() => {
+    (isChecked || filtersApplied.length > 0) &&
+      setFiltersApplied(filterID, type);
+    // !isChecked && setFiltersApplied(filterID);
+  }, [isChecked]);
+  useEffect(() => {
+    setIsChecked(false);
+  }, [onClickReset]);
+  useEffect(() => {
+    onMiniClear(type);
+    setIsChecked(false);
+  }, [clear]);
   return (
     <div className="flex items-center gap-2">
       <input
         type="checkbox"
         className={`checkbox-accent checkbox h-4 w-4 rounded border-none ring-2 hover:cursor-pointer ${category}-ring`}
         value={title}
-        onClick={onCheck}
+        onChange={() => setIsChecked(!isChecked)}
         checked={isChecked}
-        ////={() => onCheckBoxSelection(value, title)}
-        onChange={() => {
-          onCheckBoxSelection(value, title);
-        }}
+        // onChange={() => {
+        //   onCheckBoxSelection(value, title);
+        // }}
       />
       <label>{title}</label>
       {/* <label>{filterID}</label> */}
@@ -44,10 +61,10 @@ const CheckBox = ({
   );
 };
 // arr of checkbox generator
-let arr: number[] = [];
-for (let i = 0; i <= 20; i++) {
-  arr.push(i);
-}
+// let arr: number[] = [];
+// for (let i = 0; i <= 20; i++) {
+//   arr.push(i);
+// }
 
 export default function CheckboxDropdown({
   title,
@@ -60,12 +77,21 @@ export default function CheckboxDropdown({
   value,
   list,
   categoryState,
+  filtersApplied,
+  onClickReset,
+  onMiniClear,
+
+  setFiltersApplied,
 }: any) {
   // const [isChecked, setIsChecked] = useState(false);
   // second row dropdowns
   // const isSecondRow =
   //   title === "checkbox 5" || title === "checkbox 6" || title === "checkbox 7";
   // confirm handle
+  const [clear, setClear] = useState(false);
+  const onClear = () => {
+    setClear(!clear);
+  };
   const onConfirm = () => {
     onFoldDropDown();
   };
@@ -96,6 +122,12 @@ export default function CheckboxDropdown({
                   key={index}
                   value={value}
                   filterID={i?._id}
+                  onClickReset={onClickReset}
+                  filtersApplied={filtersApplied}
+                  setFiltersApplied={setFiltersApplied}
+                  clear={clear}
+                  type={i?.filterType}
+                  onMiniClear={onMiniClear}
                 />
               );
           })}
@@ -108,7 +140,7 @@ export default function CheckboxDropdown({
             Confirm
           </button>
           <button
-            onClick={onClearSelection}
+            onClick={onClear}
             className="rounded-md bg-red-600 px-4 py-2 font-semibold"
           >
             Clear

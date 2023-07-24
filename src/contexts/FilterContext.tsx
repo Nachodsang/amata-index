@@ -4,7 +4,7 @@ import { useContext, createContext, useState, useEffect } from "react";
 
 export const FilterContext = createContext({});
 const URL = "http://localhost:3000/api/filter-setting";
-const FilterContextProvider = ({ children, filters }: any) => {
+const FilterContextProvider = ({ children, filters,filtersFromMain }: any) => {
   const [filtersState, setFiltersState] = useState(filters);
   const onCheckFilter = async (filterSet: any) => {
     const response = await axios.put(URL, filterSet);
@@ -34,7 +34,7 @@ const FilterContextProvider = ({ children, filters }: any) => {
 
   return (
     <FilterContext.Provider
-      value={{ filters, filtersState, onCheckFilter, addFilter }}
+      value={{ filters, filtersState, onCheckFilter, addFilter,filtersFromMain }}
     >
       {children}
     </FilterContext.Provider>

@@ -6,7 +6,7 @@ import AdProvider from "@/contexts/AdContext";
 import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
 import CompanyContextProvider from "@/contexts/CompanyContext";
-
+import FilterContextProvider from "@/contexts/FilterContext";
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
   {
@@ -65,19 +65,23 @@ const fetchPageSetting = async () => {
 
   return data;
 };
+ const fetchFilter = async () => {
+   const response = await axios.get("http://localhost:3000/api/filter-setting");
+   return response?.data?.filters;
+ };
 
-// fetchCompanyProfile
-// const fetchCompany = async () => {
-//   const response = await fetch("http://localhost:3000/api/company-setting", {
-//     cache: "no-store",
-//     // next: { revalidate: 5 },
-//   });
-//   const data = await response.json();
-//
-//
-//   return data;
-// };
 
+  const fetchCompany = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/api/company-setting"
+    );
+    return response?.data?.companySetting;
+  };
+
+    const fetchBlog = async () => {
+      const response = await axios.get("http://localhost:3000/api/blogs");
+      return response?.data?.blogSetting;
+    };
 export default async function RootLayout({
   children,
 }: {
@@ -86,21 +90,26 @@ export default async function RootLayout({
   const pageSettingData = await fetchPageSetting();
   const adData = await fetchAdTry();
   const bannerData = await fetchBanner();
+  const companiesData = await  fetchCompany()
+  const filtersFromMain = await fetchFilter()
+  const blogsData = await fetchBlog()
   // const companyPageData = await fetchCompany();
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CompanyContextProvider>
-          <BannerProvider bannerPage={bannerData}>
-            <AdProvider adsPage={adData}>
-              <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-                {children}
-                <TwElementCom />
-              </PageSettingProvider>
-            </AdProvider>
-          </BannerProvider>
-        </CompanyContextProvider>
+        <FilterContextProvider filtersFromMain={filtersFromMain}>
+          <CompanyContextProvider companyData={companiesData} blogData ={blogsData}>
+            <BannerProvider bannerPage={bannerData}>
+              <AdProvider adsPage={adData}>
+                <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
+                  {children}
+                  <TwElementCom />
+                </PageSettingProvider>
+              </AdProvider>
+            </BannerProvider>
+          </CompanyContextProvider>
+        </FilterContextProvider>
       </body>
     </html>
   );

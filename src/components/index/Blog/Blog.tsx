@@ -2,19 +2,11 @@
 import BlogCard from "../BlogCard/BlogCard";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { useContext } from "react";
-let blogs: number[] = [];
-for (let i = 0; i < 12; i++) {
-  blogs.push(i);
-}
+import { CompanyContext } from "@/contexts/CompanyContext";
 
-export default function blog({
-  category,
-  blogList,
-}: {
-  category: string;
-  blogList: any;
-}) {
+export default function blog({ category }: { category: string }) {
   const { pageSetting }: any = useContext(PageSettingContext);
+  const { blogData }: any = useContext(CompanyContext);
 
   return (
     <div
@@ -29,7 +21,7 @@ export default function blog({
         </div>
         {/* Grid Container */}
         <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-y-4 gap-x-0">
-          {blogList.map((i: any, index: any) => (
+          {blogData.map((i: any, index: any) => (
             <BlogCard key={index} category={category} item={i} />
           ))}
         </div>

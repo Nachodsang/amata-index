@@ -12,7 +12,6 @@ import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 import { FilterContext } from "@/contexts/FilterContext";
 import FilterContextProvider from "@/contexts/FilterContext";
-import { drop } from "lodash";
 
 // interface DropDowns {
 //   drop1: boolean;
@@ -33,15 +32,15 @@ import { drop } from "lodash";
 //   drop7: number[];
 // }
 
-const defaultDropDownsState = {
-  drop1: false,
-  drop2: false,
-  drop3: false,
-  drop4: false,
-  drop5: false,
-  drop6: false,
-  drop7: false,
-};
+// const defaultDropDownsState = {
+//   drop1: false,
+//   drop2: false,
+//   drop3: false,
+//   drop4: false,
+//   drop5: false,
+//   drop6: false,
+//   drop7: false,
+// };
 const defaultFilterSelection = {
   drop1: [],
   drop2: [],
@@ -54,13 +53,31 @@ const defaultFilterSelection = {
 
 export default function Filter({
   category,
-  filtersState,
+  filtersApplied,
+  setFiltersApplied,
+  onClickReset,
+  clearFilterTrigger,
+  onSearchClick,
+  categoryState,
+  setCategoryState,
+  search,
+  setSearch,
+  onMiniClear,
 }: {
   category: string;
-  filtersState: any;
+  filtersApplied: any;
+  setFiltersApplied: any;
+  onClickReset: any;
+  clearFilterTrigger: any;
+  onSearchClick: any;
+  categoryState: any;
+  setCategoryState: any;
+  search: any;
+  setSearch: any;
+  onMiniClear: any;
 }) {
   // const [advanceSearch, setAdvanceSearch] = useState(false);
-  const [categoryState, setCategoryState] = useState("");
+
   const [dropDowns, setDropDowns] = useState({} as any);
   const [isExpanded, setExpanded] = useState(false);
   const [filterSelection, setFilterSelection] = useState<any>(
@@ -68,22 +85,8 @@ export default function Filter({
   );
   // const { filtersState }: any = useContext(FilterContext);
   const { pageSetting }: any = useContext(PageSettingContext);
-
-  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
-
-  // Filter dropdown
-  // const onDropDown = (dropNo: keyof DropDowns) => {
-  //   setDropDowns({
-  //     drop1: false,
-  //     drop2: false,
-  //     drop3: false,
-  //     drop4: false,
-  //     drop5: false,
-  //     drop6: false,
-  //     drop7: false,
-  //     [dropNo]: !dropDowns[dropNo],
-  //   });
-  // };
+  const { filtersFromMain: filtersState }: any = useContext(FilterContext);
+  // const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
   // show selected dropdown and close others
   // fixing this later
@@ -173,10 +176,7 @@ export default function Filter({
       }, {})
     );
   }, [categoryState]);
-  // useEffect(() => {
-  //   console.log("change");
-  //   console.log(dropDowns);
-  // }, [dropDowns]);
+
   return (
     <div className="w-full  ">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -189,9 +189,7 @@ export default function Filter({
           {/* label */}
           <div className=" my-5 flex gap-1   text-gray-600 ">
             <ImSearch size={45} className="z-20" />
-            <span className="z-20 text-4xl font-bold   ">
-              Search {JSON.stringify(dropDowns)}
-            </span>
+            <span className="z-20 text-4xl font-bold   ">Search</span>
           </div>
           <div className=" relative flex flex-col gap-y-4 ">
             {/* inputs */}
@@ -203,13 +201,13 @@ export default function Filter({
                   //     collapseAdvanceSearch();
                   //   },
                   // })}
-                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[20%] "
+                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
                 >
                   <label
                     tabIndex={0}
-                    className="hover:bg-[rgb(2,131,206)] justify-center gap-6 rounded-3xl px-2 py-1 hover:text-white w-full text-center  text-[rgb(2,131,206)] flex hover:cursor-pointer "
+                    className="hover:bg-[rgb(2,131,206)] justify-between rounded-3xl px-2 py-1 hover:text-white w-full text-center  text-[rgb(2,131,206)] flex hover:cursor-pointer "
                   >
-                    <h1>Industry</h1>
+                    <h1>{categoryState || "Advance Search"}</h1>
                     <RxTriangleDown size={20} className="" />
                   </label>
                   <ul
@@ -238,8 +236,11 @@ export default function Filter({
 
                 <input
                   type="text"
-                  className="w-full rounded-3xl border border-gray-300 px-2 py-1  outline-none ring-[rgb(2,131,206)] focus:ring-2 tablet2:w-[70%] desktop0:w-[80%]"
+                  className="w-full rounded-3xl border border-gray-300 px-2 py-1  outline-none ring-[rgb(2,131,206)] focus:ring-2 tablet2:w-[70%] desktop0:w-[70%]"
                   placeholder="Search"
+                  onChange={(e: any) => setSearch(e.target.value)}
+                  value={search}
+                  onKeyDown={(e) => e.key === "Enter" && onSearchClick()}
                 />
               </div>
             </div>
@@ -260,14 +261,20 @@ export default function Filter({
                 />
               )} */}
             <div className="flex gap-4 flex-wrap flex-row">
-              {filterTypes.map((i: any, index: any) => (
-                <button
-                  onClick={() => onDropDown(i)}
-                  className="text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1  tablet1:flex "
-                >
-                  {i}
-                </button>
-              ))}
+              {filterTypes.map((i: any, index: any) => {
+                const dynamicLabel = filtersApplied.filter((j: any) => j === i);
+                return (
+                  <button
+                    onClick={() => onDropDown(i)}
+                    className="justify-between text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1  tablet1:flex "
+                  >
+                    {dynamicLabel.length > 0
+                      ? dynamicLabel?.map((k: any) => k)
+                      : i}
+                    <RxTriangleDown size={20} className="" />
+                  </button>
+                );
+              })}
             </div>
             {filterTypes.map((i: any, index: any) => (
               <CheckboxDropdown
@@ -280,85 +287,24 @@ export default function Filter({
                 value={i}
                 list={filtersState}
                 categoryState={categoryState}
+                setFiltersApplied={setFiltersApplied}
+                filtersApplied={filtersApplied}
+                onClickReset={clearFilterTrigger}
+                onMiniClear={onMiniClear}
               />
             ))}
-            {/* <CheckboxDropdown
-                title="checkbox 1"
-                category={category}
-                isHidden={dropDowns.drop1}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="ประเภทเครื่องดัด"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 2"
-                category={category}
-                isHidden={dropDowns.drop2}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop2"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 3"
-                category={category}
-                isHidden={dropDowns.drop3}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop3"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 4"
-                category={category}
-                isHidden={dropDowns.drop4}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop4"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 5"
-                category={category}
-                isHidden={dropDowns.drop5}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop5"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 6"
-                category={category}
-                isHidden={dropDowns.drop6}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop6"
-              />
-
-              <CheckboxDropdown
-                title="checkbox 7"
-                category={category}
-                isHidden={dropDowns.drop7}
-                onFoldDropDown={onFoldDropDown}
-                onCheckBoxSelection={onCheckBoxSelection}
-                onClearSelection={onClearSelection}
-                value="drop7"
-              /> */}
           </div>
           {/* button */}
           <div className="mt-4 flex w-full justify-end gap-4">
-            <button className="z-20 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]">
+            <button
+              onClick={onClickReset}
+              className="z-20 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
+            >
               <VscDebugRestart size={20} />
               <span>Reset</span>
             </button>
             <button
+              onClick={onSearchClick}
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
               className={`z-20 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
             >

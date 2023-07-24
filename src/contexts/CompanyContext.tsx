@@ -6,9 +6,13 @@ import Swal from "sweetalert2";
 
 export const CompanyContext = createContext({});
 
-export default function CompanyContextProvider({ children, companyData }: any) {
+export default function CompanyContextProvider({
+  children,
+  companyData,
+  blogData,
+}: any) {
   return (
-    <CompanyContext.Provider value={companyData}>
+    <CompanyContext.Provider value={{ companyData, blogData }}>
       {children}
     </CompanyContext.Provider>
   );

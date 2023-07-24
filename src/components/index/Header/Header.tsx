@@ -9,10 +9,28 @@ import GoogleTranslate from "../GooogleTranslate/GoogleTranslate";
 
 export default function Header({
   category,
-  filters,
+  filtersApplied,
+  setFiltersApplied,
+  onClickReset,
+  clearFilterTrigger,
+  onSearchClick,
+  categoryState,
+  setCategoryState,
+  search,
+  setSearch,
+  onMiniClear,
 }: {
   category: string;
-  filters: any;
+  filtersApplied: any;
+  onClickReset: any;
+  setFiltersApplied: any;
+  clearFilterTrigger: any;
+  onSearchClick: any;
+  categoryState: any;
+  setCategoryState: any;
+  search: any;
+  setSearch: any;
+  onMiniClear: any;
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
 
@@ -45,7 +63,19 @@ export default function Header({
             </div>
           </div>
         </div>
-        <Filter category={category} filtersState={filters} />
+        <Filter
+          categoryState={categoryState}
+          setCategoryState={setCategoryState}
+          onClickReset={onClickReset}
+          category={category}
+          setFiltersApplied={setFiltersApplied}
+          filtersApplied={filtersApplied}
+          clearFilterTrigger={clearFilterTrigger}
+          onSearchClick={onSearchClick}
+          search={search}
+          setSearch={setSearch}
+          onMiniClear={onMiniClear}
+        />
       </div>
     </div>
   );
