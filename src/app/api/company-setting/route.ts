@@ -5,6 +5,7 @@ import {
   getCompanySetting,
   editCompany,
   editCompanyStatus,
+  softDeleteCompany,
 } from "@/service/companyProfileService";
 
 export async function GET() {
@@ -30,6 +31,10 @@ export async function PUT(req: Request) {
   if (response.type === "status") {
     return NextResponse.json(
       await editCompanyStatus(filterBy, response.filterValue, response.newValue)
+    );
+  } else if (response.type === "delete") {
+    return NextResponse.json(
+      await softDeleteCompany(filterBy, response.filterValue, response.newValue)
     );
   } else {
     return NextResponse.json(

@@ -13,7 +13,10 @@ export default function Map({ companyData }: any) {
   //   console.log(companyData?.contacts?.googleMap);
   return (
     <div className="pb-40 w-full">
-      <div className="max-w-[1440px] mx-auto rounded-2xl overflow-hidden ">
+      <div className="max-w-[1440px] px-4 mx-auto  ">
+        <div className="w-full rounded-2xl border-2 border-slate-100 overflow-hidden">
+          <div dangerouslySetInnerHTML={{ __html: mapState }}></div>
+        </div>
         {/* <iframe
           src={mapState}
           width="100%"
@@ -23,7 +26,6 @@ export default function Map({ companyData }: any) {
           // loading="lazy"
           // referrerpolicy="no-referrer-when-downgrade"
         ></iframe> */}
-        <div dangerouslySetInnerHTML={{ __html: mapState }}></div>
       </div>
     </div>
   );

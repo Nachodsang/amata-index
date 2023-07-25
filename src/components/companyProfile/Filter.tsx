@@ -10,7 +10,7 @@ export default function Filter({ companyData }: any) {
   return (
     <div className="w-full ">
       {/* container */}
-      <div className="max-w-[1440px] mx-auto py-10 flex-col flex gap-6">
+      <div className="max-w-[1440px] mx-auto py-10 flex-col flex gap-6 px-4">
         <div className=" flex gap-5 items-center">
           <div className="p-4 rounded-full bg-orange-500 text-white">
             <BsCheck2Circle size={25} className="" />
@@ -18,19 +18,23 @@ export default function Filter({ companyData }: any) {
           <h1 className="font-semibold text-2xl">Services</h1>
         </div>
         <div className="flex flex-col gap-3 items-start ">
-          <div className="flex items-center gap-2 text-green-600">
+          {/* <div className="flex items-center gap-2 text-green-600">
             <BsCheckLg size={25} />
             <p className="text-xl font-semibold ">Service in Thailand</p>
-          </div>
+          </div> */}
           {uniqueFilterTypes.map((i: any) => (
             <div className="flex justify-start w-full items-center ">
               <div className="w-[25%] flex items-center  gap-2 text-green-600">
                 <BsCheckLg size={25} />
-                <span className="text-xl font-semibold">{i}</span>
+                <span className="text-lg font-semibold">{i}</span>
               </div>
               {filters.map((j: any) => {
                 if (j?.filterType === i)
-                  return <span>{j?.filterTitle} &nbsp;&nbsp;</span>;
+                  return (
+                    <span className="text-xs">
+                      {j?.filterTitle} &nbsp;&nbsp;
+                    </span>
+                  );
               })}
             </div>
           ))}

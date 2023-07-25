@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditHomePage from "../Editor2/editHomePage";
 import Swal from "sweetalert2";
-import Input from "../Input/Input";
+import Ip from "../Input/Input";
 import AddTextBox from "../AddTextBox/AddTextBox";
 import AddTextBox2 from "../AddTextBox2/AddTextBox2";
+import { Input } from "tw-elements";
 
 export default function BlogDetailsInfo({
   state,
@@ -12,9 +13,9 @@ export default function BlogDetailsInfo({
   edit,
   content,
 }: any) {
-  const [detailsState, setDetailsState] = useState({});
-  const [tagState, setTagState] = useState([]);
-  const [referenceState, setRefenceState] = useState([{}]);
+  const [detailsState, setDetailsState] = useState({} as any);
+  const [tagState, setTagState] = useState("");
+  // const [referenceState, setRefenceState] = useState([{}]);
 
   const onHandleSave = () => {
     if (edit) {
@@ -45,14 +46,29 @@ export default function BlogDetailsInfo({
   };
 
   // inputing tag and reference
-  const listInput = (field: string, items: any) => {
-    if (field === "tags") {
-      const tagsArray = items.split(",");
+  // const listInput = (field: string, items: any) => {
+  //   if (field === "tags") {
+  //     const tagsArray = tagState.split(",");
 
-      setDetailsState({ ...detailsState, tags: tagsArray });
-    }
-  };
-  console.log(detailsState);
+  //     setDetailsState({ ...detailsState, tags: tagsArray });
+  //   }
+  // };
+
+  // needs fixing
+  useEffect(() => {
+    state && edit && setDetailsState(state?.details);
+  }, [state]);
+  useEffect(() => {
+    const tagsArray = tagState.split(",");
+
+    setDetailsState({ ...detailsState, tags: tagsArray });
+  }, [tagState]);
+  useEffect(() => {
+    const facebookInput = new Input(document.getElementById("facebook"));
+    facebookInput.update();
+    const tagInput = new Input(document.getElementById("tags"));
+    tagInput.update();
+  }, [detailsState]);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -100,6 +116,7 @@ export default function BlogDetailsInfo({
             state={detailsState}
             setState={setDetailsState}
             modalTitle={"New Recommendation"}
+            edit={edit}
           />
           {/* <textarea
             // value={detailsState?.shortDescription || ""}
@@ -126,6 +143,7 @@ export default function BlogDetailsInfo({
             state={detailsState}
             setState={setDetailsState}
             type={"single"}
+            edit={edit}
           />
 
           {/* <textarea
@@ -142,7 +160,10 @@ export default function BlogDetailsInfo({
             placeholder="Short Description . . . "
           ></textarea> */}
         </div>
-        <Input
+        <Ip
+          value={detailsState?.facebook}
+          id="facebook"
+          placeholder="facebook"
           label="Facebook"
           onChange={(e: any) =>
             setDetailsState({ ...detailsState, facebook: e.target.value })
@@ -162,9 +183,12 @@ export default function BlogDetailsInfo({
             ))}
           </div>
         )}
-        <Input
+        <Ip
+          id="tags"
+          value={detailsState?.tags}
           label="Tags"
-          onChange={(e: any) => listInput("tags", e.target.value)}
+          onChange={(e: any) => setTagState(e.target.value)}
+          placeholder="tags"
         />
       </div>
       <div className="flex justify-end">

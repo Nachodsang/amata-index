@@ -5,35 +5,80 @@ import Table from "@/components/webpanel/Table/Table";
 import axios from "axios";
 import { useEffect, useState, useContext } from "react";
 import { BannerContext } from "@/contexts/bannerContext";
+import _ from "lodash";
+import { BounceLoader } from "react-spinners";
 export default function BannerList() {
-  const [bannerList, setBannerList] = useState([]);
-  const { banners, changeStatus, changeOrder }: any = useContext(BannerContext);
-  // fetch
-  // const bannerFetch = async () => {
-  //   const response = await axios.get(
-  //     "http://localhost:3000/api/banner-setting"
-  //   );
-  //   //
-  //   setBannerList(response.data);
-  // };
+  const [searchState, setSearchState] = useState("");
+  const {
+    banners: b,
+    changeStatus,
+    changeOrder,
+    fetchBanner,
+  }: any = useContext(BannerContext);
+  const [bannerState, setBannerState] = useState([] as any);
+  const [loading, setLoading] = useState(true);
+  const [showOnline, setShowOnline] = useState(false);
 
-  // useEffect(() => {
-  //   bannerFetch();
-  // }, []);
+  const banners = b.sort((a: any, b: any) => {
+    const dateA = new Date(a.updatedAt);
+    const dateB = new Date(b.updatedAt);
+    return dateB.getTime() - dateA.getTime();
+  });
 
-  //
+  const onClickSearch = () => {
+    const filteredList = _.filter(banners, (i: any) => {
+      return (
+        i?.bannerTitle?.toLowerCase().includes(searchState.toLowerCase()) ||
+        i?.client?.toLowerCase().includes(searchState.toLowerCase())
+      );
+    });
 
+    !showOnline
+      ? setBannerState(filteredList)
+      : setBannerState(filteredList.filter((i: any) => i.status));
+  };
+  useEffect(() => {
+    fetchBanner();
+  }, [showOnline]);
+
+  useEffect(() => {
+    // show offline and set state to initial list
+    // or filter banner to show online only
+    // then set loading to false
+    !showOnline
+      ? setBannerState(banners)
+      : setBannerState(banners.filter((i: any) => i.status));
+    setLoading(false);
+  }, [banners]);
+
+  useEffect(() => {
+    // when empty set state to initial list
+    searchState.length === 0 && setBannerState(banners);
+    // and show all without online filter
+    searchState.length === 0 && setShowOnline(false);
+  }, [searchState]);
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
         <h1 className="mb-4 text-center text-xl font-semibold  ">
-          Banner List
+          Banner List{" "}
+          {bannerState.length > 0 && (
+            <span
+              className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
+            >
+              ({bannerState.length})
+            </span>
+          )}
         </h1>
 
         <div className="w-full ">
           <div className="mx-auto w-[30%] ">
-            <Search />
+            <Search
+              searchState={searchState}
+              setSearchState={setSearchState}
+              onClick={onClickSearch}
+            />
           </div>
           {/* Create new company profile */}
         </div>
@@ -46,15 +91,37 @@ export default function BannerList() {
             Create New Banner
           </button>
         </Link>
-        <Table
-          list={banners}
-          col2="banner"
-          col3="client"
-          col4="description"
-          col5="created on"
-          onChange={changeStatus}
-          onChangeOrder={changeOrder}
-        />
+        <div className="w-full  flex justify-end">
+          <button
+            onClick={() => {
+              setShowOnline(!showOnline);
+            }}
+            className={`${
+              showOnline ? "bg-green-300" : "bg-slate-500"
+            } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+          >
+            Online
+          </button>
+        </div>
+        {!loading ? (
+          <Table
+            list={bannerState}
+            col2="banner"
+            col3="client"
+            col4="description"
+            col5="created on"
+            onChange={changeStatus}
+            onChangeOrder={changeOrder}
+          />
+        ) : (
+          <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
+            <BounceLoader
+              color="rgb(87,12,248)"
+              size={100}
+              speedMultiplier={3}
+            />
+          </div>
+        )}
       </div>
     </div>
   );

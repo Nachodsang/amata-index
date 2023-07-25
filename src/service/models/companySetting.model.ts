@@ -10,6 +10,8 @@ export interface IcompanySetting {
   contacts?: IcontactData;
   seo?: IseoInfo;
   gallery?: String[];
+  status?: Boolean;
+  deleted?: Boolean;
 
   edition?: Number;
 }
@@ -34,6 +36,7 @@ export interface IfilterInfo {
   _id?: Types.ObjectId;
   filterTitle?: String;
   filterType?: String;
+  filterID?: String;
 }
 export interface IdetailsInfo {
   shortDescription?: String;
@@ -119,6 +122,7 @@ const companySettingSchema = new Schema(
     // image: { type: String, required: true },
     // client: { type: String, required: true },
     status: { type: Boolean, default: false },
+    deleted: { type: Boolean, default: false },
     // link: { type: String, required: true },
 
     edition: { type: Number },
@@ -134,6 +138,7 @@ const companySettingSchema = new Schema(
       {
         filterTitle: { type: String },
         filterType: { type: String },
+        filterID: { type: String },
       },
     ],
     generalInfo: {

@@ -3,10 +3,12 @@ export default function CollapsedFilter1({
   getCollapseProps,
   onDropDown,
 }: any) {
+  // separate advance search and general search here below
+
   return (
     <div className="w-full hidden tablet2:hidden flex-col tablet1:flex desktop0:flex ">
-      <div className="gap-x-4  flex flex-col tablet2:flex-row relative  desktop0:flex-row gap-4 mb-4">
-        <button
+      <div className="gap-x-4 flex-wrap flex flex-col tablet2:flex-row relative  desktop0:flex-row gap-4 mb-4">
+        {/* <button
           onClick={() => onDropDown("drop1")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1  tablet1:flex desktop0:flex"
         >
@@ -30,6 +32,33 @@ export default function CollapsedFilter1({
         <button
           onClick={() => onDropDown("drop4")}
           className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex desktop0:flex"
+        >
+          Dropdown4
+        </button> */}
+        <button
+          onClick={() => onDropDown("drop1")}
+          className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1  tablet1:flex "
+        >
+          Dropdown1
+        </button>
+
+        <button
+          onClick={() => onDropDown("drop2")}
+          className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full  desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex "
+        >
+          Dropdown2
+        </button>
+
+        <button
+          onClick={() => onDropDown("drop3")}
+          className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex "
+        >
+          Dropdown3
+        </button>
+
+        <button
+          onClick={() => onDropDown("drop4")}
+          className="focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1 tablet1:flex "
         >
           Dropdown4
         </button>

@@ -16,6 +16,15 @@ export const getCompanySetting = async () => {
   //   mongoose.disconnect();
 };
 
+export const getSingleCompanySetting = async (link: any) => {
+  const companySetting = await companySettingModel.findOne({
+    "generalInfo.profileUrl": link,
+  });
+
+  return { companySetting };
+  //
+  //   mongoose.disconnect();
+};
 export const addCompany = async (req: IcompanySetting) => {
   const companySetting = new companySettingModel(req);
   let status: any = "";
@@ -58,6 +67,27 @@ export const editCompanyStatus = async (
 ) => {
   const filter = { [filterBy]: filterValue };
   const update = { status: newValue };
+
+  try {
+    //
+    const doc = await companySettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
+
+export const softDeleteCompany = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { deleted: newValue };
 
   try {
     //

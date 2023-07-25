@@ -20,15 +20,21 @@ export default function ImageCourousel({ images }: any) {
         spaceBetween={10}
         slidesPerView={1}
         breakpoints={{
-          990: {
+          1200: {
             slidesPerView: 3,
+          },
+          800: {
+            slidesPerView: 2,
           },
         }}
         className="h-full"
       >
         {images.map((i: any, index: any) => (
           <SwiperSlide key={index}>
-            <img src={i} className="w-full h-[300px] object-cover rounded-xl" />
+            <img
+              src={i}
+              className="w-full h-[300px] tablet0:h-auto aspect-[4/3] object-cover rounded-xl"
+            />
           </SwiperSlide>
         ))}
       </Swiper>

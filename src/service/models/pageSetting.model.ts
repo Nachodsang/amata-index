@@ -11,6 +11,8 @@ export interface IpageSetting {
   coreColor?: { type: String };
   coreHeaderColor?: { type: String };
   adAmount?: Number;
+  topBanner?: String;
+  footerBanner?: String;
 }
 
 const pageSettingSchema = new Schema(
@@ -22,6 +24,8 @@ const pageSettingSchema = new Schema(
     coreColor: { type: String },
     coreHeaderColor: { type: String },
     adAmount: { type: Number, required: true },
+    topBanner: { type: String },
+    footerBanner: { type: String },
 
     edition: { type: Number, unique: true },
   },

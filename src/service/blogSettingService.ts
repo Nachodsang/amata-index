@@ -11,6 +11,13 @@ export const getBlogSetting = async () => {
   //   mongoose.disconnect();
 };
 
+export const getSingleBlogSetting = async (link: any) => {
+  const blogSetting = await blogSettingModel.findOne({
+    "generalInfo.blogUrl": link,
+  });
+
+  return { blogSetting };
+};
 export const addBlog = async (req: IblogSetting) => {
   const blogSetting = new blogSettingModel(req);
   let status: any = "";
@@ -25,47 +32,68 @@ export const addBlog = async (req: IblogSetting) => {
   }
 };
 
-// edit company
-// export const editCompany = async (
-//   filterBy: string,
-//   filterValue: any,
+// edit blog
+export const editBlog = async (
+  filterBy: string,
+  filterValue: any,
 
-//   newValue: any
-// ) => {
-//   const filter = { [filterBy]: filterValue };
-//   const update = newValue;
+  newValue: any
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = newValue;
 
-//   try {
-//     //
-//     const doc = await companySettingModel.findOneAndUpdate(filter, update, {
-//       new: true,
-//     });
+  try {
+    //
+    const doc = await blogSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
 
-//     //
-//     return { status: "200", message: "complete", updatedObj: doc };
-//   } catch (err) {
-//     return err;
-//   }
-// };
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
 
 // change company status
-// export const editCompanyStatus = async (
-//   filterBy: any,
-//   filterValue: string,
-//   newValue: boolean
-// ) => {
-//   const filter = { [filterBy]: filterValue };
-//   const update = { status: newValue };
+export const editBlogStatus = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { status: newValue };
 
-//   try {
-//     //
-//     const doc = await companySettingModel.findOneAndUpdate(filter, update, {
-//       new: true,
-//     });
+  try {
+    //
+    const doc = await blogSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
 
-//     //
-//     return { status: "200", message: "complete", updatedObj: doc };
-//   } catch (err) {
-//     return err;
-//   }
-// };
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
+
+export const softDeleteBlog = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { deleted: newValue };
+
+  try {
+    //
+    const doc = await blogSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

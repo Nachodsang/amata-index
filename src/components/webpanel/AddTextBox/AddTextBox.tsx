@@ -8,6 +8,7 @@ export default function AddTextBox({
   label,
   modalTitle,
   type,
+  edit,
 }: any) {
   const [listState, setListState] = useState([] as any);
   const [itemState, setItemState] = useState({ title: "", link: "" });
@@ -24,8 +25,11 @@ export default function AddTextBox({
   useEffect(() => {
     setState({ ...state, references: listState });
   }, [listState]);
-  console.log(listState);
-  console.log(itemState);
+  useEffect(() => {
+    edit && state?.references && setListState(state?.references);
+  }, [state]);
+  // console.log(listState);
+  // console.log(itemState);
   return (
     <div className="w-full  border border-slate-300 rounded-lg p-6 flex items-end flex-col">
       <button
@@ -90,6 +94,7 @@ export default function AddTextBox({
                 data-te-modal-body-ref
               >
                 <Input
+                  placeholder="title"
                   value={itemState?.title}
                   label="Title"
                   onChange={(e: any) =>
@@ -98,6 +103,7 @@ export default function AddTextBox({
                 />
 
                 <Input
+                  placeholder="link"
                   value={itemState?.link}
                   label="Link"
                   onChange={(e: any) =>
@@ -134,11 +140,16 @@ export default function AddTextBox({
         </div>
       </div>
       <div className="w-full  flex flex-col items-start ">
-        {listState.map((i: any, index: any) => (
-          <a href={i?.link} key={index}>
-            {i?.title}
-          </a>
-        ))}
+        {listState &&
+          listState.map((i: any, index: any) => (
+            <a
+              className="text-slate-400 font-semibold "
+              href={i?.link}
+              key={index}
+            >
+              {i?.title}
+            </a>
+          ))}
         {/* {JSON.stringify(listState)} */}
         {/* <div>asdfasdf</div> */}
       </div>

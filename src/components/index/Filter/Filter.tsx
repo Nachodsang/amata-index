@@ -10,34 +10,37 @@ import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
 import CollapsedFilter1 from "../collapsedFilter1/CollapsedFilter1";
 import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
+import { FilterContext } from "@/contexts/FilterContext";
+import FilterContextProvider from "@/contexts/FilterContext";
 
-interface DropDowns {
-  drop1: boolean;
-  drop2: boolean;
-  drop3: boolean;
-  drop4: boolean;
-  drop5: boolean;
-  drop6: boolean;
-  drop7: boolean;
-}
-interface IfilterSelection {
-  drop1: number[];
-  drop2: number[];
-  drop3: number[];
-  drop4: number[];
-  drop5: number[];
-  drop6: number[];
-  drop7: number[];
-}
-const defaultDropDownsState = {
-  drop1: false,
-  drop2: false,
-  drop3: false,
-  drop4: false,
-  drop5: false,
-  drop6: false,
-  drop7: false,
-};
+// interface DropDowns {
+//   drop1: boolean;
+//   drop2: boolean;
+//   drop3: boolean;
+//   drop4: boolean;
+//   drop5: boolean;
+//   drop6: boolean;
+//   drop7: boolean;
+// }
+// interface IfilterSelection {
+//   drop1: number[];
+//   drop2: number[];
+//   drop3: number[];
+//   drop4: number[];
+//   drop5: number[];
+//   drop6: number[];
+//   drop7: number[];
+// }
+
+// const defaultDropDownsState = {
+//   drop1: false,
+//   drop2: false,
+//   drop3: false,
+//   drop4: false,
+//   drop5: false,
+//   drop6: false,
+//   drop7: false,
+// };
 const defaultFilterSelection = {
   drop1: [],
   drop2: [],
@@ -48,42 +51,69 @@ const defaultFilterSelection = {
   drop7: [],
 };
 
-export default function Filter({ category }: { category: string }) {
-  const [advanceSearch, setAdvanceSearch] = useState(false);
-  const [dropDowns, setDropDowns] = useState(defaultDropDownsState);
+export default function Filter({
+  category,
+  filtersApplied,
+  setFiltersApplied,
+  onClickReset,
+  clearFilterTrigger,
+  onSearchClick,
+  categoryState,
+  setCategoryState,
+  search,
+  setSearch,
+  onMiniClear,
+}: {
+  category: string;
+  filtersApplied: any;
+  setFiltersApplied: any;
+  onClickReset: any;
+  clearFilterTrigger: any;
+  onSearchClick: any;
+  categoryState: any;
+  setCategoryState: any;
+  search: any;
+  setSearch: any;
+  onMiniClear: any;
+}) {
+  // const [advanceSearch, setAdvanceSearch] = useState(false);
+
+  const [dropDowns, setDropDowns] = useState({} as any);
   const [isExpanded, setExpanded] = useState(false);
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );
-
+  // const { filtersState }: any = useContext(FilterContext);
   const { pageSetting }: any = useContext(PageSettingContext);
+  const { filtersFromMain: filtersState }: any = useContext(FilterContext);
+  // const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
-  const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
+  // show selected dropdown and close others
+  // fixing this later
+  const onDropDown = (dropNo: any) => {
+    setDropDowns((prevDropDowns: any) => {
+      const updatedDropDowns: any = {
+        ...prevDropDowns,
+        [dropNo]: !prevDropDowns[dropNo],
+      };
 
-  // Filter dropdown
-  const onDropDown = (dropNo: keyof DropDowns) => {
-    setDropDowns({
-      drop1: false,
-      drop2: false,
-      drop3: false,
-      drop4: false,
-      drop5: false,
-      drop6: false,
-      drop7: false,
-      [dropNo]: !dropDowns[dropNo],
+      // Set all other dropdowns to false
+      for (const [key, value] of Object.entries(updatedDropDowns)) {
+        if (key !== dropNo) {
+          updatedDropDowns[key] = false;
+        }
+      }
+
+      return updatedDropDowns;
     });
   };
+
   // Fold Dropdown
   const onFoldDropDown = () => {
-    setDropDowns({
-      drop1: false,
-      drop2: false,
-      drop3: false,
-      drop4: false,
-      drop5: false,
-      drop6: false,
-      drop7: false,
-    });
+    const updatedDropDowns: any = {
+      ...Object.fromEntries(Object.keys(dropDowns).map((key) => [key, false])),
+    };
+    setDropDowns(updatedDropDowns);
   };
 
   // Checkbox selection
@@ -101,12 +131,24 @@ export default function Filter({ category }: { category: string }) {
   };
 
   //Expand Advance Search
-  const collapseAdvanceSearch = () => {
-    setExpanded((prevExpanded) => !prevExpanded);
-    setAdvanceSearch(!advanceSearch);
-    onFoldDropDown();
-  };
+  // const collapseAdvanceSearch = () => {
+  //   setExpanded((prevExpanded) => !prevExpanded);
+  //   setAdvanceSearch(!advanceSearch);
+  //   onFoldDropDown();
+  // };
+  // Types Array
+  const uniqueFilterTypes = new Set(
+    filtersState
+      .filter((i: any) => i?.filterCategory === categoryState)
+      .map((i: any) => i?.filterType)
+  );
+  const filterTypes = Array.from(uniqueFilterTypes);
 
+  //  Categories Array
+  const uniqueFilterCategories = new Set(
+    filtersState.map((i: any) => i?.filterCategory)
+  );
+  const filterCategories = Array.from(uniqueFilterCategories);
   const [isFullFilter, setIsFullfilter] = useState(false);
   useEffect(() => {
     const initialFilter = () => {
@@ -127,6 +169,14 @@ export default function Filter({ category }: { category: string }) {
     });
   }, [isFullFilter]);
 
+  useEffect(() => {
+    setDropDowns(
+      filterTypes.reduce((acc: any, value: any) => {
+        return { ...acc, [value]: false };
+      }, {})
+    );
+  }, [categoryState]);
+
   return (
     <div className="w-full  ">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -145,127 +195,126 @@ export default function Filter({ category }: { category: string }) {
             {/* inputs */}
             <div>
               <div className="flex flex-col gap-4 tablet2:flex-row desktop0:flex-row">
-                <button
-                  {...getToggleProps({
-                    onClick: () => {
-                      collapseAdvanceSearch();
-                    },
-                  })}
-                  className="flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)] px-2 py-1 text-[rgb(2,131,206)] outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer hover:bg-[rgb(2,131,206)] hover:text-white focus:ring-2 tablet2:w-[30%] desktop0:w-[20%] "
+                <div
+                  // {...getToggleProps({
+                  //   onClick: () => {
+                  //     collapseAdvanceSearch();
+                  //   },
+                  // })}
+                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
                 >
-                  Advance Search
-                  <RxTriangleLeft
+                  <label
+                    tabIndex={0}
+                    className="hover:bg-[rgb(2,131,206)] justify-between rounded-3xl px-2 py-1 hover:text-white w-full text-center  text-[rgb(2,131,206)] flex hover:cursor-pointer "
+                  >
+                    <h1>{categoryState || "Advance Search"}</h1>
+                    <RxTriangleDown size={20} className="" />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box  "
+                  >
+                    {filterCategories?.map((i: any) => (
+                      <li
+                        className="text-slate-500"
+                        onClick={() => setCategoryState(i)}
+                      >
+                        <p>{i}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Advance Search */}
+                  {/* <RxTriangleLeft
                     size={20}
                     className={`${advanceSearch ? "hidden" : "flex"}`}
                   />
                   <RxTriangleDown
                     size={20}
                     className={`${advanceSearch ? "flex" : "hidden"}`}
-                  />
-                </button>
+                  /> */}
+                </div>
+
                 <input
                   type="text"
-                  className="w-full rounded-3xl border border-gray-300 px-2 py-1  outline-none ring-[rgb(2,131,206)] focus:ring-2 tablet2:w-[70%] desktop0:w-[80%]"
+                  className="w-full rounded-3xl border border-gray-300 px-2 py-1  outline-none ring-[rgb(2,131,206)] focus:ring-2 tablet2:w-[70%] desktop0:w-[70%]"
                   placeholder="Search"
+                  onChange={(e: any) => setSearch(e.target.value)}
+                  value={search}
+                  onKeyDown={(e) => e.key === "Enter" && onSearchClick()}
                 />
               </div>
             </div>
             {/* tablet1 & desktops */}
-            {isFullFilter && (
-              <CollapsedFilter1
-                getCollapseProps={getCollapseProps}
-                onDropDown={onDropDown}
-                dropDowns={dropDowns}
-              />
-            )}
+            {/* {isFullFilter && (
+                <CollapsedFilter1
+                  getCollapseProps={getCollapseProps}
+                  onDropDown={onDropDown}
+                  dropDowns={dropDowns}
+                />
+              )} */}
             {/* tablet2 & mobile */}
-            {!isFullFilter && (
-              <CollapsedFilter2
-                getCollapseProps={getCollapseProps}
-                onDropDown={onDropDown}
-                dropDowns={dropDowns}
+            {/* {!isFullFilter && (
+                <CollapsedFilter2
+                  getCollapseProps={getCollapseProps}
+                  onDropDown={onDropDown}
+                  dropDowns={dropDowns}
+                />
+              )} */}
+            <div className="flex gap-4 flex-wrap flex-row">
+              {filterTypes.map((i: any, index: any) => {
+                const dynamicLabel = filtersApplied.filter(
+                  (j: any) => j?.type === i
+                );
+                return (
+                  <button
+                    onClick={() => onDropDown(i)}
+                    className="justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
+                  >
+                    {dynamicLabel.length > 0 ? (
+                      <div className=" flex justify-start items-center ">
+                        {dynamicLabel?.map((k: any) => (
+                          <span className="text-xs">{k?.title},&nbsp;</span>
+                        ))}
+                      </div>
+                    ) : (
+                      i
+                    )}
+                    <RxTriangleDown size={20} className="" />
+                  </button>
+                );
+              })}
+            </div>
+            {filterTypes.map((i: any, index: any) => (
+              <CheckboxDropdown
+                title={i}
+                category={category}
+                isHidden={!dropDowns?.[i]}
+                onFoldDropDown={onFoldDropDown}
+                onCheckBoxSelection={onCheckBoxSelection}
+                onClearSelection={onClearSelection}
+                value={i}
+                list={filtersState}
+                categoryState={categoryState}
+                setFiltersApplied={setFiltersApplied}
+                filtersApplied={filtersApplied}
+                onClickReset={clearFilterTrigger}
+                onMiniClear={onMiniClear}
               />
-            )}
-
-            <CheckboxDropdown
-              title="checkbox 1"
-              category={category}
-              isHidden={dropDowns.drop1}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop1"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 2"
-              category={category}
-              isHidden={dropDowns.drop2}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop2"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 3"
-              category={category}
-              isHidden={dropDowns.drop3}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop3"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 4"
-              category={category}
-              isHidden={dropDowns.drop4}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop4"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 5"
-              category={category}
-              isHidden={dropDowns.drop5}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop5"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 6"
-              category={category}
-              isHidden={dropDowns.drop6}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop6"
-            />
-
-            <CheckboxDropdown
-              title="checkbox 7"
-              category={category}
-              isHidden={dropDowns.drop7}
-              onFoldDropDown={onFoldDropDown}
-              onCheckBoxSelection={onCheckBoxSelection}
-              onClearSelection={onClearSelection}
-              value="drop7"
-            />
+            ))}
           </div>
           {/* button */}
           <div className="mt-4 flex w-full justify-end gap-4">
-            <button className="z-20 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]">
+            <button
+              onClick={onClickReset}
+              className="z-10 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
+            >
               <VscDebugRestart size={20} />
               <span>Reset</span>
             </button>
             <button
+              onClick={onSearchClick}
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-              className={`z-20 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
+              className={`z-10 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
             >
               <ImSearch size={20} />
               <span>Search</span>

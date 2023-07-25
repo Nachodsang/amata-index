@@ -7,7 +7,31 @@ import "./Header.css";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import GoogleTranslate from "../GooogleTranslate/GoogleTranslate";
 
-export default function Header({ category }: { category: string }) {
+export default function Header({
+  category,
+  filtersApplied,
+  setFiltersApplied,
+  onClickReset,
+  clearFilterTrigger,
+  onSearchClick,
+  categoryState,
+  setCategoryState,
+  search,
+  setSearch,
+  onMiniClear,
+}: {
+  category: string;
+  filtersApplied: any;
+  onClickReset: any;
+  setFiltersApplied: any;
+  clearFilterTrigger: any;
+  onSearchClick: any;
+  categoryState: any;
+  setCategoryState: any;
+  search: any;
+  setSearch: any;
+  onMiniClear: any;
+}) {
   const { pageSetting }: any = useContext(PageSettingContext);
 
   return (
@@ -39,7 +63,19 @@ export default function Header({ category }: { category: string }) {
             </div>
           </div>
         </div>
-        <Filter category={category} />
+        <Filter
+          categoryState={categoryState}
+          setCategoryState={setCategoryState}
+          onClickReset={onClickReset}
+          category={category}
+          setFiltersApplied={setFiltersApplied}
+          filtersApplied={filtersApplied}
+          clearFilterTrigger={clearFilterTrigger}
+          onSearchClick={onSearchClick}
+          search={search}
+          setSearch={setSearch}
+          onMiniClear={onMiniClear}
+        />
       </div>
     </div>
   );
