@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
 import Input from "../Input/Input";
+import { MdRestore } from "react-icons/md";
+import { AiOutlineEdit } from "react-icons/ai";
+import { SiCodereview } from "react-icons/si";
+import { TiDelete } from "react-icons/ti";
 export default function Entry({
   index,
   title,
@@ -17,6 +21,8 @@ export default function Entry({
   companyNameTh,
   _id,
   industry,
+  onDelete,
+  recycle,
 }: any) {
   const [isCheck, setIsCheck] = useState(status);
   const [orderState, setOrderState] = useState(order);
@@ -31,10 +37,15 @@ export default function Entry({
   const onClickChangeOrder = (e: any) => {
     setOrderState(e.target.value);
   };
+
   return (
     <tr
       className={`${
-        index % 2 === 0 ? "bg-neutral-100" : "bg-neutral-200"
+        index % 2 !== 0
+          ? "bg-neutral-100/10"
+          : index % 2 === 0 && recycle
+          ? "bg-red-100/40"
+          : "bg-neutral-100/50"
       } border-b  dark:border-neutral-200 `}
     >
       <td className="whitespace-nowrap px-6 py-4 font-medium">{index}</td>
@@ -83,35 +94,89 @@ export default function Entry({
       <td className="whitespace-nowrap px-6 py-2">
         {type === "company" ? (
           <div className="flex gap-1">
-            <a href={`/factory/companies/${link}`}>
-              <button className="bg-green-400 px-4 py-2 rounded-xl font-bold text-white">
-                Preview
+            {!recycle ? (
+              <a href={`/factory/companies/${link}`}>
+                <button className="flex gap-1 items-center bg-green-400 px-4 py-2 rounded-xl font-bold text-white">
+                  <SiCodereview size={20} />
+                  <h1>Preview</h1>
+                </button>
+              </a>
+            ) : (
+              <button
+                className="flex gap-1 items-center bg-green-400 px-4  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, false)}
+                // the same delete function but restore this time
+              >
+                <MdRestore size={20} />
+                <h1>Restore</h1>
               </button>
-            </a>
+            )}
             <a href={`/webpanel/company/edit/${link}`}>
-              <button className="bg-yellow-400 px-4  py-2 rounded-xl font-bold text-white">
-                Edit
+              <button className="flex gap-1 items-center bg-yellow-400 px-4  py-2 rounded-xl font-bold text-white">
+                <AiOutlineEdit size={20} />
+                <h1>Edit</h1>
               </button>
             </a>
-            <button className="bg-red-400 px-4  py-2 rounded-xl font-bold text-white">
-              Delete
-            </button>
+
+            {!recycle ? (
+              <button
+                className=" flex items-center gap-1 bg-red-400 px-4  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, true)}
+              >
+                <TiDelete size={20} />
+                <h1>Delete</h1>
+              </button>
+            ) : (
+              <button
+                className="flex items-center gap-1 bg-red-400 px-4  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, true)}
+              >
+                <TiDelete size={20} />
+                <h1>Delete From Database</h1>
+              </button>
+            )}
           </div>
         ) : type === "blog" ? (
           <div className="flex gap-1">
-            <a href={`/factory/blogs/${link}`}>
-              <button className="bg-green-400 px-4 py-2 rounded-xl font-bold text-white">
-                Preview
+            {recycle ? (
+              <button
+                className="flex gap-1 items-center bg-green-400 px-4  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, false)}
+                // the same delete function but restore this time
+              >
+                <MdRestore size={20} />
+                <h1>Restore</h1>
               </button>
-            </a>
+            ) : (
+              <a href={`/factory/blogs/${link}`}>
+                <button className=" flex gap-1 items-center bg-green-400 px-4 py-2 rounded-xl font-bold text-white">
+                  <SiCodereview size={20} />
+                  <h1>Preview</h1>
+                </button>
+              </a>
+            )}
             <a href={`/webpanel/blogs/edit/${link}`}>
-              <button className="bg-yellow-400 px-4  py-2 rounded-xl font-bold text-white">
-                Edit
+              <button className="bg-yellow-400 px-4 flex items-center gap-1 py-2 rounded-xl font-bold text-white">
+                <AiOutlineEdit size={20} /> Edit
               </button>
             </a>
-            <button className="bg-red-400 px-4  py-2 rounded-xl font-bold text-white">
-              Delete
-            </button>
+            {recycle ? (
+              <button
+                className="flex items-center gap-1 bg-red-400 px-4  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, true)}
+              >
+                <TiDelete size={20} />
+                <h1>Delete From Database</h1>
+              </button>
+            ) : (
+              <button
+                className="bg-red-400 px-4  flex items-center gap-1  py-2 rounded-xl font-bold text-white"
+                onClick={() => onDelete(_id, true)}
+              >
+                <TiDelete size={20} />
+                Delete
+              </button>
+            )}
           </div>
         ) : (
           date

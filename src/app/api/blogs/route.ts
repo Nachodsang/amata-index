@@ -5,6 +5,7 @@ import {
   getBlogSetting,
   editBlog,
   editBlogStatus,
+  softDeleteBlog,
   //   editCompany,
   //   editCompanyStatus,
 } from "@/service/blogSettingService";
@@ -31,6 +32,10 @@ export async function PUT(req: Request) {
   if (response.type === "status") {
     return NextResponse.json(
       await editBlogStatus(filterBy, response.filterValue, response.newValue)
+    );
+  } else if (response.type === "delete") {
+    return NextResponse.json(
+      await softDeleteBlog(filterBy, response.filterValue, response.newValue)
     );
   } else {
     return NextResponse.json(

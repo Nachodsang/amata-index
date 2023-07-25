@@ -13,6 +13,7 @@ const CheckBox = ({
   clear,
   setFiltersApplied,
   type,
+  setClear,
   onMiniClear,
 }: {
   filtersApplied: any;
@@ -26,45 +27,35 @@ const CheckBox = ({
   type: any;
   setFiltersApplied: any;
   onMiniClear: any;
-  // isChecked: any;
-  // setIsChecked: any;
+  setClear: any;
 }) => {
   const [isChecked, setIsChecked] = useState(false);
 
   useEffect(() => {
-    (isChecked || filtersApplied.length > 0) &&
-      setFiltersApplied(filterID, type);
-    // !isChecked && setFiltersApplied(filterID);
-  }, [isChecked]);
-  useEffect(() => {
     setIsChecked(false);
   }, [onClickReset]);
   useEffect(() => {
-    onMiniClear(type);
     setIsChecked(false);
   }, [clear]);
+
+  const onCheck = () => {
+    setFiltersApplied(filterID, type, title);
+    setIsChecked(!isChecked);
+  };
   return (
     <div className="flex items-center gap-2">
       <input
         type="checkbox"
         className={`checkbox-accent checkbox h-4 w-4 rounded border-none ring-2 hover:cursor-pointer ${category}-ring`}
         value={title}
-        onChange={() => setIsChecked(!isChecked)}
+        onChange={onCheck}
         checked={isChecked}
-        // onChange={() => {
-        //   onCheckBoxSelection(value, title);
-        // }}
       />
       <label>{title}</label>
       {/* <label>{filterID}</label> */}
     </div>
   );
 };
-// arr of checkbox generator
-// let arr: number[] = [];
-// for (let i = 0; i <= 20; i++) {
-//   arr.push(i);
-// }
 
 export default function CheckboxDropdown({
   title,
@@ -83,19 +74,17 @@ export default function CheckboxDropdown({
 
   setFiltersApplied,
 }: any) {
-  // const [isChecked, setIsChecked] = useState(false);
-  // second row dropdowns
-  // const isSecondRow =
-  //   title === "checkbox 5" || title === "checkbox 6" || title === "checkbox 7";
-  // confirm handle
   const [clear, setClear] = useState(false);
+  // const [clearFlag, setClearFlag] = useState(false);
   const onClear = () => {
     setClear(!clear);
   };
   const onConfirm = () => {
     onFoldDropDown();
   };
-
+  useEffect(() => {
+    onMiniClear(title);
+  }, [clear]);
   return (
     <div
       className={`
@@ -128,6 +117,7 @@ export default function CheckboxDropdown({
                   clear={clear}
                   type={i?.filterType}
                   onMiniClear={onMiniClear}
+                  setClear={setClear}
                 />
               );
           })}

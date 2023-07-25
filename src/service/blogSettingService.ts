@@ -76,3 +76,24 @@ export const editBlogStatus = async (
     return err;
   }
 };
+
+export const softDeleteBlog = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { deleted: newValue };
+
+  try {
+    //
+    const doc = await blogSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

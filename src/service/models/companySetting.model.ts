@@ -10,6 +10,8 @@ export interface IcompanySetting {
   contacts?: IcontactData;
   seo?: IseoInfo;
   gallery?: String[];
+  status?: Boolean;
+  deleted?: Boolean;
 
   edition?: Number;
 }
@@ -120,6 +122,7 @@ const companySettingSchema = new Schema(
     // image: { type: String, required: true },
     // client: { type: String, required: true },
     status: { type: Boolean, default: false },
+    deleted: { type: Boolean, default: false },
     // link: { type: String, required: true },
 
     edition: { type: Number },

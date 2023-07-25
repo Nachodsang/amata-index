@@ -22,7 +22,7 @@ export default function core({
   // const { mockCompanies, mockMachines } = mockData;
   const { companyData: companyList }: any = useContext(CompanyContext);
 
-  const onCompanies = companyList.filter((i: any) => i?.status);
+  const onCompanies = companyList.filter((i: any) => i?.status && !i?.deleted);
 
   const [listState, setListState] = useState(onCompanies);
   // console.log(onCompanies);

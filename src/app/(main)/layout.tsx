@@ -65,23 +65,22 @@ const fetchPageSetting = async () => {
 
   return data;
 };
- const fetchFilter = async () => {
-   const response = await axios.get("http://localhost:3000/api/filter-setting");
-   return response?.data?.filters;
- };
+const fetchFilter = async () => {
+  const response = await axios.get("http://localhost:3000/api/filter-setting");
+  return response?.data?.filters;
+};
 
+const fetchCompany = async () => {
+  const response = await axios.get("http://localhost:3000/api/company-setting");
+  return response?.data?.companySetting;
+};
 
-  const fetchCompany = async () => {
-    const response = await axios.get(
-      "http://localhost:3000/api/company-setting"
-    );
-    return response?.data?.companySetting;
-  };
-
-    const fetchBlog = async () => {
-      const response = await axios.get("http://localhost:3000/api/blogs");
-      return response?.data?.blogSetting;
-    };
+const fetchBlog = async () => {
+  const response = await axios.get("http://localhost:3000/api/blogs");
+  return response?.data?.blogSetting?.filter(
+    (i: any) => i?.status && !i?.delete
+  );
+};
 export default async function RootLayout({
   children,
 }: {
@@ -90,16 +89,19 @@ export default async function RootLayout({
   const pageSettingData = await fetchPageSetting();
   const adData = await fetchAdTry();
   const bannerData = await fetchBanner();
-  const companiesData = await  fetchCompany()
-  const filtersFromMain = await fetchFilter()
-  const blogsData = await fetchBlog()
+  const companiesData = await fetchCompany();
+  const filtersFromMain = await fetchFilter();
+  const blogsData = await fetchBlog();
   // const companyPageData = await fetchCompany();
 
   return (
     <html lang="en">
       <body className={inter.className}>
         <FilterContextProvider filtersFromMain={filtersFromMain}>
-          <CompanyContextProvider companyData={companiesData} blogData ={blogsData}>
+          <CompanyContextProvider
+            companyData={companiesData}
+            blogData={blogsData}
+          >
             <BannerProvider bannerPage={bannerData}>
               <AdProvider adsPage={adData}>
                 <PageSettingProvider pageSetting={pageSettingData.pageSetting}>

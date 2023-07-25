@@ -1,4 +1,7 @@
 import Entry from "../Entry/Entry";
+import { ImListNumbered } from "react-icons/im";
+import { GrStatusGood } from "react-icons/gr";
+import { SiStatuspal } from "react-icons/si";
 export default function Table({
   list,
   col2,
@@ -8,6 +11,8 @@ export default function Table({
   onChange,
   onChangeOrder,
   type,
+  onDelete,
+  recycle,
 }: any) {
   return (
     <div className="flex flex-col mx-auto">
@@ -17,37 +22,38 @@ export default function Table({
             <table className="min-w-full text-left text-sm font-light">
               <thead className="border-b bg-white font-medium dark:border-neutral-500 dark:bg-neutral-600">
                 <tr>
-                  <th scope="col" className="px-6 py-4 text-black text-xl">
-                    #
+                  <th scope="col" className="px-6 py-4 text-slate-500 text-xl">
+                    <ImListNumbered />
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-4 text-black text-xl capitalize"
+                    className="px-6 py-4 text-slate-500 text-xl capitalize"
                   >
                     {col2}
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-4 text-black text-xl capitalize"
+                    className="px-6 py-4 text-slate-500 text-xl capitalize"
                   >
                     {col3}
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-4 text-black text-xl capitalize"
+                    className="px-6 py-4 text-slate-500 text-xl capitalize"
                   >
                     {col4}
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-4 text-black text-xl capitalize"
+                    className="px-6 py-4 text-slate-500 text-xl capitalize"
                   >
                     {col5}
                   </th>
                   <th
                     scope="col"
-                    className="px-6 py-4 text-black text-xl capitalize"
+                    className="flex items-center gap-1 px-6 py-4 text-slate-500 text-xl capitalize"
                   >
+                    <SiStatuspal size={30} />
                     Status
                   </th>
                 </tr>
@@ -75,6 +81,8 @@ export default function Table({
 
                     return (
                       <Entry
+                        recycle={recycle}
+                        onDelete={onDelete}
                         _id={_id}
                         onChangeOrder={onChangeOrder}
                         onChange={onChange}
@@ -118,6 +126,7 @@ export default function Table({
 
                     return (
                       <Entry
+                        recycle={recycle}
                         _id={_id}
                         onChangeOrder={onChangeOrder}
                         onChange={onChange}
@@ -133,6 +142,7 @@ export default function Table({
                         link={`${generalInfo?.blogUrl}`}
                         order={edition}
                         type={type}
+                        onDelete={onDelete}
                       />
                     );
                   })}

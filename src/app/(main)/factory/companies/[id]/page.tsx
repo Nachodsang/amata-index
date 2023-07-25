@@ -27,7 +27,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   // fetchCompanyProfile
   const fetchBlog = async () => {
     const response = await axios.get("http://localhost:3000/api/blogs");
-    return response?.data?.blogSetting;
+    return response?.data?.blogSetting?.filter(
+      (i: any) => i?.status && !i?.deleted
+    );
   };
 
   const blogs = await fetchBlog();
@@ -35,7 +37,7 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <CompanyContextProvider companyData={companyData}>
-      {companyData ? (
+      {companyData && companyData?.status && !companyData?.deleted ? (
         <>
           <meta name="keywords" content={companyData?.seo?.th?.join()} />
           <meta
@@ -51,7 +53,6 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Blogs blogList={blogs} />
           <Footer companyData={companyData} blogList={blogs} />
           <Map companyData={companyData} />
-          
         </>
       ) : (
         <div className="flex  h-[100vh]">

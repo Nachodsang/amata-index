@@ -13,17 +13,18 @@ export default function about() {
   const [clearFilter, setClearFilter] = useState(false);
   const [filtersConfirmed, setFiltersConfirmed] = useState({} as any);
   const [filtersApplied, setFiltersApplied] = useState([] as any);
-  const addFilter = (id: string, type: string) => {
+  const addFilter = (id: string, type: string, title: string) => {
     !filtersApplied.some((i: any) => i?.id === id)
-      ? setFiltersApplied([...filtersApplied, { id, type }])
+      ? setFiltersApplied([...filtersApplied, { id, type, title }])
       : setFiltersApplied(filtersApplied.filter((i: any) => i?.id !== id));
   };
   const onClearFilterByType = (type: any) => {
-    setFiltersApplied(filtersApplied.filter((i: any) => i?.type !== type));
+    setFiltersApplied((prev: any) => prev.filter((i: any) => i?.type !== type));
   };
   const onResetFilter = () => {
     setClearFilter(!clearFilter);
     setFiltersApplied([]);
+    setSearch("");
   };
   const onSearchClick = () => {
     !search
@@ -46,8 +47,8 @@ export default function about() {
   useEffect(() => {
     setFiltersApplied([]);
   }, [categoryState]);
-  console.log(filtersApplied);
-  console.log(filtersConfirmed);
+  // console.log(filtersApplied);
+  // console.log(filtersConfirmed);
   return (
     <div>
       <Header

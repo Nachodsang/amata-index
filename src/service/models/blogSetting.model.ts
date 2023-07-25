@@ -10,8 +10,9 @@ export interface IblogSetting {
   //   contacts?: IcontactData;
   //   seo?: IseoInfo;
   //   gallery?: String[];
-
+  status?: Boolean;
   edition?: Number;
+  deleted?: Boolean;
 }
 // export interface IgalleryInfo {
 //   _id?: Types.ObjectId;
@@ -121,6 +122,7 @@ const blogSettingSchema = new Schema(
     // image: { type: String, required: true },
     // client: { type: String, required: true },
     status: { type: Boolean, default: false },
+    deleted: { type: Boolean, default: false },
     // link: { type: String, required: true },
 
     edition: { type: Number },

@@ -91,7 +91,7 @@ export default function Filter({
   // show selected dropdown and close others
   // fixing this later
   const onDropDown = (dropNo: any) => {
-    setDropDowns((prevDropDowns) => {
+    setDropDowns((prevDropDowns: any) => {
       const updatedDropDowns: any = {
         ...prevDropDowns,
         [dropNo]: !prevDropDowns[dropNo],
@@ -212,7 +212,7 @@ export default function Filter({
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box "
+                    className="dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box  "
                   >
                     {filterCategories?.map((i: any) => (
                       <li
@@ -262,15 +262,23 @@ export default function Filter({
               )} */}
             <div className="flex gap-4 flex-wrap flex-row">
               {filterTypes.map((i: any, index: any) => {
-                const dynamicLabel = filtersApplied.filter((j: any) => j === i);
+                const dynamicLabel = filtersApplied.filter(
+                  (j: any) => j?.type === i
+                );
                 return (
                   <button
                     onClick={() => onDropDown(i)}
-                    className="justify-between text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 hidden  tablet2:flex-1  tablet1:flex "
+                    className="justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
-                    {dynamicLabel.length > 0
-                      ? dynamicLabel?.map((k: any) => k)
-                      : i}
+                    {dynamicLabel.length > 0 ? (
+                      <div className=" flex justify-start items-center ">
+                        {dynamicLabel?.map((k: any) => (
+                          <span className="text-xs">{k?.title},&nbsp;</span>
+                        ))}
+                      </div>
+                    ) : (
+                      i
+                    )}
                     <RxTriangleDown size={20} className="" />
                   </button>
                 );
@@ -298,7 +306,7 @@ export default function Filter({
           <div className="mt-4 flex w-full justify-end gap-4">
             <button
               onClick={onClickReset}
-              className="z-20 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
+              className="z-10 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
             >
               <VscDebugRestart size={20} />
               <span>Reset</span>
@@ -306,7 +314,7 @@ export default function Filter({
             <button
               onClick={onSearchClick}
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-              className={`z-20 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
+              className={`z-10 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
             >
               <ImSearch size={20} />
               <span>Search</span>
