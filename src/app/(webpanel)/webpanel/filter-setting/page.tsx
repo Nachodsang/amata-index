@@ -97,6 +97,7 @@ export default function FilterSettingPage() {
             checkBox={false}
             onChange={setCategoryState}
             selected={null}
+            category=""
           />
         </div>
         <div className="text-start text-xl text-slate-500">New Category</div>

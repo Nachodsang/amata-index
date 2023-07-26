@@ -98,6 +98,7 @@ export default function Table({
                         link={`${generalInfo?.profileUrl}`}
                         order={edition}
                         type={type}
+                        industry={generalInfo?.industry}
                       />
                     );
                   })}
@@ -178,6 +179,7 @@ export default function Table({
                         onChangeOrder={onChangeOrder}
                         onChange={onChange}
                         key={_id}
+                        _id={_id}
                         index={index + 1}
                         title={bannerTitle || adTitle}
                         date={localDate}
@@ -188,6 +190,7 @@ export default function Table({
                         link={link}
                         order={edition}
                         type={type}
+                        onDelete={onDelete}
                       />
                     );
                   })}

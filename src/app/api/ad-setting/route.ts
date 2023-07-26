@@ -1,4 +1,10 @@
-import { editAd, getAd, setAd } from "@/service/adSettingService";
+import {
+  deleteAd,
+  editAd,
+  getAd,
+  setAd,
+  softDeleteAd,
+} from "@/service/adSettingService";
 import { NextResponse } from "next/server";
 
 export async function GET() {
@@ -22,13 +28,21 @@ export async function POST(req: Request) {
 
 export async function PUT(req: Request) {
   const response = await req.json();
-
-  return NextResponse.json(
-    await editAd(
-      response.filterCat,
-      response.filterValue,
-      response.updatingField,
-      response.newValue
-    )
-  );
+  const filterBy = "_id";
+  if (response.type === "status" || response.type === "order") {
+    return NextResponse.json(
+      await editAd(
+        response.filterCat,
+        response.filterValue,
+        response.updatingField,
+        response.newValue
+      )
+    );
+  } else if (response.type === "delete") {
+    return NextResponse.json(
+      await softDeleteAd(filterBy, response.filterValue, response.newValue)
+    );
+  } else if (response.type === "deleteF") {
+    return NextResponse.json(await deleteAd(response?._id));
+  }
 }

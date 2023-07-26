@@ -2,7 +2,7 @@
 import BounceLoader from "react-spinners/BounceLoader";
 
 import _, { divide } from "lodash";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Search from "@/components/webpanel/Search/Search";
 import Table from "@/components/webpanel/Table/Table";
 import axios from "axios";
@@ -11,13 +11,25 @@ import Swal from "sweetalert2";
 import { HiStatusOnline } from "react-icons/hi";
 import { ImBin } from "react-icons/im";
 import { FaClipboardList } from "react-icons/fa";
+import { FilterContext } from "@/contexts/FilterContext";
+import { MdCreateNewFolder } from "react-icons/md";
+import DropDown from "@/components/webpanel/DropDown/DropDown";
 export default function CompanyProfile() {
+  const { filtersState }: any = useContext(FilterContext);
+  const [typeState, setTypeState] = useState("ALL TYPE");
   const [showDeleted, setShowDeleted] = useState(false);
   const [companyList, setCompanyList] = useState([] as any);
   const [searchState, setSearchState] = useState("");
   const [loading, setLoading] = useState(true);
   const [showOnline, setShowOnline] = useState(false);
   const [initialCompanyList, setInitialCompanyList] = useState([] as any);
+  //  Categories Array
+  const uniqueFilterCategories = new Set(
+    filtersState.map((i: any) => i?.filterCategory)
+  );
+  const filterCategories = Array.from(uniqueFilterCategories);
+  filterCategories.unshift("ALL TYPE");
+
   const fetchCompany = async () => {
     const response = await axios.get(
       "http://localhost:3000/api/company-setting"
@@ -84,7 +96,7 @@ export default function CompanyProfile() {
     }
   };
 
-  const onSoftDelete = async (id: string, newStatus: boolean) => {
+  const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {
       const response = await axios.put(
         "http://localhost:3000/api/company-setting",
@@ -96,22 +108,45 @@ export default function CompanyProfile() {
           type: "delete",
         }
       );
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "Item Removed Please refresh the page",
-        showConfirmButton: true,
-        timer: 1500,
-      });
     } catch (err) {
       console.log(err);
     }
   };
+
+  const onSoftDelete = (id: string, newStatus: boolean, isRestore: boolean) => {
+    if (!isRestore) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#64748B",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onMoveItemToRecycleBin(id, newStatus);
+          Swal.fire("Deleted!", "Item has been removed.", "success");
+        }
+      });
+    } else {
+      onMoveItemToRecycleBin(id, newStatus);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Item Restored, Please refresh the page",
+        showConfirmButton: true,
+        timer: 1500,
+      });
+    }
+  };
+
   useEffect(() => {
     showDeleted ? fetchDeletedCompany() : fetchCompany();
   }, [showDeleted]);
   useEffect(() => {
     fetchCompany();
+    setTypeState("");
   }, [showOnline]);
   useEffect(() => {
     searchState.length === 0 && !showDeleted
@@ -130,6 +165,25 @@ export default function CompanyProfile() {
       ? setCompanyList(initialCompanyList)
       : setCompanyList(initialCompanyList?.filter((i: any) => i.status));
   }, [initialCompanyList]);
+  useEffect(() => {
+    if (typeState !== "ALL TYPE") {
+      showOnline
+        ? setCompanyList(
+            initialCompanyList?.filter(
+              (i: any) => i?.generalInfo?.industry === typeState && i?.status
+            )
+          )
+        : setCompanyList(
+            initialCompanyList?.filter(
+              (i: any) => i?.generalInfo?.industry === typeState
+            )
+          );
+    } else {
+      showOnline
+        ? setCompanyList(initialCompanyList?.filter((i: any) => i?.status))
+        : setCompanyList(initialCompanyList);
+    }
+  }, [typeState]);
   return (
     <div className="bg-white rounded-xl min-h-[100vh] ">
       {/* container */}
@@ -143,7 +197,7 @@ export default function CompanyProfile() {
           {!showDeleted ? "Company List" : "Recycle Bin"}
           {companyList.length > 0 && (
             <span
-              className={`${showOnline ? "text-green-400" : "text-slate-500"}`}
+              className={`${showOnline ? "text-green-400" : "text-slate-300"}`}
             >
               ({companyList.length})
             </span>
@@ -160,46 +214,64 @@ export default function CompanyProfile() {
           </div>
           {/* Create new company profile */}
         </div>
-        <Link href="/webpanel/company/new">
-          <button
-            type="button"
-            className="inline-block rounded-full border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-            data-te-ripple-init
-          >
-            Create New Profile
-          </button>
-        </Link>
-        <div className="w-full gap-4  flex justify-end">
-          {!showDeleted && (
+
+        <div className="w-full bg-slate-100/40 py-4 rounded-xl   flex justify-between">
+          <Link href="/webpanel/company/new">
+            <button
+              type="button"
+              className="shadow-lg gap-2 items-center rounded-md flex  border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:border-primary-600 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 focus:outline-none focus:ring-0 active:border-primary-700 active:text-primary-700 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+              data-te-ripple-init
+            >
+              <MdCreateNewFolder size={20} />
+              Create New Profile
+            </button>
+          </Link>
+          <div className="flex gap-[2px]">
+            <DropDown
+              filterList={filterCategories}
+              title={typeState || "ALL TYPE"}
+              checkBox={false}
+              type="dropdown"
+              onChange={setTypeState}
+              selected={undefined}
+              edit={undefined}
+              category={undefined} // onChange: any
+              // selected: any
+              // edit: any
+              // category: any;
+            />
+            {!showDeleted && (
+              <button
+                onClick={() => {
+                  setShowOnline(!showOnline);
+                }}
+                className={`${
+                  showOnline ? "bg-green-300" : "bg-slate-500"
+                } flex items-center gap-1 rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all shadow-md`}
+              >
+                <HiStatusOnline size={20} /> <h1>Online</h1>
+              </button>
+            )}
+
             <button
               onClick={() => {
-                setShowOnline(!showOnline);
+                setShowDeleted(!showDeleted);
               }}
               className={`${
-                showOnline ? "bg-green-300" : "bg-slate-500"
-              } flex items-center gap-1 rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all shadow-md`}
+                showDeleted ? "bg-red-300" : "bg-slate-500"
+              } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
             >
-              <HiStatusOnline size={30} /> <h1>Online</h1>
+              <ImBin size={20} /> <h1>Recycle Bin</h1>
             </button>
-          )}
-          <button
-            onClick={() => {
-              setShowDeleted(!showDeleted);
-            }}
-            className={`${
-              showDeleted ? "bg-red-300" : "bg-slate-500"
-            } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
-          >
-            <ImBin size={25} /> <h1>Recycle Bin</h1>
-          </button>
+          </div>
         </div>
         {!loading && !showDeleted ? (
           <Table
             recycle={false}
             list={companyList}
             type="company"
-            col2="company"
-            col3=""
+            col2="Factory / Machine"
+            col3="Type"
             col4="Last Edited"
             col5="Actions"
             onChange={onChangeStatus}
@@ -210,8 +282,8 @@ export default function CompanyProfile() {
             recycle={true}
             list={companyList}
             type="company"
-            col2="company"
-            col3=""
+            col2="Factory / Machine"
+            col3="Type"
             col4="Last Edited"
             col5="Actions"
             onChange={onChangeStatus}

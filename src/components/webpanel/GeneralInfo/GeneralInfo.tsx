@@ -478,6 +478,7 @@ export default function GeneralInfo({
             </div>
             <div className="w-[30%]">
               <DropDown
+                category=""
                 edit={edit}
                 selected={null}
                 title={generalInfoState?.industry || "Industry"}
@@ -494,6 +495,7 @@ export default function GeneralInfo({
             </div>
             <div className="w-[30%]">
               <DropDown
+                category=""
                 edit={edit}
                 selected={null}
                 title={generalInfoState?.nationality || "Nationality"}

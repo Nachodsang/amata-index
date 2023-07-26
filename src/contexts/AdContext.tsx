@@ -71,6 +71,7 @@ export default function AdProvider({ children, adsPage }: any) {
         filterValue: title,
         updatingField: "status",
         newValue: newStatus,
+        type: "status",
       });
     } catch (err) {}
   };
@@ -82,6 +83,7 @@ export default function AdProvider({ children, adsPage }: any) {
         filterValue: title,
         updatingField: "edition",
         newValue: newOrder,
+        type: "order",
       });
       Swal.fire({
         position: "center",

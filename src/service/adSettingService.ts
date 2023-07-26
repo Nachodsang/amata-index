@@ -49,3 +49,38 @@ export const editAd = async (
     return err;
   }
 };
+
+export const softDeleteAd = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { deleted: newValue };
+
+  try {
+    //
+    const doc = await adSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
+
+export const deleteAd = async (_id: any) => {
+  try {
+    //
+    console.log("service", _id);
+    const doc = await adSettingModel.findByIdAndDelete(_id);
+
+    //
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

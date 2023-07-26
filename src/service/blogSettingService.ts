@@ -97,3 +97,17 @@ export const softDeleteBlog = async (
     return err;
   }
 };
+
+export const deleteBlog = async (_id: any) => {
+  try {
+    //
+    console.log("service", _id);
+    const doc = await blogSettingModel.findByIdAndDelete(_id);
+
+    //
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

@@ -8,6 +8,8 @@ import { AdContext } from "@/contexts/AdContext";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import _ from "lodash";
 import { BounceLoader } from "react-spinners";
+import { ImBin } from "react-icons/im";
+import Swal from "sweetalert2";
 export default function AdList() {
   const {
     ads: a,
@@ -19,7 +21,7 @@ export default function AdList() {
   const { pageSetting, updatePageSetting, pageSettingWebpanel }: any =
     useContext(PageSettingContext);
   const [numberOfAd, setNumberOfAd] = useState(pageSettingWebpanel?.adAmount);
-
+  const [showDeleted, setShowDeleted] = useState(false);
   const [adListState, setAdListState] = useState([] as any);
   const [loading, setLoading] = useState(true);
   const [searchState, setSearchState] = useState("");
@@ -30,12 +32,53 @@ export default function AdList() {
     const dateB = new Date(b.updatedAt);
     return dateB.getTime() - dateA.getTime();
   });
+  const fetchDeletedAd = async () => {
+    const response = await axios.get("http://localhost:3000/api/ad-setting");
 
-  // const ads = a.sort((a: any, b: any) => b.updatedAt - a.updatedAt);
-  // console.log(a);
-  // console.log(ads);
-  // console.log(ads2);
-  // search ads.
+    const data = response?.data?.filter((i: any) => i?.deleted);
+    setAdListState(data);
+  };
+  const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
+    try {
+      const response = await axios.put("http://localhost:3000/api/ad-setting", {
+        // filterCat: "_id",
+        filterValue: id,
+        // updatingField: "status",
+        newValue: newStatus,
+        type: "delete",
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onSoftDelete = (id: string, newStatus: boolean, isRestore: boolean) => {
+    if (!isRestore) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#64748B",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onMoveItemToRecycleBin(id, newStatus);
+          Swal.fire("Deleted!", "Item has been removed.", "success");
+        }
+      });
+    } else {
+      onMoveItemToRecycleBin(id, newStatus);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Item Restored, Please refresh the page",
+        showConfirmButton: true,
+        timer: 1500,
+      });
+    }
+  };
   const onClickSearch = () => {
     const filteredList = _.filter(ads, (i: any) => {
       return (
@@ -49,20 +92,29 @@ export default function AdList() {
       : setAdListState(filteredList.filter((i: any) => i.status));
   };
   useEffect(() => {
-    fetchAd();
+    // fetchAd();
+    setShowDeleted(false);
   }, [showOnline]);
   useEffect(() => {
     !showOnline
-      ? setAdListState(ads)
-      : setAdListState(ads.filter((i: any) => i.status));
+      ? setAdListState(ads?.filter((i: any) => !i?.deleted))
+      : setAdListState(ads?.filter((i: any) => i.status));
 
     setLoading(false);
   }, [ads]);
+
   useEffect(() => {
     searchState.length === 0 && setAdListState(ads);
     // show online to false
     searchState.length === 0 && setShowOnline(false);
   }, [searchState]);
+  useEffect(() => {
+    // !showDeleted
+    //   ? setAdListState(ads?.filter((i: any) => !i?.deleted))
+    //   : setAdListState(ads?.filter((i: any) => i?.deleted));
+    setShowOnline(false);
+    !showDeleted ? fetchAd() : fetchDeletedAd();
+  }, [showDeleted]);
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
@@ -114,16 +166,28 @@ export default function AdList() {
             Create New Ad.
           </button>
         </Link>
-        <div className="w-full  flex justify-end">
+        <div className="w-full  flex justify-end gap-[2px]">
+          {!showDeleted && (
+            <button
+              onClick={() => {
+                setShowOnline(!showOnline);
+              }}
+              className={`${
+                showOnline ? "bg-green-300" : "bg-slate-500"
+              } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+            >
+              Online
+            </button>
+          )}
           <button
             onClick={() => {
-              setShowOnline(!showOnline);
+              setShowDeleted(!showDeleted);
             }}
             className={`${
-              showOnline ? "bg-green-300" : "bg-slate-500"
-            } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+              showDeleted ? "bg-red-300" : "bg-slate-500"
+            } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
           >
-            Online
+            <ImBin size={20} /> <h1>Recycle Bin</h1>
           </button>
         </div>
         {!loading ? (
@@ -135,6 +199,7 @@ export default function AdList() {
             col3="client"
             col4="description"
             col5="created on"
+            onDelete={onSoftDelete}
           />
         ) : (
           <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
