@@ -7,7 +7,7 @@ import Blog from "../../../components/index/Blog/Blog";
 import AdSection from "@/components/index/AdSection/AdSection";
 import axios from "axios";
 
-export default function about() {
+export default function About() {
   const [search, setSearch] = useState("");
   const [categoryState, setCategoryState] = useState("");
   const [clearFilter, setClearFilter] = useState(false);

@@ -1,5 +1,4 @@
 "use client";
-// import Editor from "@/components/webpanel/editor";
 import QuillEditor from "@/components/webpanel/QuillEditor2/quillEditor";
 import { SyntheticEvent, useEffect, useState } from "react";
 import Image from "next/image";

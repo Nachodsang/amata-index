@@ -8,7 +8,7 @@ import { mock } from "node:test";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { AdContext } from "@/contexts/AdContext";
 import { CompanyContext } from "@/contexts/CompanyContext";
-export default function core({
+export default function Core({
   category,
   filters,
 }: // companyList,

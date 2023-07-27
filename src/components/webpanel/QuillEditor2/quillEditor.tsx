@@ -24,7 +24,7 @@ const QuillEditor = ({ returnOnchangeContent, contentInit }: any) => {
   ];
 
   // quill zone
-  const { quill, quillRef } = useQuill({
+  const { quill, quillRef }: any = useQuill({
     modules: {
       toolbar: toolbarOptions,
     },

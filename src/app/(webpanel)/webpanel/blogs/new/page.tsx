@@ -13,7 +13,7 @@ import axios from "axios";
 import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
 import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo.tsx/BlogDetailsInfo";
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
-export default function addBlog() {
+export default function AddBlog() {
   const [blogState, setBlogState] = useState({});
 
   const addBlog = async () => {

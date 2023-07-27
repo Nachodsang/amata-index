@@ -52,6 +52,18 @@ export default function Entry({
       body: JSON.stringify({ _id: _id, type: "deleteF" }),
     });
   };
+  const onDeleteAdFromDb = async () => {
+    const response = fetch("http://localhost:3000/api/ad-setting", {
+      method: "PUT",
+      body: JSON.stringify({ _id: _id, type: "deleteF" }),
+    });
+  };
+  const onDeleteBannerFromDb = async () => {
+    const response = fetch("http://localhost:3000/api/banner-setting", {
+      method: "PUT",
+      body: JSON.stringify({ _id: _id, type: "deleteF" }),
+    });
+  };
 
   const OnClickDeleteFromDb = () => {
     type === "company"
@@ -84,6 +96,36 @@ export default function Entry({
             Swal.fire("Deleted!", "Item has been deleted.", "success");
           }
         })
+      : type === "ad"
+      ? Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#64748B",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            onDeleteAdFromDb();
+            Swal.fire("Deleted!", "Item has been deleted.", "success");
+          }
+        })
+      : type === "banner"
+      ? Swal.fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#d33",
+          cancelButtonColor: "#64748B",
+          confirmButtonText: "Yes, delete it!",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            onDeleteBannerFromDb();
+            Swal.fire("Deleted!", "Item has been deleted.", "success");
+          }
+        })
       : "";
   };
   return (
@@ -106,8 +148,8 @@ export default function Entry({
                 ? "h-[50px] w-[175px] "
                 : type === "blog"
                 ? "h-[100px] w-[180px] "
-                : "h-[150px] w-[150px]"
-            } object-cover`}
+                : "h-[75px] w-[75px]"
+            } object-cover shadow-xl`}
             alt="Ad image"
           />
           {type === "company" ? (
@@ -249,7 +291,7 @@ export default function Entry({
             </h1>
           )}
           {/* shows order for type banner and ads */}
-          {isCheck && type !== "company" && type !== "blog" && (
+          {isCheck && !recycle && type !== "company" && type !== "blog" && (
             <div className="flex items-center gap-3">
               <label className="font-semibold text-slate-400">Order: </label>
               <input
@@ -259,7 +301,7 @@ export default function Entry({
                 value={orderState}
               />
               <button
-                className="rounded-md px-4 bg-green-300 text-white font-bold"
+                className="shadow-xl  rounded-md px-4 bg-green-300 text-white font-bold"
                 onClick={() => {
                   onChangeOrder(title, orderState);
                 }}
@@ -272,13 +314,32 @@ export default function Entry({
       }
       {type !== "company" && type !== "blog" && (
         <td>
-          <button
-            onClick={() => onDelete(_id, true, false)}
-            className="flex items-center gap-1 text-xs font-bold bg-red-300 rounded-md px-2 py-1 text-white"
-          >
-            <MdDeleteForever size={20} />
-            DELETE
-          </button>
+          {!recycle ? (
+            <button
+              onClick={() => onDelete(_id, true, false)}
+              className="shadow-xl flex items-center gap-1 text-xs font-bold bg-red-300 rounded-md px-2 py-1 text-white"
+            >
+              <MdDeleteForever size={20} />
+              DELETE
+            </button>
+          ) : (
+            <div className="flex flex-row items-center gap-[1px]">
+              <button
+                onClick={() => onDelete(_id, false, true)}
+                className="shadow-xl   flex items-center gap-1 text-xs font-bold bg-green-300 rounded-md px-2 py-1 text-white"
+              >
+                <MdDeleteForever size={20} />
+                RESTORE
+              </button>
+              <button
+                onClick={OnClickDeleteFromDb}
+                className="shadow-xl  flex items-center gap-1 text-xs font-bold bg-red-300 rounded-md px-2 py-1 text-white"
+              >
+                <MdDeleteForever size={20} />
+                DELETE FROM DATABASE
+              </button>
+            </div>
+          )}
         </td>
       )}
     </tr>

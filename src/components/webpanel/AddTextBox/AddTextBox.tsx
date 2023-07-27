@@ -94,6 +94,7 @@ export default function AddTextBox({
                 data-te-modal-body-ref
               >
                 <Input
+                  id=""
                   placeholder="title"
                   value={itemState?.title}
                   label="Title"
@@ -103,6 +104,7 @@ export default function AddTextBox({
                 />
 
                 <Input
+                  id=""
                   placeholder="link"
                   value={itemState?.link}
                   label="Link"

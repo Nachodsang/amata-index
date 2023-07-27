@@ -191,6 +191,7 @@ export default function Table({
                         order={edition}
                         type={type}
                         onDelete={onDelete}
+                        recycle={recycle}
                       />
                     );
                   })}

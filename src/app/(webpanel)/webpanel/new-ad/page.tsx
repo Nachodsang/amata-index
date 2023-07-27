@@ -94,11 +94,15 @@ export default function CreateNewAdPage() {
             label="Image URL"
             value={adState?.image}
             onChange={onSetImage}
+            placeholder=""
+            id=""
           />
           <Input
             label="Client"
             value={adState?.client}
             onChange={onSetClient}
+            placeholder=""
+            id=""
           />
 
           {/* Ad title */}
@@ -107,14 +111,24 @@ export default function CreateNewAdPage() {
             label="Ad Title"
             value={adState?.adTitle}
             onChange={onSetTitle}
+            placeholder=""
+            id=""
           />
 
           <Input
             label="Description"
             value={adState?.description}
             onChange={onSetDescription}
+            placeholder=""
+            id=""
           />
-          <Input label="Link" value={adState?.link} onChange={onSetLink} />
+          <Input
+            label="Link"
+            value={adState?.link}
+            onChange={onSetLink}
+            placeholder=""
+            id=""
+          />
           <div className="flex justify-end">
             <button
               onClick={onSaveAd}

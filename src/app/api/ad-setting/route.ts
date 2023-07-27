@@ -29,6 +29,7 @@ export async function POST(req: Request) {
 export async function PUT(req: Request) {
   const response = await req.json();
   const filterBy = "_id";
+
   if (response.type === "status" || response.type === "order") {
     return NextResponse.json(
       await editAd(

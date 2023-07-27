@@ -10,6 +10,8 @@ import _ from "lodash";
 import { BounceLoader } from "react-spinners";
 import { ImBin } from "react-icons/im";
 import Swal from "sweetalert2";
+import { HiStatusOnline } from "react-icons/hi";
+
 export default function AdList() {
   const {
     ads: a,
@@ -86,27 +88,43 @@ export default function AdList() {
         i?.client?.toLowerCase().includes(searchState.toLowerCase())
       );
     });
-
-    !showOnline
-      ? setAdListState(filteredList)
-      : setAdListState(filteredList.filter((i: any) => i.status));
+    if (!showOnline) {
+      !showDeleted
+        ? setAdListState(filteredList?.filter((i: any) => !i?.deleted))
+        : setAdListState(filteredList?.filter((i: any) => i?.deleted));
+    } else {
+      setAdListState(filteredList.filter((i: any) => i.status && !i?.deleted));
+    }
+    // !showOnline
+    //   ? setAdListState(filteredList)
+    //   : setAdListState(filteredList.filter((i: any) => i.status));
   };
   useEffect(() => {
     // fetchAd();
-    setShowDeleted(false);
-  }, [showOnline]);
+    // setShowDeleted(false);
+    if (showOnline) {
+      setAdListState(ads.filter((i: any) => i?.status && !i?.deleted));
+    } else {
+      !showDeleted
+        ? setAdListState(ads.filter((i: any) => !i?.deleted))
+        : setAdListState(ads.filter((i: any) => i?.deleted));
+    }
+  }, [showOnline, ads]);
   useEffect(() => {
-    !showOnline
-      ? setAdListState(ads?.filter((i: any) => !i?.deleted))
-      : setAdListState(ads?.filter((i: any) => i.status));
+    // !showOnline
+    //   ? setAdListState(ads?.filter((i: any) => !i?.deleted))
+    //   : setAdListState(ads?.filter((i: any) => i.status || !i?.deleted));
 
     setLoading(false);
   }, [ads]);
 
   useEffect(() => {
-    searchState.length === 0 && setAdListState(ads);
-    // show online to false
-    searchState.length === 0 && setShowOnline(false);
+    searchState.length === 0 && !showDeleted
+      ? fetchAd()
+      : searchState.length === 0 && showDeleted
+      ? fetchDeletedAd()
+      : "";
+    searchState.length === 0 && !showDeleted && setShowOnline(false);
   }, [searchState]);
   useEffect(() => {
     // !showDeleted
@@ -157,50 +175,69 @@ export default function AdList() {
           </div>
           {/* Create new company profile */}
         </div>
-        <Link href="/webpanel/new-ad">
-          <button
-            type="button"
-            className="hover:border-primary-600 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 active:border-primary-700 active:text-primary-700 inline-block rounded-full border-2 border-primary px-6 pb-[6px] pt-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 focus:outline-none focus:ring-0 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
-            data-te-ripple-init
-          >
-            Create New Ad.
-          </button>
-        </Link>
-        <div className="w-full  flex justify-end gap-[2px]">
-          {!showDeleted && (
+        <div className="flex items-center justify-between ">
+          <Link href="/webpanel/new-ad">
+            <button
+              type="button"
+              className="shadow-md rounded-md hover:border-primary-600 hover:text-primary-600 focus:border-primary-600 focus:text-primary-600 active:border-primary-700 active:text-primary-700 inline-block  border-2 border-primary px-2 text-xs font-medium uppercase leading-normal text-primary transition duration-150 ease-in-out hover:bg-neutral-500 hover:bg-opacity-10 focus:outline-none focus:ring-0 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10"
+              data-te-ripple-init
+            >
+              Create New Ad.
+            </button>
+          </Link>
+          <div className="w-full  flex justify-end gap-[2px]">
+            {!showDeleted && (
+              <button
+                onClick={() => {
+                  setShowOnline(!showOnline);
+                }}
+                className={`${
+                  showOnline ? "bg-green-300" : "bg-slate-500"
+                } flex items-center gap-1 rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+              >
+                <HiStatusOnline size={20} /> Online
+              </button>
+            )}
             <button
               onClick={() => {
-                setShowOnline(!showOnline);
+                setShowDeleted(!showDeleted);
               }}
               className={`${
-                showOnline ? "bg-green-300" : "bg-slate-500"
-              } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+                showDeleted ? "bg-red-300" : "bg-slate-500"
+              } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
             >
-              Online
+              <ImBin size={20} /> <h1>Recycle Bin</h1>
             </button>
-          )}
-          <button
-            onClick={() => {
-              setShowDeleted(!showDeleted);
-            }}
-            className={`${
-              showDeleted ? "bg-red-300" : "bg-slate-500"
-            } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
-          >
-            <ImBin size={20} /> <h1>Recycle Bin</h1>
-          </button>
+          </div>
         </div>
         {!loading ? (
-          <Table
-            onChangeOrder={changeOrder}
-            onChange={changeStatus}
-            list={adListState}
-            col2="image"
-            col3="client"
-            col4="description"
-            col5="created on"
-            onDelete={onSoftDelete}
-          />
+          !showDeleted ? (
+            <Table
+              onChangeOrder={changeOrder}
+              onChange={changeStatus}
+              list={adListState}
+              col2="Ads."
+              col3="client"
+              col4="description"
+              col5="created on"
+              onDelete={onSoftDelete}
+              recycle={false}
+              type="ad"
+            />
+          ) : (
+            <Table
+              onChangeOrder={changeOrder}
+              onChange={changeStatus}
+              list={adListState}
+              col2="Ads."
+              col3="client"
+              col4="description"
+              col5="created on"
+              onDelete={onSoftDelete}
+              recycle={true}
+              type="ad"
+            />
+          )
         ) : (
           <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
             <BounceLoader

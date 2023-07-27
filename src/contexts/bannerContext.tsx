@@ -75,6 +75,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
         filterValue: title,
         updatingField: "status",
         newValue: newStatus,
+        type: "status",
       });
     } catch (err) {}
   };
@@ -86,6 +87,7 @@ export default function BannerProvider({ children, bannerPage }: any) {
         filterValue: title,
         updatingField: "edition",
         newValue: newOrder,
+        type: "order",
       });
       Swal.fire({
         position: "center",

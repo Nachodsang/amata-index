@@ -7,6 +7,10 @@ import { useEffect, useState, useContext } from "react";
 import { BannerContext } from "@/contexts/bannerContext";
 import _ from "lodash";
 import { BounceLoader } from "react-spinners";
+import Swal from "sweetalert2";
+import { ImBin } from "react-icons/im";
+import { HiStatusOnline } from "react-icons/hi";
+
 export default function BannerList() {
   const [searchState, setSearchState] = useState("");
   const {
@@ -18,13 +22,65 @@ export default function BannerList() {
   const [bannerState, setBannerState] = useState([] as any);
   const [loading, setLoading] = useState(true);
   const [showOnline, setShowOnline] = useState(false);
+  const [showDeleted, setShowDeleted] = useState(false);
 
   const banners = b.sort((a: any, b: any) => {
     const dateA = new Date(a.updatedAt);
     const dateB = new Date(b.updatedAt);
     return dateB.getTime() - dateA.getTime();
   });
+  const fetchDeletedBanner = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/api/banner-setting"
+    );
 
+    const data = response?.data?.filter((i: any) => i?.deleted);
+    setBannerState(data);
+  };
+  const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
+    try {
+      const response = await axios.put(
+        "http://localhost:3000/api/banner-setting",
+        {
+          // filterCat: "_id",
+          filterValue: id,
+          // updatingField: "status",
+          newValue: newStatus,
+          type: "delete",
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const onSoftDelete = (id: string, newStatus: boolean, isRestore: boolean) => {
+    if (!isRestore) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#64748B",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          onMoveItemToRecycleBin(id, newStatus);
+          Swal.fire("Deleted!", "Item has been removed.", "success");
+        }
+      });
+    } else {
+      onMoveItemToRecycleBin(id, newStatus);
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Item Restored, Please refresh the page",
+        showConfirmButton: true,
+        timer: 1500,
+      });
+    }
+  };
   const onClickSearch = () => {
     const filteredList = _.filter(banners, (i: any) => {
       return (
@@ -33,9 +89,17 @@ export default function BannerList() {
       );
     });
 
-    !showOnline
-      ? setBannerState(filteredList)
-      : setBannerState(filteredList.filter((i: any) => i.status));
+    // !showOnline
+    //   ? setBannerState(filteredList)
+    //   : setBannerState(filteredList.filter((i: any) => i.status));
+
+    if (!showOnline) {
+      !showDeleted
+        ? setBannerState(filteredList?.filter((i: any) => !i?.deleted))
+        : setBannerState(filteredList?.filter((i: any) => i?.deleted));
+    } else {
+      setBannerState(filteredList.filter((i: any) => i.status && !i?.deleted));
+    }
   };
   useEffect(() => {
     fetchBanner();
@@ -46,16 +110,21 @@ export default function BannerList() {
     // or filter banner to show online only
     // then set loading to false
     !showOnline
-      ? setBannerState(banners)
-      : setBannerState(banners.filter((i: any) => i.status));
+      ? setBannerState(banners?.filter((i: any) => !i?.deleted))
+      : setBannerState(banners.filter((i: any) => i.status && !i?.deleted));
     setLoading(false);
   }, [banners]);
-
   useEffect(() => {
-    // when empty set state to initial list
-    searchState.length === 0 && setBannerState(banners);
-    // and show all without online filter
-    searchState.length === 0 && setShowOnline(false);
+    setShowOnline(false);
+    !showDeleted ? fetchBanner() : fetchDeletedBanner();
+  }, [showDeleted]);
+  useEffect(() => {
+    searchState.length === 0 && !showDeleted
+      ? fetchBanner()
+      : searchState.length === 0 && showDeleted
+      ? fetchDeletedBanner()
+      : "";
+    searchState.length === 0 && !showDeleted && setShowOnline(false);
   }, [searchState]);
   return (
     <div className="min-h-[100vh] rounded-xl bg-white ">
@@ -91,28 +160,59 @@ export default function BannerList() {
             Create New Banner
           </button>
         </Link>
-        <div className="w-full  flex justify-end">
+        <div className="w-full  flex justify-end gap-[2px]">
+          {!showDeleted && (
+            <button
+              onClick={() => {
+                setShowOnline(!showOnline);
+              }}
+              className={`${
+                showOnline ? "bg-green-300" : "bg-slate-500"
+              } flex items-center gap-1 rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+            >
+              <HiStatusOnline size={20} />
+              Online
+            </button>
+          )}
           <button
             onClick={() => {
-              setShowOnline(!showOnline);
+              setShowDeleted(!showDeleted);
             }}
             className={`${
-              showOnline ? "bg-green-300" : "bg-slate-500"
-            } rounded-md bg-green-300 text-white font-semibold px-4 py-2 transition-all`}
+              showDeleted ? "bg-red-300" : "bg-slate-500"
+            } rounded-md flex items-center gap-1 text-white font-semibold px-4 py-2 transition-all shadow-md`}
           >
-            Online
+            <ImBin size={20} /> <h1>Recycle Bin</h1>
           </button>
         </div>
         {!loading ? (
-          <Table
-            list={bannerState}
-            col2="banner"
-            col3="client"
-            col4="description"
-            col5="created on"
-            onChange={changeStatus}
-            onChangeOrder={changeOrder}
-          />
+          !showDeleted ? (
+            <Table
+              list={bannerState}
+              col2="banner"
+              col3="client"
+              col4="description"
+              col5="created on"
+              onChange={changeStatus}
+              onChangeOrder={changeOrder}
+              onDelete={onSoftDelete}
+              recycle={false}
+              type="banner"
+            />
+          ) : (
+            <Table
+              list={bannerState}
+              col2="banner"
+              col3="client"
+              col4="description"
+              col5="created on"
+              onChange={changeStatus}
+              onChangeOrder={changeOrder}
+              onDelete={onSoftDelete}
+              recycle={true}
+              type="banner"
+            />
+          )
         ) : (
           <div className=" absolute top-[40%] left-[50%] translate-x-[-50%] ">
             <BounceLoader

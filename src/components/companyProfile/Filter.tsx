@@ -22,8 +22,11 @@ export default function Filter({ companyData }: any) {
             <BsCheckLg size={25} />
             <p className="text-xl font-semibold ">Service in Thailand</p>
           </div> */}
-          {uniqueFilterTypes.map((i: any) => (
-            <div className="flex justify-start w-full items-center ">
+          {uniqueFilterTypes.map((i: any, index: any) => (
+            <div
+              key={index}
+              className="flex justify-start w-full items-center "
+            >
               <div className="w-[25%] flex items-center  gap-2 text-green-600">
                 <BsCheckLg size={25} />
                 <span className="text-lg font-semibold">{i}</span>

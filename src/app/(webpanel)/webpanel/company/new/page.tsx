@@ -11,7 +11,7 @@ import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
 import Swal from "sweetalert2";
-export default function addCompany() {
+export default function AddCompany() {
   const [companyState, setCompanyState] = useState(null);
   const [categoryState, setCategoryState] = useState("");
 

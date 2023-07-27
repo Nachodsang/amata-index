@@ -109,9 +109,9 @@ export default function Footer({ companyData, blogList }: any) {
             </div>
             <div className="m-auto flex w-full flex-col justify-start gap-1 py-4  px-10">
               {companyData?.contacts?.businessHour.map(
-                (i: any) =>
+                (i: any, index: any) =>
                   i?.status && (
-                    <div className="flex justify-between ">
+                    <div key={index} className="flex justify-between key={index} ">
                       <span className="font-semibold text-slate-500">
                         {i?.day}
                       </span>

@@ -411,7 +411,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex flex-col items-start">
             <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Google Map (set width="100%")
+              Google Map (set width=&quot;100%&quot;)
             </label>
             <textarea
               value={contactInfoState?.googleMap}

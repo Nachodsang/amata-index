@@ -4,7 +4,7 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { useContext } from "react";
 import { CompanyContext } from "@/contexts/CompanyContext";
 
-export default function blog({ category }: { category: string }) {
+export default function Blog({ category }: { category: string }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { blogData }: any = useContext(CompanyContext);
 
