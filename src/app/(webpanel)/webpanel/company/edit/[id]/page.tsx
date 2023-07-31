@@ -54,7 +54,7 @@ export default function EditCompanyPage({
         timer: 3000,
       });
     } catch (err) {
-      console.log(err);
+      err;
       Swal.fire({
         position: "center",
         icon: "error",
@@ -64,7 +64,7 @@ export default function EditCompanyPage({
       });
     }
   };
-  // console.log(companyState);
+  // (companyState);
 
   return (
     <div className="">

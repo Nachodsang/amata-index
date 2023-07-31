@@ -92,7 +92,7 @@ export default function CompanyProfile() {
         }
       );
     } catch (err) {
-      console.log(err);
+      err;
     }
   };
 
@@ -109,7 +109,7 @@ export default function CompanyProfile() {
         }
       );
     } catch (err) {
-      console.log(err);
+      err;
     }
   };
 

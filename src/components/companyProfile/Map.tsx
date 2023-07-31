@@ -9,8 +9,8 @@ export default function Map({ companyData }: any) {
     // companyData?.contacts?.googleMap ??
     setMapState(companyData?.contacts?.googleMap);
   }, [companyData?.contacts?.googleMap]);
-  //   console.log(mapState);
-  //   console.log(companyData?.contacts?.googleMap);
+  //   (mapState);
+  //   (companyData?.contacts?.googleMap);
   return (
     <div className="pb-40 w-full">
       <div className="max-w-[1440px] px-4 mx-auto  ">

@@ -23,11 +23,11 @@ export const addBlog = async (req: IblogSetting) => {
   let status: any = "";
   try {
     await blogSetting.save();
-    console.log(req);
-    console.log(blogSetting);
+    req;
+    blogSetting;
     return { status: "200", message: "complete", addedValue: blogSetting };
   } catch (err) {
-    console.log("error");
+    ("error");
     return (status = err);
   }
 };
@@ -100,11 +100,7 @@ export const softDeleteBlog = async (
 
 export const deleteBlog = async (_id: any) => {
   try {
-    //
-    console.log("service", _id);
     const doc = await blogSettingModel.findByIdAndDelete(_id);
-
-    //
 
     return { status: "200", message: "complete", updatedObj: doc };
   } catch (err) {

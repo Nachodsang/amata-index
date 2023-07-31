@@ -36,10 +36,10 @@ export default function DetailsInfo({ state, setState, edit, content }: any) {
   };
   useEffect(() => {
     edit && setDetailsState(state?.details);
-    console.log("yyyy");
-    console.log(state);
+    ("yyyy");
+    state;
   }, [state]);
-  console.log(detailsState);
+  detailsState;
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">

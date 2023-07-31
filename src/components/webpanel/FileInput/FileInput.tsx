@@ -30,7 +30,7 @@ export default function FileInput({
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!file && !singleFile) {
-      console.log("no file");
+      ("no file");
       return;
     } else if (multiple) {
       let images = [];
@@ -71,7 +71,7 @@ export default function FileInput({
           // Handle errors here
           console.error(e);
         }
-        console.log(images);
+        images;
         objectState
           ? setState({ ...state, [stateValue]: images })
           : setState([...state, ...images]);
@@ -117,7 +117,7 @@ export default function FileInput({
       }
     }
   };
-  console.log(state);
+  state;
   return (
     <form onSubmit={onSubmit}>
       <input

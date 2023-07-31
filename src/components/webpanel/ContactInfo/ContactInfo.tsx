@@ -101,28 +101,30 @@ export default function ContactInfo({ state, setState, edit }: any) {
     edit && state && setContactInfoState(state?.contacts);
   }, [state]);
 
-  useEffect(() => {
-    const telLInput = new Input(document.getElementById("tel"));
-    telLInput.update();
-    const smsInput = new Input(document.getElementById("sms"));
-    smsInput.update();
-    const emailInput = new Input(document.getElementById("email"));
-    emailInput.update();
-    const websiteInput = new Input(document.getElementById("website"));
-    websiteInput.update();
-    const facebookInput = new Input(document.getElementById("facebook"));
-    facebookInput.update();
-    const lineInput = new Input(document.getElementById("line"));
-    lineInput.update();
-    const tambonInput = new Input(document.getElementById("tambon"));
-    tambonInput.update();
-    const districtInput = new Input(document.getElementById("district"));
-    districtInput.update();
-    const provinceInput = new Input(document.getElementById("province"));
-    provinceInput.update();
-    const postcodeInput = new Input(document.getElementById("postcode"));
-    postcodeInput.update();
-  }, [contactInfoState]);
+  // useEffect(() => {
+  //   if (edit && typeof document !== "undefined") {
+  //     const telLInput = new Input(document.getElementById("tel"));
+  //     telLInput.update();
+  //     const smsInput = new Input(document.getElementById("sms"));
+  //     smsInput.update();
+  //     const emailInput = new Input(document.getElementById("email"));
+  //     emailInput.update();
+  //     const websiteInput = new Input(document.getElementById("website"));
+  //     websiteInput.update();
+  //     const facebookInput = new Input(document.getElementById("facebook"));
+  //     facebookInput.update();
+  //     const lineInput = new Input(document.getElementById("line"));
+  //     lineInput.update();
+  //     const tambonInput = new Input(document.getElementById("tambon"));
+  //     tambonInput.update();
+  //     const districtInput = new Input(document.getElementById("district"));
+  //     districtInput.update();
+  //     const provinceInput = new Input(document.getElementById("province"));
+  //     provinceInput.update();
+  //     const postcodeInput = new Input(document.getElementById("postcode"));
+  //     postcodeInput.update();
+  //   }
+  // }, [contactInfoState]);
 
   return (
     <div className="flex w-full flex-col rounded-md border border-slate-300  bg-white p-4 shadow-sm">

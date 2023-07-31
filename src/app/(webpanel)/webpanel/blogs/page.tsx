@@ -45,7 +45,7 @@ export default function BlogList() {
         })
         .filter((i: any) => i?.deleted === false)
     );
-    // console.log(data?.blogSetting);
+    // (data?.blogSetting);
   };
   const fetchDeletedBlog = async () => {
     const response = await axios.get("http://localhost:3000/api/blogs");
@@ -72,7 +72,7 @@ export default function BlogList() {
         type: "status",
       });
     } catch (err) {
-      console.log(err);
+      err;
     }
   };
   // const onSoftDelete = async (id: string, newStatus: boolean) => {
@@ -92,7 +92,7 @@ export default function BlogList() {
   //       timer: 1500,
   //     });
   //   } catch (err) {
-  //     console.log(err);
+  //     (err);
   //   }
   // };
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
@@ -105,7 +105,7 @@ export default function BlogList() {
         type: "delete",
       });
     } catch (err) {
-      console.log(err);
+      err;
     }
   };
 

@@ -25,9 +25,9 @@ export default function Core({
   const onCompanies = companyList.filter((i: any) => i?.status && !i?.deleted);
 
   const [listState, setListState] = useState(onCompanies);
-  // console.log(onCompanies);
+  // (onCompanies);
   useEffect(() => {
-    console.log("in Filter");
+    ("in Filter");
     if (!filters?.category) {
       !filters?.search
         ? setListState(onCompanies)
@@ -103,8 +103,8 @@ export default function Core({
     //       )
     //     );
   }, [filters]);
-  console.log(filters);
-  console.log(listState);
+  filters;
+  listState;
   return (
     <div
       className={`  px-6`}

@@ -287,28 +287,30 @@ export default function GeneralInfo({
   useEffect(() => {
     setCategoryState(generalInfoState?.industry);
   }, [generalInfoState?.industry]);
-  useEffect(() => {
-    const videoURLInput = new Input(document.getElementById("videoURL"));
-    videoURLInput.update();
-    const profileUrlInput = new Input(document.getElementById("profileURL"));
-    profileUrlInput.update();
-    const companyNameEnInput = new Input(
-      document.getElementById("companyNameEn")
-    );
-    companyNameEnInput.update();
-    const companyNameThInput = new Input(
-      document.getElementById("companyNameTh")
-    );
-    companyNameThInput.update();
-    const companyNameJpInput = new Input(
-      document.getElementById("companyNameJp")
-    );
-    companyNameJpInput.update();
-    const companyNameCnInput = new Input(
-      document.getElementById("companyNameCn")
-    );
-    companyNameCnInput.update();
-  }, [generalInfoState]);
+  // useEffect(() => {
+  //   if (edit && typeof document !== "undefined") {
+  //     const videoURLInput = new Input(document.getElementById("videoURL"));
+  //     videoURLInput.update();
+  //     const profileUrlInput = new Input(document.getElementById("profileURL"));
+  //     profileUrlInput.update();
+  //     const companyNameEnInput = new Input(
+  //       document.getElementById("companyNameEn")
+  //     );
+  //     companyNameEnInput.update();
+  //     const companyNameThInput = new Input(
+  //       document.getElementById("companyNameTh")
+  //     );
+  //     companyNameThInput.update();
+  //     const companyNameJpInput = new Input(
+  //       document.getElementById("companyNameJp")
+  //     );
+  //     companyNameJpInput.update();
+  //     const companyNameCnInput = new Input(
+  //       document.getElementById("companyNameCn")
+  //     );
+  //     companyNameCnInput.update();
+  //   }
+  // }, [generalInfoState]);
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">

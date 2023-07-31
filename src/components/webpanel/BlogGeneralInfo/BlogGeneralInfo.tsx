@@ -86,25 +86,25 @@ export default function BlogGeneralInfo({
     edit && state && setGeneralInfoState(state?.generalInfo);
   }, [state]);
 
-  useEffect(() => {
-    const blogTitleInput = new Input(document.getElementById("blogTitle"));
-    blogTitleInput.update();
-    // const companyInput = new Input(document.getElementById("company"));
-    // companyInput.update();
-    const typeInput = new Input(document.getElementById("type"));
-    typeInput.update();
-    const blogUrlInput = new Input(document.getElementById("blogUrl"));
-    blogUrlInput.update();
-    // initial as input type
-    const companyReviewInput = new Input(
-      document.getElementById("companyReview")
-    );
-    companyReviewInput.update();
-    // const industryInput = new Input(document.getElementById("industry"));
-    // industryInput.update();
-    const languageInput = new Input(document.getElementById("language"));
-    languageInput.update();
-  }, [generalInfoState]);
+  // useEffect(() => {
+  //   const blogTitleInput = new Input(document.getElementById("blogTitle"));
+  //   blogTitleInput.update();
+  //   // const companyInput = new Input(document.getElementById("company"));
+  //   // companyInput.update();
+  //   const typeInput = new Input(document.getElementById("type"));
+  //   typeInput.update();
+  //   const blogUrlInput = new Input(document.getElementById("blogUrl"));
+  //   blogUrlInput.update();
+  //   // initial as input type
+  //   const companyReviewInput = new Input(
+  //     document.getElementById("companyReview")
+  //   );
+  //   companyReviewInput.update();
+  //   // const industryInput = new Input(document.getElementById("industry"));
+  //   // industryInput.update();
+  //   const languageInput = new Input(document.getElementById("language"));
+  //   languageInput.update();
+  // }, [generalInfoState]);
   useEffect(() => {
     fetchCompany();
   }, []);

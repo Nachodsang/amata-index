@@ -47,10 +47,10 @@ export async function PUT(req: Request) {
 }
 
 // export async function DELETE(req: Request) {
-//   console.log(req);
+//   (req);
 //   const response = await req.json();
 //   //
-//   console.log("route", response?._id);
+//   ("route", response?._id);
 
 //   return NextResponse.json(await deleteCompany(response?._id));
 // }

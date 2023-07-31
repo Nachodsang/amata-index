@@ -105,7 +105,7 @@ export const softDeleteCompany = async (
 export const deleteCompany = async (_id: any) => {
   try {
     //
-    console.log("service", _id);
+
     const doc = await companySettingModel.findByIdAndDelete(_id);
 
     //

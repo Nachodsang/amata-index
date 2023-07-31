@@ -52,8 +52,8 @@ export async function PUT(req: Request) {
       await softDeleteBanner(filterBy, response.filterValue, response.newValue)
     );
   } else if (response.type === "deleteF") {
-    console.log(response);
-    console.log("route", response._id);
+    response;
+
     return NextResponse.json(await deleteBanner(response?._id));
   }
 }

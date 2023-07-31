@@ -17,38 +17,38 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
     const [modelEditorContent, setModelEditorContent] = useState<any>();
 
     const returnOnchangeContent = (content: string) => {
-      // console.log(content);
+      // (content);
       if (modelEditor) {
         setModelEditorContent(content);
-        // console.log(b);
+        // (b);
       }
     };
     useEffect(() => {
       // !isStop && edit && setModel(state?.content);
-      // console.log("set model");
-      // console.log(state?.content?.grid?.length);
-      // console.log(!isStop);
-      // console.log(edit);
+      // ("set model");
+      // (state?.content?.grid?.length);
+      // (!isStop);
+      // (edit);
       if (!isStop && edit && state?.content?.grid?.length > 0) {
         setModel(state?.content);
-        // console.log("set model2");
+        // ("set model2");
         setIsStop(true);
       }
 
-      // console.log("xxxx");
-      // console.log(state);
+      // ("xxxx");
+      // (state);
     }, [state]);
     useEffect(() => {
       if (modelEditor) {
         let _model = { ...model };
-        console.log("editort");
+        ("editort");
 
         if (_model) {
           _model.grid[modelEditor.indexGrid].contents[
             modelEditor.indexContent
           ].contentHTML = modelEditorContent;
         }
-        // console.log(_model);
+        // (_model);
         setModel(_model);
       }
     }, [modelEditorContent]);
@@ -56,11 +56,11 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
     useEffect(() => {
       if (modelAdd) {
         let _model = { ...model };
-        console.log(_model);
+        _model;
         if (_model) {
           _model.grid?.push(modelAdd);
           setModel(_model);
-          console.log(_model);
+          _model;
         }
       }
     }, [modelAdd]);
@@ -138,14 +138,14 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
       indexGrid: number,
       indexContent: number
     ) => {
-      // console.log('uploadToClientImg');
+      // ('uploadToClientImg');
 
       if (event.target.files && event.target.files[0]) {
         const i = event.target.files[0];
         const json = await uploadToServer(i);
 
         const img_fileName = json.image;
-        // console.log(img_fileName);
+        // (img_fileName);
         let _model = { ...model };
         _model.grid[indexGrid].contents[indexContent].url = img_fileName;
         setModel(_model);
@@ -153,7 +153,7 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
     };
 
     useEffect(() => {
-      console.log("initTw");
+      ("initTw");
 
       document.getElementById("initTw")?.click();
       setState({ ...state, content: model });
@@ -273,9 +273,7 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
                                         indexContent
                                       ].show;
                                   }
-                                  console.log(
-                                    `indexGrid:${indexGrid},indexContent:${indexContent}`
-                                  );
+                                  `indexGrid:${indexGrid},indexContent:${indexContent}`;
                                   setModel(_model);
                                 }}
                               >

@@ -30,7 +30,6 @@ export default function Entry({
   const [orderState, setOrderState] = useState(order);
 
   const onCheck = () => {
-    console.log("checking", _id);
     type === "company" || type === "blog"
       ? onChange(_id, !isCheck)
       : onChange(title, !isCheck);

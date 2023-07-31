@@ -63,12 +63,12 @@ export default function BlogDetailsInfo({
 
     setDetailsState({ ...detailsState, tags: tagsArray });
   }, [tagState]);
-  useEffect(() => {
-    const facebookInput = new Input(document.getElementById("facebook"));
-    facebookInput.update();
-    const tagInput = new Input(document.getElementById("tags"));
-    tagInput.update();
-  }, [detailsState]);
+  // useEffect(() => {
+  //   const facebookInput = new Input(document.getElementById("facebook"));
+  //   facebookInput.update();
+  //   const tagInput = new Input(document.getElementById("tags"));
+  //   tagInput.update();
+  // }, [detailsState]);
   return (
     <div className="w-full bg-white border border-slate-300 shadow-sm rounded-md  flex flex-col p-4">
       <div className="flex justify-start border-b border-slate-300 py-2">

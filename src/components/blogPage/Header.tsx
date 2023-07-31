@@ -1,5 +1,5 @@
 export default function BlogBody({ blogData, pageSetting }: any) {
-  // console.log(blogData?.);
+  // (blogData?.);
   const localDate = `${new Date(blogData?.updatedAt)
     .getDate()
     .toString()

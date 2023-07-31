@@ -50,7 +50,7 @@ export default function BannerList() {
         }
       );
     } catch (err) {
-      console.log(err);
+      err;
     }
   };
 

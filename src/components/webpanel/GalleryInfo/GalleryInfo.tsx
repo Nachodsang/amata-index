@@ -8,7 +8,7 @@ export default function GalleryInfo({ state, setState, edit }: any) {
   const [selectedImage, setSelectedImage] = useState([]);
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
-      // console.log(Object.values(e.target.files));
+      // (Object.values(e.target.files));
       setSelectedImage(Object.values(e.target.files));
     }
   };

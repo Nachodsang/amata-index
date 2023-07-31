@@ -1,8 +1,6 @@
 "use client";
 import { useState } from "react";
-import InputGroup from "@/components/webpanel/InputGroup/InputGroup";
-import Input from "@/components/webpanel/Input/Input";
-import DropDown from "@/components/webpanel/DropDown/DropDown";
+
 import GeneralInfo from "@/components/webpanel/GeneralInfo/GeneralInfo";
 import FilterInfo from "@/components/webpanel/FilterInfo/FilterInfo";
 import DetailsInfo from "@/components/webpanel/DetailsInfo/DetailsInfo";
@@ -29,7 +27,7 @@ export default function AddCompany() {
         timer: 3000,
       });
     } catch (err) {
-      console.log(err);
+      err;
       Swal.fire({
         position: "center",
         icon: "error",

@@ -16,7 +16,7 @@ export default function AdList() {
   const {
     ads: a,
     changeStatus,
-    searchAd,
+    // searchAd,
     changeOrder,
     fetchAd,
   }: any = useContext(AdContext);
@@ -30,24 +30,37 @@ export default function AdList() {
   const [showOnline, setShowOnline] = useState(false);
 
   const ads = a.sort((a: any, b: any) => {
-    const dateA = new Date(a.updatedAt);
-    const dateB = new Date(b.updatedAt);
-    return dateB.getTime() - dateA.getTime();
+    const dateA = new Date(a?.updatedAt);
+    const dateB = new Date(b?.updatedAt);
+    return dateB?.getTime() - dateA?.getTime();
   });
   const fetchDeletedAd = async () => {
-    const response = await axios.get("http://localhost:3000/api/ad-setting");
+    try {
+      const response = await fetch("http://localhost:3000/api/ad-setting", {
+        method: "GET",
+        cache: "no-store",
+      });
 
-    const data = response?.data?.filter((i: any) => i?.deleted);
-    setAdListState(data);
+      const responseData = await response.json();
+
+      const data = responseData?.filter((i: any) => i?.deleted);
+      setAdListState(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
+
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {
-      const response = await axios.put("http://localhost:3000/api/ad-setting", {
-        // filterCat: "_id",
-        filterValue: id,
-        // updatingField: "status",
-        newValue: newStatus,
-        type: "delete",
+      const response = await fetch("http://localhost:3000/api/ad-setting", {
+        method: "PUT",
+        body: JSON.stringify({
+          // filterCat: "_id",
+          filterValue: id,
+          // updatingField: "status",
+          newValue: newStatus,
+          type: "delete",
+        }),
       });
     } catch (err) {
       console.log(err);
@@ -84,8 +97,8 @@ export default function AdList() {
   const onClickSearch = () => {
     const filteredList = _.filter(ads, (i: any) => {
       return (
-        i?.adTitle?.toLowerCase().includes(searchState.toLowerCase()) ||
-        i?.client?.toLowerCase().includes(searchState.toLowerCase())
+        i?.adTitle?.toLowerCase().includes(searchState?.toLowerCase()) ||
+        i?.client?.toLowerCase().includes(searchState?.toLowerCase())
       );
     });
     if (!showOnline) {
@@ -93,43 +106,31 @@ export default function AdList() {
         ? setAdListState(filteredList?.filter((i: any) => !i?.deleted))
         : setAdListState(filteredList?.filter((i: any) => i?.deleted));
     } else {
-      setAdListState(filteredList.filter((i: any) => i.status && !i?.deleted));
+      setAdListState(filteredList?.filter((i: any) => i.status && !i?.deleted));
     }
-    // !showOnline
-    //   ? setAdListState(filteredList)
-    //   : setAdListState(filteredList.filter((i: any) => i.status));
   };
   useEffect(() => {
-    // fetchAd();
-    // setShowDeleted(false);
     if (showOnline) {
-      setAdListState(ads.filter((i: any) => i?.status && !i?.deleted));
+      setAdListState(ads?.filter((i: any) => i?.status && !i?.deleted));
     } else {
       !showDeleted
-        ? setAdListState(ads.filter((i: any) => !i?.deleted))
-        : setAdListState(ads.filter((i: any) => i?.deleted));
+        ? setAdListState(ads?.filter((i: any) => !i?.deleted))
+        : setAdListState(ads?.filter((i: any) => i?.deleted));
     }
   }, [showOnline, ads]);
   useEffect(() => {
-    // !showOnline
-    //   ? setAdListState(ads?.filter((i: any) => !i?.deleted))
-    //   : setAdListState(ads?.filter((i: any) => i.status || !i?.deleted));
-
     setLoading(false);
   }, [ads]);
 
   useEffect(() => {
-    searchState.length === 0 && !showDeleted
+    searchState?.length === 0 && !showDeleted
       ? fetchAd()
-      : searchState.length === 0 && showDeleted
+      : searchState?.length === 0 && showDeleted
       ? fetchDeletedAd()
       : "";
-    searchState.length === 0 && !showDeleted && setShowOnline(false);
+    searchState?.length === 0 && !showDeleted && setShowOnline(false);
   }, [searchState]);
   useEffect(() => {
-    // !showDeleted
-    //   ? setAdListState(ads?.filter((i: any) => !i?.deleted))
-    //   : setAdListState(ads?.filter((i: any) => i?.deleted));
     setShowOnline(false);
     !showDeleted ? fetchAd() : fetchDeletedAd();
   }, [showDeleted]);
@@ -139,11 +140,11 @@ export default function AdList() {
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
         <h1 className="mb-4 text-center text-xl font-semibold  ">
           Ad. List{" "}
-          {adListState.length > 0 && (
+          {adListState?.length > 0 && (
             <span
               className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
             >
-              ({adListState.length})
+              ({adListState?.length})
             </span>
           )}
         </h1>

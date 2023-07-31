@@ -28,8 +28,8 @@ export default function AddTextBox({
   useEffect(() => {
     edit && state?.references && setListState(state?.references);
   }, [state]);
-  // console.log(listState);
-  // console.log(itemState);
+  // (listState);
+  // (itemState);
   return (
     <div className="w-full  border border-slate-300 rounded-lg p-6 flex items-end flex-col">
       <button

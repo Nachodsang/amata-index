@@ -75,11 +75,7 @@ export const softDeleteBanner = async (
 
 export const deleteBanner = async (_id: any) => {
   try {
-    //
-    console.log("service", _id);
     const doc = await bannerSettingModel.findByIdAndDelete(_id);
-
-    //
 
     return { status: "200", message: "complete", updatedObj: doc };
   } catch (err) {
