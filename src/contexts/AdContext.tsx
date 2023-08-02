@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
 export const AdContext = createContext({});
-const URL = "http://localhost:3000/api/ad-setting";
+const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`;
 
 export default function AdProvider({ children, adsPage }: any) {
   const path = usePathname();

@@ -13,7 +13,7 @@ export default function NewBlog() {
   const addBlog = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/blogs",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
         blogState
       );
     } catch (err) {

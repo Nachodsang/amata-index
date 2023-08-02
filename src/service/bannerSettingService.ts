@@ -2,17 +2,13 @@ import mongoose from "mongoose";
 import bannerSettingModel, {
   IbannerSetting,
 } from "./models/bannerSetting.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getBanner = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const ads = await bannerSettingModel.find();
   return ads;
-  //
-  //   mongoose.disconnect();
 };
 
 export const setBanner = async (req: IbannerSetting) => {
@@ -25,7 +21,6 @@ export const setBanner = async (req: IbannerSetting) => {
       message: "complete",
       savedBanner: banner,
     });
-    // (status = "complete");
   } catch (err) {
     return (status = err);
   }

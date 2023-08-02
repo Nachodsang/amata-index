@@ -2,21 +2,16 @@ import mongoose from "mongoose";
 import filterSettingModel, {
   IfilterSetting,
 } from "./models/filterSettng.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getFilter = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const filters = await filterSettingModel.find();
   return { filters };
-  //
-  //   mongoose.disconnect();
 };
 
 export const addFilter = async (req: IfilterSetting) => {
-  //
   const response = new filterSettingModel(req);
   let status: any = "";
   try {

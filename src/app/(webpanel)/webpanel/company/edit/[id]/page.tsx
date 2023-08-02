@@ -24,7 +24,7 @@ export default function EditCompanyPage({
     const fetchCompany = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:3000/api/company-setting"
+          `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
         );
         const data = response.data;
 
@@ -43,7 +43,7 @@ export default function EditCompanyPage({
   const editCompany = async () => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/api/company-setting",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
         { _id: companyState?._id, newValue: companyState }
       );
       Swal.fire({

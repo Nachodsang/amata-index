@@ -40,28 +40,37 @@ export default function Entry({
   };
 
   const onDeleteCompanyFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/company-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
   const onDeleteBlogFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/blogs", {
+    const response = fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`, {
       method: "PUT",
       body: JSON.stringify({ _id: _id, type: "deleteF" }),
     });
   };
   const onDeleteAdFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/ad-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
   const onDeleteBannerFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/banner-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
 
   const OnClickDeleteFromDb = () => {

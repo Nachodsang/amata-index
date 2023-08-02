@@ -36,10 +36,13 @@ export default function AdList() {
   });
   const fetchDeletedAd = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/ad-setting", {
-        method: "GET",
-        cache: "no-store",
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
 
       const responseData = await response.json();
 
@@ -52,16 +55,19 @@ export default function AdList() {
 
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {
-      const response = await fetch("http://localhost:3000/api/ad-setting", {
-        method: "PUT",
-        body: JSON.stringify({
-          // filterCat: "_id",
-          filterValue: id,
-          // updatingField: "status",
-          newValue: newStatus,
-          type: "delete",
-        }),
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+        {
+          method: "PUT",
+          body: JSON.stringify({
+            // filterCat: "_id",
+            filterValue: id,
+            // updatingField: "status",
+            newValue: newStatus,
+            type: "delete",
+          }),
+        }
+      );
     } catch (err) {
       console.log(err);
     }

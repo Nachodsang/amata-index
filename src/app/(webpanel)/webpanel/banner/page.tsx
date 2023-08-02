@@ -31,7 +31,7 @@ export default function BannerList() {
   });
   const fetchDeletedBanner = async () => {
     const response = await axios.get(
-      "http://localhost:3000/api/banner-setting"
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`
     );
 
     const data = response?.data?.filter((i: any) => i?.deleted);
@@ -40,7 +40,7 @@ export default function BannerList() {
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/api/banner-setting",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
         {
           // filterCat: "_id",
           filterValue: id,

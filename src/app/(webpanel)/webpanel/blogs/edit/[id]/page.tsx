@@ -11,7 +11,9 @@ export default function BlogEditPage({ params }: { params: { id: string } }) {
   const [blogState, setBlogState] = useState<any>(null);
   const fetchBlog = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/blogs");
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+      );
       const data = response.data;
 
       const thisBlog = data.blogSetting.find(
@@ -31,10 +33,13 @@ export default function BlogEditPage({ params }: { params: { id: string } }) {
 
   const editBlog = async () => {
     try {
-      const response = await axios.put("http://localhost:3000/api/blogs", {
-        _id: blogState?._id,
-        newValue: blogState,
-      });
+      const response = await axios.put(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
+        {
+          _id: blogState?._id,
+          newValue: blogState,
+        }
+      );
       Swal.fire({
         position: "center",
         icon: "success",

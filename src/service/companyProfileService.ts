@@ -2,18 +2,14 @@ import mongoose from "mongoose";
 import companySettingModel, {
   IcompanySetting,
 } from "./models/companySetting.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getCompanySetting = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const companySetting = await companySettingModel.find();
 
   return { companySetting };
-  //
-  //   mongoose.disconnect();
 };
 
 export const getSingleCompanySetting = async (link: any) => {
@@ -22,8 +18,6 @@ export const getSingleCompanySetting = async (link: any) => {
   });
 
   return { companySetting };
-  //
-  //   mongoose.disconnect();
 };
 export const addCompany = async (req: IcompanySetting) => {
   const companySetting = new companySettingModel(req);

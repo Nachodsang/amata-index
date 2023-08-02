@@ -11,7 +11,8 @@ import ShareModal from "@/components/companyProfile/ShareModal";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
-    `http://localhost:3000/api/company-item?id=${company}`,
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-item?id=${company}`,
+
     {
       cache: "no-store",
       // next: { revalidate: 5 },
@@ -26,7 +27,9 @@ export default async function Page({ params }: { params: { id: string } }) {
   const company = params.id;
   // fetchCompanyProfile
   const fetchBlog = async () => {
-    const response = await axios.get("http://localhost:3000/api/blogs");
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+    );
     return response?.data?.blogSetting?.filter(
       (i: any) => i?.status && !i?.deleted
     );
@@ -50,7 +53,7 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Content companyData={companyData} />
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
-          <Blogs blogList={blogs} companyData = {companyData} />
+          <Blogs blogList={blogs} companyData={companyData} />
           <Map companyData={companyData} />
           <Footer companyData={companyData} blogList={blogs} />
         </>

@@ -18,7 +18,7 @@ export default function AddCompany() {
   const addCompany = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/company-setting",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
         companyState
       );
       Swal.fire({

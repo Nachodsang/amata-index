@@ -9,7 +9,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
 
   const fetchSingleBlog = async () => {
     const response = await fetch(
-      `http://localhost:3000/api/blog-item?id=${blog}`,
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/blog-item?id=${blog}`,
       {
         method: "GET",
         cache: "no-store",
@@ -22,7 +22,9 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
   const blogData = await fetchSingleBlog();
 
   const fetchPageSetting = async () => {
-    const response = await fetch("http://localhost:3000/api/page-setting");
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
+    );
     const data = await response.json();
     return data.pageSetting;
   };

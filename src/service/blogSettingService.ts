@@ -1,14 +1,13 @@
 import mongoose from "mongoose";
 import blogSettingModel, { IblogSetting } from "./models/blogSetting.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getBlogSetting = async () => {
   const blogSetting = await blogSettingModel.find();
 
   return { blogSetting };
-  //
-  //   mongoose.disconnect();
 };
 
 export const getSingleBlogSetting = async (link: any) => {

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
 export const BannerContext = createContext({});
-const URL = "http://localhost:3000/api/banner-setting";
+const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`;
 
 export default function BannerProvider({ children, bannerPage }: any) {
   const path = usePathname();

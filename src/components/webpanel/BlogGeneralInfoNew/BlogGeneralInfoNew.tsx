@@ -48,7 +48,7 @@ export default function BlogGeneralInfoNew({
 
   const fetchCompany = async () => {
     const response = await axios.get(
-      "http://localhost:3000/api/company-setting"
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
     );
 
     setCompanyList(
