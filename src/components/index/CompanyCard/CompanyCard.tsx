@@ -35,8 +35,11 @@ export default function CompanyCard({
         <div className="flex p-4 w-full  h-full ">
           {/* thubnail & button */}
           <div className="desktop2:w-[20%] desktop1:w-[17%] destop0:w-[15%] flex flex-col align-start gap-4">
-            <div className="w-[150px] h-[150px] p-1 border-1 border shadow-md">
-              <img src={logo} className="w-full h-full object-cover" />
+            <div className="w-[150px] h-[150px] p-1 border-1 border shadow-md rounded-md">
+              <img
+                src={logo}
+                className="w-full h-full object-cover rounded-md"
+              />
             </div>
             <div className="flex items-center gap-1">
               <span className="font-semibold text-gray-400">{nationality}</span>
@@ -93,8 +96,11 @@ export default function CompanyCard({
           {/* more images */}
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">
             <div className="w-full h-full flex flex-wrap desktop2:gap-3 desktop0:gap-2  ">
-              {gallery?.slice(0, 4).map((i: any) => (
-                <div className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden">
+              {gallery?.slice(0, 4).map((i: any, index: any) => (
+                <div
+                  key={index}
+                  className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden"
+                >
                   <img src={i} className="w-full h-full object-cover " />
                 </div>
               ))}

@@ -28,8 +28,8 @@ export default function AddTextBox({
   useEffect(() => {
     edit && state?.references && setListState(state?.references);
   }, [state]);
-  // console.log(listState);
-  // console.log(itemState);
+  // (listState);
+  // (itemState);
   return (
     <div className="w-full  border border-slate-300 rounded-lg p-6 flex items-end flex-col">
       <button
@@ -94,6 +94,7 @@ export default function AddTextBox({
                 data-te-modal-body-ref
               >
                 <Input
+                  id=""
                   placeholder="title"
                   value={itemState?.title}
                   label="Title"
@@ -103,6 +104,7 @@ export default function AddTextBox({
                 />
 
                 <Input
+                  id=""
                   placeholder="link"
                   value={itemState?.link}
                   label="Link"

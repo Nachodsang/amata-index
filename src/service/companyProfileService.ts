@@ -101,3 +101,17 @@ export const softDeleteCompany = async (
     return err;
   }
 };
+
+export const deleteCompany = async (_id: any) => {
+  try {
+    //
+
+    const doc = await companySettingModel.findByIdAndDelete(_id);
+
+    //
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

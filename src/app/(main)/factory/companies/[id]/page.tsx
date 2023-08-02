@@ -50,9 +50,9 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Content companyData={companyData} />
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
-          <Blogs blogList={blogs} />
-          <Footer companyData={companyData} blogList={blogs} />
+          <Blogs blogList={blogs} companyData = {companyData} />
           <Map companyData={companyData} />
+          <Footer companyData={companyData} blogList={blogs} />
         </>
       ) : (
         <div className="flex  h-[100vh]">

@@ -38,16 +38,18 @@ export default function BannerSlider({
         }}
         className="h-full"
       >
-        {banners.map((i: any, index: any) => (
-          <SwiperSlide key={index}>
-            <BannerCard
-              category={category}
-              title={i?.bannerTitle}
-              image={i?.image}
-              link={i?.link}
-            />
-          </SwiperSlide>
-        ))}
+        {banners
+          .filter((i: any) => i?.status && !i?.deleted)
+          .map((i: any, index: any) => (
+            <SwiperSlide key={index}>
+              <BannerCard
+                category={category}
+                title={i?.bannerTitle}
+                image={i?.image}
+                link={i?.link}
+              />
+            </SwiperSlide>
+          ))}
       </Swiper>
     </div>
   );

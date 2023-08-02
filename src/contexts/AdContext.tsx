@@ -16,8 +16,8 @@ export default function AdProvider({ children, adsPage }: any) {
   //   fetch Ad
   const fetchAd = async () => {
     try {
-      const response = await axios.get(URL);
-      const responseData = response.data;
+      const response = await fetch(URL, { cache: "no-store" });
+      const responseData = await response.json();
       setAds(responseData);
       //
       // ads with active status
@@ -27,22 +27,7 @@ export default function AdProvider({ children, adsPage }: any) {
       setActivatedAds(activeAds);
     } catch (err) {}
   };
-  //  search Ad
-  // const searchAd = (search: any) => {
-  //   if (search.length > 1) {
-  //     const result = ads.filter((i) => {
-  //       const { adTitle, client, description }: any = i;
-  //       return (
-  //         adTitle.includes(search) ||
-  //         client.includes(search) ||
-  //         description.includes(search)
-  //       );
-  //     });
-  //     setAds(result);
-  //   } else {
-  //
-  //   }
-  // };
+
   //   Add new ad
   const addAd = async (
     client: string,
@@ -57,7 +42,9 @@ export default function AdProvider({ children, adsPage }: any) {
         const response = await axios.post(URL, pushData);
       } else {
       }
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
@@ -71,6 +58,7 @@ export default function AdProvider({ children, adsPage }: any) {
         filterValue: title,
         updatingField: "status",
         newValue: newStatus,
+        type: "status",
       });
     } catch (err) {}
   };
@@ -82,6 +70,7 @@ export default function AdProvider({ children, adsPage }: any) {
         filterValue: title,
         updatingField: "edition",
         newValue: newOrder,
+        type: "order",
       });
       Swal.fire({
         position: "center",
@@ -91,7 +80,9 @@ export default function AdProvider({ children, adsPage }: any) {
         timer: 2500,
       });
       return response;
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <AdContext.Provider

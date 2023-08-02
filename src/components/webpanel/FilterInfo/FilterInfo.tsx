@@ -5,7 +5,7 @@ import { FilterContext } from "@/contexts/FilterContext";
 import Swal from "sweetalert2";
 import { Dropdown, Ripple, initTE } from "tw-elements";
 
-initTE({ Dropdown, Ripple });
+// initTE({ Dropdown, Ripple });
 
 export default function FilterInfo({
   state,
@@ -80,7 +80,7 @@ export default function FilterInfo({
   useEffect(() => {
     edit && setSelectedFilter(state?.filters);
   }, [state]);
-  console.log(selectedFilter);
+
   return (
     <div className="flex w-full flex-col rounded-md border border-slate-300  bg-white p-4 shadow-sm">
       <div className="flex justify-start border-b border-slate-300 py-2">

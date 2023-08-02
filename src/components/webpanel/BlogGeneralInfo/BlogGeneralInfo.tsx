@@ -1,10 +1,14 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Input } from "tw-elements";
 import FileInput from "../FileInput/FileInput";
 import Ip from "../Input/Input";
 import { IblogGeneralInfo } from "@/service/models/blogSetting.model";
 import Swal from "sweetalert2";
+import DropDown from "../DropDown/DropDown";
+import { FilterContext } from "@/contexts/FilterContext";
+import axios from "axios";
+
 export default function BlogGeneralInfo({
   edit,
   state,
@@ -24,13 +28,38 @@ export default function BlogGeneralInfo({
     industry: "",
     language: "",
   };
+
+  const [companyList, setCompanyList] = useState([]);
+  const { filtersState }: any = useContext(FilterContext);
   const [imgState, setImgState] = useState(null);
   const [generalInfoState, setGeneralInfoState] = useState(initialState);
+
+  //  Categories Array
+  const uniqueFilterCategories = new Set(
+    filtersState.map((i: any) => i?.filterCategory)
+  );
+  const filterCategories = Array.from(uniqueFilterCategories);
+
   const coverImageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
       setImgState(e.target.files[0]);
     }
   };
+
+  const fetchCompany = async () => {
+    const response = await axios.get(
+      "http://localhost:3000/api/company-setting"
+    );
+
+    setCompanyList(
+      response.data.companySetting
+
+        .filter((i: any) => i?.deleted === false)
+        .map((i: any) => i?.generalInfo?.companyNameEn)
+        .sort()
+    );
+  };
+  // const companyList = companyData.filter((i: any) => !i?.deleted);
   const onHandleSave = () => {
     if (edit) {
       setState({ ...state, generalInfo: generalInfoState });
@@ -60,8 +89,7 @@ export default function BlogGeneralInfo({
   useEffect(() => {
     const blogTitleInput = new Input(document.getElementById("blogTitle"));
     blogTitleInput.update();
-    const companyInput = new Input(document.getElementById("company"));
-    companyInput.update();
+
     const typeInput = new Input(document.getElementById("type"));
     typeInput.update();
     const blogUrlInput = new Input(document.getElementById("blogUrl"));
@@ -71,11 +99,13 @@ export default function BlogGeneralInfo({
       document.getElementById("companyReview")
     );
     companyReviewInput.update();
-    const industryInput = new Input(document.getElementById("industry"));
-    industryInput.update();
+
     const languageInput = new Input(document.getElementById("language"));
     languageInput.update();
   }, [generalInfoState]);
+  useEffect(() => {
+    fetchCompany();
+  }, []);
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div className="max-w-[1440px]  mx-auto w-full">
@@ -146,7 +176,7 @@ export default function BlogGeneralInfo({
                 }
               />
 
-              <Ip
+              {/* <Ip
                 id="company"
                 value={state?.company}
                 placeholder="company"
@@ -154,6 +184,19 @@ export default function BlogGeneralInfo({
                 onChange={(e: any) =>
                   setState({ ...state, company: e.target.value })
                 }
+              /> */}
+              <DropDown
+                filterList={companyList}
+                title={state?.company || "factory/machine"}
+                checkBox={false}
+                type="dropdown"
+                onChange={(e: any) => setState({ ...state, company: e })}
+                selected={undefined}
+                edit={undefined}
+                category={undefined} // onChange: any
+                // selected: any
+                // edit: any
+                // category: any;
               />
             </div>
             <div className="flex gap-4">
@@ -183,7 +226,7 @@ export default function BlogGeneralInfo({
               />
             </div>
             <div className="flex gap-4">
-              <Ip
+              {/* <Ip
                 placeholder="industry"
                 id="industry"
                 value={generalInfoState?.industry}
@@ -194,6 +237,24 @@ export default function BlogGeneralInfo({
                     industry: e.target.value,
                   })
                 }
+              /> */}
+              <DropDown
+                filterList={filterCategories}
+                title={generalInfoState?.industry || "industry/machine type"}
+                checkBox={false}
+                type="dropdown"
+                onChange={(value: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    industry: value,
+                  });
+                }}
+                selected={undefined}
+                edit={undefined}
+                category={undefined} // onChange: any
+                // selected: any
+                // edit: any
+                // category: any;
               />
               <Ip
                 id="language"

@@ -51,3 +51,34 @@ export const editBanner = async (
     return err;
   }
 };
+
+export const softDeleteBanner = async (
+  filterBy: any,
+  filterValue: string,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { deleted: newValue };
+
+  try {
+    //
+    const doc = await bannerSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    //
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
+
+export const deleteBanner = async (_id: any) => {
+  try {
+    const doc = await bannerSettingModel.findByIdAndDelete(_id);
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

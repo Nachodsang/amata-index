@@ -10,6 +10,7 @@ export interface IadSetting {
   status?: Boolean;
   link?: String;
   companyPage?: String;
+  deleted?: Boolean;
 
   edition?: Number;
 }
@@ -22,7 +23,7 @@ const adSettingSchema = new Schema(
     client: { type: String, required: true },
     status: { type: Boolean, default: false },
     link: { type: String, required: true },
-
+    deleted: { type: Boolean, default: false },
     edition: { type: Number },
   },
   { timestamps: true }

@@ -8,7 +8,7 @@ export default function GalleryInfo({ state, setState, edit }: any) {
   const [selectedImage, setSelectedImage] = useState([]);
   const imageChange = (e: any) => {
     if (e.target.files && e.target.files.length > 0) {
-      // console.log(Object.values(e.target.files));
+      // (Object.values(e.target.files));
       setSelectedImage(Object.values(e.target.files));
     }
   };
@@ -62,7 +62,7 @@ export default function GalleryInfo({ state, setState, edit }: any) {
           {edit &&
             galleryState &&
             galleryState.map((i: any, index: any) => (
-              <div className="w-[300px] h-[300px] ">
+              <div className="w-[300px] h-[300px] " key={index}>
                 <h1>Delete</h1>
                 <img src={i} />
               </div>
@@ -77,8 +77,12 @@ export default function GalleryInfo({ state, setState, edit }: any) {
 
         {selectedImage && (
           <div className="flex flex-wrap gap-2">
-            {selectedImage.map((i: any) => (
-              <img className="w-[300px]" src={URL.createObjectURL(i)} />
+            {selectedImage.map((i: any, index: any) => (
+              <img
+                key={index}
+                className="w-[300px]"
+                src={URL.createObjectURL(i)}
+              />
             ))}
           </div>
         )}

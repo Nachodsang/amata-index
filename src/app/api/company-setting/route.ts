@@ -6,6 +6,7 @@ import {
   editCompany,
   editCompanyStatus,
   softDeleteCompany,
+  deleteCompany,
 } from "@/service/companyProfileService";
 
 export async function GET() {
@@ -36,9 +37,20 @@ export async function PUT(req: Request) {
     return NextResponse.json(
       await softDeleteCompany(filterBy, response.filterValue, response.newValue)
     );
+  } else if (response.type === "deleteF") {
+    return NextResponse.json(await deleteCompany(response?._id));
   } else {
     return NextResponse.json(
       await editCompany(filterBy, response._id, response.newValue)
     );
   }
 }
+
+// export async function DELETE(req: Request) {
+//   (req);
+//   const response = await req.json();
+//   //
+//   ("route", response?._id);
+
+//   return NextResponse.json(await deleteCompany(response?._id));
+// }

@@ -15,18 +15,18 @@ export default function AddTextBox2({
 
   //   tbt
   const onSave = () => {
-    // console.log("saved");
+    // ("saved");
     setCompanyList([...companyList, companyState]);
     setCompanyState({ title: "", link: "" });
   };
   useEffect(() => {
-    // console.log("use effectr");
+    // ("use effectr");
     setState({ ...state, recommendation: companyList });
   }, [companyList]);
   useEffect(() => {
     edit && state?.recommendation && setCompanyList(state?.recommendation);
   }, [state]);
-  // console.log(companyList);
+  // (companyList);
   return (
     <div className="w-full flex flex-col items-end  p-6 border border-slate-300 rounded-lg">
       <div className="space-y-2">

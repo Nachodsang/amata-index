@@ -7,7 +7,6 @@ import DropDown from "../DropDown/DropDown";
 import Swal from "sweetalert2";
 import { FilterContext } from "@/contexts/FilterContext";
 
-const mockData = [1, 2, 3, 4, 5, 6, 7];
 const nationalities = [
   { NationalityID: 1, CountryCode: "GB", Nationality: "British" },
   { NationalityID: 34, CountryCode: "AF", Nationality: "Afghan" },
@@ -287,27 +286,30 @@ export default function GeneralInfo({
   useEffect(() => {
     setCategoryState(generalInfoState?.industry);
   }, [generalInfoState?.industry]);
+  // difference in edit and new
   useEffect(() => {
-    const videoURLInput = new Input(document.getElementById("videoURL"));
-    videoURLInput.update();
-    const profileUrlInput = new Input(document.getElementById("profileURL"));
-    profileUrlInput.update();
-    const companyNameEnInput = new Input(
-      document.getElementById("companyNameEn")
-    );
-    companyNameEnInput.update();
-    const companyNameThInput = new Input(
-      document.getElementById("companyNameTh")
-    );
-    companyNameThInput.update();
-    const companyNameJpInput = new Input(
-      document.getElementById("companyNameJp")
-    );
-    companyNameJpInput.update();
-    const companyNameCnInput = new Input(
-      document.getElementById("companyNameCn")
-    );
-    companyNameCnInput.update();
+    if (edit && typeof window !== "undefined") {
+      const videoURLInput = new Input(document.getElementById("videoURL"));
+      videoURLInput.update();
+      const profileUrlInput = new Input(document.getElementById("profileURL"));
+      profileUrlInput.update();
+      const companyNameEnInput = new Input(
+        document.getElementById("companyNameEn")
+      );
+      companyNameEnInput.update();
+      const companyNameThInput = new Input(
+        document.getElementById("companyNameTh")
+      );
+      companyNameThInput.update();
+      const companyNameJpInput = new Input(
+        document.getElementById("companyNameJp")
+      );
+      companyNameJpInput.update();
+      const companyNameCnInput = new Input(
+        document.getElementById("companyNameCn")
+      );
+      companyNameCnInput.update();
+    }
   }, [generalInfoState]);
 
   return (
@@ -478,6 +480,7 @@ export default function GeneralInfo({
             </div>
             <div className="w-[30%]">
               <DropDown
+                category=""
                 edit={edit}
                 selected={null}
                 title={generalInfoState?.industry || "Industry"}
@@ -494,6 +497,7 @@ export default function GeneralInfo({
             </div>
             <div className="w-[30%]">
               <DropDown
+                category=""
                 edit={edit}
                 selected={null}
                 title={generalInfoState?.nationality || "Nationality"}

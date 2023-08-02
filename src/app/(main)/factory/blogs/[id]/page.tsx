@@ -28,7 +28,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
   };
   return (
     <>
-      {blogData ? (
+      {blogData && blogData?.status && !blogData?.deleted ? (
         <>
           <meta name="keywords" content={blogData?.seo?.keyword} />
           <meta name="description" content={blogData?.seo?.description} />

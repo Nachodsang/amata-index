@@ -1,27 +1,24 @@
 "use client";
 import { useState } from "react";
-import InputGroup from "@/components/webpanel/InputGroup/InputGroup";
-import Input from "@/components/webpanel/Input/Input";
-import DropDown from "@/components/webpanel/DropDown/DropDown";
-import GeneralInfo from "@/components/webpanel/GeneralInfo/GeneralInfo";
-import FilterInfo from "@/components/webpanel/FilterInfo/FilterInfo";
-import DetailsInfo from "@/components/webpanel/DetailsInfo/DetailsInfo";
-import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
-import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
-import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
+
 import axios from "axios";
-import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
-import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo.tsx/BlogDetailsInfo";
+// import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
+// import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo/BlogDetailsInfo";
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
-export default function addBlog() {
+import BlogGeneralInfoNew from "@/components/webpanel/BlogGeneralInfoNew/BlogGeneralInfoNew";
+import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDetailsInfoNew";
+export default function NewBlog() {
   const [blogState, setBlogState] = useState({});
 
   const addBlog = async () => {
-    const response = await axios.post(
-      "http://localhost:3000/api/blogs",
-      blogState
-    );
-    console.log(response);
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/api/blogs",
+        blogState
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -29,20 +26,15 @@ export default function addBlog() {
       <div className="mx-auto flex min-h-[100vh] max-w-[1440px] flex-col gap-4 rounded-md px-4">
         <div>New Blog</div>
         {/* general */}
-        <BlogGeneralInfo
+        <BlogGeneralInfoNew
           edit={false}
           state={blogState}
           setState={setBlogState}
         />
-        {/* <GeneralInfo state={companyState} setState={setCompanyState} /> */}
 
         {/* details */}
-        {/* <DetailsInfo
-          state={companyState}
-          setState={setCompanyState}
-          content={"blog"}
-        /> */}
-        <BlogDetailsInfo
+
+        <BlogDetailsInfoNew
           edit={false}
           content="blog"
           state={blogState}

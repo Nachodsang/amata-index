@@ -177,6 +177,10 @@ export default function Filter({
     );
   }, [categoryState]);
 
+  // to be set to [0]later
+  useEffect(() => {
+    setCategoryState(filterCategories[1]);
+  }, []);
   return (
     <div className="w-full  ">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -214,8 +218,9 @@ export default function Filter({
                     tabIndex={0}
                     className="dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box  "
                   >
-                    {filterCategories?.map((i: any) => (
+                    {filterCategories?.map((i: any, index: any) => (
                       <li
+                        key={index}
                         className="text-slate-500"
                         onClick={() => setCategoryState(i)}
                       >
@@ -267,13 +272,16 @@ export default function Filter({
                 );
                 return (
                   <button
+                    key={index}
                     onClick={() => onDropDown(i)}
                     className="justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
                     {dynamicLabel.length > 0 ? (
                       <div className=" flex justify-start items-center ">
-                        {dynamicLabel?.map((k: any) => (
-                          <span className="text-xs">{k?.title},&nbsp;</span>
+                        {dynamicLabel?.map((k: any, index: any) => (
+                          <span key={index} className="text-xs">
+                            {k?.title},&nbsp;
+                          </span>
                         ))}
                       </div>
                     ) : (
@@ -286,6 +294,7 @@ export default function Filter({
             </div>
             {filterTypes.map((i: any, index: any) => (
               <CheckboxDropdown
+                key={index}
                 title={i}
                 category={category}
                 isHidden={!dropDowns?.[i]}

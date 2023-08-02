@@ -6,6 +6,7 @@ import {
   editBlog,
   editBlogStatus,
   softDeleteBlog,
+  deleteBlog,
   //   editCompany,
   //   editCompanyStatus,
 } from "@/service/blogSettingService";
@@ -37,6 +38,8 @@ export async function PUT(req: Request) {
     return NextResponse.json(
       await softDeleteBlog(filterBy, response.filterValue, response.newValue)
     );
+  } else if (response.type === "deleteF") {
+    return NextResponse.json(await deleteBlog(response?._id));
   } else {
     return NextResponse.json(
       await editBlog(filterBy, response._id, response.newValue)

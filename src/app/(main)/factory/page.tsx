@@ -5,9 +5,8 @@ import Banner from "../../../components/index/Banner/Banner";
 import Core from "../../../components/index/Core/Core";
 import Blog from "../../../components/index/Blog/Blog";
 import AdSection from "@/components/index/AdSection/AdSection";
-import axios from "axios";
 
-export default function about() {
+export default function About() {
   const [search, setSearch] = useState("");
   const [categoryState, setCategoryState] = useState("");
   const [clearFilter, setClearFilter] = useState(false);
@@ -47,8 +46,8 @@ export default function about() {
   useEffect(() => {
     setFiltersApplied([]);
   }, [categoryState]);
-  // console.log(filtersApplied);
-  // console.log(filtersConfirmed);
+  // (filtersApplied);
+  // (filtersConfirmed);
   return (
     <div>
       <Header

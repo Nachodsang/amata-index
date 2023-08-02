@@ -102,26 +102,28 @@ export default function ContactInfo({ state, setState, edit }: any) {
   }, [state]);
 
   useEffect(() => {
-    const telLInput = new Input(document.getElementById("tel"));
-    telLInput.update();
-    const smsInput = new Input(document.getElementById("sms"));
-    smsInput.update();
-    const emailInput = new Input(document.getElementById("email"));
-    emailInput.update();
-    const websiteInput = new Input(document.getElementById("website"));
-    websiteInput.update();
-    const facebookInput = new Input(document.getElementById("facebook"));
-    facebookInput.update();
-    const lineInput = new Input(document.getElementById("line"));
-    lineInput.update();
-    const tambonInput = new Input(document.getElementById("tambon"));
-    tambonInput.update();
-    const districtInput = new Input(document.getElementById("district"));
-    districtInput.update();
-    const provinceInput = new Input(document.getElementById("province"));
-    provinceInput.update();
-    const postcodeInput = new Input(document.getElementById("postcode"));
-    postcodeInput.update();
+    if (edit && typeof window !== "undefined") {
+      const telLInput = new Input(document.getElementById("tel"));
+      telLInput.update();
+      const smsInput = new Input(document.getElementById("sms"));
+      smsInput.update();
+      const emailInput = new Input(document.getElementById("email"));
+      emailInput.update();
+      const websiteInput = new Input(document.getElementById("website"));
+      websiteInput.update();
+      const facebookInput = new Input(document.getElementById("facebook"));
+      facebookInput.update();
+      const lineInput = new Input(document.getElementById("line"));
+      lineInput.update();
+      const tambonInput = new Input(document.getElementById("tambon"));
+      tambonInput.update();
+      const districtInput = new Input(document.getElementById("district"));
+      districtInput.update();
+      const provinceInput = new Input(document.getElementById("province"));
+      provinceInput.update();
+      const postcodeInput = new Input(document.getElementById("postcode"));
+      postcodeInput.update();
+    }
   }, [contactInfoState]);
 
   return (
@@ -411,7 +413,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
           </div>
           <div className="flex flex-col items-start">
             <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Google Map (set width="100%")
+              Google Map (set width=&quot;100%&quot;)
             </label>
             <textarea
               value={contactInfoState?.googleMap}
