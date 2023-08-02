@@ -172,9 +172,9 @@ const nationalities = [
 const nationalityList = nationalities.map((i: any) => i.Nationality);
 
 // Initialization for ES Users
-import { Input } from "tw-elements";
+// import { Input } from "tw-elements";
 
-export default function GeneralInfo({
+export default function GeneralInfoNew({
   categoryState,
   setCategoryState,
   state,
@@ -287,30 +287,30 @@ export default function GeneralInfo({
     setCategoryState(generalInfoState?.industry);
   }, [generalInfoState?.industry]);
   // difference in edit and new
-  useEffect(() => {
-    if (edit && typeof window !== "undefined") {
-      const videoURLInput = new Input(document.getElementById("videoURL"));
-      videoURLInput.update();
-      const profileUrlInput = new Input(document.getElementById("profileURL"));
-      profileUrlInput.update();
-      const companyNameEnInput = new Input(
-        document.getElementById("companyNameEn")
-      );
-      companyNameEnInput.update();
-      const companyNameThInput = new Input(
-        document.getElementById("companyNameTh")
-      );
-      companyNameThInput.update();
-      const companyNameJpInput = new Input(
-        document.getElementById("companyNameJp")
-      );
-      companyNameJpInput.update();
-      const companyNameCnInput = new Input(
-        document.getElementById("companyNameCn")
-      );
-      companyNameCnInput.update();
-    }
-  }, [generalInfoState]);
+  //   useEffect(() => {
+  //     if (edit) {
+  //       const videoURLInput = new Input(document.getElementById("videoURL"));
+  //       videoURLInput.update();
+  //       const profileUrlInput = new Input(document.getElementById("profileURL"));
+  //       profileUrlInput.update();
+  //       const companyNameEnInput = new Input(
+  //         document.getElementById("companyNameEn")
+  //       );
+  //       companyNameEnInput.update();
+  //       const companyNameThInput = new Input(
+  //         document.getElementById("companyNameTh")
+  //       );
+  //       companyNameThInput.update();
+  //       const companyNameJpInput = new Input(
+  //         document.getElementById("companyNameJp")
+  //       );
+  //       companyNameJpInput.update();
+  //       const companyNameCnInput = new Input(
+  //         document.getElementById("companyNameCn")
+  //       );
+  //       companyNameCnInput.update();
+  //     }
+  //   }, [generalInfoState]);
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">

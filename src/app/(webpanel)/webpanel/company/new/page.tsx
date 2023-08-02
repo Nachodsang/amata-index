@@ -1,14 +1,16 @@
 "use client";
 import { useState } from "react";
 
-import GeneralInfo from "@/components/webpanel/GeneralInfo/GeneralInfo";
+// import GeneralInfo from "@/components/webpanel/GeneralInfo/GeneralInfo";
 import FilterInfo from "@/components/webpanel/FilterInfo/FilterInfo";
 import DetailsInfo from "@/components/webpanel/DetailsInfo/DetailsInfo";
 import GalleryInfo from "@/components/webpanel/GalleryInfo/GalleryInfo";
 import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
-import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
+// import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
 import Swal from "sweetalert2";
+import ContactInfoNew from "@/components/webpanel/ContactInfoNew/ContatctInfoNew";
+import GeneralInfoNew from "@/components/webpanel/GeneralInfoNew/GeneralInfoNew";
 export default function AddCompany() {
   const [companyState, setCompanyState] = useState(null);
   const [categoryState, setCategoryState] = useState("");
@@ -44,7 +46,7 @@ export default function AddCompany() {
         <div>New Company</div>
         {/* general */}
 
-        <GeneralInfo
+        <GeneralInfoNew
           state={companyState}
           setState={setCompanyState}
           edit={false}
@@ -72,7 +74,7 @@ export default function AddCompany() {
           edit={false}
         />
         {/* contact */}
-        <ContactInfo
+        <ContactInfoNew
           state={companyState}
           setState={setCompanyState}
           edit={false}

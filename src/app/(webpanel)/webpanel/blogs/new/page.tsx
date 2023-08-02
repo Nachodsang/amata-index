@@ -2,9 +2,11 @@
 import { useState } from "react";
 
 import axios from "axios";
-import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
-import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo.tsx/BlogDetailsInfo";
+// import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
+// import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo/BlogDetailsInfo";
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
+import BlogGeneralInfoNew from "@/components/webpanel/BlogGeneralInfoNew/BlogGeneralInfoNew";
+import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDetailsInfoNew";
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({});
 
@@ -24,7 +26,7 @@ export default function NewBlog() {
       <div className="mx-auto flex min-h-[100vh] max-w-[1440px] flex-col gap-4 rounded-md px-4">
         <div>New Blog</div>
         {/* general */}
-        <BlogGeneralInfo
+        <BlogGeneralInfoNew
           edit={false}
           state={blogState}
           setState={setBlogState}
@@ -32,7 +34,7 @@ export default function NewBlog() {
 
         {/* details */}
 
-        <BlogDetailsInfo
+        <BlogDetailsInfoNew
           edit={false}
           content="blog"
           state={blogState}

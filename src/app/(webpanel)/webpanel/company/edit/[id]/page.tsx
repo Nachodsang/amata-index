@@ -64,7 +64,6 @@ export default function EditCompanyPage({
       });
     }
   };
-  // (companyState);
 
   return (
     <div className="">

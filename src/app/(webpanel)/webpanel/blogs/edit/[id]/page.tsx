@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import axios from "axios";
 import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
-import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo.tsx/BlogDetailsInfo";
+import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo/BlogDetailsInfo";
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 import Swal from "sweetalert2";
 export default function BlogEditPage({ params }: { params: { id: string } }) {
