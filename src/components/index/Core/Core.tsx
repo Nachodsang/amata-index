@@ -90,7 +90,7 @@ export default function Core({
         <div className=" desktop0:w-[75%] w-full h-full ">
           <div
             style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
-            className="w-full h-20 bg-[#192f48] p-6"
+            className="w-full h-20  p-6"
           >
             {/* list title and amount */}
             <h1 className="capitalize text-2xl font-bold text-white">
@@ -100,7 +100,7 @@ export default function Core({
 
           <div
             style={{ backgroundColor: `${pageSetting?.coreColor}` }}
-            className="w-full h-full bg-[#044ea2] px-4 pb-16 pt-10   flex-col overflow-scroll"
+            className="w-full h-full  px-4 pb-16 pt-10   flex-col overflow-scroll"
           >
             {category === "factory" &&
               listState.map((i: any, index: any) => {

@@ -7,6 +7,8 @@ import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
 import CompanyContextProvider from "@/contexts/CompanyContext";
 import FilterContextProvider from "@/contexts/FilterContext";
+import TopBar from "@/components/index/TopBar/TopBar";
+import Footer from "@/components/index/Footer/Footer";
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
   {
@@ -53,11 +55,11 @@ const fetchAdTry = async () => {
 // fetchPageSetting
 const fetchPageSetting = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`,
-    {
-      // cache: "no-store",
-      next: { revalidate: 5 },
-    }
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
+    // {
+    // cache: "no-store",
+    // next: { revalidate: 5 },
+    // }
   );
   const data = await response.json();
 
@@ -109,7 +111,9 @@ export default async function RootLayout({
             <BannerProvider bannerPage={bannerData}>
               <AdProvider adsPage={adData}>
                 <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
+                  <TopBar />
                   {children}
+                  <Footer />
                   <TwElementCom />
                 </PageSettingProvider>
               </AdProvider>
