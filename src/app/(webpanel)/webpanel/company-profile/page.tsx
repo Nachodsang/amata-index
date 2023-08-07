@@ -212,11 +212,13 @@ export default function CompanyProfile() {
         <h1
           className={`${
             showDeleted ? "text-red-400" : "text-slate-500"
-          } flex items-center  gap-2 justify-center  font-semibold text-4xl mb-4  `}
+          } uppercase flex items-center  gap-2 justify-center  font-semibold text-4xl mb-4  `}
         >
           {showDeleted ? <ImBin size={40} /> : <FaClipboardList size={40} />}
 
-          {!showDeleted ? "Company List" : "Recycle Bin"}
+          {!showDeleted
+            ? `${process.env.NEXT_PUBLIC_APP_KEY_WORD} List`
+            : "Recycle Bin"}
           {showOnline === "online" ? (
             <span className="text-green-400">online:</span>
           ) : showOnline === "offline" ? (
@@ -258,7 +260,7 @@ export default function CompanyProfile() {
               data-te-ripple-init
             >
               <MdCreateNewFolder size={20} />
-              Create New Profile
+              Create New {process.env.NEXT_PUBLIC_APP_KEY_WORD}
             </button>
           </Link>
           <div className="flex gap-[2px]">
@@ -270,10 +272,7 @@ export default function CompanyProfile() {
               onChange={setTypeState}
               selected={undefined}
               edit={undefined}
-              category={undefined} // onChange: any
-              // selected: any
-              // edit: any
-              // category: any;
+              category={undefined}
             />
             {!showDeleted && (
               <div className="flex gap-[2px]">
@@ -331,7 +330,7 @@ export default function CompanyProfile() {
             recycle={false}
             list={companyList}
             type="company"
-            col2="Factory / Machine"
+            col2={process.env.NEXT_PUBLIC_APP_KEY_WORD}
             col3="Type"
             col4="Last Edited"
             col5="Actions"
@@ -343,7 +342,7 @@ export default function CompanyProfile() {
             recycle={true}
             list={companyList}
             type="company"
-            col2="Factory / Machine"
+            col2={process.env.NEXT_PUBLIC_APP_KEY_WORD}
             col3="Type"
             col4="Last Edited"
             col5="Actions"

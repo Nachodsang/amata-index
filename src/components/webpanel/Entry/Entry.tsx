@@ -171,7 +171,10 @@ export default function Entry({
               <h1 className="text-xs">{company}</h1>
             </div>
           ) : (
-            <h1>{title}</h1>
+            <h1>
+              {title}
+              {/* {image} */}
+            </h1>
           )}
         </a>
       </td>
@@ -195,7 +198,7 @@ export default function Entry({
         {type === "company" ? (
           <div className="flex gap-[2px]">
             {!recycle ? (
-              <a href={`/factory/companies/${link}`}>
+              <a href={`/page/items/${link}`}>
                 <button className="shadow-lg flex gap-1 items-center bg-green-400 px-4 py-2 rounded-md font-bold text-white">
                   <SiCodereview size={20} />
                   <h1>Preview</h1>
@@ -248,7 +251,7 @@ export default function Entry({
                 <h1>Restore</h1>
               </button>
             ) : (
-              <a href={`/factory/blogs/${link}`}>
+              <a href={`/page/blogs/${link}`}>
                 <button className="shadow-lg flex gap-1 items-center bg-green-400 px-4 py-2 rounded-md font-bold text-white">
                   <SiCodereview size={20} />
                   <h1>Preview</h1>

@@ -13,10 +13,10 @@ export default function Header({ companyData }: any) {
   return (
     <div className="flex flex-col gap-10 py-10">
       {/* cover image */}
-      <div className="h-[50vh] w-full bg-white">
+      <div className="h-auto overflow-hidden w-full bg-white">
         <img
           src={companyData?.generalInfo?.coverImage}
-          className="h-full w-full object-cover"
+          className="h-auto w-full object-cover"
         />
       </div>
       {/* company info */}

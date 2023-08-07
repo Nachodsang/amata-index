@@ -18,6 +18,7 @@ export default function CompanyCard({
   facebook,
   gallery,
   profileUrl,
+  industry,
 }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
@@ -38,11 +39,11 @@ export default function CompanyCard({
             <div className="w-[150px] h-[150px] p-1 border-1 border shadow-md rounded-md">
               <img
                 src={logo}
-                className="w-full h-full object-cover rounded-md"
+                className="w-full h-full object-cover rounded-md "
               />
             </div>
             <div className="flex items-center gap-1">
-              <span className="font-semibold text-gray-400">{nationality}</span>
+              <span className="text-xs text-gray-400">{industry}</span>
             </div>
             <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
               <div>
@@ -106,7 +107,7 @@ export default function CompanyCard({
               ))}
             </div>
             <Link
-              href={profileUrl ? `factory/companies/${profileUrl}` : "no link"}
+              href={profileUrl ? `page/items/${profileUrl}` : "no link"}
               className="w-full"
             >
               <button
@@ -119,7 +120,7 @@ export default function CompanyCard({
           </div>
         </div>
         <div className="px-4">
-          <Link href={profileUrl ? `/companies/${profileUrl}` : "no link"}>
+          <Link href={profileUrl ? `page/items/${profileUrl}` : "no link"}>
             <button
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
               className={` desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}

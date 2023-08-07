@@ -212,7 +212,7 @@ export default function BlogList() {
         <h1
           className={`${
             showDeleted ? "text-red-400" : "text-slate-500"
-          } flex items-center  gap-2 justify-center font-semibold text-4xl mb-4  `}
+          } uppercase flex items-center  gap-2 justify-center font-semibold text-4xl mb-4  `}
         >
           {showDeleted ? <ImBin size={40} /> : <FaClipboardList size={40} />}
           {!showDeleted ? "Blog List" : "Recycle Bin"}

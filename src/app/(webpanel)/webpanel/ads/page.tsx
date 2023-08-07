@@ -11,6 +11,7 @@ import { BounceLoader } from "react-spinners";
 import { ImBin } from "react-icons/im";
 import Swal from "sweetalert2";
 import { HiStatusOnline } from "react-icons/hi";
+import Image from "next/image";
 
 export default function AdList() {
   const {
@@ -144,13 +145,18 @@ export default function AdList() {
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
-        <h1 className="mb-4 text-center text-xl font-semibold  ">
-          Ad. List{" "}
-          {adListState?.length > 0 && (
+        <h1
+          className={`${
+            showDeleted ? "text-red-400" : "text-slate-500"
+          } uppercase flex items-center  gap-2 justify-center font-semibold text-4xl mb-4  `}
+        >
+          {!showDeleted ? "Ad List" : "Recycle Bin"}
+
+          {adListState.length > 0 && (
             <span
               className={`${showOnline ? "text-green-400" : "text-slate-700"}`}
             >
-              ({adListState?.length})
+              ({adListState.length})
             </span>
           )}
         </h1>

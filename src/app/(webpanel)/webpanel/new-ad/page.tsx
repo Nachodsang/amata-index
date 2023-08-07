@@ -72,13 +72,13 @@ export default function CreateNewAdPage() {
           {selectedImage ? (
             <img
               src={URL.createObjectURL(selectedImage)}
-              className="h-[300px] w-[390px] object-cover"
+              className="h-[300px] w-[300px] object-cover"
             />
           ) : (
             <div className="h-[300px] w-[300px] bg-slate-200"></div>
           )}
           <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
-            Dimension: 1920 x 500 pixel (auto resize & crop)
+            Dimension: 500 x 500 pixel (auto resize & crop)
           </label>
           <FileInput
             path="upload-ad"
@@ -86,6 +86,8 @@ export default function CreateNewAdPage() {
             state={adState}
             setState={setAdState}
             imageChange={imageChange}
+            stateValue={"image"}
+            multiple={false}
           />
         </div>
         {/* Client name */}

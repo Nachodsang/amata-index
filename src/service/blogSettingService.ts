@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import blogSettingModel, { IblogSetting } from "./models/blogSetting.model";
-// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
 // mongoose.connect(
 //   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
 // );

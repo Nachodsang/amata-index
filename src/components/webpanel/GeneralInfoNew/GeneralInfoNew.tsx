@@ -358,22 +358,22 @@ export default function GeneralInfoNew({
             {imgState?.coverImg ? (
               <img
                 src={URL.createObjectURL(imgState?.coverImg)}
-                className="h-[300px] w-[1500px] object-cover"
+                className="h-[300px] w-[1200px] object-cover"
               />
             ) : edit && generalInfoState?.coverImage ? (
               <img
                 src={generalInfoState?.coverImage}
-                className="h-[300px] w-[1500px] object-cover"
+                className="h-[300px] w-[1200px] object-cover"
               />
             ) : (
               <img
                 src="https://media.sproutsocial.com/uploads/2018/04/Facebook-Cover-Photo-Size.png"
-                className="h-[300px] w-[1500px] object-cover"
+                className="h-[300px]  w-[1200px] object-cover"
               />
             )}
 
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
-              Dimension: 1920 x 500 pixel (auto resize & crop)
+              Dimension: 2000 x 500 pixel (auto resize & crop)
             </label>
             <FileInput
               imageChange={coverImageChange}

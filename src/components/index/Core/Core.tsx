@@ -3,29 +3,26 @@ import { useContext, useEffect, useState } from "react";
 import Ad from "../Ad/Ad";
 import CompanyCard from "../CompanyCard/CompanyCard";
 // mockdata
-import mockData from "../../../../public/mockData/mockData";
-import { mock } from "node:test";
+
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { AdContext } from "@/contexts/AdContext";
 import { CompanyContext } from "@/contexts/CompanyContext";
 export default function Core({
   category,
   filters,
-}: // companyList,
-{
+}: {
   filters: any;
   category: string;
-  // companyList: any;
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { adsPage }: any = useContext(AdContext);
-  // const { mockCompanies, mockMachines } = mockData;
+
   const { companyData: companyList }: any = useContext(CompanyContext);
 
   const onCompanies = companyList.filter((i: any) => i?.status && !i?.deleted);
 
   const [listState, setListState] = useState(onCompanies);
-  // (onCompanies);
+
   useEffect(() => {
     ("in Filter");
     if (!filters?.category) {
@@ -81,27 +78,6 @@ export default function Core({
             );
       }
     }
-    // filters.length > 0
-    //   ? setListState(
-    //       onCompanies?.filter((i: any) => {
-    //         return filters.includes(i?.filters?.map((j: any) => j?.filterID));
-    //       })
-    //     )
-    //   : setListState(onCompanies);
-
-    // !filters?.category
-    //   ? setListState(onCompanies)
-    //   : filters?.category && !filters?.filters.length
-    //   ? setListState(
-    //       onCompanies.filter(
-    //         (i: any) => i?.generalInfo?.industry === filters?.category
-    //       )
-    //     )
-    //   : setListState(
-    //       onCompanies.filter((i: any) =>
-    //         i?.filters.some((j: any) => filters?.filters?.includes(j?.filterID))
-    //       )
-    //     );
   }, [filters]);
   filters;
   listState;
@@ -117,7 +93,9 @@ export default function Core({
             className="w-full h-20 bg-[#192f48] p-6"
           >
             {/* list title and amount */}
-            <h1 className="text-2xl font-bold text-white">Company List</h1>
+            <h1 className="capitalize text-2xl font-bold text-white">
+              {process.env.NEXT_PUBLIC_APP_KEY_WORD} List
+            </h1>
           </div>
 
           <div
@@ -141,13 +119,10 @@ export default function Core({
                     facebook={contacts?.facebook}
                     gallery={gallery}
                     profileUrl={generalInfo?.profileUrl}
+                    industry={generalInfo?.industry}
                   />
                 );
               })}
-            {/* {category === "machine" &&
-              mockMachines.map((i, index) => {
-                return <CompanyCard props={i} key={i.id} category={category} />;
-              })} */}
           </div>
         </div>
         {/* ad */}

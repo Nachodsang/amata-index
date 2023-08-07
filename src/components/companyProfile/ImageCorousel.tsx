@@ -33,7 +33,7 @@ export default function ImageCourousel({ images }: any) {
           <SwiperSlide key={index}>
             <img
               src={i}
-              className="w-full h-[300px] tablet0:h-auto aspect-[4/3] object-cover rounded-xl"
+              className="w-full h-auto tablet0:h-auto aspect-[4/3] object-cover rounded-xl"
             />
           </SwiperSlide>
         ))}

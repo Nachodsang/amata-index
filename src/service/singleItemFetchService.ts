@@ -5,15 +5,10 @@ import companySettingModel, {
 // mongoose.connect(
 //   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
 // );
-// mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
 
 export const getCompanySetting = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const companySetting = await companySettingModel.find();
 
   return { companySetting };
-  //
-  //   mongoose.disconnect();
 };

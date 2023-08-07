@@ -48,19 +48,22 @@ export default function BlogCard({
       <Link
         href={
           generalInfo?.blogUrl
-            ? `/factory/blogs/${generalInfo?.blogUrl}`
+            ? `/page/blogs/${generalInfo?.blogUrl}`
             : "no link"
         }
       >
-        <img
-          src={`${generalInfo?.coverImage} `}
+        <div
           style={{ border: `2px solid ${pageSetting?.themeColor}` }}
-          className={`w-[486px] h-[326px] tablet2:w-[300px] tablet2:h-[206px] desktop0:w-[186px] desktop0:h-[125px] desktop2:w-[270px] desktop2:h-[180px] desktop1:w-[231px] desktop1:h-[155px] object-cover  border-2 rounded-xl `}
-        />
+          className={`w-[486px] h-[326px] tablet2:w-[300px] tablet2:h-[206px] desktop0:w-[186px] desktop0:h-[125px] desktop2:w-[270px] desktop2:h-[180px] desktop1:w-[231px] desktop1:h-[155px]  border-2 rounded-xl overflow-hidden`}
+        >
+          <img src={`${generalInfo?.coverImage} `} className="w-full h-auto" />
+        </div>
       </Link>
       <div className="flex flex-col px-1 gap-1 ">
         <div className="flex justify-between">
-          <p className="desktop0:text-xs text-gray-400">Factory Index</p>
+          <p className="desktop0:text-xs text-gray-400">
+            {process.env.NEXT_PUBLIC_APP_NAME}
+          </p>
           <p className="desktop0:text-xs text-gray-400">{localDate}</p>
         </div>
         <h2 className=" overflow-hidden text-lg font-bold text-gray-700">

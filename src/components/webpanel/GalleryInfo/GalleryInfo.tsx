@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import FileInput from "../FileInput/FileInput";
 import Swal from "sweetalert2";
+import { TiDelete } from "react-icons/ti";
 
 export default function GalleryInfo({ state, setState, edit }: any) {
   const [galleryState, setGalleryState] = useState([]);
@@ -48,6 +49,9 @@ export default function GalleryInfo({ state, setState, edit }: any) {
       });
     }
   };
+  const onDeleteItem = (item: any) => {
+    setGalleryState((prevState) => prevState.filter((i: any) => i !== item));
+  };
   useEffect(() => {
     edit && setGalleryState(state?.gallery);
   }, [state]);
@@ -63,11 +67,17 @@ export default function GalleryInfo({ state, setState, edit }: any) {
             galleryState &&
             galleryState.map((i: any, index: any) => (
               <div className="w-[300px] h-[300px] " key={index}>
-                <h1>Delete</h1>
+                <div
+                  className="flex items-center gap-1 hover:cursor-pointer text-red-500"
+                  onClick={() => onDeleteItem(i)}
+                >
+                  <TiDelete />
+                  <h1>Delete</h1>
+                </div>
                 <img src={i} />
               </div>
             ))}
-          {/* {JSON.stringify(galleryState)} */}
+
           {!edit && (
             <h1 className="m-auto text-2xl font-bold text-white">
               No image selected
