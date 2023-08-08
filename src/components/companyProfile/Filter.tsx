@@ -8,9 +8,9 @@ export default function Filter({ companyData }: any) {
   );
 
   return (
-    <div className="w-full ">
+    <div className="w-full  " id="service">
       {/* container */}
-      <div className="max-w-[1440px] mx-auto py-10 flex-col flex gap-6 px-4">
+      <div className="max-w-[1270px] mx-auto py-10 flex-col flex gap-6 px-4">
         <div className=" flex gap-5 items-center">
           <div className="p-4 rounded-full bg-orange-500 text-white">
             <BsCheck2Circle size={25} className="" />
@@ -30,9 +30,9 @@ export default function Filter({ companyData }: any) {
           {uniqueFilterTypes.map((i: any, index: any) => (
             <div
               key={index}
-              className="flex justify-start w-full items-center "
+              className="flex justify-start w-full desktop0:items-center desktop0:flex-row flex-col items-start "
             >
-              <div className="w-[25%] flex items-center  gap-2 text-green-600">
+              <div className="desktop0:w-[25%] flex items-center  gap-2 text-green-600 ">
                 <BsCheckLg size={25} />
                 <span className="text-lg font-semibold">{i}</span>
               </div>

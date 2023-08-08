@@ -85,6 +85,7 @@ export default function Core({
     <div
       className={`  px-6`}
       style={{ height: `${pageSetting?.adAmount * 299}px` }}
+      id="list"
     >
       <div className="mx-auto max-w-[1270px]   h-full overflow-hidden  rounded-2xl shadow-md  relative z-10 flex ">
         <div className=" desktop0:w-[75%] w-full h-full ">

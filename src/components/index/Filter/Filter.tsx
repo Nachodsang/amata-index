@@ -182,7 +182,7 @@ export default function Filter({
     setCategoryState(filterCategories[1]);
   }, []);
   return (
-    <div className="w-full  ">
+    <div className="w-full   " id="search">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
         <div
           onClick={onFoldDropDown}

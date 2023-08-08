@@ -20,7 +20,10 @@ export default function Header({ companyData }: any) {
         />
       </div>
       {/* company info */}
-      <div className="mx-auto flex desktop0:flex-row flex-col w-full max-w-[1440px] gap-4 px-4">
+      <div
+        id="about"
+        className="mx-auto flex desktop0:flex-row flex-col w-full max-w-[1270px] gap-4 px-4"
+      >
         <div className="flex desktop-0:w-[75%] w-full  gap-6 rounded-xl items-center bg-slate-200 p-6 shadow-lg">
           <div className=" aspect-square desktop0:w-[25%] w-[50%] tablet-1:w-[40%]  rounded-xl bg-white p-2">
             <img

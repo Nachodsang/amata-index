@@ -3,6 +3,7 @@ import BlogBody from "@/components/blogPage/BlogBody";
 import Header from "@/components/blogPage/Header";
 import axios from "axios";
 import Content from "@/components/companyProfile/Content";
+import TopBarBlogPage from "@/components/blogPage/TopBarBlogPage";
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
   const blog = params.id;
@@ -34,6 +35,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
         <>
           <meta name="keywords" content={blogData?.seo?.keyword} />
           <meta name="description" content={blogData?.seo?.description} />
+          <TopBarBlogPage blogData={blogData} />
           <Header blogData={blogData} pageSetting={await fetchPageSetting()} />
           <BlogBody blogData={blogData} />
           <Footer pageSetting={await fetchPageSetting()} />

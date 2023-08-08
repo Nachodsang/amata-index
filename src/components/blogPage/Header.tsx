@@ -8,7 +8,7 @@ export default function BlogBody({ blogData, pageSetting }: any) {
     .padStart(2, "0")}/${new Date(blogData?.updatedAt).getFullYear()}`;
 
   return (
-    <div className="w-full py-10">
+    <div className="w-full py-10 mt-10">
       <div className="max-w-[1270px] mx-auto flex flex-col gap-10 items-center px-4">
         <div className="w-full rounded-xl shadow-xl overflow-hidden ">
           <img

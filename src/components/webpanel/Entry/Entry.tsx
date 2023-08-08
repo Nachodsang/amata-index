@@ -148,35 +148,35 @@ export default function Entry({
     >
       <td className="whitespace-nowrap px-6 py-4 font-medium">{index}</td>
       <td className="whitespace-nowrap px-6 py-4 font-medium  ">
-        <a href={link}>
-          <img
-            src={image}
-            className={`${
-              type === "banner"
-                ? "h-[50px] w-[175px] "
-                : type === "blog"
-                ? "h-[100px] w-[180px] "
-                : "h-[75px] w-[75px]"
-            } object-cover shadow-xl`}
-            alt="Ad image"
-          />
-          {type === "company" ? (
-            <div className="">
-              <h1 className="text-base">{company}</h1>
-              <h1 className="text-xs">{companyNameTh}</h1>
-            </div>
-          ) : type === "blog" ? (
-            <div className="">
-              <h1 className="text-base">{title}</h1>
-              <h1 className="text-xs">{company}</h1>
-            </div>
-          ) : (
-            <h1>
-              {title}
-              {/* {image} */}
-            </h1>
-          )}
-        </a>
+        {/* <a href={`/page/item/${link}`}> */}
+        <img
+          src={image}
+          className={`${
+            type === "banner"
+              ? "h-[50px] w-[175px] "
+              : type === "blog"
+              ? "h-[100px] w-[180px] "
+              : "h-[75px] w-[75px]"
+          } object-cover shadow-xl`}
+          alt="Ad image"
+        />
+        {type === "company" ? (
+          <div className="">
+            <h1 className="text-base">{company}</h1>
+            <h1 className="text-xs">{companyNameTh}</h1>
+          </div>
+        ) : type === "blog" ? (
+          <div className="">
+            <h1 className="text-base">{title}</h1>
+            <h1 className="text-xs">{company}</h1>
+          </div>
+        ) : (
+          <h1>
+            {title}
+            {/* {image} */}
+          </h1>
+        )}
+        {/* </a> */}
       </td>
       {type === "blog" ? (
         <td className="whitespace-nowrap px-6 py-4 text-xs">{industry}</td>

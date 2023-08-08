@@ -16,7 +16,7 @@ export default function Footer({ companyData, blogList }: any) {
     (i: any) => i?.company === companyData?.companyTitle
   );
   return (
-    <div className=" flex flex-col  items-center pb-40">
+    <div id="contact" className=" flex flex-col  items-center py-10">
       <div className="mx-auto flex   tablet2:w-[770px] w-full flex-col flex-wrap items-center px-4 gap-4">
         <div className="flex flex-col gap-4">
           <h1 className="text-center text-4xl font-bold">

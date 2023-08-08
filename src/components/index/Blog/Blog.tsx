@@ -10,6 +10,7 @@ export default function Blog({ category }: { category: string }) {
 
   return (
     <div
+      id="blog"
       className="w-full py-10  px-6 relative "
       style={{
         background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,

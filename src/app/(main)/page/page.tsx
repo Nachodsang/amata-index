@@ -5,6 +5,7 @@ import Banner from "../../../components/index/Banner/Banner";
 import Core from "../../../components/index/Core/Core";
 import Blog from "../../../components/index/Blog/Blog";
 import AdSection from "@/components/index/AdSection/AdSection";
+import TopBar from "@/components/index/TopBar/TopBar";
 
 export default function About() {
   const [search, setSearch] = useState("");
@@ -49,7 +50,8 @@ export default function About() {
   // (filtersApplied);
   // (filtersConfirmed);
   return (
-    <div>
+    <div className="mt-12">
+      <TopBar />
       <Header
         category="factory"
         filtersApplied={filtersApplied}

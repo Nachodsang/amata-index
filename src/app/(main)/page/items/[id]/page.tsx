@@ -8,6 +8,7 @@ import CompanyContextProvider from "@/contexts/CompanyContext";
 import Map from "@/components/companyProfile/Map";
 import axios from "axios";
 import ShareModal from "@/components/companyProfile/ShareModal";
+import TopBarItemPage from "@/components/companyProfile/TopBarItemPage";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -41,12 +42,13 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <CompanyContextProvider companyData={companyData}>
       {companyData && companyData?.status && !companyData?.deleted ? (
-        <>
+        <div className="mt-10">
           <meta name="keywords" content={companyData?.seo?.th?.join()} />
           <meta
             name="description"
             content={companyData?.details?.fullDescription}
           />
+          <TopBarItemPage />
 
           <Header companyData={companyData} />
 
@@ -54,9 +56,9 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
           <Blogs blogList={blogs} companyData={companyData} />
-          <Map companyData={companyData} />
           <Footer companyData={companyData} blogList={blogs} />
-        </>
+          <Map companyData={companyData} />
+        </div>
       ) : (
         <div className="flex  h-[100vh]">
           <h1 className="m-auto font-bold text-4xl">Page Not Found</h1>

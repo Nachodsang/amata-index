@@ -8,10 +8,10 @@ export default function Blogs({ blogList, companyData }: any) {
     (i: any) => i?.generalInfo?.industry === companyData?.generalInfo?.industry
   );
   return (
-    <div className="w-full bg-slate-100">
+    <div className="w-full bg-slate-100" id="blog">
       {/* container */}
 
-      <div className="mx-auto max-w-[1440px] py-10 px-4 flex flex-col gap-6">
+      <div className="mx-auto max-w-[1270px] py-10 px-4 flex flex-col gap-6">
         <div className=" flex gap-5 items-center">
           <div className="p-4 rounded-full bg-orange-500 text-white">
             <TfiGallery size={25} className="" />

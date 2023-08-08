@@ -111,7 +111,7 @@ export default async function RootLayout({
             <BannerProvider bannerPage={bannerData}>
               <AdProvider adsPage={adData}>
                 <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-                  <TopBar />
+                 
                   {children}
                   <Footer />
                   <TwElementCom />
