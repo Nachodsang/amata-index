@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import Map from "@/components/companyProfile/Map";
 
 export default function ContactInfoNew({ state, setState, edit }: any) {
+  const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const defaultContactInfo = {
     businessHour: [] as { day?: any; time?: any; status?: any }[],
     tel: "",
@@ -133,70 +134,72 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
         <h1 className="text-2xl font-bold text-slate-700">Contact</h1>
       </div>
       <div className="flex flex-col">
-        <div className="mt-2 flex flex-col items-center gap-2">
-          <label className="text-xl font-semibold text-slate-700">
-            Business Hour
-          </label>
-          {/* day / time boxes */}
-          <div className="mb-4 flex w-full flex-col items-center gap-2">
-            <DayBox
-              day="Sunday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Sunday"
-              )}
-            />
-            <DayBox
-              day="Monday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Monday"
-              )}
-            />
-            <DayBox
-              day="Tuesday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Tuesday"
-              )}
-            />
-            <DayBox
-              day="Wednesday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Wednesday"
-              )}
-            />
-            <DayBox
-              day="Thursday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Thursday"
-              )}
-            />
-            <DayBox
-              day="Friday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Friday"
-              )}
-            />
-            <DayBox
-              day="Saturday"
-              edit={true}
-              onCheck={onCheckBusinessHour}
-              state={contactInfoState?.businessHour.find(
-                (i: any) => i.day === "Saturday"
-              )}
-            />
+        {envi === "factory" && (
+          <div className="mt-2 flex flex-col items-center gap-2">
+            <label className="text-xl font-semibold text-slate-700">
+              Business Hour
+            </label>
+            {/* day / time boxes */}
+            <div className="mb-4 flex w-full flex-col items-center gap-2">
+              <DayBox
+                day="Sunday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Sunday"
+                )}
+              />
+              <DayBox
+                day="Monday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Monday"
+                )}
+              />
+              <DayBox
+                day="Tuesday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Tuesday"
+                )}
+              />
+              <DayBox
+                day="Wednesday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Wednesday"
+                )}
+              />
+              <DayBox
+                day="Thursday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Thursday"
+                )}
+              />
+              <DayBox
+                day="Friday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Friday"
+                )}
+              />
+              <DayBox
+                day="Saturday"
+                edit={true}
+                onCheck={onCheckBusinessHour}
+                state={contactInfoState?.businessHour.find(
+                  (i: any) => i.day === "Saturday"
+                )}
+              />
+            </div>
           </div>
-        </div>
+        )}
         <div className="mt-2 flex flex-wrap gap-6">
           <div className="flex w-[400px] flex-col items-start gap-2">
             <Ip

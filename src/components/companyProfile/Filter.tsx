@@ -1,4 +1,7 @@
+"use client";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { set } from "mongoose";
+import { useContext } from "react";
 import { BsCheck2Circle, BsCheckLg } from "react-icons/bs";
 
 export default function Filter({ companyData }: any) {
@@ -6,13 +9,17 @@ export default function Filter({ companyData }: any) {
   const uniqueFilterTypes = Array.from(
     new Set(filters.map((i: any) => i?.filterType))
   );
+  const { pageSetting }: any = useContext(PageSettingContext);
 
   return (
     <div className="w-full  " id="service">
       {/* container */}
       <div className="max-w-[1270px] mx-auto py-10 flex-col flex gap-6 px-4">
         <div className=" flex gap-5 items-center">
-          <div className="p-4 rounded-full bg-orange-500 text-white">
+          <div
+            style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
+            className="p-4 rounded-full  text-white"
+          >
             <BsCheck2Circle size={25} className="" />
           </div>
           <h1 className="font-semibold text-2xl">

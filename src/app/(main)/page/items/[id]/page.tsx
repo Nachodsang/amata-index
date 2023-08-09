@@ -25,6 +25,7 @@ const fetchCompany = async (company: string) => {
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
+  const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const company = params.id;
   // fetchCompanyProfile
   const fetchBlog = async () => {
@@ -56,8 +57,10 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
           <Blogs blogList={blogs} companyData={companyData} />
-          <Footer companyData={companyData} blogList={blogs} />
-          <Map companyData={companyData} />
+          {envi === "factory" && (
+            <Footer companyData={companyData} blogList={blogs} />
+          )}
+          {envi === "factory" && <Map companyData={companyData} />}
         </div>
       ) : (
         <div className="flex  h-[100vh]">

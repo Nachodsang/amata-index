@@ -2,11 +2,14 @@
 import { FaGlobeAmericas, FaLine, FaFacebook } from "react-icons/fa";
 import { ImLocation2 } from "react-icons/im";
 import ShareModal from "./ShareModal";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
 import absoluteUrl from "next-absolute-url";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 
 export default function Footer({ companyData, blogList }: any) {
+  const { pageSetting }: any = useContext(PageSettingContext);
+
   const { origin } = absoluteUrl();
   const pathname = usePathname();
   const fullUrl = `${origin}${pathname}`;

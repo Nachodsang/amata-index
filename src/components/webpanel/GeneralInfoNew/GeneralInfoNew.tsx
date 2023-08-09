@@ -181,6 +181,7 @@ export default function GeneralInfoNew({
   setState,
   edit,
 }: any) {
+  const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const { filtersState, onCheckFilter, addFilter }: any =
     useContext(FilterContext);
   const defaultGeneralInfoState: any = {
@@ -424,7 +425,7 @@ export default function GeneralInfoNew({
                 id="companyNameTh"
                 placeholder="...."
                 value={generalInfoState?.companyNameTh || ""}
-                label="*Company Name(TH)"
+                label={`*${envi} name(TH)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -439,7 +440,7 @@ export default function GeneralInfoNew({
                 id="companyNameEn"
                 placeholder="...."
                 value={generalInfoState?.companyNameEn || ""}
-                label="*Company Name(EN)"
+                label={`*${envi} name(EN)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -453,7 +454,7 @@ export default function GeneralInfoNew({
                 id="companyNameJp"
                 placeholder="...."
                 value={generalInfoState?.companyNameJp || ""}
-                label="Company Name(JP)"
+                label={`*${envi} name(JP)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -469,7 +470,7 @@ export default function GeneralInfoNew({
                 id="companyNameCn"
                 placeholder="...."
                 value={generalInfoState?.companyNameCn || ""}
-                label="Company Name(CN)"
+                label={`*${envi} name(CN)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -483,7 +484,10 @@ export default function GeneralInfoNew({
                 category=""
                 edit={edit}
                 selected={null}
-                title={generalInfoState?.industry || "Industry"}
+                title={
+                  generalInfoState?.industry ||
+                  (envi === "factory" ? "Industry" : "Machine Type")
+                }
                 checkBox={false}
                 filterList={filterCategories}
                 type="dropdown"

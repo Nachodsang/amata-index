@@ -6,7 +6,7 @@ import LinkNext from "next/link";
 
 export default function TopBarItemPage() {
   const { pageSetting }: any = useContext(PageSettingContext);
-
+  const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const [isShrink, setIsShrink] = useState(false);
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -47,11 +47,13 @@ export default function TopBarItemPage() {
               blog
             </span>
           </Link>
-          <Link to="contact" smooth={true} duration={1000} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-              contact
-            </span>
-          </Link>
+          {envi === "factory" && (
+            <Link to="contact" smooth={true} duration={1000} offset={-75}>
+              <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                contact
+              </span>
+            </Link>
+          )}
         </div>
       </div>
     </div>

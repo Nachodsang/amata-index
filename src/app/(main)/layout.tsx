@@ -9,6 +9,7 @@ import CompanyContextProvider from "@/contexts/CompanyContext";
 import FilterContextProvider from "@/contexts/FilterContext";
 import TopBar from "@/components/index/TopBar/TopBar";
 import Footer from "@/components/index/Footer/Footer";
+
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
   {
@@ -111,8 +112,9 @@ export default async function RootLayout({
             <BannerProvider bannerPage={bannerData}>
               <AdProvider adsPage={adData}>
                 <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-                 
                   {children}
+          
+
                   <Footer />
                   <TwElementCom />
                 </PageSettingProvider>
