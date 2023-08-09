@@ -14,7 +14,7 @@ export default function AdSection() {
   const adAmount = pageSetting?.adAmount;
   return (
     <div className="m-6 overflow-hidden desktop0:hidden desktop0:w-full   ">
-      <div className="flex  flex-col   gap-y-3">
+      <div className="grid tablet1:grid-cols-2 grid-cols-1  gap-4  gap-y-3">
         {adsPage.slice(0, adAmount).map((i: any, index: any) => {
           return <Ad key={index} image={i?.image} link={i?.link} />;
         })}

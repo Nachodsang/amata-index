@@ -11,7 +11,7 @@ import {
 import axios from "axios";
 
 export const PageSettingContext = createContext({});
-const URL = "http://localhost:3000/api/page-setting";
+const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`;
 
 export default function PageSettingProvider({ children, pageSetting }: any) {
   const [pageSettingWebpanel, setPageSettingWebpanel] = useState([]);

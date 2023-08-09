@@ -40,28 +40,37 @@ export default function Entry({
   };
 
   const onDeleteCompanyFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/company-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
   const onDeleteBlogFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/blogs", {
+    const response = fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`, {
       method: "PUT",
       body: JSON.stringify({ _id: _id, type: "deleteF" }),
     });
   };
   const onDeleteAdFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/ad-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
   const onDeleteBannerFromDb = async () => {
-    const response = fetch("http://localhost:3000/api/banner-setting", {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    const response = fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
+      {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      }
+    );
   };
 
   const OnClickDeleteFromDb = () => {
@@ -139,32 +148,35 @@ export default function Entry({
     >
       <td className="whitespace-nowrap px-6 py-4 font-medium">{index}</td>
       <td className="whitespace-nowrap px-6 py-4 font-medium  ">
-        <a href={link}>
-          <img
-            src={image}
-            className={`${
-              type === "banner"
-                ? "h-[50px] w-[175px] "
-                : type === "blog"
-                ? "h-[100px] w-[180px] "
-                : "h-[75px] w-[75px]"
-            } object-cover shadow-xl`}
-            alt="Ad image"
-          />
-          {type === "company" ? (
-            <div className="">
-              <h1 className="text-base">{company}</h1>
-              <h1 className="text-xs">{companyNameTh}</h1>
-            </div>
-          ) : type === "blog" ? (
-            <div className="">
-              <h1 className="text-base">{title}</h1>
-              <h1 className="text-xs">{company}</h1>
-            </div>
-          ) : (
-            <h1>{title}</h1>
-          )}
-        </a>
+        {/* <a href={`/page/item/${link}`}> */}
+        <img
+          src={image}
+          className={`${
+            type === "banner"
+              ? "h-[50px] w-[175px] "
+              : type === "blog"
+              ? "h-[100px] w-[180px] "
+              : "h-[75px] w-[75px]"
+          } object-cover shadow-xl`}
+          alt="Ad image"
+        />
+        {type === "company" ? (
+          <div className="">
+            <h1 className="text-base">{company}</h1>
+            <h1 className="text-xs">{companyNameTh}</h1>
+          </div>
+        ) : type === "blog" ? (
+          <div className="">
+            <h1 className="text-base">{title}</h1>
+            <h1 className="text-xs">{company}</h1>
+          </div>
+        ) : (
+          <h1>
+            {title}
+            {/* {image} */}
+          </h1>
+        )}
+        {/* </a> */}
       </td>
       {type === "blog" ? (
         <td className="whitespace-nowrap px-6 py-4 text-xs">{industry}</td>
@@ -186,7 +198,7 @@ export default function Entry({
         {type === "company" ? (
           <div className="flex gap-[2px]">
             {!recycle ? (
-              <a href={`/factory/companies/${link}`}>
+              <a href={`/page/items/${link}`}>
                 <button className="shadow-lg flex gap-1 items-center bg-green-400 px-4 py-2 rounded-md font-bold text-white">
                   <SiCodereview size={20} />
                   <h1>Preview</h1>
@@ -239,7 +251,7 @@ export default function Entry({
                 <h1>Restore</h1>
               </button>
             ) : (
-              <a href={`/factory/blogs/${link}`}>
+              <a href={`/page/blogs/${link}`}>
                 <button className="shadow-lg flex gap-1 items-center bg-green-400 px-4 py-2 rounded-md font-bold text-white">
                   <SiCodereview size={20} />
                   <h1>Preview</h1>

@@ -23,11 +23,6 @@ export async function POST(request: NextRequest) {
   await writeFile(path, buffer);
   const imgPath = path.slice(6);
 
-  //   const response = await axios.put("http://localhost:3000/api/banner-setting", {
-  //     updatingField: "image",
-  //     newValue: imgPath,
-  //   });
-
   return NextResponse.json({ success: true, image: imgPath });
 }
 

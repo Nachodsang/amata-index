@@ -12,13 +12,14 @@ import Swal from "sweetalert2";
 import ContactInfoNew from "@/components/webpanel/ContactInfoNew/ContatctInfoNew";
 import GeneralInfoNew from "@/components/webpanel/GeneralInfoNew/GeneralInfoNew";
 export default function AddCompany() {
+  const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const [companyState, setCompanyState] = useState(null);
   const [categoryState, setCategoryState] = useState("");
 
   const addCompany = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/company-setting",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
         companyState
       );
       Swal.fire({
@@ -43,7 +44,7 @@ export default function AddCompany() {
   return (
     <div className="">
       <div className="mx-auto flex min-h-[100vh] max-w-[1440px] flex-col gap-4 rounded-md px-4">
-        <div>New Company</div>
+        <div className="capitalize">New {envi}</div>
         {/* general */}
 
         <GeneralInfoNew

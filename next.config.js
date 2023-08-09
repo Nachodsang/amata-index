@@ -7,7 +7,7 @@ const nextConfig = {
         hostname: "images.wsj.net",
       },
     ],
-  }
+  },
 };
 
 module.exports = nextConfig;

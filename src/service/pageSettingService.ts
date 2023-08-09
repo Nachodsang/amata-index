@@ -1,19 +1,15 @@
 import mongoose from "mongoose";
 import pageSettingModel, { IpageSetting } from "./models/pageSetting.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getPageSetting = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const pageSetting = await pageSettingModel.findOne({
     edition: 1,
   });
 
   return { pageSetting };
-  //
-  //   mongoose.disconnect();
 };
 
 export const setPage = async (req: IpageSetting) => {

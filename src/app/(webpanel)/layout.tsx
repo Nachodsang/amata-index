@@ -9,33 +9,6 @@ import FilterContextProvider from "@/contexts/FilterContext";
 import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
 
-// const SideNav = dynamic(() => import("@/components/SideNav/SideNav"), {
-//   ssr: false,
-// });
-// fetch filter function
-// const filterURL = "http://localhost:3000/api/filter-setting";
-// const fetchFilter = async () => {
-//   try {
-//     const response = await axios.get(filterURL);
-//     const data = await response.data.filters;
-
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-// const fetchAd = async () => {
-//   try {
-//     const response = await fetch("http://localhost:3000/api/ad-setting", {
-//       cache: "no-store",
-//     });
-//     const data = await response.json();
-//     return data;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
   {
@@ -61,7 +34,7 @@ export default async function RootLayout({
     <html lang="en" className="light">
       <body className={`${inter.className} `}>
         <BannerProvider>
-          <AdProvider >
+          <AdProvider>
             <FilterContextProvider>
               <PageSettingProvider>
                 {/* {children} */}

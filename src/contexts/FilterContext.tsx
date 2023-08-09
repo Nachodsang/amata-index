@@ -3,7 +3,7 @@ import axios from "axios";
 import { useContext, createContext, useState, useEffect } from "react";
 
 export const FilterContext = createContext({});
-const URL = "http://localhost:3000/api/filter-setting";
+const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`;
 const FilterContextProvider = ({ children, filtersFromMain }: any) => {
   const [filtersState, setFiltersState] = useState([]);
   const onCheckFilter = async (filterSet: any) => {

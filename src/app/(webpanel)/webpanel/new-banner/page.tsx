@@ -1,6 +1,7 @@
 "use client";
 import Input from "@/components/webpanel/Input/Input";
 import Swal from "sweetalert2";
+
 import { useContext, useEffect, useState } from "react";
 import { BannerContext } from "@/contexts/bannerContext";
 import FileInput from "@/components/webpanel/FileInput/FileInput";
@@ -87,11 +88,13 @@ export default function CreateNewBannerPage() {
             Dimension: 1920 x 500 pixel (auto resize & crop)
           </label>
           <FileInput
+            multiple={false}
             imageChange={imageChange}
             path={"upload-banner"}
             setState={setBannerState}
             state={bannerState}
             objectState={true}
+            stateValue={"image"}
           />
         </div>
         {/* Client name */}

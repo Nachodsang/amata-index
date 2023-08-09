@@ -31,7 +31,7 @@ export default function BannerList() {
   });
   const fetchDeletedBanner = async () => {
     const response = await axios.get(
-      "http://localhost:3000/api/banner-setting"
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`
     );
 
     const data = response?.data?.filter((i: any) => i?.deleted);
@@ -40,7 +40,7 @@ export default function BannerList() {
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {
       const response = await axios.put(
-        "http://localhost:3000/api/banner-setting",
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
         {
           // filterCat: "_id",
           filterValue: id,
@@ -130,8 +130,12 @@ export default function BannerList() {
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
-        <h1 className="mb-4 text-center text-xl font-semibold  ">
-          Banner List{" "}
+        <h1
+          className={`${
+            showDeleted ? "text-red-400" : "text-slate-500"
+          } uppercase flex items-center  gap-2 justify-center font-semibold text-4xl mb-4  `}
+        >
+          {!showDeleted ? "Banner List" : "Recycle Bin"}
           {bannerState.length > 0 && (
             <span
               className={`${showOnline ? "text-green-400" : "text-slate-700"}`}

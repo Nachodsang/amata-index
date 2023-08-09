@@ -1,16 +1,12 @@
 import mongoose from "mongoose";
 import adSettingModel, { IadSetting } from "./models/adSetting.model";
-mongoose.connect(
-  "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-);
+mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
+// mongoose.connect(
+//   "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
+// );
 export const getAd = async () => {
-  //   await mongoose.connect(
-  //     "mongodb+srv://nachodsang:Factoryindex@cluster0.izqugmj.mongodb.net/factory_index?retryWrites=true&w=majority"
-  //   );
   const ads = await adSettingModel.find();
   return ads;
-  //
-  //   mongoose.disconnect();
 };
 
 export const setAd = async (req: IadSetting) => {

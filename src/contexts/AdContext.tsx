@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import Swal from "sweetalert2";
 
 export const AdContext = createContext({});
-const URL = "http://localhost:3000/api/ad-setting";
+const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`;
 
 export default function AdProvider({ children, adsPage }: any) {
   const path = usePathname();
@@ -40,6 +40,7 @@ export default function AdProvider({ children, adsPage }: any) {
       if (client.length > 3 && adTitle.length > 3 && description.length > 3) {
         const pushData = { client, adTitle, description, image, link };
         const response = await axios.post(URL, pushData);
+        console.log(response);
       } else {
       }
     } catch (err) {

@@ -28,8 +28,8 @@ export default function SideNav({ _children }: any) {
   return (
     <div className="">
       <div className="flex justify-center bg-slate-100 py-4">
-        <div className="ml-56 w-full  translate-x-[-100px] text-center text-2xl font-bold text-black">
-          Webpanel: Factory
+        <div className="ml-56 w-full  translate-x-[-100px] text-center text-2xl font-bold text-white">
+          Webpanel: {process.env.NEXT_PUBLIC_APP_NAME}
         </div>
         <div className="d-flex hidden  justify-end px-5 ">
           <button
@@ -60,34 +60,24 @@ export default function SideNav({ _children }: any) {
           className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
           data-te-sidenav-link-ref
         >
-          <span className="w-full text-xl  font-bold  text-black">
-            Webpanel: Factory
+          <span className="w-full text-xl  font-bold  text-slate-400 underline-offset-3 underline">
+            {process.env.NEXT_PUBLIC_APP_NAME}
           </span>
         </Link>
         <ul
           className="relative m-0 list-none px-[0.2rem]"
           data-te-sidenav-menu-ref
         >
-          {/* <li className="relative">
-            <a
-              className="flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10"
-              data-te-sidenav-link-ref
-            >
-              <span className="text-xl font-bold  w-full bg-slate-600 text-white">
-                Webpanel: Factory
-              </span>
-            </a>
-          </li> */}
           <li className="relative">
             <Link
               href="/webpanel/header-setting"
               className={`${
                 menuState === "/webpanel/header-setting" &&
-                "font-bold bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                "font-bold bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <BsImages />
               </span>
               <span>Page Setting</span>
@@ -97,11 +87,12 @@ export default function SideNav({ _children }: any) {
             <Link
               href="/webpanel/filter-setting"
               className={`${
-                menuState.includes("filter") && "font-bold bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                menuState.includes("filter") &&
+                "font-bold bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <BsFilter />
               </span>
               <span>Filter Setting</span>
@@ -111,25 +102,29 @@ export default function SideNav({ _children }: any) {
             <Link
               href="/webpanel/company-profile"
               className={` ${
-                menuState.includes("company") && "font-bold bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                menuState.includes("company") &&
+                "font-bold bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <RiPagesLine />
               </span>
-              <span>Company Page</span>
+              <span className="capitalize">
+                {process.env.NEXT_PUBLIC_APP_KEY_WORD} List
+              </span>
             </Link>
           </li>
           <li className="relative">
             <Link
               href="/webpanel/blogs"
               className={`${
-                menuState.includes("blog") && "font-bold bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                menuState.includes("blog") &&
+                "font-bold bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <ImBlogger />
               </span>
               <span>Blog</span>
@@ -139,11 +134,12 @@ export default function SideNav({ _children }: any) {
             <Link
               href="/webpanel/banner"
               className={`${
-                menuState.includes("banner") && "font-bold bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                menuState.includes("banner") &&
+                "font-bold bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <TfiAnnouncement />
               </span>
               <span>Banner</span>
@@ -154,11 +150,11 @@ export default function SideNav({ _children }: any) {
               href="/webpanel/ads"
               className={`${
                 (menuState.includes("ads") || menuState.includes("new-ad")) &&
-                "font-bold  bg-slate-100"
-              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-gray-600 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
+                "font-bold  bg-[#570CF8] text-white"
+              } flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem] text-slate-400 outline-none transition duration-300 ease-linear hover:bg-slate-50 hover:text-inherit hover:outline-none focus:bg-slate-50 focus:text-inherit focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300 dark:hover:bg-white/10 dark:focus:bg-white/10 dark:active:bg-white/10`}
               data-te-sidenav-link-ref
             >
-              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 [&>svg]:text-gray-400 dark:[&>svg]:text-gray-300">
+              <span className="mr-4 [&>svg]:h-4 [&>svg]:w-4 ">
                 <RiAdvertisementLine />
               </span>
               <span>Advertisement</span>
@@ -166,7 +162,7 @@ export default function SideNav({ _children }: any) {
           </li>
         </ul>
       </nav>
-
+      {/* Menu button */}
       <div className="px-5  text-center" id="content ">
         <div className="flex justify-end">
           <button

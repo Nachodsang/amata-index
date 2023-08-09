@@ -48,7 +48,7 @@ export default function BlogGeneralInfoNew({
 
   const fetchCompany = async () => {
     const response = await axios.get(
-      "http://localhost:3000/api/company-setting"
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
     );
 
     setCompanyList(
@@ -121,22 +121,22 @@ export default function BlogGeneralInfoNew({
               {imgState ? (
                 <img
                   src={URL.createObjectURL(imgState)}
-                  className="h-[600px] w-[1200px] object-cover"
+                  className="h-[720px] w-[1080px] object-cover"
                 />
               ) : edit && generalInfoState?.coverImage ? (
                 <img
                   src={generalInfoState?.coverImage}
-                  className="h-[600px] w-[1200px] object-cover"
+                  className="h-[720px] w-[1080px]object-cover"
                 />
               ) : (
                 <img
                   src="https://i0.wp.com/theperfectroundgolf.com/wp-content/uploads/2022/04/placeholder.png?fit=1200%2C800&ssl=1"
-                  className="h-[600px] w-[1200px] object-cover"
+                  className="h-[720px] w-[1080px] object-cover"
                 />
               )}
               <div className="mb-3  w-full">
                 <p className="mb-2 inline-block text-xs text-red-500 dark:text-neutral-200 ">
-                  Dimension: height x width pixel (auto resize & crop)
+                  Dimension: 1080px x 720px (auto resize & crop)
                 </p>
                 <FileInput
                   imageChange={coverImageChange}
