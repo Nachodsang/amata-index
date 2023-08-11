@@ -1,6 +1,7 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import _ from "lodash";
+import { PageSettingContext } from "@/contexts/PageSettingContext";
 // checkbox component
 const CheckBox = ({
   category,
@@ -46,7 +47,7 @@ const CheckBox = ({
     <div className="flex items-center gap-2">
       <input
         type="checkbox"
-        className={`checkbox-accent checkbox h-4 w-4 rounded border-none ring-2 hover:cursor-pointer ${category}-ring`}
+        className={`checkbox-accent checkbox h-4 w-4 rounded border-none ring-2 hover:cursor-pointer ring-slate-300`}
         value={title}
         onChange={onCheck}
         checked={isChecked}
@@ -74,6 +75,7 @@ export default function CheckboxDropdown({
 
   setFiltersApplied,
 }: any) {
+  const { pageSetting }: any = useContext(PageSettingContext);
   const [clear, setClear] = useState(false);
   // const [clearFlag, setClearFlag] = useState(false);
   const onClear = () => {
@@ -88,12 +90,15 @@ export default function CheckboxDropdown({
   return (
     <div
       className={`
-      top-[100px] absolute w-full border   bg-white ${category}-border z-40 rounded-md ${
+      top-[100px] absolute w-full border   bg-white  z-40 rounded-md ${
         isHidden ? "hidden" : "flex"
       }`}
     >
       <div className="flex w-full flex-col gap-y-6 p-6  ">
-        <div className={`border-b-4 pb-6  ${category}-border`}>
+        <div
+          className={`border-b-4 pb-6`}
+          style={{ borderColor: `${pageSetting?.coreHeaderColor}` }}
+        >
           <h1 className="text-center ">{title}</h1>
         </div>
         <div className="grid w-full grid-cols-2 tablet2:grid-cols-3 desktop0:grid-cols-4">

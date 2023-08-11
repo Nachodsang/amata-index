@@ -34,7 +34,9 @@ export default function AddFilterBox({
     <div className="w-[45%] rounded-xl border border-slate-200 p-6 ">
       <div className="flex flex-col items-start justify-between">
         {/* <label className="text-slate-300 text-sm text-center">{category}</label> */}
-        <label className="w-full border-b border-slate-300">{label}</label>
+        <label className="w-full border-b border-slate-300 text-xl font-semibold">
+          {label}
+        </label>
         {/* filter list */}
         <div className="mb-4 w-full border-b border-slate-300 py-4 h-[300px] overflow-scroll ">
           {filterList?.map((i: any) => {

@@ -18,8 +18,8 @@ export default function FilterCheckBox({
     <div className="flex justify-between">
       <p
         className={`${
-          checkState ? "text-slate-800 font-bold" : "text-slate-400 "
-        }`}
+          checkState ? "text-green-700 font-bold" : "text-slate-400 "
+        } text-sm`}
       >
         {title}
       </p>

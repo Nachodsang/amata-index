@@ -23,7 +23,6 @@ export default function CompanyCard({
   const { pageSetting }: any = useContext(PageSettingContext);
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
 
-  console.log(envi);
   return (
     <div className="w-full   bg-white rounded-xl mb-4 relative py-4">
       <div className="flex flex-col w-full ">

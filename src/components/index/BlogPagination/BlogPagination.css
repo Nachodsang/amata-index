@@ -1,0 +1,57 @@
+/* .item must be first */
+.item {
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  height: 40px;
+  justify-content: center;
+  width: 40px;
+}
+
+.disabled-page {
+  color: white;
+}
+
+.active {
+  border: solid 1px white;
+  border-radius: 40px;
+  color: white;
+}
+
+.next {
+  /* border-left: solid 1px white; */
+  font-size: 4px;
+  height: 40px;
+  /* position: absolute; */
+  right: 0;
+  width: 150px;
+  margin-left: 5rem;
+}
+
+.pagination {
+  align-items: center;
+  background-color: transparent;
+  display: flex;
+  flex-direction: row;
+  height: 60px;
+  justify-content: center;
+  list-style-type: none;
+  position: relative;
+  width: 1000px;
+}
+
+.pagination-page {
+  font-weight: 700;
+}
+
+.previous {
+  /* border-right: solid 1px white; */
+  font-size: 4px;
+  height: 40px;
+  left: 0;
+  /* position: flex; */
+  width: 150px;
+  margin-right: 5rem;
+}

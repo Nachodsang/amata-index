@@ -9,6 +9,7 @@ import Map from "@/components/companyProfile/Map";
 import axios from "axios";
 import ShareModal from "@/components/companyProfile/ShareModal";
 import TopBarItemPage from "@/components/companyProfile/TopBarItemPage";
+import { redirect } from "next/navigation";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -39,6 +40,9 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const blogs = await fetchBlog();
   const companyData = await fetchCompany(company);
+  if (!companyData || !companyData?.status || companyData?.deleted) {
+    redirect("/page");
+  }
 
   return (
     <CompanyContextProvider companyData={companyData}>
@@ -63,8 +67,15 @@ export default async function Page({ params }: { params: { id: string } }) {
           {envi === "factory" && <Map companyData={companyData} />}
         </div>
       ) : (
-        <div className="flex  h-[100vh]">
-          <h1 className="m-auto font-bold text-4xl">Page Not Found</h1>
+        <div className="flex  flex-col h-[100vh]">
+          <div className="m-auto">
+            <h1 className=" font-bold text-4xl text-slate-400">
+              Page Not Found
+            </h1>
+            <span className="text-center text-slate-400">
+              Redirecting to our home page
+            </span>
+          </div>
         </div>
       )}
     </CompanyContextProvider>
