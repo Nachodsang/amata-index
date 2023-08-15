@@ -2,8 +2,7 @@
 import { useState } from "react";
 
 import axios from "axios";
-// import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
-// import BlogDetailsInfo from "@/components/webpanel/BlogDetailsInfo/BlogDetailsInfo";
+
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 import BlogGeneralInfoNew from "@/components/webpanel/BlogGeneralInfoNew/BlogGeneralInfoNew";
 import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDetailsInfoNew";
@@ -43,7 +42,7 @@ export default function NewBlog() {
         <BlogSeoInfo edit={false} state={blogState} setState={setBlogState} />
       </div>
 
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-10">
         <button
           onClick={addBlog}
           type="button"

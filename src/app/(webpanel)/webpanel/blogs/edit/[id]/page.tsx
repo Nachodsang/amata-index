@@ -81,7 +81,7 @@ export default function BlogEditPage({ params }: { params: { id: string } }) {
         <BlogSeoInfo edit={true} state={blogState} setState={setBlogState} />
       </div>
 
-      <div className="flex justify-center">
+      <div className="fixed top-28 right-10">
         <button
           onClick={editBlog}
           type="button"

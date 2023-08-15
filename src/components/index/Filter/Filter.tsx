@@ -7,40 +7,10 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { ImSearch } from "react-icons/im";
 import { VscDebugRestart } from "react-icons/vsc";
 import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
-import CollapsedFilter1 from "../collapsedFilter1/CollapsedFilter1";
-import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
+
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 import { FilterContext } from "@/contexts/FilterContext";
-import FilterContextProvider from "@/contexts/FilterContext";
 
-// interface DropDowns {
-//   drop1: boolean;
-//   drop2: boolean;
-//   drop3: boolean;
-//   drop4: boolean;
-//   drop5: boolean;
-//   drop6: boolean;
-//   drop7: boolean;
-// }
-// interface IfilterSelection {
-//   drop1: number[];
-//   drop2: number[];
-//   drop3: number[];
-//   drop4: number[];
-//   drop5: number[];
-//   drop6: number[];
-//   drop7: number[];
-// }
-
-// const defaultDropDownsState = {
-//   drop1: false,
-//   drop2: false,
-//   drop3: false,
-//   drop4: false,
-//   drop5: false,
-//   drop6: false,
-//   drop7: false,
-// };
 const defaultFilterSelection = {
   drop1: [],
   drop2: [],
@@ -79,7 +49,7 @@ export default function Filter({
   // const [advanceSearch, setAdvanceSearch] = useState(false);
 
   const [dropDowns, setDropDowns] = useState({} as any);
-  const [isExpanded, setExpanded] = useState(false);
+  // const [isExpanded, setExpanded] = useState(false);
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );

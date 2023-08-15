@@ -13,7 +13,12 @@ export default function Blogs({ blogList, companyData }: any) {
     (i: any) => i?.generalInfo?.industry === companyData?.generalInfo?.industry
   );
   return (
-    <div className="w-full bg-slate-100" id="blog">
+    <div
+      className={`w-full bg-slate-100 ${
+        filteredBlogs.length > 0 ? "block" : "hidden"
+      }`}
+      id="blog"
+    >
       {/* container */}
 
       <div className="mx-auto max-w-[1270px] py-10 px-4 flex flex-col gap-6">

@@ -74,8 +74,7 @@ export default function GalleryInfo({ state, setState, edit }: any) {
                   className="absolute flex items-center gap-1 hover:cursor-pointer text-red-500"
                   onClick={() => onDeleteItem(i)}
                 >
-                  <TiDelete size={30} className="shadow-lg" />
-                  {/* <h1>Delete</h1> */}
+                  <TiDelete size={30} className="bg-white rounded-full" />
                 </div>
                 <img src={i} />
               </div>

@@ -21,7 +21,7 @@ export default function BannerSlider({
   banners: any;
 }) {
   return (
-    <div className="w-full  ">
+    <div className="w-full ">
       <Swiper
         modules={[Navigation, Autoplay]}
         autoplay={{
