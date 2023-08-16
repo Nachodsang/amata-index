@@ -18,7 +18,7 @@ export default function Header({ companyData }: any) {
       <div className="h-auto overflow-hidden w-full bg-white">
         <img
           src={companyData?.generalInfo?.coverImage}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full max-h-[50vh] object-cover"
         />
       </div>
       {/* company info */}

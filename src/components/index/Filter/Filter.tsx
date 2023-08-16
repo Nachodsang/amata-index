@@ -235,7 +235,7 @@ export default function Filter({
                   dropDowns={dropDowns}
                 />
               )} */}
-            <div className="flex gap-4 flex-wrap flex-row">
+            <div className="flex gap-4 flex-wrap flex-row   ">
               {filterTypes.map((i: any, index: any) => {
                 const dynamicLabel = filtersApplied.filter(
                   (j: any) => j?.type === i
@@ -244,7 +244,7 @@ export default function Filter({
                   <button
                     key={index}
                     onClick={() => onDropDown(i)}
-                    className="justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
+                    className="text-xs justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full    w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
                     {dynamicLabel.length > 0 ? (
                       <div className=" flex justify-start items-center ">

@@ -46,7 +46,7 @@ export default function Filter({ companyData }: any) {
               {filters.map((j: any) => {
                 if (j?.filterType === i)
                   return (
-                    <span className="text-xs">
+                    <span className="text-xs ">
                       {j?.filterTitle} &nbsp;&nbsp;
                     </span>
                   );

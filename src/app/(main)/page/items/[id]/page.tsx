@@ -61,10 +61,10 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
           <Blogs blogList={blogs} companyData={companyData} />
-          {envi === "factory" && (
-            <Footer companyData={companyData} blogList={blogs} />
-          )}
-          {envi === "factory" && <Map companyData={companyData} />}
+
+          <Footer companyData={companyData} blogList={blogs} />
+
+          <Map companyData={companyData} />
         </div>
       ) : (
         <div className="flex  flex-col h-[100vh]">
