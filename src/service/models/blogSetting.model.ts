@@ -29,6 +29,7 @@ export interface IblogGeneralInfo {
 
   industry?: String;
   language?: String;
+  companyLogo?: String;
 }
 // export interface IfilterInfo {
 //   _id?: Types.ObjectId;
@@ -142,6 +143,7 @@ const blogSettingSchema = new Schema(
       companyReview: { type: String },
       industry: { type: String },
       language: { type: String },
+      companyLogo: { type: String },
     },
 
     details: {

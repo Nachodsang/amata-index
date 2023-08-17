@@ -2,12 +2,8 @@ import React, { useEffect, useState } from "react";
 
 import ReactPaginate from "react-paginate";
 import BlogCard from "../BlogCard/BlogCard";
-// import { GrLinkNext, GrLinkPrevious, GrCaretPrevious } from "react-icons/gr";
 import { AiFillFastBackward, AiFillFastForward } from "react-icons/ai";
 import "./BlogPagination.css";
-
-// Example items, to simulate fetching from another resources.
-// const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
 
 function Items({ currentItems }: any) {
   return (
@@ -29,7 +25,7 @@ export default function PaginatedItems({ itemsPerPage, items }: any) {
   // (This could be items from props; or items loaded in a local state
   // from an API endpoint with useEffect and useState)
   const endOffset = itemOffset + itemsPerPage;
-  console.log(`Loading items from ${itemOffset} to ${endOffset}`);
+
   const currentItems = items.slice(itemOffset, endOffset);
   const pageCount = Math.ceil(items.length / itemsPerPage);
 

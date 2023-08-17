@@ -203,7 +203,7 @@ export default function BlogGeneralInfoNew({
                 // category: any;
               />
             </div>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <Ip
                 id="type"
                 value={generalInfoState?.type}
@@ -228,7 +228,7 @@ export default function BlogGeneralInfoNew({
                   })
                 }
               />
-            </div>
+            </div> */}
             <div className="flex gap-4">
               {/* <Ip
                 placeholder="industry"

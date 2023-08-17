@@ -27,7 +27,7 @@ export default function DropDownFilterBox({
 
   return (
     <li
-      className="px-5 py-1  hover:bg-neutral-100 dark:hover:bg-neutral-600 "
+      className="px-5 py-1 hover:cursor-pointer  hover:bg-neutral-100 dark:hover:bg-neutral-600 "
       onClick={onSelectCheckbox}
     >
       <div className="flex justify-between">

@@ -112,7 +112,6 @@ export default function AddTextBox({
                     setItemState({ ...itemState, link: e.target.value })
                   }
                 />
-                {type}
               </div>
 
               {/* <!--Modal footer--> */}

@@ -26,7 +26,7 @@ export default function GoogleTranslate() {
   }, []);
 
   return (
-    <div className="absolute bottom-0 tablet1:top-0 right-0 ">
+    <div className="absolute bottom-[-20px] tablet1:top-0 right-0 ">
       <div className=" z-20  w-full" id="google_translate_element"></div>
     </div>
   );

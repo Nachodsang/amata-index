@@ -269,7 +269,7 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Theme Color</label>
+          <label htmlFor="">Theme Color (Hex or RGB)</label>
           <Input
             onChange={updateThemeColor}
             label=""
@@ -288,7 +288,7 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Header Color</label>
+          <label htmlFor="">Core Header Color (Hex or RGB)</label>
           <Input
             onChange={updateCoreHeaderColor}
             label=""
@@ -307,7 +307,7 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Color</label>
+          <label htmlFor="">Core Color (Hex or RGB)</label>
           <Input
             onChange={updateCoreColor}
             label=""

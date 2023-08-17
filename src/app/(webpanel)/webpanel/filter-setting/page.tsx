@@ -90,7 +90,7 @@ export default function FilterSettingPage() {
           {/* to be changed later */}
 
           <DropDown
-            title={"select category"}
+            title={categoryState || "select category"}
             type="dropdown"
             edit={false}
             filterList={filterCategories}

@@ -195,7 +195,7 @@ export default function GeneralInfo({
             {imgState?.coverImg ? (
               <img
                 src={URL.createObjectURL(imgState?.coverImg)}
-                className="h-[300px] w-[1200px]object-cover"
+                className="h-[300px] w-[1200px] object-cover"
               />
             ) : edit && generalInfoState?.coverImage ? (
               <img

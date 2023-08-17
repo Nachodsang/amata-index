@@ -5,6 +5,8 @@ import Ip from "../Input/Input";
 import DayBox from "../DayBox/DayBox";
 import Swal from "sweetalert2";
 import Map from "@/components/companyProfile/Map";
+import DropDown from "../DropDown/DropDown";
+import { provinceTH } from "../../../../public/assets/nationalities";
 
 export default function ContactInfoNew({ state, setState, edit }: any) {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
@@ -313,7 +315,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
               }
             />
           </div>
-          <div className="flex w-[400px]  flex-col  items-start gap-2">
+          {/* <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
               placeholder=""
               id="province"
@@ -325,6 +327,24 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
                   province: e.target.value,
                 })
               }
+            />
+          </div> */}
+          {/* province selection */}
+          <div className="w-[400px] ">
+            <DropDown
+              category=""
+              edit={edit}
+              selected={null}
+              title={contactInfoState?.province || "Province"}
+              checkBox={false}
+              filterList={provinceTH}
+              type="dropdown"
+              onChange={(value: any) => {
+                setContactInfoState({
+                  ...contactInfoState,
+                  province: value,
+                });
+              }}
             />
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
