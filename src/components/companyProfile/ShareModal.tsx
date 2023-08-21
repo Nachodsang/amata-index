@@ -19,18 +19,18 @@ export default function ShareModal({ show, setShow, link }: any) {
       onClick={() => setShow(!show)}
       className={`${
         !show ? "top-[100%]" : "top-0"
-      } w-full h-[100vh] bg-black/50 fixed  left-0 transition-all z-[10] `}
+      } w-full h-[100vh] bg-black/60 fixed  left-0 transition-all duration-700 z-[10] `}
     >
-      <div className="desktop0:w-[40%] w-[80%] px-4 h-[300px] absolute top-[30%] left-[50%] translate-x-[-50%]  rounded-xl bg-slate-100 z-[20]">
+      <div className="desktop0:w-[40%] w-[80%] px-4 h-[300px] absolute top-[30%] left-[50%] translate-x-[-50%]  rounded-xl  tablet1:bg-slate-100 z-[20]">
         <div className="relative w-full h-full flex flex-col items-center justify-center gap-4">
           <div
-            className="absolute top-4 right-4 hover:cursor-pointer"
+            className="absolute top-4 right-4 hover:cursor-pointer hidden tablet1:block"
             onClick={() => setShow(!show)}
           >
             <RxCross2 size={25} />
           </div>
-          <h1 className="text-xl text-slate-500 ">
-            Share this page on your social media
+          <h1 className="text-xl tablet1:text-slate-500 text-white ">
+            Share this page on your social media!
           </h1>
           <div className="flex justify-center items-center desktop0:gap-2 gap-1 tablet1:gap-4 ">
             <FacebookShareButton

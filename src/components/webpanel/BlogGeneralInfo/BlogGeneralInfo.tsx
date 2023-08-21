@@ -132,7 +132,7 @@ export default function BlogGeneralInfo({
   //   //   companyLogo: company?.generalInfo?.logo,
   //   // });
   // }, [state?.company]);
-  console.log(generalInfoState);
+
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div className="max-w-[1440px]  mx-auto w-full">

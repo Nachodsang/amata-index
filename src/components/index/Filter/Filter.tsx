@@ -151,6 +151,7 @@ export default function Filter({
   useEffect(() => {
     setCategoryState(filterCategories[1]);
   }, []);
+  console.log(filtersApplied);
   return (
     <div className="w-full   " id="search">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -163,7 +164,10 @@ export default function Filter({
           {/* label */}
           <div className=" my-5 flex gap-1   text-gray-600 ">
             <ImSearch size={45} className="z-20" />
-            <span className="z-20 text-4xl font-bold   ">Search</span>
+            <span className="z-20 text-4xl font-bold   ">
+              Search
+              {/* {JSON.stringify(filtersApplied)} */}
+            </span>
           </div>
           <div className=" relative flex flex-col gap-y-4 ">
             {/* inputs */}
@@ -246,7 +250,8 @@ export default function Filter({
                     onClick={() => onDropDown(i)}
                     className="text-xs justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full    w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
-                    {dynamicLabel.length > 0 ? (
+                    {/* showing selected filter */}
+                    {/* {dynamicLabel.length > 0 ? (
                       <div className=" flex justify-start items-center ">
                         {dynamicLabel?.map((k: any, index: any) => (
                           <span key={index} className="text-xs">
@@ -256,7 +261,8 @@ export default function Filter({
                       </div>
                     ) : (
                       i
-                    )}
+                    )} */}
+                    {i}
                     <RxTriangleDown size={20} className="" />
                   </button>
                 );

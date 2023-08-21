@@ -47,8 +47,7 @@ export default function About() {
   useEffect(() => {
     setFiltersApplied([]);
   }, [categoryState]);
-  // (filtersApplied);
-  // (filtersConfirmed);
+
   return (
     <div className="mt-12">
       <TopBar />
