@@ -7,40 +7,10 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { ImSearch } from "react-icons/im";
 import { VscDebugRestart } from "react-icons/vsc";
 import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
-import CollapsedFilter1 from "../collapsedFilter1/CollapsedFilter1";
-import CollapsedFilter2 from "../CollapsedFilter2/CollapsedFilter2";
+
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 import { FilterContext } from "@/contexts/FilterContext";
-import FilterContextProvider from "@/contexts/FilterContext";
 
-// interface DropDowns {
-//   drop1: boolean;
-//   drop2: boolean;
-//   drop3: boolean;
-//   drop4: boolean;
-//   drop5: boolean;
-//   drop6: boolean;
-//   drop7: boolean;
-// }
-// interface IfilterSelection {
-//   drop1: number[];
-//   drop2: number[];
-//   drop3: number[];
-//   drop4: number[];
-//   drop5: number[];
-//   drop6: number[];
-//   drop7: number[];
-// }
-
-// const defaultDropDownsState = {
-//   drop1: false,
-//   drop2: false,
-//   drop3: false,
-//   drop4: false,
-//   drop5: false,
-//   drop6: false,
-//   drop7: false,
-// };
 const defaultFilterSelection = {
   drop1: [],
   drop2: [],
@@ -79,7 +49,8 @@ export default function Filter({
   // const [advanceSearch, setAdvanceSearch] = useState(false);
 
   const [dropDowns, setDropDowns] = useState({} as any);
-  const [isExpanded, setExpanded] = useState(false);
+
+  // const [isExpanded, setExpanded] = useState(false);
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );
@@ -181,6 +152,7 @@ export default function Filter({
   useEffect(() => {
     setCategoryState(filterCategories[1]);
   }, []);
+  // console.log(filtersApplied);
   return (
     <div className="w-full   " id="search">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -193,7 +165,10 @@ export default function Filter({
           {/* label */}
           <div className=" my-5 flex gap-1   text-gray-600 ">
             <ImSearch size={45} className="z-20" />
-            <span className="z-20 text-4xl font-bold   ">Search</span>
+            <span className="z-20 text-4xl font-bold   ">
+              Search
+              {/* {JSON.stringify(filtersApplied.map((i: any) => i?.title))} */}
+            </span>
           </div>
           <div className=" relative flex flex-col gap-y-4 ">
             {/* inputs */}
@@ -265,18 +240,21 @@ export default function Filter({
                   dropDowns={dropDowns}
                 />
               )} */}
-            <div className="flex gap-4 flex-wrap flex-row">
+            <div className="flex gap-4 flex-wrap flex-row   ">
               {filterTypes.map((i: any, index: any) => {
                 const dynamicLabel = filtersApplied.filter(
                   (j: any) => j?.type === i
                 );
+
+                // console.log(dynamicLabel);
                 return (
                   <button
                     key={index}
                     onClick={() => onDropDown(i)}
-                    className="justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full   desktop0:w-[25%] w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
+                    className="text-xs justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full    w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
-                    {dynamicLabel.length > 0 ? (
+                    {/* showing selected filter */}
+                    {/* {dynamicLabel.length > 0 ? (
                       <div className=" flex justify-start items-center ">
                         {dynamicLabel?.map((k: any, index: any) => (
                           <span key={index} className="text-xs">
@@ -286,7 +264,9 @@ export default function Filter({
                       </div>
                     ) : (
                       i
-                    )}
+                    )} */}
+
+                    {i}
                     <RxTriangleDown size={20} className="" />
                   </button>
                 );

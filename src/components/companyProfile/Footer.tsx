@@ -4,6 +4,7 @@ import { ImLocation2 } from "react-icons/im";
 import ShareModal from "./ShareModal";
 import { useContext, useState } from "react";
 import { usePathname } from "next/navigation";
+import { Link } from "react-scroll";
 import absoluteUrl from "next-absolute-url";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 
@@ -87,7 +88,10 @@ export default function Footer({ companyData, blogList }: any) {
             </div>
             <div className="flex  h-[20%] border-y border-slate-300 py-2 ">
               <div className="flex w-[50%] border-r border-slate-300">
-                <p
+                <Link
+                  smooth={true}
+                  offset={-30}
+                  to={"blog"}
                   className={`m-auto hover:cursor-pointer ${
                     sameCompanyBlogs?.length > 0
                       ? "font-semibold"
@@ -95,7 +99,7 @@ export default function Footer({ companyData, blogList }: any) {
                   }`}
                 >
                   Blogs({sameCompanyBlogs?.length})
-                </p>
+                </Link>
               </div>
               <div
                 className="flex w-[50%] "

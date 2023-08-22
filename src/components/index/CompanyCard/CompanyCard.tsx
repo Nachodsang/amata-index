@@ -23,7 +23,6 @@ export default function CompanyCard({
   const { pageSetting }: any = useContext(PageSettingContext);
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
 
-  console.log(envi);
   return (
     <div className="w-full   bg-white rounded-xl mb-4 relative py-4">
       <div className="flex flex-col w-full ">
@@ -39,45 +38,44 @@ export default function CompanyCard({
             <div className="flex items-center gap-1">
               <span className="text-xs text-gray-400">{industry}</span>
             </div>
-            {envi === "factory" && (
-              <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
-                <div>
-                  {website ? (
-                    <a href={website}>
-                      {" "}
-                      <FaGlobe size={28} fill="#17A2B8" />
-                    </a>
-                  ) : (
-                    <a>
-                      {" "}
-                      <FaGlobe size={28} fill="#E5E7EB" />
-                    </a>
-                  )}
-                </div>
-                <div>
-                  {facebook ? (
-                    <a href={facebook}>
-                      <FaFacebookSquare size={30} fill="#1B73E8" />
-                    </a>
-                  ) : (
-                    <a>
-                      <FaFacebookSquare size={30} fill="#E5E7EB" />
-                    </a>
-                  )}
-                </div>
-                <div>
-                  {line ? (
-                    <a href={line}>
-                      <FaLine size={30} fill="#33C152" />
-                    </a>
-                  ) : (
-                    <a>
-                      <FaLine size={30} fill="#E5E7EB" />
-                    </a>
-                  )}
-                </div>
+
+            <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
+              <div>
+                {website ? (
+                  <a href={website}>
+                    {" "}
+                    <FaGlobe size={28} fill="#17A2B8" />
+                  </a>
+                ) : (
+                  <a>
+                    {" "}
+                    <FaGlobe size={28} fill="#E5E7EB" />
+                  </a>
+                )}
               </div>
-            )}
+              <div>
+                {facebook ? (
+                  <a href={facebook}>
+                    <FaFacebookSquare size={30} fill="#1B73E8" />
+                  </a>
+                ) : (
+                  <a>
+                    <FaFacebookSquare size={30} fill="#E5E7EB" />
+                  </a>
+                )}
+              </div>
+              <div>
+                {line ? (
+                  <a href={line}>
+                    <FaLine size={30} fill="#33C152" />
+                  </a>
+                ) : (
+                  <a>
+                    <FaLine size={30} fill="#E5E7EB" />
+                  </a>
+                )}
+              </div>
+            </div>
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">

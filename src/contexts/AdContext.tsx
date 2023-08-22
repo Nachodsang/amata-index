@@ -40,7 +40,7 @@ export default function AdProvider({ children, adsPage }: any) {
       if (client.length > 3 && adTitle.length > 3 && description.length > 3) {
         const pushData = { client, adTitle, description, image, link };
         const response = await axios.post(URL, pushData);
-        console.log(response);
+        // console.log(response);
       } else {
       }
     } catch (err) {

@@ -15,7 +15,8 @@ export default function Footer({ pageSetting }: any) {
     <div className="w-full ">
       <div className="max-w-[1270px] px-4 mx-auto border-t gap-2 flex flex-col items-center border-slate-200 py-6">
         <div
-          className="hover:cursor-pointer font-semibold text-base text-white shadow-md bg-orange-400 rounded-xl py-2 px-4 my-4"
+          style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
+          className="hover:cursor-pointer font-semibold text-base text-white shadow-md rounded-xl py-2 px-4 my-4"
           onClick={() => setShareState(!shareState)}
         >
           SHARE THIS NEWS & ACTIVITIES

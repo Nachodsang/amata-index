@@ -9,6 +9,7 @@ import Map from "@/components/companyProfile/Map";
 import axios from "axios";
 import ShareModal from "@/components/companyProfile/ShareModal";
 import TopBarItemPage from "@/components/companyProfile/TopBarItemPage";
+import { redirect } from "next/navigation";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -24,6 +25,19 @@ const fetchCompany = async (company: string) => {
   return data?.companySetting;
 };
 
+const fetchAllCompany = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
+
+    {
+      cache: "no-store",
+      // next: { revalidate: 5 },
+    }
+  );
+  const data = await response.json();
+
+  return data?.companySetting;
+};
 export default async function Page({ params }: { params: { id: string } }) {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const company = params.id;
@@ -39,6 +53,10 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   const blogs = await fetchBlog();
   const companyData = await fetchCompany(company);
+  if (!companyData || !companyData?.status || companyData?.deleted) {
+    redirect("/page");
+  }
+  const allCompanyData = await fetchAllCompany();
 
   return (
     <CompanyContextProvider companyData={companyData}>
@@ -56,15 +74,26 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Content companyData={companyData} />
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
-          <Blogs blogList={blogs} companyData={companyData} />
-          {envi === "factory" && (
-            <Footer companyData={companyData} blogList={blogs} />
-          )}
-          {envi === "factory" && <Map companyData={companyData} />}
+          <Blogs
+            blogList={blogs}
+            companyData={companyData}
+            allCompanyData={allCompanyData}
+          />
+
+          <Footer companyData={companyData} blogList={blogs} />
+
+          <Map companyData={companyData} />
         </div>
       ) : (
-        <div className="flex  h-[100vh]">
-          <h1 className="m-auto font-bold text-4xl">Page Not Found</h1>
+        <div className="flex  flex-col h-[100vh]">
+          <div className="m-auto">
+            <h1 className=" font-bold text-4xl text-slate-400">
+              Page Not Found
+            </h1>
+            <span className="text-center text-slate-400">
+              Redirecting to our home page
+            </span>
+          </div>
         </div>
       )}
     </CompanyContextProvider>

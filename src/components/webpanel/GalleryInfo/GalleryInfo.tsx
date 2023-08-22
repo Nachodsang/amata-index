@@ -62,17 +62,19 @@ export default function GalleryInfo({ state, setState, edit }: any) {
         <div className="font-bold text-2xl text-slate-700">Gallery</div>
       </div>
       <div className="p-4 flex flex-col gap-4">
-        <div className="w-full  bg-slate-300 rounded-2xl grid grid-cols-4 gap-4 p-6 ">
+        <div className="w-full  bg-slate-100 rounded-2xl grid grid-cols-4 p-6  ">
           {edit &&
             galleryState &&
             galleryState.map((i: any, index: any) => (
-              <div className="w-[300px] h-[300px] " key={index}>
+              <div
+                className="w-[300px] h-[300px] relative  overflow-hidden p-4"
+                key={index}
+              >
                 <div
-                  className="flex items-center gap-1 hover:cursor-pointer text-red-500"
+                  className="absolute flex items-center gap-1 hover:cursor-pointer text-red-500"
                   onClick={() => onDeleteItem(i)}
                 >
-                  <TiDelete />
-                  <h1>Delete</h1>
+                  <TiDelete size={30} className="bg-white rounded-full" />
                 </div>
                 <img src={i} />
               </div>

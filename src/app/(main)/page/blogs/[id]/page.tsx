@@ -4,7 +4,7 @@ import Header from "@/components/blogPage/Header";
 import axios from "axios";
 import Content from "@/components/companyProfile/Content";
 import TopBarBlogPage from "@/components/blogPage/TopBarBlogPage";
-
+import { redirect } from "next/navigation";
 export default async function BlogPage({ params }: { params: { id: string } }) {
   const blog = params.id;
 
@@ -29,6 +29,11 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
     const data = await response.json();
     return data.pageSetting;
   };
+
+  if (!blogData || !blogData?.status || blogData?.deleted) {
+    redirect("/page");
+  }
+
   return (
     <>
       {blogData && blogData?.status && !blogData?.deleted ? (

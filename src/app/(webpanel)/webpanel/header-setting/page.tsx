@@ -1,5 +1,5 @@
 "use client";
-import { SyntheticEvent, useContext, useState } from "react";
+import { SyntheticEvent, useContext, useEffect, useState } from "react";
 import Input from "@/components/webpanel/Input/Input";
 
 import { PageSettingContext } from "@/contexts/PageSettingContext";
@@ -43,7 +43,7 @@ export default function HeaderSettingPage() {
   const onSavePageTitle = () => {
     if (pageTitle.length > 4) {
       updatePageSetting("pageTitle", pageTitle);
-      setPageTitle("");
+      // setPageTitle("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -66,7 +66,7 @@ export default function HeaderSettingPage() {
   const onSavePageDescription = () => {
     if (pageDescription.length > 4) {
       updatePageSetting("description", pageDescription);
-      setPageDescription("");
+      // setPageDescription("");
 
       Swal.fire({
         position: "center",
@@ -113,7 +113,7 @@ export default function HeaderSettingPage() {
   const onSaveCoreHeaderColor = () => {
     if (coreHeaderColor.length > 4) {
       updatePageSetting("coreHeaderColor", coreHeaderColor);
-      setCoreHeaderColor("");
+      // setCoreHeaderColor("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -136,7 +136,7 @@ export default function HeaderSettingPage() {
   const onSaveCoreColor = () => {
     if (coreColor.length > 4) {
       updatePageSetting("coreColor", coreColor);
-      setCoreColor("");
+      // setCoreColor("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -159,7 +159,7 @@ export default function HeaderSettingPage() {
   const onSaveCoverImageURL = () => {
     if (coverImage.length > 15) {
       updatePageSetting("coverImage", coverImage);
-      setCoverImage("");
+      // setCoverImage("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -183,6 +183,13 @@ export default function HeaderSettingPage() {
     updatePageSetting("footerBanner", lowBanner);
   };
 
+  useEffect(() => {
+    setPageTitle(pageSettingWebpanel?.pageTitle);
+    setPageDescription(pageSettingWebpanel?.description);
+    setThemeColor(pageSettingWebpanel?.themeColor);
+    setCoreColor(pageSettingWebpanel?.coreColor);
+    setCoreHeaderColor(pageSettingWebpanel?.coreHeaderColor);
+  }, [pageSettingWebpanel]);
   // save image
   // const handleClickSubmitImg = async (event: SyntheticEvent) => {
   //   event.preventDefault();
@@ -230,7 +237,7 @@ export default function HeaderSettingPage() {
             value={pageTitle}
             placeholder="image url"
             id="image-url"
-            label="Page Title"
+            label=""
           />
           <div className="flex w-full justify-end">
             <button
@@ -245,7 +252,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Description</label>
           <Input
-            label="Description"
+            label=""
             onChange={updatePageDescription}
             value={pageDescription}
             placeholder="image url"
@@ -262,10 +269,10 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Theme Color</label>
+          <label htmlFor="">Theme Color (Hex or RGB)</label>
           <Input
             onChange={updateThemeColor}
-            label="hex: #000000"
+            label=""
             value={themeColor}
             placeholder="image url"
             id="image-url"
@@ -281,10 +288,10 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Header Color</label>
+          <label htmlFor="">Core Header Color (Hex or RGB)</label>
           <Input
             onChange={updateCoreHeaderColor}
-            label="hex: #000000"
+            label=""
             value={coreHeaderColor}
             placeholder="image url"
             id="image-url"
@@ -300,10 +307,10 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Color</label>
+          <label htmlFor="">Core Color (Hex or RGB)</label>
           <Input
             onChange={updateCoreColor}
-            label="hex: #000000"
+            label=""
             value={coreColor}
             placeholder="image url"
             id="image-url"
@@ -328,6 +335,11 @@ export default function HeaderSettingPage() {
                 src={URL.createObjectURL(selectedImage)}
                 className="h-[300px] w-full object-cover"
               />
+            ) : pageSettingWebpanel?.coverImage ? (
+              <img
+                src={pageSettingWebpanel?.coverImage}
+                className="h-[300px] w-full object-cover"
+              />
             ) : (
               <div className="flex h-[300px] w-full bg-slate-200 ">
                 <h1 className="m-auto text-4xl font-bold text-slate-400">
@@ -348,13 +360,13 @@ export default function HeaderSettingPage() {
                 objectState={false}
               />
 
-              <Input
+              {/* <Input
                 label="Image URL"
                 value={coverImage}
                 onChange={updateCoverImage}
                 placeholder="image url"
                 id="image-url"
-              />
+              /> */}
             </div>
           </div>
         </div>
@@ -377,6 +389,11 @@ export default function HeaderSettingPage() {
             {topBannerImage ? (
               <img
                 src={URL.createObjectURL(topBannerImage)}
+                className="h-[300px] w-full object-cover"
+              />
+            ) : pageSettingWebpanel?.topBanner ? (
+              <img
+                src={pageSettingWebpanel?.topBanner}
                 className="h-[300px] w-full object-cover"
               />
             ) : (
@@ -418,6 +435,11 @@ export default function HeaderSettingPage() {
             {lowBannerImage ? (
               <img
                 src={URL.createObjectURL(lowBannerImage)}
+                className="h-[300px] w-full object-cover"
+              />
+            ) : pageSettingWebpanel?.footerBanner ? (
+              <img
+                src={pageSettingWebpanel?.footerBanner}
                 className="h-[300px] w-full object-cover"
               />
             ) : (

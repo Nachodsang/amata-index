@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import DropDown from "../DropDown/DropDown";
 import { FilterContext } from "@/contexts/FilterContext";
 import axios from "axios";
+// import { CompanyContext } from "@/contexts/CompanyContext";
 
 export default function BlogGeneralInfo({
   edit,
@@ -27,9 +28,11 @@ export default function BlogGeneralInfo({
     companyReview: "",
     industry: "",
     language: "",
+    companyLogo: "",
   };
 
   const [companyList, setCompanyList] = useState([]);
+  const [companyObjList, setCompanyObjList] = useState([]);
   const { filtersState }: any = useContext(FilterContext);
   const [imgState, setImgState] = useState(null);
   const [generalInfoState, setGeneralInfoState] = useState(initialState);
@@ -58,6 +61,7 @@ export default function BlogGeneralInfo({
         .map((i: any) => i?.generalInfo?.companyNameEn)
         .sort()
     );
+    setCompanyObjList(response.data.companySetting);
   };
   // const companyList = companyData.filter((i: any) => !i?.deleted);
   const onHandleSave = () => {
@@ -82,6 +86,18 @@ export default function BlogGeneralInfo({
     }
   };
 
+  const onSelectCompany = (e: any) => {
+    // const company: any = companyObjList?.find(
+    //   (i: any) => i?.companyTitle === e
+    // );
+    // console.log(company, company?.generalInfo?.logo, e);
+    setState((prevState: any) => ({ ...prevState, company: e }));
+    // console.log("pause");
+    // setGeneralInfoState((prevGeneralInfoState): any => ({
+    //   ...prevGeneralInfoState,
+    //   companyLogo: company?.generalInfo?.logo,
+    // }));
+  };
   useEffect(() => {
     edit && state && setGeneralInfoState(state?.generalInfo);
   }, [state]);
@@ -90,15 +106,15 @@ export default function BlogGeneralInfo({
     const blogTitleInput = new Input(document.getElementById("blogTitle"));
     blogTitleInput.update();
 
-    const typeInput = new Input(document.getElementById("type"));
-    typeInput.update();
+    // const typeInput = new Input(document.getElementById("type"));
+    // typeInput.update();
     const blogUrlInput = new Input(document.getElementById("blogUrl"));
     blogUrlInput.update();
     // initial as input type
-    const companyReviewInput = new Input(
-      document.getElementById("companyReview")
-    );
-    companyReviewInput.update();
+    // const companyReviewInput = new Input(
+    //   document.getElementById("companyReview")
+    // );
+    // companyReviewInput.update();
 
     const languageInput = new Input(document.getElementById("language"));
     languageInput.update();
@@ -106,6 +122,17 @@ export default function BlogGeneralInfo({
   useEffect(() => {
     fetchCompany();
   }, []);
+  // useEffect(() => {
+  //   const company: any = companyObjList?.find(
+  //     (i: any) => i?.companyTitle === state?.company
+  //   );
+  //   // console.log(company, company?.generalInfo?.logo);
+  //   // setGeneralInfoState({
+  //   //   ...generalInfoState,
+  //   //   companyLogo: company?.generalInfo?.logo,
+  //   // });
+  // }, [state?.company]);
+
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
       <div className="max-w-[1440px]  mx-auto w-full">
@@ -192,7 +219,7 @@ export default function BlogGeneralInfo({
                 }
                 checkBox={false}
                 type="dropdown"
-                onChange={(e: any) => setState({ ...state, company: e })}
+                onChange={(e: any) => onSelectCompany(e)}
                 selected={undefined}
                 edit={undefined}
                 category={undefined} // onChange: any
@@ -201,7 +228,7 @@ export default function BlogGeneralInfo({
                 // category: any;
               />
             </div>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <Ip
                 id="type"
                 value={generalInfoState?.type}
@@ -226,7 +253,7 @@ export default function BlogGeneralInfo({
                   })
                 }
               />
-            </div>
+            </div> */}
             <div className="flex gap-4">
               {/* <Ip
                 placeholder="industry"

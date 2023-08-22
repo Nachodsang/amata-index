@@ -57,7 +57,7 @@ export default function Header({
                 </h1>
               </div>
               <GoogleTranslate />
-              <div className=" z-20 text-3xl font-semibold text-white">
+              <div className=" z-20 text-2xl desktop0:text-3xl font-semibold text-white">
                 {pageSetting?.description}
               </div>
             </div>

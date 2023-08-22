@@ -83,7 +83,7 @@ export default function AddCompany() {
         {/* SEO */}
         <SeoInfo state={companyState} setState={setCompanyState} edit={false} />
       </div>
-      <div className="flex justify-center">
+      <div className="flex justify-center pb-10">
         <button
           onClick={() => companyState && addCompany()}
           type="button"

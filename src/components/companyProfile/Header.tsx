@@ -18,7 +18,7 @@ export default function Header({ companyData }: any) {
       <div className="h-auto overflow-hidden w-full bg-white">
         <img
           src={companyData?.generalInfo?.coverImage}
-          className="h-auto w-full object-cover"
+          className="h-auto w-full max-h-[50vh] object-cover"
         />
       </div>
       {/* company info */}
@@ -26,19 +26,19 @@ export default function Header({ companyData }: any) {
         id="about"
         className="mx-auto flex desktop0:flex-row flex-col w-full max-w-[1270px] gap-4 px-4"
       >
-        <div className="flex desktop-0:w-[75%] w-full  gap-6 rounded-xl items-center bg-slate-200 p-6 shadow-lg">
-          <div className=" aspect-square desktop0:w-[25%] w-[50%] tablet-1:w-[40%]  rounded-xl bg-white p-2">
+        <div className="flex desktop0:w-[75%] w-full flex-col tablet1:flex-row  gap-6 rounded-xl items-center bg-slate-200 p-6 shadow-lg">
+          <div className=" aspect-square desktop0:w-[25%] w-full tablet1:w-[40%]  rounded-xl bg-white p-2">
             <img
               src={companyData?.generalInfo?.logo}
               className="h-full w-full rounded-lg object-cover
               "
             />
           </div>
-          <div className="flex desktop0:w-[65%] w-[50%] tablet-1:w-[60%]  flex-col gap-4">
-            <h1 className="text-2xl  text-slate-700 font-bold">
+          <div className="flex desktop0:w-[65%]  w-full tablet-1:w-[60%]  flex-col gap-4 items-center tablet1:items-start">
+            <h1 className="text-2xl  text-slate-700 font-bold text-center tablet1:text-start">
               {companyData?.companyTitle}
             </h1>
-            <div className="w-full rounded-xl bg-white px-4 py-20 desktop0:px-20  desktop0:py-10">
+            <div className="w-full rounded-xl bg-white px-4 py-10 tablet1:py-20 desktop0:px-20  desktop0:py-10">
               <div className="mx-auto">
                 {companyData?.details?.fullDescription}
               </div>
@@ -46,7 +46,7 @@ export default function Header({ companyData }: any) {
             <div className="flex gap-2">
               <div
                 style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
-                className="rounded-3xl py-2 px-2 text-center min-w-[100px] font-semibold text-white"
+                className=" rounded-3xl py-2 px-2 text-center min-w-[100px] font-semibold text-white"
               >
                 {companyData?.generalInfo?.industry}
               </div>
@@ -69,7 +69,7 @@ export default function Header({ companyData }: any) {
               >
                 <BsLine size={25} />
 
-                <span>{companyData?.contact?.line || "lineID"}</span>
+                <span>{companyData?.contact?.line || "Line ID"}</span>
               </button>
               {/* <button className="rounded-2xl w-full"></button> */}
             </div>
@@ -86,7 +86,7 @@ export default function Header({ companyData }: any) {
                 className="w-full rounded-3xl py-2 font-semibold text-white flex justify-start items-center px-10 gap-6"
               >
                 <BsPinMapFill size={25} />
-                {companyData?.contact?.province || "Bangkok"}
+                {companyData?.contacts?.province || "Bangkok"}
               </button>
             </div>
           </div>
