@@ -25,6 +25,19 @@ const fetchCompany = async (company: string) => {
   return data?.companySetting;
 };
 
+const fetchAllCompany = async () => {
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
+
+    {
+      cache: "no-store",
+      // next: { revalidate: 5 },
+    }
+  );
+  const data = await response.json();
+
+  return data?.companySetting;
+};
 export default async function Page({ params }: { params: { id: string } }) {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const company = params.id;
@@ -43,6 +56,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   if (!companyData || !companyData?.status || companyData?.deleted) {
     redirect("/page");
   }
+  const allCompanyData = await fetchAllCompany();
 
   return (
     <CompanyContextProvider companyData={companyData}>
@@ -60,7 +74,11 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Content companyData={companyData} />
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
-          <Blogs blogList={blogs} companyData={companyData} />
+          <Blogs
+            blogList={blogs}
+            companyData={companyData}
+            allCompanyData={allCompanyData}
+          />
 
           <Footer companyData={companyData} blogList={blogs} />
 

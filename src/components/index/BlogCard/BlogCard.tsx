@@ -9,9 +9,11 @@ import axios from "axios";
 export default function BlogCard({
   item,
   category,
+  companyList,
 }: {
   item: any;
   category: any;
+  companyList: any;
 }) {
   // const { companyData: cData }: any = useContext(CompanyContext);
   const [companyLogo, setCompanyLogo] = useState("");
@@ -21,16 +23,16 @@ export default function BlogCard({
   // const companyObject = cData?.find((i: any) => i?.companyTitle === company);
   // console.log(cData);
 
-  const fetchCompany = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
-    const blogCompany: any = response?.data?.companySetting?.find(
-      (i: any) => i?.companyTitle === company
-    );
-    setCompanyLogo(blogCompany?.generalInfo?.logo);
-    return response?.data?.companySetting;
-  };
+  // const fetchCompany = async () => {
+  //   const response = await axios.get(
+  //     `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+  //   );
+  //   const blogCompany: any = response?.data?.companySetting?.find(
+  //     (i: any) => i?.companyTitle === company
+  //   );
+  //   setCompanyLogo(blogCompany?.generalInfo?.logo);
+  //   return response?.data?.companySetting;
+  // };
 
   const localDate = `${new Date(updatedAt)
     .getDate()
@@ -40,8 +42,13 @@ export default function BlogCard({
     .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
 
   useEffect(() => {
-    item && fetchCompany();
-  }, [item]);
+    // item && fetchCompany();
+    const blogCompany: any = companyList.find(
+      (i: any) => i?.companyTitle === company
+    );
+    setCompanyLogo(blogCompany?.generalInfo?.logo);
+  }, [companyList]);
+  // console.log(companyList);
   return (
     <Link
       href={

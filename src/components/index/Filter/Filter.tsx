@@ -49,6 +49,7 @@ export default function Filter({
   // const [advanceSearch, setAdvanceSearch] = useState(false);
 
   const [dropDowns, setDropDowns] = useState({} as any);
+
   // const [isExpanded, setExpanded] = useState(false);
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
@@ -151,7 +152,7 @@ export default function Filter({
   useEffect(() => {
     setCategoryState(filterCategories[1]);
   }, []);
-  console.log(filtersApplied);
+  // console.log(filtersApplied);
   return (
     <div className="w-full   " id="search">
       <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
@@ -166,7 +167,7 @@ export default function Filter({
             <ImSearch size={45} className="z-20" />
             <span className="z-20 text-4xl font-bold   ">
               Search
-              {/* {JSON.stringify(filtersApplied)} */}
+              {/* {JSON.stringify(filtersApplied.map((i: any) => i?.title))} */}
             </span>
           </div>
           <div className=" relative flex flex-col gap-y-4 ">
@@ -244,6 +245,8 @@ export default function Filter({
                 const dynamicLabel = filtersApplied.filter(
                   (j: any) => j?.type === i
                 );
+
+                // console.log(dynamicLabel);
                 return (
                   <button
                     key={index}
@@ -262,6 +265,7 @@ export default function Filter({
                     ) : (
                       i
                     )} */}
+
                     {i}
                     <RxTriangleDown size={20} className="" />
                   </button>

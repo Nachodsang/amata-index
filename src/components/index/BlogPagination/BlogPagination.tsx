@@ -5,21 +5,31 @@ import BlogCard from "../BlogCard/BlogCard";
 import { AiFillFastBackward, AiFillFastForward } from "react-icons/ai";
 import "./BlogPagination.css";
 
-function Items({ currentItems }: any) {
+function Items({ currentItems, companyData }: any) {
   return (
     <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-y-4 gap-x-0">
       {currentItems &&
         currentItems.map((item: any, index: any) => (
-          <BlogCard key={index} category={""} item={item} />
+          <BlogCard
+            key={index}
+            category={""}
+            item={item}
+            companyList={companyData}
+          />
         ))}
     </div>
   );
 }
 
-export default function PaginatedItems({ itemsPerPage, items }: any) {
+export default function PaginatedItems({
+  itemsPerPage,
+  items,
+  companyData,
+}: any) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
   const [itemOffset, setItemOffset] = useState(0);
+  // const [showPagination, setShowPagination] = useState(false);
 
   // Simulate fetching items from another resources.
   // (This could be items from props; or items loaded in a local state
@@ -32,15 +42,15 @@ export default function PaginatedItems({ itemsPerPage, items }: any) {
   // Invoke when user click to request another page.
   const handlePageClick = (event: any) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    console.log(
-      `User requested page number ${event.selected}, which is offset ${newOffset}`
-    );
+    // console.log(
+    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
+    // );
     setItemOffset(newOffset);
   };
 
   return (
     <>
-      <Items currentItems={currentItems} />
+      <Items currentItems={currentItems} companyData={companyData} />
       <ReactPaginate
         activeClassName={"item active "}
         breakClassName={"item break-me "}
@@ -74,7 +84,9 @@ export default function PaginatedItems({ itemsPerPage, items }: any) {
         // containerClassName="pagination"
         // activeClassName="active"
         renderOnZeroPageCount={null}
-        className="mt-10 w-full flex justify-center"
+        className={`mt-10 w-full flex justify-center ${
+          items.length > 8 ? "flex" : "hidden"
+        }`}
       />
     </>
   );

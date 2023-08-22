@@ -90,7 +90,7 @@ export default function CheckboxDropdown({
   return (
     <div
       className={`
-      top-[100px] absolute w-full border   bg-white  z-40 rounded-md ${
+      top-[120px] absolute w-full border   bg-white  z-40 rounded-md ${
         isHidden ? "hidden" : "flex"
       }`}
     >

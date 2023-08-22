@@ -66,7 +66,7 @@ export default function About() {
       <Banner category="factory" />
       <Core category="factory" filters={filtersConfirmed} />
       <AdSection />
-      <Blog category="factory" />
+      {/* <Blog category="factory" /> */}
     </div>
   );
 }

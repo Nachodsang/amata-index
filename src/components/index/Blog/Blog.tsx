@@ -5,7 +5,13 @@ import { useContext, useState } from "react";
 import { CompanyContext } from "@/contexts/CompanyContext";
 import PaginatedItems from "../BlogPagination/BlogPagination";
 
-export default function Blog({ category }: { category: string }) {
+export default function Blog({
+  category,
+  companyData,
+}: {
+  category: string;
+  companyData: any;
+}) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { blogData }: any = useContext(CompanyContext);
 
@@ -28,7 +34,11 @@ export default function Blog({ category }: { category: string }) {
           ))}
         </div> */}
         {/* {JSON.stringify(blogData)} */}
-        <PaginatedItems items={blogData} itemsPerPage={8} />
+        <PaginatedItems
+          items={blogData}
+          itemsPerPage={8}
+          companyData={companyData}
+        />
       </div>
     </div>
   );
