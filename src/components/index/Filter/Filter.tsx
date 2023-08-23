@@ -295,7 +295,7 @@ export default function Filter({
           <div className="mt-4 flex w-full justify-end gap-4">
             <button
               onClick={onClickReset}
-              className="z-10 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
+              className="hover:scale-[101%] transition-all z-10 flex w-[25%] items-center justify-center gap-2 rounded-3xl bg-[#999999] py-2  text-sm text-white tablet1:text-lg desktop0:w-[15%]"
             >
               <VscDebugRestart size={20} />
               <span>Reset</span>
@@ -303,7 +303,7 @@ export default function Filter({
             <button
               onClick={onSearchClick}
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-              className={`z-10 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
+              className={`hover:scale-[101%] transition-all z-10 flex w-[75%] items-center justify-center  gap-2 rounded-3xl   text-white desktop0:w-[25%]`}
             >
               <ImSearch size={20} />
               <span>Search</span>

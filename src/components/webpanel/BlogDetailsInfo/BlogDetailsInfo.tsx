@@ -80,7 +80,7 @@ export default function BlogDetailsInfo({
             Article
           </label>
           <textarea
-            // value={detailsState?.fullDescription || ""}
+            value={detailsState?.article}
             onChange={(e) => {
               setDetailsState({
                 ...detailsState,

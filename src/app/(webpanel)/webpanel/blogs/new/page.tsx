@@ -6,6 +6,7 @@ import axios from "axios";
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 import BlogGeneralInfoNew from "@/components/webpanel/BlogGeneralInfoNew/BlogGeneralInfoNew";
 import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDetailsInfoNew";
+import Swal from "sweetalert2";
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({});
 
@@ -15,8 +16,22 @@ export default function NewBlog() {
         `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
         blogState
       );
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Blog has been created`,
+        showConfirmButton: true,
+        timer: 3000,
+      });
     } catch (err) {
-      console.log(err);
+      err;
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong.",
+        timer: 2500,
+      });
     }
   };
 

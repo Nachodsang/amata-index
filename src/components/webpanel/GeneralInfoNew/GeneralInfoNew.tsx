@@ -212,7 +212,7 @@ export default function GeneralInfoNew({
             )}
 
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
-              Dimension: 2000 x 500 pixel (auto resize & crop)
+              Dimension: 1920 x 500 pixel (auto resize & crop)
             </label>
             <FileInput
               imageChange={coverImageChange}

@@ -84,7 +84,17 @@ export default function CompanyCard({
               <MdLocationPin size={20} />
               <span>{location}</span>
             </div>
-            <p className="max-h-[125px] overflow-hidden font-semibold text-gray-500">
+            <p
+              style={{
+                textOverflow: "ellipsis",
+                WebkitLineClamp: "3",
+                overflow: "hidden",
+                display: "-webkit-box",
+                lineHeight: "25px",
+                WebkitBoxOrient: "vertical",
+              }}
+              className=" overflow-hidden font-normal text-gray-500"
+            >
               {details}
             </p>
           </div>

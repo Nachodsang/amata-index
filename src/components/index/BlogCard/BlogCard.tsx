@@ -91,7 +91,17 @@ export default function BlogCard({
           <h2 className=" overflow-hidden text-lg font-bold text-gray-700">
             {blogTitle}
           </h2>
-          <p className="tablet1:h-[110px] h-[100px]   overflow-hidden tablet2:text-xs text-sm  text-gray-400">
+          <p
+            style={{
+              textOverflow: "ellipsis",
+              WebkitLineClamp: "3",
+              overflow: "hidden",
+              display: "-webkit-box",
+              lineHeight: "25px",
+              WebkitBoxOrient: "vertical",
+            }}
+            className="  overflow-hidden tablet2:text-xs text-sm  text-gray-400"
+          >
             {seo?.description}
           </p>
         </div>
