@@ -38,26 +38,31 @@ export default function Header({
     <div className="relative w-full ">
       <div
         style={{
-          background: ` linear-gradient(rgba(0, 0, 0, 0.5), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
+          background: ` linear-gradient(rgba(0, 0, 0, 0), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
-        className={`cover-image absolute top-0 z-0  h-[800px]  w-full bg-cover  bg-no-repeat `}
+        className={`object-cover  absolute top-0 z-0  h-[80vh]  w-full bg-cover  bg-no-repeat `}
       ></div>
-      <div className=" px-6 ">
+      {/* padding to fit cover photo */}
+      <div className=" px-6 pt-[300px]">
         <div className=" relative  w-full ">
-          <div className="m-auto max-w-[1270px]  py-20 ">
+          <div className="m-auto max-w-[1270px]  py-10 ">
             <div className="flex flex-col items-start gap-4 relative">
               <div className="z-20  ">
                 <h1
                   style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-                  className={`rounded-xl px-6 py-4 text-6xl  font-bold  capitalize text-white`}
+                  className={`rounded-xl px-6 py-4 text-6xl   capitalize text-white`}
                 >
                   {pageSetting?.pageTitle}
                 </h1>
               </div>
               <GoogleTranslate />
-              <div className=" z-20 text-2xl desktop0:text-3xl font-semibold text-white">
+              <div
+                className={`z-20 text-2xl desktop0:text-4xl w-full tablet1:w-[800px] desktop0:w-[1000px] `}
+                style={{ color: `${pageSetting?.descriptionTextColor}` }}
+              >
                 {pageSetting?.description}
               </div>
             </div>

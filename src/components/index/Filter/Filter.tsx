@@ -165,8 +165,8 @@ export default function Filter({
           {/* label */}
           <div className=" my-5 flex gap-1   text-gray-600 ">
             <ImSearch size={45} className="z-20" />
-            <span className="z-20 text-4xl font-bold   ">
-              Search
+            <span className="z-20 text-4xl font-normal   ">
+              ค้นหา
               {/* {JSON.stringify(filtersApplied.map((i: any) => i?.title))} */}
             </span>
           </div>
@@ -191,12 +191,12 @@ export default function Filter({
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-20 menu p-2 shadow bg-base-100 rounded-box  "
+                    className="dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
                   >
                     {filterCategories?.map((i: any, index: any) => (
                       <li
                         key={index}
-                        className="text-slate-500"
+                        className="text-slate-500 bg-white"
                         onClick={() => setCategoryState(i)}
                       >
                         <p>{i}</p>

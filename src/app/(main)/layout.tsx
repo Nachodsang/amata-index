@@ -9,6 +9,14 @@ import CompanyContextProvider from "@/contexts/CompanyContext";
 import FilterContextProvider from "@/contexts/FilterContext";
 import TopBar from "@/components/index/TopBar/TopBar";
 import Footer from "@/components/index/Footer/Footer";
+import { Kanit } from "next/font/google";
+
+const roboto = Kanit({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
@@ -17,7 +25,7 @@ const TwElementCom = dynamic(
   }
 );
 
-const inter = Inter({ subsets: ["latin"] });
+// const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -103,7 +111,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={roboto.className}>
         <FilterContextProvider filtersFromMain={filtersFromMain}>
           <CompanyContextProvider
             companyData={companiesData}
