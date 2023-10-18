@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 import BlogGeneralInfo from "@/components/webpanel/BlogGeneralInfo/BlogGeneralInfo";
@@ -8,6 +9,8 @@ import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 import Swal from "sweetalert2";
 export default function BlogEditPage({ params }: { params: { id: string } }) {
   const blogURL = params.id;
+  const router = useRouter();
+
   const [blogState, setBlogState] = useState<any>(null);
   const fetchBlog = async () => {
     try {
@@ -47,6 +50,7 @@ export default function BlogEditPage({ params }: { params: { id: string } }) {
         showConfirmButton: true,
         timer: 3000,
       });
+      router.push("/webpanel/blogs");
     } catch (err) {
       err;
       Swal.fire({

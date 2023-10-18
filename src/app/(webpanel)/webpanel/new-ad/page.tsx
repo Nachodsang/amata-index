@@ -1,5 +1,6 @@
 "use client";
 import Input from "@/components/webpanel/Input/Input";
+import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 import { useContext, useState } from "react";
 import { AdContext } from "@/contexts/AdContext";
@@ -15,6 +16,7 @@ export default function CreateNewAdPage() {
   const [adState, setAdState] = useState(defaultAdState);
   const [selectedImage, setSelectedImage] = useState();
   const { addAd }: any = useContext(AdContext);
+  const router = useRouter();
 
   const onSetClient = (e: any) => {
     setAdState({ ...adState, client: e.target.value });
@@ -49,6 +51,7 @@ export default function CreateNewAdPage() {
         showConfirmButton: false,
         timer: 1500,
       });
+      router.push("/webpanel/ads");
     } else {
       Swal.fire({
         icon: "error",

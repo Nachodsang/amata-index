@@ -1,6 +1,7 @@
 "use client";
 import Input from "@/components/webpanel/Input/Input";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 import { useContext, useEffect, useState } from "react";
 import { BannerContext } from "@/contexts/bannerContext";
@@ -16,6 +17,7 @@ export default function CreateNewBannerPage() {
   const [bannerState, setBannerState] = useState(defaultBannerState);
   const [selectedImage, setSelectedImage] = useState();
   const { addBanner }: any = useContext(BannerContext);
+  const router = useRouter();
 
   const onSetClient = (e: any) => {
     setBannerState({ ...bannerState, client: e.target.value });
@@ -54,6 +56,7 @@ export default function CreateNewBannerPage() {
         showConfirmButton: false,
         timer: 1500,
       });
+      router.push("/webpanel/banner");
     } else {
       Swal.fire({
         icon: "error",

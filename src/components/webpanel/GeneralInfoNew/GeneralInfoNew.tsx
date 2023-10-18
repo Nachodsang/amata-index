@@ -292,7 +292,7 @@ export default function GeneralInfoNew({
                 id="companyNameJp"
                 placeholder="...."
                 value={generalInfoState?.companyNameJp || ""}
-                label={`*${envi} name(JP)`}
+                label={`${envi} name(JP)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -308,7 +308,7 @@ export default function GeneralInfoNew({
                 id="companyNameCn"
                 placeholder="...."
                 value={generalInfoState?.companyNameCn || ""}
-                label={`*${envi} name(CN)`}
+                label={`${envi} name(CN)`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,

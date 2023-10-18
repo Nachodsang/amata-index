@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
-
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import GeneralInfo from "@/components/webpanel/GeneralInfo/GeneralInfo";
 import FilterInfo from "@/components/webpanel/FilterInfo/FilterInfo";
 import DetailsInfo from "@/components/webpanel/DetailsInfo/DetailsInfo";
@@ -15,7 +16,7 @@ export default function AddCompany() {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const [companyState, setCompanyState] = useState(null);
   const [categoryState, setCategoryState] = useState("");
-
+  const router = useRouter();
   const addCompany = async () => {
     try {
       const response = await axios.post(
@@ -29,6 +30,7 @@ export default function AddCompany() {
         showConfirmButton: false,
         timer: 3000,
       });
+      router.push("/webpanel/company-profile");
     } catch (err) {
       err;
       Swal.fire({

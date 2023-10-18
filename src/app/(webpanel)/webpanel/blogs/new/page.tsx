@@ -1,5 +1,7 @@
 "use client";
 import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 
@@ -9,6 +11,7 @@ import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDet
 import Swal from "sweetalert2";
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({});
+  const router = useRouter();
 
   const addBlog = async () => {
     try {
@@ -23,6 +26,7 @@ export default function NewBlog() {
         showConfirmButton: true,
         timer: 3000,
       });
+      router.push("/webpanel/blogs");
     } catch (err) {
       err;
       Swal.fire({

@@ -24,8 +24,14 @@ export default function Blog({
       }}
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
-        <div className="">
-          <h1 className="text-4xl font-bold mb-5 ">Blog</h1>
+        <div className="mb-5 flex flex-col w-fit">
+          <h1 className="text-4xl font-semibold mb-2">Blog</h1>
+          <div
+            className=" h-1 "
+            style={{
+              background: `${pageSetting?.coreHeaderColor}`,
+            }}
+          ></div>
         </div>
         {/* Grid Container */}
         {/* <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-y-4 gap-x-0">
