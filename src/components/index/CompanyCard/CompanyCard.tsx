@@ -79,12 +79,24 @@ export default function CompanyCard({
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
-            <h1 className="font-bold text-xl text-gray-700">{companyTitle}</h1>
+            <h1 className="font-semibold text-xl text-gray-700">
+              {companyTitle}
+            </h1>
             <div className="text-blue-500 flex gap-1">
               <MdLocationPin size={20} />
               <span>{location}</span>
             </div>
-            <p className="max-h-[125px] overflow-hidden font-semibold text-gray-500">
+            <p
+              style={{
+                textOverflow: "ellipsis",
+                WebkitLineClamp: "3",
+                overflow: "hidden",
+                display: "-webkit-box",
+                lineHeight: "25px",
+                WebkitBoxOrient: "vertical",
+              }}
+              className=" overflow-hidden font-normal text-gray-500"
+            >
               {details}
             </p>
           </div>

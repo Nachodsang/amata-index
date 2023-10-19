@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 export default function BlogSeoInfo({ state, setState, edit }: any) {
-  const [seoState, setSeoState] = useState({});
+  const [seoState, setSeoState] = useState({} as any);
   const onHandleSave = () => {
     if (edit) {
       setState({
@@ -31,6 +31,9 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
       });
     }
   };
+  useEffect(() => {
+    state && setSeoState(state?.seo);
+  }, [state]);
   return (
     <div className="flex w-full flex-col rounded-md border border-slate-300  bg-white p-4 shadow-sm">
       <div className="flex justify-start border-b border-slate-300 py-2">
@@ -41,6 +44,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
           Seo Keywords:
         </h1>
         <textarea
+          value={seoState?.keyword}
           id="message"
           rows={3}
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -70,6 +74,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
           Description
         </h1>
         <textarea
+          value={seoState?.description}
           id="message"
           rows={3}
           className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"

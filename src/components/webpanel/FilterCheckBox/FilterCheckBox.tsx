@@ -24,11 +24,12 @@ export default function FilterCheckBox({
         {title}
       </p>
       <input
+        style={{ colorScheme: `light` }}
         type="checkbox"
         // checked={i?.active}
         checked={checkState}
         onChange={onCheck}
-        className="hover:cursor-pointer"
+        className="hover:cursor-pointer accent-green-700  bg-grey-700 text-red-500 "
       />
     </div>
   );

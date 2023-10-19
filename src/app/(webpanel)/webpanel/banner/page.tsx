@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { ImBin } from "react-icons/im";
 import { HiStatusOnline } from "react-icons/hi";
 
+
 export default function BannerList() {
   const [searchState, setSearchState] = useState("");
   const {
@@ -23,6 +24,7 @@ export default function BannerList() {
   const [loading, setLoading] = useState(true);
   const [showOnline, setShowOnline] = useState(false);
   const [showDeleted, setShowDeleted] = useState(false);
+
 
   const banners = b.sort((a: any, b: any) => {
     const dateA = new Date(a.updatedAt);

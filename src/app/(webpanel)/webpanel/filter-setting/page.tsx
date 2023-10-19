@@ -33,9 +33,9 @@ export default function FilterSettingPage() {
 
   const onSaveNewFilterType = () => {
     if (
-      newFilterType.length > 3 &&
-      newFilterTitle.length > 2 &&
-      newCategory.length > 3
+      newFilterType.length >= 2 &&
+      newFilterTitle.length >= 2 &&
+      newCategory.length >= 2
     ) {
       addFilter(newFilterType, newFilterTitle, newCategory);
       setNewFilterTitle("");
@@ -57,7 +57,7 @@ export default function FilterSettingPage() {
     }
   };
   const onSaveNewFilterTypeExistingCategory = () => {
-    if (newType.length > 3 && newTitle.length > 2) {
+    if (newType.length >= 2 && newTitle.length >= 2) {
       addFilter(newType, newTitle, categoryState);
       setNewTitle("");
       setNewType("");

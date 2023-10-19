@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@100;200;300;400;500;600;700;800;900&display=swap"); */
+
 body {
   background-color: white;
+  /* font-family: "Noto Sans Thai", sans-serif; */
+  color: black;
 }
 input {
   background-color: white;

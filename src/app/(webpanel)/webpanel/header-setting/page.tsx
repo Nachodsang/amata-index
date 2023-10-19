@@ -11,6 +11,7 @@ export default function HeaderSettingPage() {
     useContext(PageSettingContext);
   const [pageTitle, setPageTitle] = useState("");
   const [pageDescription, setPageDescription] = useState("");
+  const [descriptionColor, setDescriptionColor] = useState("");
   const [coverImage, setCoverImage] = useState("");
   const [themeColor, setThemeColor] = useState("");
   const [coreColor, setCoreColor] = useState("");
@@ -83,6 +84,26 @@ export default function HeaderSettingPage() {
       });
     }
   };
+
+  const onSaveDescriptionColor = () => {
+    if (descriptionColor.length > 4) {
+      updatePageSetting("descriptionTextColor", descriptionColor);
+
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "New Description Color has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Please insert new Description Color!",
+      });
+    }
+  };
   // Update Theme Color
   const updateThemeColor = (e: any) => {
     setThemeColor(e.target.value);
@@ -90,7 +111,7 @@ export default function HeaderSettingPage() {
   const onSaveThemeColor = () => {
     if (themeColor.length > 4) {
       updatePageSetting("themeColor", themeColor);
-      setThemeColor("");
+      // setThemeColor("");
       Swal.fire({
         position: "center",
         icon: "success",
@@ -189,6 +210,7 @@ export default function HeaderSettingPage() {
     setThemeColor(pageSettingWebpanel?.themeColor);
     setCoreColor(pageSettingWebpanel?.coreColor);
     setCoreHeaderColor(pageSettingWebpanel?.coreHeaderColor);
+    setDescriptionColor(pageSettingWebpanel?.descriptionTextColor);
   }, [pageSettingWebpanel]);
   // save image
   // const handleClickSubmitImg = async (event: SyntheticEvent) => {
@@ -261,6 +283,27 @@ export default function HeaderSettingPage() {
           <div className="flex w-full justify-end">
             <button
               onClick={onSavePageDescription}
+              type="button"
+              className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+            >
+              save
+            </button>
+          </div>
+        </div>
+        <div className="flex flex-col items-start">
+          <label htmlFor="">Description Color</label>
+          <Input
+            label=""
+            onChange={(e: any) => {
+              setDescriptionColor(e.target.value);
+            }}
+            value={descriptionColor}
+            placeholder="image url"
+            id="image-url"
+          />
+          <div className="flex w-full justify-end">
+            <button
+              onClick={onSaveDescriptionColor}
               type="button"
               className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
             >

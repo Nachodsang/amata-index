@@ -53,9 +53,10 @@ export default function BannerProvider({ children, bannerPage }: any) {
   ) => {
     try {
       if (
-        client.length > 3 &&
-        bannerTitle.length > 3 &&
-        description.length > 3
+        client.length >= 3 &&
+        bannerTitle.length >= 3
+        // &&
+        // description.length > 3
       ) {
         const pushData = { client, bannerTitle, description, image, link };
         const response = await axios.post(URL, pushData);

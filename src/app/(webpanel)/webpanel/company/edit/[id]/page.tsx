@@ -11,6 +11,7 @@ import SeoInfo from "@/components/webpanel/SeoInfo/SeoInfo";
 import ContactInfo from "@/components/webpanel/ContactInfo/ContactInfo";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRouter } from "next/navigation";
 
 export default function EditCompanyPage({
   params,
@@ -20,6 +21,7 @@ export default function EditCompanyPage({
   const companyURL = params.id;
   const [companyState, setCompanyState] = useState<any>(null);
   const [categoryState, setCategoryState] = useState("");
+  const router = useRouter();
   useEffect(() => {
     const fetchCompany = async () => {
       try {
@@ -53,6 +55,7 @@ export default function EditCompanyPage({
         showConfirmButton: true,
         timer: 3000,
       });
+      router.push("/webpanel/company-profile");
     } catch (err) {
       err;
       Swal.fire({

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 export default function DayBox({ day, onCheck, edit, state }: any) {
   const defaultBoxState = { day: "", time: "", status: false };
   const [boxState, setBoxState] = useState(defaultBoxState);
-  const [stat, setStat] = useState(true)
+  const [stat, setStat] = useState(true);
 
   //   useEffect to set day to box state
   useEffect(() => {
@@ -11,29 +11,24 @@ export default function DayBox({ day, onCheck, edit, state }: any) {
     }
   }, [boxState.status]);
 
-
   useEffect(() => {
     !edit && onCheck(boxState);
-
   }, [boxState]);
   useEffect(() => {
-
     if (edit && state && stat) {
-      setBoxState(state)
-      setStat(false)
+      setBoxState(state);
+      setStat(false);
     }
-
-
-  }, [state])
-
+  }, [state]);
 
   useEffect(() => {
-    edit && onCheck(boxState)
-  }, [boxState?.time, boxState?.status])
+    edit && onCheck(boxState);
+  }, [boxState?.time, boxState?.status]);
   return (
     <div className="flex  border w-[50%] border-slate-200 py-1   ">
       <div className="flex w-[50%] justify-between px-10 ">
         <input
+          style={{ colorScheme: `light` }}
           type="checkbox"
           checked={boxState.status}
           onChange={() => {
@@ -42,7 +37,6 @@ export default function DayBox({ day, onCheck, edit, state }: any) {
           className=" hover:cursor-pointer"
         />
         <h1 className="">{day}</h1>
-
       </div>
       <div className="w-[50%]   border-l  border-slate-300 px-6 ">
         {boxState.status ? (

@@ -8,6 +8,7 @@ import CompanyContextProvider from "@/contexts/CompanyContext";
 import Map from "@/components/companyProfile/Map";
 import axios from "axios";
 import ShareModal from "@/components/companyProfile/ShareModal";
+import TopBarItemPage from "@/components/companyProfile/TopBarItemPage";
 
 const fetchCompany = async (company: string) => {
   const response = await fetch(
@@ -40,13 +41,14 @@ export default async function Page({ params }: { params: { id: string } }) {
 
   return (
     <CompanyContextProvider companyData={companyData}>
-      {companyData && companyData?.status && !companyData?.deleted ? (
+      {companyData && !companyData?.deleted ? (
         <>
           <meta name="keywords" content={companyData?.seo?.th?.join()} />
           <meta
             name="description"
             content={companyData?.details?.fullDescription}
           />
+          <TopBarItemPage />
 
           <Header companyData={companyData} />
 

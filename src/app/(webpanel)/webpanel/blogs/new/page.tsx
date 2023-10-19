@@ -1,13 +1,17 @@
 "use client";
 import { useState } from "react";
+import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 import axios from "axios";
 
 import BlogSeoInfo from "@/components/BlogSeoInfo/BlogSeoInfo";
 import BlogGeneralInfoNew from "@/components/webpanel/BlogGeneralInfoNew/BlogGeneralInfoNew";
 import BlogDetailsInfoNew from "@/components/webpanel/BlogDetailsInfoNew/BlogDetailsInfoNew";
+import Swal from "sweetalert2";
 export default function NewBlog() {
   const [blogState, setBlogState] = useState({});
+  const router = useRouter();
 
   const addBlog = async () => {
     try {
@@ -15,8 +19,23 @@ export default function NewBlog() {
         `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
         blogState
       );
+      Swal.fire({
+        position: "center",
+        icon: "success",
+        title: `Blog has been created`,
+        showConfirmButton: true,
+        timer: 3000,
+      });
+      router.push("/webpanel/blogs");
     } catch (err) {
-      console.log(err);
+      err;
+      Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops...",
+        text: "Something went wrong.",
+        timer: 2500,
+      });
     }
   };
 

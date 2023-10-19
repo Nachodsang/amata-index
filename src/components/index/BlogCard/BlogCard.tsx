@@ -88,11 +88,22 @@ export default function BlogCard({
             </p>
             <p className="desktop0:text-xs text-gray-400">{localDate}</p>
           </div>
-          <h2 className=" overflow-hidden text-lg font-bold text-gray-700">
+          <h2 className=" overflow-hidden text-lg font-semibold text-gray-700">
             {blogTitle}
           </h2>
-          <p className="tablet1:h-[110px] h-[100px]   overflow-hidden tablet2:text-xs text-sm  text-gray-400">
-            {seo?.description}
+          <p
+            style={{
+              textOverflow: "ellipsis",
+              WebkitLineClamp: "3",
+              overflow: "hidden",
+              display: "-webkit-box",
+              lineHeight: "25px",
+              WebkitBoxOrient: "vertical",
+            }}
+            className="  overflow-hidden tablet2:text-xs text-sm  text-gray-400  min-h-[75px]"
+          >
+            {seo?.description ||
+              `This blog is created by ${pageSetting?.pageTitle} for ${company}`}
           </p>
         </div>
         <div className="flex justify-center mt-2">

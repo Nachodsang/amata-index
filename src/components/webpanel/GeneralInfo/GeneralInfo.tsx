@@ -210,7 +210,7 @@ export default function GeneralInfo({
             )}
 
             <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
-              Dimension: 2000 x 500 pixel (auto resize & crop)
+              Dimension: 1920 x 500 pixel (auto resize & crop)
             </label>
             <FileInput
               imageChange={coverImageChange}
@@ -234,6 +234,7 @@ export default function GeneralInfo({
               }}
               value={generalInfoState?.video || ""}
               placeholder="...."
+              required={false}
             />
           </div>
         </div>
@@ -246,13 +247,14 @@ export default function GeneralInfo({
               id="profileURL"
               placeholder="...."
               value={generalInfoState?.profileUrl || ""}
-              label="*Profile URL:eg.factory-name-thailand"
+              label="Profile URL / URL หน้าเพจ**"
               onChange={(e: any) => {
                 setGeneralInfoState({
                   ...generalInfoState,
                   profileUrl: e.target.value,
                 });
               }}
+              required={true}
             />
           </div>
           <div className="flex-flow flex w-full justify-between">
@@ -261,13 +263,14 @@ export default function GeneralInfo({
                 id="companyNameTh"
                 placeholder="...."
                 value={generalInfoState?.companyNameTh || ""}
-                label={`*${envi} name(TH)`}
+                label={`${envi} name(TH) / ชื่อภาษาไทย*`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
                     companyNameTh: e.target.value,
                   });
                 }}
+                required={true}
               />
             </div>
 
@@ -276,13 +279,14 @@ export default function GeneralInfo({
                 id="companyNameEn"
                 placeholder="...."
                 value={generalInfoState?.companyNameEn || ""}
-                label={`*${envi} name(EN)`}
+                label={`${envi} name(EN) / ชื่อภาษาอังกฤษ*`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
                     companyNameEn: e.target.value,
                   });
                 }}
+                required={true}
               />
             </div>
             <div className="w-[30%] flex-col ">
@@ -290,13 +294,14 @@ export default function GeneralInfo({
                 id="companyNameJp"
                 placeholder="...."
                 value={generalInfoState?.companyNameJp || ""}
-                label={`*${envi} name(JP)`}
+                label={`${envi} name(JP) / ชื่อภาษาญี่ปุ่น`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
                     companyNameJp: e.target.value,
                   });
                 }}
+                required={false}
               />
             </div>
           </div>
@@ -306,13 +311,14 @@ export default function GeneralInfo({
                 id="companyNameCn"
                 placeholder="...."
                 value={generalInfoState?.companyNameCn || ""}
-                label={`*${envi} name(CN)`}
+                label={`${envi} name(CN) / ชื่อภาษาจีน`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
                     companyNameCn: e.target.value,
                   });
                 }}
+                required={false}
               />
             </div>
             <div className="w-[30%]">
@@ -322,7 +328,9 @@ export default function GeneralInfo({
                 selected={null}
                 title={
                   generalInfoState?.industry ||
-                  (envi === "factory" ? "Industry" : "Machine Type")
+                  (envi === "factory"
+                    ? "Industry / ประเภทอุตสาหกรรม*"
+                    : "Machine Type / ประเภทเครื่องจักร*")
                 }
                 checkBox={false}
                 filterList={filterCategories}
@@ -340,7 +348,9 @@ export default function GeneralInfo({
                 category=""
                 edit={edit}
                 selected={null}
-                title={generalInfoState?.nationality || "Nationality"}
+                title={
+                  generalInfoState?.nationality || "Nationality / สัญชาติ*"
+                }
                 checkBox={false}
                 filterList={nationalityList}
                 type="dropdown"

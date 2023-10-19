@@ -12,7 +12,7 @@ export default function AddFilterBox({
 }: any) {
   const [input, setInput] = useState("");
   const onSaveInput = () => {
-    if (input.length >= 3) {
+    if (input.length >= 2) {
       onSave(label, input, category);
       setInput("");
       Swal.fire({
