@@ -41,6 +41,7 @@ export default function DropDownFilterBox({
         </span>
         {checkBox && (
           <input
+            style={{ colorScheme: `light` }}
             className="hover:cursor-pointer"
             checked={
               selected &&

@@ -37,12 +37,18 @@ export default function AdProvider({ children, adsPage }: any) {
     link: string
   ) => {
     try {
-      if (client.length > 3 && adTitle.length > 3 && description.length > 3) {
-        const pushData = { client, adTitle, description, image, link };
-        const response = await axios.post(URL, pushData);
-        // console.log(response);
-      } else {
-      }
+      // console.log(client, adTitle, description, image, link);
+      // if (
+      //   client.length >= 3 &&
+      //   adTitle.length >= 3
+      //   && description.length > 3
+      // ) {
+      const pushData = { client, adTitle, description, image, link };
+      const response = await axios.post(URL, pushData);
+      // console.log(response);
+      // } else {
+
+      // }
     } catch (err) {
       console.log(err);
     }

@@ -1444,7 +1444,7 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
             </div>
           </div>
         </div>
-        <div className="content">
+        <div className="content" style={{ colorScheme: `light` }}>
           {model
             ? model?.grid?.map((itemGrid: IGrid, indexGrid: number) => (
                 <div key={indexGrid} className={itemGrid.className}>

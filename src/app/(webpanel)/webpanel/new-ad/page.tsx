@@ -35,7 +35,12 @@ export default function CreateNewAdPage() {
   };
   const onSaveAd = () => {
     const { client, adTitle, description, image, link }: any = adState;
-    if (client?.length > 3 && adTitle?.length > 3 && description?.length > 3) {
+    if (
+      client?.length >= 3 &&
+      adTitle?.length >= 3 &&
+      image
+      // && description?.length > 3
+    ) {
       addAd(client, adTitle, description, image, link);
       setAdState({
         adTitle: "",
@@ -56,7 +61,7 @@ export default function CreateNewAdPage() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: "Please enter valid inputs!",
+        text: "Please fill all with * / กรุณากรอกทุกช่องที่มี * ",
       });
     }
   };
@@ -71,69 +76,106 @@ export default function CreateNewAdPage() {
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
         <h1 className="mb-4 text-center text-xl font-semibold  ">New Ad</h1>
-        <div>
-          {selectedImage ? (
-            <img
-              src={URL.createObjectURL(selectedImage)}
-              className="h-[300px] w-[300px] object-cover"
-            />
-          ) : (
-            <div className="h-[300px] w-[300px] bg-slate-200"></div>
-          )}
-          <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
-            Dimension: 500 x 500 pixel (auto resize & crop)
-          </label>
-          <FileInput
-            path="upload-ad"
-            objectState={true}
-            state={adState}
-            setState={setAdState}
-            imageChange={imageChange}
-            stateValue={"image"}
-            multiple={false}
-          />
+        <div
+          className="flex flex-col
+        "
+        >
+          <div className="flex flex-col items-start px-4">
+            {selectedImage ? (
+              <img
+                src={URL.createObjectURL(selectedImage)}
+                className="h-[300px] w-[300px] object-cover"
+              />
+            ) : (
+              <div className="h-[300px] w-[300px] bg-slate-200 flex  ">
+                <h1 className="text-center my-auto mx-auto text-slate-400 text-3xl">
+                  Ad. Image
+                </h1>
+              </div>
+            )}
+            <label className="mb-2 inline-block  text-xs text-red-500 dark:text-neutral-200">
+              Dimension: 500 x 500 pixel (auto resize & crop)
+            </label>
+          </div>
         </div>
         {/* Client name */}
         <div className="mt-4 flex flex-col  gap-4">
-          <Input
+          {/* <Input
             label="Image URL"
             value={adState?.image}
             onChange={onSetImage}
             placeholder=""
             id=""
-          />
-          <Input
-            label="Client"
-            value={adState?.client}
-            onChange={onSetClient}
-            placeholder=""
-            id=""
-          />
+          /> */}
 
-          {/* Ad title */}
+          <div className="flex flex-col gap-y-2 bg-slate-50 border-l-4 border-red-300 p-4 rounded-xl">
+            <div className="flex flex-col items-start w-full  ">
+              <label className="text-red-400 text-sm">
+                Select Image / เลือกรูปภาพ*
+              </label>
+              <FileInput
+                path="upload-ad"
+                objectState={true}
+                state={adState}
+                setState={setAdState}
+                imageChange={imageChange}
+                stateValue={"image"}
+                multiple={false}
+              />
+            </div>
+            <div className="flex flex-col items-start">
+              <label className="text-red-400 text-sm">Client / ลูกค้า*</label>
+              <Input
+                label=""
+                value={adState?.client}
+                onChange={onSetClient}
+                placeholder=""
+                id=""
+                required={true}
+              />
+            </div>
 
-          <Input
-            label="Ad Title"
-            value={adState?.adTitle}
-            onChange={onSetTitle}
-            placeholder=""
-            id=""
-          />
-
-          <Input
-            label="Description"
-            value={adState?.description}
-            onChange={onSetDescription}
-            placeholder=""
-            id=""
-          />
-          <Input
-            label="Link"
-            value={adState?.link}
-            onChange={onSetLink}
-            placeholder=""
-            id=""
-          />
+            {/* Ad title */}
+            <div className="flex flex-col items-start">
+              <label className="text-red-400 text-sm">
+                Ad Title / ชื่อโฆษณา*
+              </label>
+              <Input
+                label=""
+                value={adState?.adTitle}
+                onChange={onSetTitle}
+                placeholder=""
+                id=""
+                required={true}
+              />
+            </div>
+          </div>
+          <div className="flex flex-col items-start px-4">
+            <label className="text-slate-400 text-sm ">
+              Description / คำอธิบาย
+            </label>
+            <Input
+              label=""
+              value={adState?.description}
+              onChange={onSetDescription}
+              placeholder=""
+              id=""
+              required={false}
+            />
+          </div>
+          <div className="flex flex-col items-start px-4">
+            <label className="text-slate-400 text-sm">
+              URL Link / ลิงค์URL
+            </label>
+            <Input
+              label=""
+              value={adState?.link}
+              onChange={onSetLink}
+              placeholder=""
+              id=""
+              required={false}
+            />
+          </div>
           <div className="flex justify-end">
             <button
               onClick={onSaveAd}

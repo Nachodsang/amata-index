@@ -22,7 +22,7 @@ const adSettingSchema = new Schema(
     image: { type: String, required: true },
     client: { type: String, required: true },
     status: { type: Boolean, default: false },
-    link: { type: String, required: true },
+    link: { type: String, required: false },
     deleted: { type: Boolean, default: false },
     edition: { type: Number },
   },
