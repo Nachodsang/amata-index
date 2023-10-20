@@ -35,7 +35,7 @@ export default function CompanyCard({
                 className="w-full h-full object-cover rounded-md "
               />
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-1 max-w-[150px]">
               <span className="text-xs text-gray-400">{industry}</span>
             </div>
 
