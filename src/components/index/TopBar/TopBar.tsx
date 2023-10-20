@@ -3,6 +3,7 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import LinkNext from "next/link";
+import { AmataLogo } from "../AmataLogo";
 
 export default function TopBar() {
   const { pageSetting }: any = useContext(PageSettingContext);
@@ -22,12 +23,13 @@ export default function TopBar() {
     >
       <div className=" max-w-[1270px] mx-auto flex justify-between items-center">
         <LinkNext href="/page">
-          <h1 className="text-xl font-bold text-white ">
+          {/* <h1 className="text-xl font-bold text-white ">
             {process.env.NEXT_PUBLIC_APP_NAME}
-          </h1>
+          </h1> */}
+          <AmataLogo />
         </LinkNext>
         <div className="flex gap-4 text-white text-xs">
-          <Link to="search" smooth={true} duration={500} offset={-75}>
+          <Link to="search" smooth={true} duration={500} offset={-150}>
             <span className="hover:underline underline-offset-4 hover:cursor-pointer">
               SEARCH
             </span>

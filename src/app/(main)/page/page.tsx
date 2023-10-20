@@ -7,6 +7,7 @@ import Blog from "../../../components/index/Blog/Blog";
 import AdSection from "@/components/index/AdSection/AdSection";
 import TopBar from "@/components/index/TopBar/TopBar";
 import { CompanyContext } from "@/contexts/CompanyContext";
+import BlogForRent from "@/components/index/Blog/BlogForRent";
 
 export default function About() {
   const { companyData }: any = useContext(CompanyContext);
@@ -70,6 +71,7 @@ export default function About() {
       <Core category="factory" filters={filtersConfirmed} />
       <AdSection />
       <Blog category="factory" companyData={companyData} />
+      <BlogForRent category="factory" companyData={companyData} />
     </div>
   );
 }

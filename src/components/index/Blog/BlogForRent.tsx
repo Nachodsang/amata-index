@@ -18,14 +18,14 @@ export default function Blog({
   return (
     <div
       id="blog"
-      className="w-full pt-6 pb-10 mt-10  px-6 relative bg-slate-100/80 "
-      // style={{
-      //   background: `${pageSetting?.coreColor}`,
-      // }}
+      className="w-full py-10  px-6 relative "
+      style={{
+        background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
+      }}
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
         <div className="mb-5 flex flex-col w-fit">
-          <h1 className="text-4xl font-semibold mb-2">Blog - For Sale</h1>
+          <h1 className="text-4xl font-semibold mb-2">Blog - For Rent</h1>
           <div
             className=" h-1 "
             style={{
