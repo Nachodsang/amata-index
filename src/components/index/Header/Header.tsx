@@ -48,7 +48,7 @@ export default function Header({
       {/* padding to fit cover photo */}
       <div className=" px-6 pt-[300px]">
         <div className=" relative  w-full ">
-          <div className="m-auto max-w-[1270px]  py-10 ">
+          <div className="m-auto max-w-[1270px]  pt-10 pb-20">
             <div className="flex flex-col items-start gap-4 relative">
               <div className="z-20  ">
                 <h1

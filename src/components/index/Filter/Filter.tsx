@@ -54,6 +54,7 @@ export default function Filter({
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );
+  const [locationState, setLocationState] = useState("chonburi");
   // const { filtersState }: any = useContext(FilterContext);
   const { pageSetting }: any = useContext(PageSettingContext);
   const { filtersFromMain: filtersState }: any = useContext(FilterContext);
@@ -155,7 +156,60 @@ export default function Filter({
   // console.log(filtersApplied);
   return (
     <div className="w-full   " id="search">
-      <div className=" relative z-20  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
+      <div className=" relative z-0  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
+        <div className="flex flex-row items-end w-full  z-30 absolute top-[-40px] h-[40px]  ">
+          <button
+            onClick={() => setLocationState("chonburi")}
+            className={`flex mr-[-6px]  ${
+              locationState == "chonburi"
+                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
+                : "text-xl text-slate-400 bg-slate-100 "
+            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+          >
+            ชลบุรี
+          </button>
+          <button
+            onClick={() => setLocationState("rayong")}
+            className={`flex mr-[-6px]  ${
+              locationState == "rayong"
+                ? " py-4 px-14 text-2xl text-slate-700 bg-white "
+                : "text-xl text-slate-400 bg-slate-100"
+            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+          >
+            ระยอง
+          </button>
+          <button
+            onClick={() => setLocationState("vietnam")}
+            className={` flex mr-[-6px]  ${
+              locationState == "vietnam"
+                ? " py-4 px-14 text-2xl text-slate-700  bg-white "
+                : "text-xl text-slate-400 bg-slate-100"
+            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+          >
+            เวียดนาม
+          </button>
+          <button
+            onClick={() => setLocationState("laos")}
+            className={` flex mr-[-6px]  ${
+              locationState == "laos"
+                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
+                : "text-xl text-slate-400 bg-slate-100"
+            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+          >
+            ลาว
+          </button>
+          <button
+            onClick={() => setLocationState("myanmar")}
+            className={` flex mr-[-6px]  ${
+              locationState == "myanmar"
+                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
+                : "text-xl text-slate-400 bg-slate-100"
+            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+          >
+            เมียนมาร์
+          </button>
+        </div>
+
         <div
           onClick={onFoldDropDown}
           className="buttom-0 absolute left-0  right-0 top-0 z-0 h-full w-full"
