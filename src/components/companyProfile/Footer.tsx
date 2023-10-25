@@ -23,10 +23,10 @@ export default function Footer({ companyData, blogList }: any) {
     <div id="contact" className=" flex flex-col  items-center py-10">
       <div className="mx-auto flex   tablet2:w-[770px] w-full flex-col flex-wrap items-center px-4 gap-4">
         <div className="flex flex-col gap-4">
-          <h1 className="text-center text-4xl font-bold">
+          <h1 className="text-center text-2xl font-bold">
             {companyData?.companyTitle}
           </h1>
-          <div className="flex items-center text-center">
+          <div className="flex items-center justify-center text-center">
             <ImLocation2 size={30} className="text-orange-500" />
             <p>{companyData?.contacts?.addressTh}</p>
           </div>

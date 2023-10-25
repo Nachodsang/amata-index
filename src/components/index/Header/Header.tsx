@@ -46,7 +46,7 @@ export default function Header({
         className={`object-cover  absolute top-0 z-0 h-[35vh] tablet1:h-[50vh] tablet2:h-[60]  desktop0:h-[80vh]  w-full bg-cover  bg-no-repeat `}
       ></div>
       {/* padding to fit cover photo */}
-      <div className=" px-6 pt-[300px]">
+      <div className=" px-6 pt-[300px] relative z-20">
         <div className=" relative  w-full ">
           <div className="m-auto max-w-[1270px]  pt-10 pb-20">
             <div className="flex flex-col items-start gap-4 relative">

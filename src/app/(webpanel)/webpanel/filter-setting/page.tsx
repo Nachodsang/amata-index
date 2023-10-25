@@ -103,6 +103,7 @@ export default function FilterSettingPage() {
         <div className="text-start text-xl text-slate-500">New Category</div>
         <div className="flex gap-2">
           <Input
+            required={false}
             placeholder="new filter type"
             id="newFilterType"
             value={newCategory}
@@ -110,6 +111,7 @@ export default function FilterSettingPage() {
             onChange={(e: any) => setNewCategory(e.target.value)}
           />
           <Input
+            required={false}
             placeholder="new filter"
             id="newFilter"
             value={newFilterType}
@@ -117,6 +119,7 @@ export default function FilterSettingPage() {
             onChange={(e: any) => setNewFilterType(e.target.value)}
           />
           <Input
+            required={false}
             placeholder="new filter"
             id="newFilter"
             value={newFilterTitle}
@@ -134,32 +137,40 @@ export default function FilterSettingPage() {
           </button>
         </div>
         <div className="w-full h-1 rounded-xl bg-slate-100 my-4"></div>
-        <div className="text-start text-xl text-slate-500">New Filter Type</div>
-        <div className="flex gap-2">
-          <Input
-            placeholder="new filter type"
-            id="newFilterType"
-            value={newType}
-            label="New Filter Type"
-            onChange={(e: any) => setNewType(e.target.value)}
-          />
-          <Input
-            placeholder="new filter"
-            id="newFilter"
-            value={newTitle}
-            label="New Filter"
-            onChange={(e: any) => setNewTitle(e.target.value)}
-          />
-        </div>
-        <div className="flex justify-end">
-          <button
-            onClick={onSaveNewFilterTypeExistingCategory}
-            type="button"
-            className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-          >
-            save
-          </button>
-        </div>
+        {categoryState && (
+          <>
+            <div className="text-start text-xl text-slate-500">
+              New Filter Type
+            </div>
+            <div className="flex gap-2">
+              <Input
+                required={false}
+                placeholder="new filter type"
+                id="newFilterType"
+                value={newType}
+                label="New Filter Type"
+                onChange={(e: any) => setNewType(e.target.value)}
+              />
+              <Input
+                required={false}
+                placeholder="new filter"
+                id="newFilter"
+                value={newTitle}
+                label="New Filter"
+                onChange={(e: any) => setNewTitle(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={onSaveNewFilterTypeExistingCategory}
+                type="button"
+                className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              >
+                save
+              </button>
+            </div>
+          </>
+        )}
         <h1 className="text-4xl text-slate-500">{categoryState}</h1>
         <div className="flex w-full flex-wrap justify-center gap-4 mt-6">
           {filterTypes.map((i, index) => {

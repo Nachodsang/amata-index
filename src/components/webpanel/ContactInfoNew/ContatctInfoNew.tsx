@@ -6,7 +6,10 @@ import DayBox from "../DayBox/DayBox";
 import Swal from "sweetalert2";
 import Map from "@/components/companyProfile/Map";
 import DropDown from "../DropDown/DropDown";
-import { provinceTH } from "../../../../public/assets/nationalities";
+import {
+  provinceTH,
+  amataCities,
+} from "../../../../public/assets/nationalities";
 
 export default function ContactInfoNew({ state, setState, edit }: any) {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
@@ -205,6 +208,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
         <div className="mt-2 flex flex-wrap gap-6">
           <div className="flex w-[400px] flex-col items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="tel"
               value={contactInfoState?.tel}
@@ -219,6 +223,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="sms"
               value={contactInfoState?.sms}
@@ -233,6 +238,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="email"
               value={contactInfoState?.email}
@@ -247,6 +253,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="website"
               value={contactInfoState?.website}
@@ -261,6 +268,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="facebook"
               value={contactInfoState?.facebook}
@@ -275,6 +283,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="line"
               value={contactInfoState?.line}
@@ -289,6 +298,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="tambon"
               value={contactInfoState?.tambol}
@@ -303,6 +313,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="district"
               value={contactInfoState?.district}
@@ -337,7 +348,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
               selected={null}
               title={contactInfoState?.province || "Province"}
               checkBox={false}
-              filterList={provinceTH}
+              filterList={amataCities}
               type="dropdown"
               onChange={(value: any) => {
                 setContactInfoState({
@@ -349,6 +360,7 @@ export default function ContactInfoNew({ state, setState, edit }: any) {
           </div>
           <div className="flex w-[400px]  flex-col  items-start gap-2">
             <Ip
+              required={false}
               placeholder=""
               id="postcode"
               value={contactInfoState?.postcode}

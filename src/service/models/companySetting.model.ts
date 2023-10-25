@@ -31,6 +31,7 @@ export interface IcompanyGeneralInfo {
   companyNameCn?: String;
   industry?: String;
   nationality?: String;
+  amataLocation?: String;
 }
 export interface IfilterInfo {
   _id?: Types.ObjectId;
@@ -153,6 +154,7 @@ const companySettingSchema = new Schema(
       companyNameCn: { type: String },
       industry: { type: String },
       nationality: { type: String },
+      amataLocation: { type: String },
     },
     gallery: [{ type: String }],
     details: {
@@ -204,6 +206,7 @@ const companySettingSchema = new Schema(
       tambol: { type: String },
       district: { type: String },
       province: { type: String },
+      amataCity: { type: String },
     },
   },
   { timestamps: true }

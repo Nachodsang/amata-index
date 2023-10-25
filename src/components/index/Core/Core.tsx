@@ -6,6 +6,7 @@ import CompanyCard from "../CompanyCard/CompanyCard";
 
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { AdContext } from "@/contexts/AdContext";
+import { FilterContext } from "@/contexts/FilterContext";
 import { CompanyContext } from "@/contexts/CompanyContext";
 export default function Core({
   category,
@@ -16,15 +17,19 @@ export default function Core({
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { adsPage }: any = useContext(AdContext);
+  const { locationState }: any = useContext(FilterContext);
 
   const { companyData: companyList }: any = useContext(CompanyContext);
 
-  const onCompanies = companyList.filter((i: any) => i?.status && !i?.deleted);
+  const onCompanies = companyList.filter(
+    (i: any) =>
+      i?.status && !i?.deleted && i?.generalInfo?.amataLocation == locationState
+  );
 
   const [listState, setListState] = useState(onCompanies);
 
   useEffect(() => {
-    ("in Filter");
+    // ("in Filter");
     if (!filters?.category) {
       !filters?.search
         ? setListState(onCompanies)
@@ -78,7 +83,7 @@ export default function Core({
             );
       }
     }
-  }, [filters]);
+  }, [filters, locationState]);
   filters;
   listState;
   return (

@@ -240,3 +240,23 @@ export const provinceTH = [
   "อุทัยธานี",
   "อุบลราชธานี",
 ];
+
+export const amataLocations = [
+  "Chonburi",
+  "Rayong",
+  "Vietnam",
+  "Laos",
+  "Myanmar",
+];
+
+export const amataCities = [
+  "Chonburi",
+  "Rayong",
+  "Bien Hoa",
+  "Long Thanh",
+  "Ha Long",
+  "Natuey",
+  "Yangon",
+];
+
+export const blogTypes = ["rent", "sale"];

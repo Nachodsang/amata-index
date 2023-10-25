@@ -36,7 +36,9 @@ export default function CompanyCard({
               />
             </div>
             <div className="flex items-center gap-1 max-w-[150px]">
-              <span className="text-xs text-gray-400">{industry}</span>
+              <span className="text-xs text-gray-400 uppercase">
+                {industry}
+              </span>
             </div>
 
             <div className="desktop0:flex hidden justify-between w-[150px] gap-4">

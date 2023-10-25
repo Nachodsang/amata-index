@@ -5,7 +5,11 @@ import InputGroup from "../InputGroup/InputGroup";
 import FileInput from "../FileInput/FileInput";
 import DropDown from "../DropDown/DropDown";
 import Swal from "sweetalert2";
-import { nationalities } from "../../../../public/assets/nationalities";
+import {
+  nationalities,
+  amataCities,
+  amataLocations,
+} from "../../../../public/assets/nationalities";
 
 import { FilterContext } from "@/contexts/FilterContext";
 // Initialization for ES Users
@@ -33,6 +37,7 @@ export default function GeneralInfoNew({
     companyNameCn: "",
     industry: "",
     nationality: "",
+    amataLocation: "",
   };
   // tbt
   const [generalInfoState, setGeneralInfoState] = useState(
@@ -244,7 +249,7 @@ export default function GeneralInfoNew({
         <div className="flex flex-col gap-2">
           {/* <InputGroup /> */}
 
-          <div className="rounded-md border-l-4 border-red-400 bg-slate-100/60 p-4">
+          <div className="rounded-md border-l-4 border-red-400 bg-slate-100/60 p-4 flex gap-4">
             <Ip
               id="profileURL"
               placeholder="...."
@@ -258,6 +263,23 @@ export default function GeneralInfoNew({
               }}
               required={true}
             />
+            <div className="w-[30%]">
+              <DropDown
+                category=""
+                edit={edit}
+                selected={null}
+                title={generalInfoState?.amataLocation || "Location*"}
+                checkBox={false}
+                filterList={amataLocations}
+                type="dropdown"
+                onChange={(value: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    amataLocation: value,
+                  });
+                }}
+              />
+            </div>
           </div>
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">

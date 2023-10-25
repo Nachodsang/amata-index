@@ -54,10 +54,14 @@ export default function Filter({
   const [filterSelection, setFilterSelection] = useState<any>(
     defaultFilterSelection
   );
-  const [locationState, setLocationState] = useState("chonburi");
+  // const [locationState, setLocationState] = useState("Chonburi");
   // const { filtersState }: any = useContext(FilterContext);
   const { pageSetting }: any = useContext(PageSettingContext);
-  const { filtersFromMain: filtersState }: any = useContext(FilterContext);
+  const {
+    filtersFromMain: filtersState,
+    locationState,
+    setLocationState,
+  }: any = useContext(FilterContext);
   // const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
   // show selected dropdown and close others
@@ -159,54 +163,54 @@ export default function Filter({
       <div className=" relative z-0  mx-auto  max-w-[1270px] rounded-2xl border  bg-white p-4 shadow-lg   transition-all ">
         <div className="flex flex-row items-end w-full  z-30 absolute top-[-40px] h-[40px]  ">
           <button
-            onClick={() => setLocationState("chonburi")}
-            className={`flex mr-[-6px]  ${
-              locationState == "chonburi"
-                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
-                : "text-xl text-slate-400 bg-slate-100 "
-            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+            onClick={() => setLocationState("Chonburi")}
+            className={`flex tablet1:mr-[-6px] mr-[-3px]   ${
+              locationState == "Chonburi"
+                ? " desktop0:py-4 desktop0:px-14 tablet1:px-6 px-3 py-2 tablet1:text-xl text-base desktop0:text-2xl text-slate-700 bg-white  "
+                : "desktop0:text-xl text-slate-400 bg-slate-100 tablet1:text-sm text-xs "
+            } rounded-t-lg desktop0:px-10 tablet1:px-4 px-1 border-l-4 border-slate-800/20 transition-all py-2`}
           >
-            ชลบุรี
+            Chonburi
           </button>
           <button
-            onClick={() => setLocationState("rayong")}
-            className={`flex mr-[-6px]  ${
-              locationState == "rayong"
-                ? " py-4 px-14 text-2xl text-slate-700 bg-white "
-                : "text-xl text-slate-400 bg-slate-100"
-            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+            onClick={() => setLocationState("Rayong")}
+            className={`flex tablet1:mr-[-6px] mr-[-3px]   ${
+              locationState == "Rayong"
+                ? " desktop0:py-4 desktop0:px-14 tablet1:px-6 px-3 py-2 tablet1:text-xl text-base desktop0:text-2xl text-slate-700 bg-white  "
+                : "desktop0:text-xl text-slate-400 bg-slate-100 tablet1:text-sm text-xs "
+            } rounded-t-lg desktop0:px-10 tablet1:px-4 px-1 border-l-4 border-slate-800/20 transition-all py-2`}
           >
-            ระยอง
+            Rayong
           </button>
           <button
-            onClick={() => setLocationState("vietnam")}
-            className={` flex mr-[-6px]  ${
-              locationState == "vietnam"
-                ? " py-4 px-14 text-2xl text-slate-700  bg-white "
-                : "text-xl text-slate-400 bg-slate-100"
-            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+            onClick={() => setLocationState("Vietnam")}
+            className={`flex tablet1:mr-[-6px] mr-[-3px]   ${
+              locationState == "Vietnam"
+                ? " desktop0:py-4 desktop0:px-14 tablet1:px-6 px-3 py-2 tablet1:text-xl text-base desktop0:text-2xl text-slate-700 bg-white  "
+                : "desktop0:text-xl text-slate-400 bg-slate-100 tablet1:text-sm text-xs "
+            } rounded-t-lg desktop0:px-10 tablet1:px-4 px-1 border-l-4 border-slate-800/20 transition-all py-2`}
           >
-            เวียดนาม
+            Vietnam
           </button>
           <button
-            onClick={() => setLocationState("laos")}
-            className={` flex mr-[-6px]  ${
-              locationState == "laos"
-                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
-                : "text-xl text-slate-400 bg-slate-100"
-            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+            onClick={() => setLocationState("Laos")}
+            className={` flex tablet1:mr-[-6px] mr-[-3px]   ${
+              locationState == "Laos"
+                ? " desktop0:py-4 desktop0:px-14 tablet1:px-6 px-3 py-2 tablet1:text-xl text-base desktop0:text-2xl text-slate-700 bg-white  "
+                : "desktop0:text-xl text-slate-400 bg-slate-100 tablet1:text-sm text-xs "
+            } rounded-t-lg desktop0:px-10 tablet1:px-4 px-1 border-l-4 border-slate-800/20 transition-all py-2`}
           >
-            ลาว
+            Laos
           </button>
           <button
-            onClick={() => setLocationState("myanmar")}
-            className={` flex mr-[-6px]  ${
-              locationState == "myanmar"
-                ? " py-4 px-14 text-2xl text-slate-700 bg-white  "
-                : "text-xl text-slate-400 bg-slate-100"
-            } rounded-t-lg px-10  border-l-4 border-slate-800/20 transition-all py-2`}
+            onClick={() => setLocationState("Myanmar")}
+            className={` flex tablet1:mr-[-6px] mr-[-3px]   ${
+              locationState == "Myanmar"
+                ? " desktop0:py-4 desktop0:px-14 tablet1:px-6 px-3 py-2 tablet1:text-xl text-base desktop0:text-2xl text-slate-700 bg-white  "
+                : "desktop0:text-xl text-slate-400 bg-slate-100 tablet1:text-sm text-xs "
+            } rounded-t-lg desktop0:px-10 tablet1:px-4 px-1 border-l-4 border-slate-800/20 transition-all py-2`}
           >
-            เมียนมาร์
+            Myanmar
           </button>
         </div>
 
@@ -240,7 +244,9 @@ export default function Filter({
                     tabIndex={0}
                     className="hover:bg-[rgb(2,131,206)] justify-between rounded-3xl px-2 py-1 hover:text-white w-full text-center  text-[rgb(2,131,206)] flex hover:cursor-pointer "
                   >
-                    <h1>{categoryState || "Advance Search"}</h1>
+                    <h1 className="uppercase">
+                      {categoryState || "Advance Search"}
+                    </h1>
                     <RxTriangleDown size={20} className="" />
                   </label>
                   <ul
@@ -253,7 +259,7 @@ export default function Filter({
                         className="text-slate-500 bg-white"
                         onClick={() => setCategoryState(i)}
                       >
-                        <p>{i}</p>
+                        <p className="uppercase">{i}</p>
                       </li>
                     ))}
                   </ul>

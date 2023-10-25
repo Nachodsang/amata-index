@@ -6,6 +6,7 @@ export const FilterContext = createContext({});
 const URL = `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`;
 const FilterContextProvider = ({ children, filtersFromMain }: any) => {
   const [filtersState, setFiltersState] = useState([]);
+  const [locationState, setLocationState] = useState("Chonburi");
   const onCheckFilter = async (filterSet: any) => {
     const response = await axios.put(URL, filterSet);
   };
@@ -43,6 +44,8 @@ const FilterContextProvider = ({ children, filtersFromMain }: any) => {
         onCheckFilter,
         addFilter,
         filtersFromMain,
+        locationState,
+        setLocationState
       }}
     >
       {children}

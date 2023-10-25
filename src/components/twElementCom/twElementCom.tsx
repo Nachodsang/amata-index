@@ -11,6 +11,7 @@ import {
   Modal,
   Carousel,
 } from "tw-elements";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 const TwElementCom = () => {
   const instanceMode = Sidenav.getInstance(
@@ -51,6 +52,8 @@ const TwElementCom = () => {
       });
     }
   });
+
+  const router = useRouter();
   useEffect(() => {
     initTE({
       Input,
@@ -62,7 +65,7 @@ const TwElementCom = () => {
       Modal,
       Carousel,
     });
-  }, []);
+  }, [router.pathname]);
   const init = () => {
     initTE({ Input });
   };
