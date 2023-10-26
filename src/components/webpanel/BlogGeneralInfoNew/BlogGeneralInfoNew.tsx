@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import DropDown from "../DropDown/DropDown";
 import { FilterContext } from "@/contexts/FilterContext";
 import axios from "axios";
+import { blogTypes } from "../../../../public/assets/nationalities";
 
 export default function BlogGeneralInfoNew({
   edit,
@@ -71,14 +72,28 @@ export default function BlogGeneralInfoNew({
         timer: 1500,
       });
     } else {
-      setState({ ...state, generalInfo: generalInfoState });
-      Swal.fire({
-        position: "center",
-        icon: "success",
-        title: "general info has been saved!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      if (
+        state?.blogTitle &&
+        generalInfoState?.blogUrl &&
+        generalInfoState?.type
+      ) {
+        setState({ ...state, generalInfo: generalInfoState });
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "general info has been saved!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      } else {
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: "Oops...",
+          text: "Please enter Blog URL, Blog Title ,and TYPE",
+          timer: 2500,
+        });
+      }
     }
   };
 
@@ -155,6 +170,7 @@ export default function BlogGeneralInfoNew({
           <div className=" w-full flex flex-col ">
             <div className="bg-slate-100/50 p-4 mb-4 rounded-lg border-l-4 border-red-300 ">
               <Ip
+                required={true}
                 id="blogUrl"
                 value={generalInfoState?.blogUrl}
                 placeholder="blog URL"
@@ -169,6 +185,7 @@ export default function BlogGeneralInfoNew({
             </div>
             <div className="flex gap-4">
               <Ip
+                required={true}
                 id="blogTitle"
                 value={state?.blogTitle}
                 placeholder="blog title"
@@ -188,13 +205,13 @@ export default function BlogGeneralInfoNew({
                 }
               /> */}
               <DropDown
-                filterList={companyList}
-                title={
-                  state?.company || `${process.env.NEXT_PUBLIC_APP_KEY_WORD}`
-                }
+                filterList={blogTypes}
+                title={generalInfoState?.type || `TYPE*`}
                 checkBox={false}
                 type="dropdown"
-                onChange={(e: any) => setState({ ...state, company: e })}
+                onChange={(e: any) =>
+                  setGeneralInfoState({ ...generalInfoState, type: e })
+                }
                 selected={undefined}
                 edit={undefined}
                 category={undefined} // onChange: any
@@ -244,10 +261,7 @@ export default function BlogGeneralInfoNew({
               /> */}
               <DropDown
                 filterList={filterCategories}
-                title={
-                  generalInfoState?.industry ||
-                  `${process.env.NEXT_PUBLIC_APP_KEY_WORD} TYPE`
-                }
+                title={generalInfoState?.industry || `prefered industry`}
                 checkBox={false}
                 type="dropdown"
                 onChange={(value: any) => {
@@ -264,6 +278,7 @@ export default function BlogGeneralInfoNew({
                 // category: any;
               />
               <Ip
+                required={false}
                 id="language"
                 placeholder="language"
                 value={generalInfoState?.language}

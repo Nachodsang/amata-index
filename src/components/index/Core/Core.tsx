@@ -17,7 +17,7 @@ export default function Core({
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { adsPage }: any = useContext(AdContext);
-  const { locationState }: any = useContext(FilterContext);
+  const { locationState, nationalityState }: any = useContext(FilterContext);
 
   const { companyData: companyList }: any = useContext(CompanyContext);
 
@@ -43,49 +43,97 @@ export default function Core({
             )
           );
     } else {
-      if (!filters?.search) {
-        !filters?.filters.length
-          ? setListState(
-              onCompanies.filter(
-                (i: any) => i?.generalInfo?.industry === filters?.category
-              )
-            )
-          : setListState(
-              onCompanies.filter((i: any) =>
-                i?.filters.some((j: any) =>
-                  filters?.filters?.includes(j?.filterID)
+      if (nationalityState) {
+        if (!filters?.search) {
+          !filters?.filters.length
+            ? setListState(
+                onCompanies.filter(
+                  (i: any) =>
+                    i?.generalInfo?.industry === filters?.category &&
+                    i?.generalInfo?.nationality == nationalityState
                 )
               )
-            );
-      } else {
-        !filters?.filters.length
-          ? setListState(
-              onCompanies.filter(
-                (i: any) =>
-                  i?.generalInfo?.industry === filters?.category &&
-                  (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
-                    i?.generalInfo?.companyNameEn
-                      ?.toLowerCase()
-                      ?.includes(filters?.search))
+            : setListState(
+                onCompanies.filter((i: any) =>
+                  i?.filters.some(
+                    (j: any) =>
+                      filters?.filters?.includes(j?.filterID) &&
+                      i?.generalInfo?.nationality == nationalityState
+                  )
+                )
+              );
+        } else {
+          !filters?.filters.length
+            ? setListState(
+                onCompanies.filter(
+                  (i: any) =>
+                    i?.generalInfo?.industry === filters?.category &&
+                    (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
+                      i?.generalInfo?.companyNameEn
+                        ?.toLowerCase()
+                        ?.includes(filters?.search)) &&
+                    i?.generalInfo?.nationality == nationalityState
+                )
               )
-            )
-          : setListState(
-              onCompanies.filter(
-                (i: any) =>
+            : setListState(
+                onCompanies.filter(
+                  (i: any) =>
+                    i?.filters.some((j: any) =>
+                      filters?.filters?.includes(j?.filterID)
+                    ) &&
+                    (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
+                      i?.generalInfo?.companyNameEn
+                        ?.toLowerCase()
+                        ?.includes(filters?.search)) &&
+                    i?.generalInfo?.nationality == nationalityState
+                )
+              );
+        }
+      } else {
+        if (!filters?.search) {
+          !filters?.filters.length
+            ? setListState(
+                onCompanies.filter(
+                  (i: any) => i?.generalInfo?.industry === filters?.category
+                )
+              )
+            : setListState(
+                onCompanies.filter((i: any) =>
                   i?.filters.some((j: any) =>
                     filters?.filters?.includes(j?.filterID)
-                  ) &&
-                  (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
-                    i?.generalInfo?.companyNameEn
-                      ?.toLowerCase()
-                      ?.includes(filters?.search))
+                  )
+                )
+              );
+        } else {
+          !filters?.filters.length
+            ? setListState(
+                onCompanies.filter(
+                  (i: any) =>
+                    i?.generalInfo?.industry === filters?.category &&
+                    (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
+                      i?.generalInfo?.companyNameEn
+                        ?.toLowerCase()
+                        ?.includes(filters?.search))
+                )
               )
-            );
+            : setListState(
+                onCompanies.filter(
+                  (i: any) =>
+                    i?.filters.some((j: any) =>
+                      filters?.filters?.includes(j?.filterID)
+                    ) &&
+                    (i?.generalInfo?.companyNameTh?.includes(filters?.search) ||
+                      i?.generalInfo?.companyNameEn
+                        ?.toLowerCase()
+                        ?.includes(filters?.search))
+                )
+              );
+        }
       }
     }
   }, [filters, locationState]);
-  filters;
-  listState;
+  // filters;
+  // listState;
   return (
     <div
       className={`  px-6`}

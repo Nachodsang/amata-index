@@ -10,6 +10,9 @@ import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
 
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 import { FilterContext } from "@/contexts/FilterContext";
+import { nationalities } from "../../../../public/assets/nationalities";
+
+const nationalityList = nationalities.map((i: any) => i?.Nationality);
 
 const defaultFilterSelection = {
   drop1: [],
@@ -61,6 +64,8 @@ export default function Filter({
     filtersFromMain: filtersState,
     locationState,
     setLocationState,
+    nationalityState,
+    setNationalityState,
   }: any = useContext(FilterContext);
   // const { getCollapseProps, getToggleProps } = useCollapse({ isExpanded });
 
@@ -154,9 +159,9 @@ export default function Filter({
   }, [categoryState]);
 
   // to be set to [0]later
-  useEffect(() => {
-    setCategoryState(filterCategories[1]);
-  }, []);
+  // useEffect(() => {
+  //   setCategoryState(filterCategories[1]);
+  // }, []);
   // console.log(filtersApplied);
   return (
     <div className="w-full   " id="search">
@@ -238,7 +243,7 @@ export default function Filter({
                   //     collapseAdvanceSearch();
                   //   },
                   // })}
-                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
+                  className="dropdown dropdown-bottom  flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
                 >
                   <label
                     tabIndex={0}
@@ -251,7 +256,7 @@ export default function Filter({
                   </label>
                   <ul
                     tabIndex={0}
-                    className="dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
+                    className="max-h-[400px] block overflow-scroll dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
                   >
                     {filterCategories?.map((i: any, index: any) => (
                       <li
@@ -311,7 +316,7 @@ export default function Filter({
                   <button
                     key={index}
                     onClick={() => onDropDown(i)}
-                    className="text-xs justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full    w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
+                    className="text-base justify-between items-center text-slate-400 focus:ring-2 ring-[rgb(2,131,206)] rounded-3xl tablet1:w-full    w-full border border-gray-300 outline-none px-2 py-1 flex  tablet2:flex-1   "
                   >
                     {/* showing selected filter */}
                     {/* {dynamicLabel.length > 0 ? (
@@ -331,6 +336,49 @@ export default function Filter({
                   </button>
                 );
               })}
+              {categoryState && (
+                <div
+                  // {...getToggleProps({
+                  //   onClick: () => {
+                  //     collapseAdvanceSearch();
+                  //   },
+                  // })}
+                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border  text-slate-400  ring-[rgb(2,131,206)]   outline-none  transition-all  hover:cursor-pointer   focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
+                >
+                  <label
+                    tabIndex={0}
+                    className=" justify-between rounded-3xl px-2 py-1 w-full text-center   flex hover:cursor-pointer "
+                  >
+                    <h1 className="text-base">
+                      {nationalityState || "Nationality"}
+                    </h1>
+                    <RxTriangleDown size={20} className="" />
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="max-h-[400px] block overflow-scroll dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
+                  >
+                    {nationalityList?.map((i: any, index: any) => (
+                      <li
+                        key={index}
+                        className="text-slate-500 bg-white"
+                        onClick={() => setNationalityState(i)}
+                      >
+                        <p className="uppercase">{i}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  {/* Advance Search */}
+                  {/* <RxTriangleLeft
+                    size={20}
+                    className={`${advanceSearch ? "hidden" : "flex"}`}
+                  />
+                  <RxTriangleDown
+                    size={20}
+                    className={`${advanceSearch ? "flex" : "hidden"}`}
+                  /> */}
+                </div>
+              )}
             </div>
             {filterTypes.map((i: any, index: any) => (
               <CheckboxDropdown

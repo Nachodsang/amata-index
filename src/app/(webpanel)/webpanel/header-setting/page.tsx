@@ -255,6 +255,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Page Title</label>
           <Input
+            required={true}
             onChange={updatePageTitle}
             value={pageTitle}
             placeholder="image url"
@@ -274,6 +275,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Description</label>
           <Input
+            required={true}
             label=""
             onChange={updatePageDescription}
             value={pageDescription}
@@ -293,6 +295,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Description Color</label>
           <Input
+            required={true}
             label=""
             onChange={(e: any) => {
               setDescriptionColor(e.target.value);
@@ -314,6 +317,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Theme Color (Hex or RGB)</label>
           <Input
+            required={true}
             onChange={updateThemeColor}
             label=""
             value={themeColor}
@@ -333,6 +337,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Core Header Color (Hex or RGB)</label>
           <Input
+            required={true}
             onChange={updateCoreHeaderColor}
             label=""
             value={coreHeaderColor}
@@ -352,6 +357,7 @@ export default function HeaderSettingPage() {
         <div className="flex flex-col items-start">
           <label htmlFor="">Core Color (Hex or RGB)</label>
           <Input
+            required={true}
             onChange={updateCoreColor}
             label=""
             value={coreColor}

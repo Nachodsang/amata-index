@@ -93,6 +93,7 @@ export default function AddTextBox2({
             {/* <!--Modal body--> */}
             <div className="relative p-4 flex gap-2">
               <Input
+                required={false}
                 label={"Company"}
                 onChange={(e: any) =>
                   setCompanyState({ ...companyState, title: e.target.value })
@@ -102,6 +103,7 @@ export default function AddTextBox2({
                 id={""}
               />
               <Input
+                required={false}
                 label={"Link"}
                 onChange={(e: any) =>
                   setCompanyState({ ...companyState, link: e.target.value })

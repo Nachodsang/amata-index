@@ -7,6 +7,7 @@ import { IblogGeneralInfo } from "@/service/models/blogSetting.model";
 import Swal from "sweetalert2";
 import DropDown from "../DropDown/DropDown";
 import { FilterContext } from "@/contexts/FilterContext";
+import { blogTypes } from "../../../../public/assets/nationalities";
 import axios from "axios";
 // import { CompanyContext } from "@/contexts/CompanyContext";
 
@@ -180,6 +181,7 @@ export default function BlogGeneralInfo({
           <div className=" w-full flex flex-col ">
             <div className="bg-slate-100/50 p-4 mb-4 rounded-lg border-l-4 border-red-300 ">
               <Ip
+                required={true}
                 id="blogUrl"
                 value={generalInfoState?.blogUrl}
                 placeholder="blog URL"
@@ -194,6 +196,7 @@ export default function BlogGeneralInfo({
             </div>
             <div className="flex gap-4">
               <Ip
+                required={true}
                 id="blogTitle"
                 value={state?.blogTitle}
                 placeholder="blog title"
@@ -213,10 +216,23 @@ export default function BlogGeneralInfo({
                 }
               /> */}
               <DropDown
-                filterList={companyList}
-                title={
-                  state?.company || `${process.env.NEXT_PUBLIC_APP_KEY_WORD}`
+                filterList={blogTypes}
+                title={generalInfoState?.type || `TYPE*`}
+                checkBox={false}
+                type="dropdown"
+                onChange={(e: any) =>
+                  setGeneralInfoState({ ...generalInfoState, type: e })
                 }
+                selected={undefined}
+                edit={undefined}
+                category={undefined} // onChange: any
+                // selected: any
+                // edit: any
+                // category: any;
+              />
+              {/* <DropDown
+                filterList={companyList}
+                title={state?.company || `${process.env.NEXT_PUBLIC_APP_KEY_WORD}`}
                 checkBox={false}
                 type="dropdown"
                 onChange={(e: any) => onSelectCompany(e)}
@@ -226,7 +242,7 @@ export default function BlogGeneralInfo({
                 // selected: any
                 // edit: any
                 // category: any;
-              />
+              /> */}
             </div>
             {/* <div className="flex gap-4">
               <Ip
@@ -269,10 +285,7 @@ export default function BlogGeneralInfo({
               /> */}
               <DropDown
                 filterList={filterCategories}
-                title={
-                  generalInfoState?.industry ||
-                  `${process.env.NEXT_PUBLIC_APP_KEY_WORD} TYPE`
-                }
+                title={generalInfoState?.industry || `prefered industry`}
                 checkBox={false}
                 type="dropdown"
                 onChange={(value: any) => {
@@ -289,6 +302,7 @@ export default function BlogGeneralInfo({
                 // category: any;
               />
               <Ip
+                required={false}
                 id="language"
                 placeholder="language"
                 value={generalInfoState?.language}

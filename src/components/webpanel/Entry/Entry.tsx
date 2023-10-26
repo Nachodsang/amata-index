@@ -25,6 +25,7 @@ export default function Entry({
   industry,
   onDelete,
   recycle,
+  item,
 }: any) {
   const [isCheck, setIsCheck] = useState(status);
   const [orderState, setOrderState] = useState(order);
@@ -168,7 +169,9 @@ export default function Entry({
         ) : type === "blog" ? (
           <div className="">
             <h1 className="text-base">{title}</h1>
-            <h1 className="text-xs">{company}</h1>
+            <h1 className="text-xs text-slate-600">
+              {item?.generalInfo?.type}
+            </h1>
           </div>
         ) : (
           <h1>

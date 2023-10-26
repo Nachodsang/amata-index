@@ -35,7 +35,11 @@ export default function CompanyCard({
                 className="w-full h-full object-cover rounded-md "
               />
             </div>
-            <div className="flex items-center gap-1 max-w-[150px]">
+
+            <div className="flex items-center gap-1 max-w-[150px] flex-col ">
+              <span className="text-xs text-gray-400 uppercase">
+                {nationality}
+              </span>
               <span className="text-xs text-gray-400 uppercase">
                 {industry}
               </span>

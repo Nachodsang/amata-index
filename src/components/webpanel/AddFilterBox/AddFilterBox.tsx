@@ -56,6 +56,7 @@ export default function AddFilterBox({
         {/* add filter */}
         <div className="w-full">
           <Input
+            required={false}
             placeholder="Add filter"
             id="addFilter"
             value={input}

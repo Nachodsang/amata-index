@@ -127,6 +127,7 @@ export default function Table({
 
                     return (
                       <Entry
+                        item={i}
                         recycle={recycle}
                         _id={_id}
                         onChangeOrder={onChangeOrder}

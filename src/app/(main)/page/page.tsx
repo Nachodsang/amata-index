@@ -8,6 +8,7 @@ import AdSection from "@/components/index/AdSection/AdSection";
 import TopBar from "@/components/index/TopBar/TopBar";
 import { CompanyContext } from "@/contexts/CompanyContext";
 import BlogForRent from "@/components/index/Blog/BlogForRent";
+import { FilterContext } from "@/contexts/FilterContext";
 
 export default function About() {
   const { companyData }: any = useContext(CompanyContext);
@@ -16,6 +17,7 @@ export default function About() {
   const [clearFilter, setClearFilter] = useState(false);
   const [filtersConfirmed, setFiltersConfirmed] = useState({} as any);
   const [filtersApplied, setFiltersApplied] = useState([] as any);
+  const { setNationalityState }: any = useContext(FilterContext);
   const addFilter = (id: string, type: string, title: string) => {
     !filtersApplied.some((i: any) => i?.id === id)
       ? setFiltersApplied([...filtersApplied, { id, type, title }])
@@ -28,6 +30,7 @@ export default function About() {
     setClearFilter(!clearFilter);
     setFiltersApplied([]);
     setSearch("");
+    setNationalityState("");
   };
   const onSearchClick = () => {
     !search

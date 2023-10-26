@@ -65,7 +65,7 @@ const TwElementCom = () => {
       Modal,
       Carousel,
     });
-  }, [router.pathname]);
+  }, [router]);
   const init = () => {
     initTE({ Input });
   };

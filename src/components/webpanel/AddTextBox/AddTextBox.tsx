@@ -94,6 +94,7 @@ export default function AddTextBox({
                 data-te-modal-body-ref
               >
                 <Input
+                  required={false}
                   id=""
                   placeholder="title"
                   value={itemState?.title}
@@ -104,6 +105,7 @@ export default function AddTextBox({
                 />
 
                 <Input
+                  required={false}
                   id=""
                   placeholder="link"
                   value={itemState?.link}

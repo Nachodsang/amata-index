@@ -60,12 +60,13 @@ export default function BlogCard({
           <img
             style={{ border: `2px solid ${pageSetting?.themeColor}` }}
             className={`w-[50px] h-[50px] object-cover shadow-md border  rounded-full`}
-            src={companyLogo || generalInfo?.coverImage}
+            // src={companyLogo || generalInfo?.coverImage}
+            src={"images/apple-icon-180x180.png" || generalInfo?.coverImage}
           />
 
           <div className="flex flex-col gap-0">
             <div className=" font-medium text-gray-400">
-              {company}
+              {generalInfo?.type}
               {/* {JSON.stringify(companyObject)} */}
             </div>
             <div className=" overflow-hidden h-[1rem] text-xs  desktop0:text-xs text-gray-400">
@@ -78,7 +79,10 @@ export default function BlogCard({
           style={{ border: `2px solid ${pageSetting?.themeColor}` }}
           className={`w-full h-[230px]  tablet2:h-[206px]  desktop0:h-[125px]  desktop2:h-[180px] desktop1:h-[155px]  border-2 rounded-xl overflow-hidden`}
         >
-          <img src={`${generalInfo?.coverImage} `} className="w-full h-auto" />
+          <img
+            src={`${generalInfo?.coverImage} `}
+            className="w-full object-cover h-full"
+          />
         </div>
 
         <div className="flex flex-col px-1 gap-1 ">
@@ -88,7 +92,17 @@ export default function BlogCard({
             </p>
             <p className="desktop0:text-xs text-gray-400">{localDate}</p>
           </div>
-          <h2 className=" overflow-hidden text-lg font-semibold text-gray-700">
+          <h2
+            style={{
+              textOverflow: "ellipsis",
+              WebkitLineClamp: "1",
+              overflow: "hidden",
+              display: "-webkit-box",
+              lineHeight: "25px",
+              WebkitBoxOrient: "vertical",
+            }}
+            className=" overflow-hidden text-lg font-semibold text-gray-700"
+          >
             {blogTitle}
           </h2>
           <p
@@ -102,8 +116,7 @@ export default function BlogCard({
             }}
             className="  overflow-hidden tablet2:text-xs text-sm  text-gray-400  min-h-[75px]"
           >
-            {seo?.description ||
-              `This blog is created by ${pageSetting?.pageTitle} for ${company}`}
+            {seo?.description || `Description`}
           </p>
         </div>
         <div className="flex justify-center mt-2">

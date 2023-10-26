@@ -13,7 +13,9 @@ export default function Blog({
   companyData: any;
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
-  const { blogData }: any = useContext(CompanyContext);
+  const { blogData: blogs }: any = useContext(CompanyContext);
+
+  const blogData = blogs.filter((i: any) => i?.generalInfo?.type == "FOR SALE");
 
   return (
     <div

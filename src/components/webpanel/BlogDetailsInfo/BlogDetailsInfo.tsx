@@ -161,6 +161,7 @@ export default function BlogDetailsInfo({
           ></textarea> */}
         </div>
         <Ip
+          required={false}
           value={detailsState?.facebook}
           id="facebook"
           placeholder="facebook"
@@ -184,6 +185,7 @@ export default function BlogDetailsInfo({
           </div>
         )}
         <Ip
+          required={false}
           id="tags"
           value={detailsState?.tags}
           label="Tags"
