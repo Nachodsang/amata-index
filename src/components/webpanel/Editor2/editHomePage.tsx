@@ -1,4 +1,5 @@
 "use client";
+
 import QuillEditor from "@/components/webpanel/QuillEditor2/quillEditor";
 import { SyntheticEvent, useEffect, useState } from "react";
 import Image from "next/image";
@@ -23,6 +24,7 @@ const EditHomePage = ({ state, setState, edit, content }: any) =>
         // (b);
       }
     };
+
     useEffect(() => {
       // !isStop && edit && setModel(state?.content);
       // ("set model");

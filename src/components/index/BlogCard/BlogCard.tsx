@@ -69,7 +69,7 @@ export default function BlogCard({
               {generalInfo?.type}
               {/* {JSON.stringify(companyObject)} */}
             </div>
-            <div className=" overflow-hidden h-[1rem] text-xs  desktop0:text-xs text-gray-400">
+            <div className="uppercase overflow-hidden h-[1rem] text-xs  desktop0:text-xs text-gray-400">
               {generalInfo?.industry}
             </div>
           </div>

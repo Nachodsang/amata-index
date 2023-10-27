@@ -44,18 +44,17 @@ export default function TopBarItemPage() {
               service
             </span>
           </Link>
-          <Link to="blog" smooth={true} duration={1000} offset={-75}>
+          {/* <Link to="blog" smooth={true} duration={1000} offset={-75}>
             <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
               blog
             </span>
+          </Link> */}
+
+          <Link to="contact" smooth={true} duration={1000} offset={-75}>
+            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+              contact
+            </span>
           </Link>
-          {envi === "factory" && (
-            <Link to="contact" smooth={true} duration={1000} offset={-75}>
-              <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-                contact
-              </span>
-            </Link>
-          )}
         </div>
       </div>
     </div>

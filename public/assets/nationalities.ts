@@ -259,4 +259,4 @@ export const amataCities = [
   "Yangon",
 ];
 
-export const blogTypes = ["FOR RENT", "FOR SALE"];
+export const blogTypes = ["FOR RENT", "FOR SALE", "RECRUITMENT"];

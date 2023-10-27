@@ -27,7 +27,9 @@ export default function Blog({
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
         <div className="mb-5 flex flex-col w-fit">
-          <h1 className="text-4xl font-semibold mb-2">Blog - For Sale</h1>
+          <h1 className="text-4xl font-semibold mb-2 uppercase text-slate-600">
+            Property For Sale
+          </h1>
           <div
             className=" h-1 "
             style={{

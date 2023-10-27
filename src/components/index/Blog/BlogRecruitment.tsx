@@ -15,20 +15,22 @@ export default function Blog({
   const { pageSetting }: any = useContext(PageSettingContext);
   const { blogData: blogs }: any = useContext(CompanyContext);
 
-  const blogData = blogs.filter((i: any) => i?.generalInfo?.type == "FOR RENT");
+  const blogData = blogs.filter(
+    (i: any) => i?.generalInfo?.type == "RECRUITMENT"
+  );
 
   return (
     <div
       id="blog"
-      className="w-full py-10  px-6 relative "
-      style={{
-        background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
-      }}
+      className="w-full py-10  px-6 relative bg-slate-100/80"
+      //   style={{
+      //     background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
+      //   }}
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
         <div className="mb-5 flex flex-col w-fit">
-          <h1 className="text-4xl font-semibold mb-2 uppercase text-slate-600">
-            Property For Rent
+          <h1 className="text-4xl font-semibold mb-2 text-slate-600 uppercase">
+            Recruitment
           </h1>
           <div
             className=" h-1 "

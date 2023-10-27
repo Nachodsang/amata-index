@@ -46,7 +46,7 @@ export default function Header({ companyData }: any) {
             <div className="flex gap-2">
               <div
                 style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
-                className=" rounded-3xl py-2 px-2 text-center min-w-[100px] font-semibold text-white"
+                className=" uppercase rounded-3xl py-2 px-2 text-center min-w-[100px] font-semibold text-white"
               >
                 {companyData?.generalInfo?.industry}
               </div>

@@ -54,8 +54,8 @@ export default async function Page({ params }: { params: { id: string } }) {
           <Gallery companyData={companyData} />
           <Filter companyData={companyData} />
           <Blogs blogList={blogs} companyData={companyData} />
-          <Map companyData={companyData} />
           <Footer companyData={companyData} blogList={blogs} />
+          <Map companyData={companyData} />
         </>
       ) : (
         <div className="flex  h-[100vh]">

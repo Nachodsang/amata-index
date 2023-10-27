@@ -11,7 +11,7 @@ import {
   Modal,
   Carousel,
 } from "tw-elements";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import { useEffect } from "react";
 const TwElementCom = () => {
   const instanceMode = Sidenav.getInstance(
@@ -54,6 +54,7 @@ const TwElementCom = () => {
   });
 
   const router = useRouter();
+  const pathName = usePathname();
   useEffect(() => {
     initTE({
       Input,
@@ -62,10 +63,17 @@ const TwElementCom = () => {
       Ripple,
       Sidenav,
       Dropdown,
-      Modal,
+      // Modal,
       Carousel,
     });
+    console.log("init tailwind el");
   }, [router]);
+  useEffect(() => {
+    initTE({
+      Modal,
+    });
+    console.log("init tailwind el2");
+  }, [pathName]);
   const init = () => {
     initTE({ Input });
   };

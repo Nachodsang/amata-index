@@ -13,7 +13,7 @@ export default function BlogBody({ blogData }: any) {
           <span className="text-slate-400 text-sm">
             {blogData?.details?.facebook}
           </span>
-          <h1 className="text-slate-400 font-bold text-base">References</h1>
+          {/* <h1 className="text-slate-400 font-bold text-base">References</h1>
           <div className="flex flex-col gap-1">
             {blogData?.details?.references.map((i: any, index: any) => (
               <div className="text-slate-400 text-sm" key={index}>
@@ -27,11 +27,10 @@ export default function BlogBody({ blogData }: any) {
           <div className="flex flex-col gap-1">
             {blogData?.details?.recommendation.map((i: any, index: any) => (
               <div className="text-slate-400 text-sm" key={index}>
-                sdfsd
                 <a href={i.link}>{i.title}</a>
               </div>
             ))}
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

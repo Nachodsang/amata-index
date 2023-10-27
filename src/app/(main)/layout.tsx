@@ -93,7 +93,7 @@ const fetchBlog = async () => {
     `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
   );
   return response?.data?.blogSetting?.filter(
-    (i: any) => i?.status && !i?.delete
+    (i: any) => i?.status && !i?.deleted
   );
 };
 export default async function RootLayout({
