@@ -103,6 +103,35 @@ const FilterContextProvider = ({ children, filtersFromMain }: any) => {
     });
   };
 
+  const onEditType = async (filterValue: any, newValue: any) => {
+    const response = await axios.put(URL, {
+      type: "editType",
+      filterValue: filterValue,
+      newValue: newValue,
+    });
+  };
+
+  const onEditTypeWithConfirmation = (filterValue: any, newValue: any) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#37D399",
+      cancelButtonColor: "#64748B",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        onEditType(filterValue, newValue);
+        Swal.fire(
+          "Done!",
+          "Type Edited! Refresh for the latest result!",
+          "success"
+        );
+      }
+    });
+  };
+
   return (
     <FilterContext.Provider
       value={{
@@ -118,6 +147,7 @@ const FilterContextProvider = ({ children, filtersFromMain }: any) => {
         onDeleteWithConfirmation,
         onEditfilter,
         onEditWithConfirmation,
+        onEditTypeWithConfirmation,
       }}
     >
       {children}

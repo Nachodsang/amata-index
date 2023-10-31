@@ -8,6 +8,14 @@ import AdProvider from "@/contexts/AdContext";
 import FilterContextProvider from "@/contexts/FilterContext";
 import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
+import { Kanit } from "next/font/google";
+
+const roboto = Kanit({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
+  subsets: ["latin"],
+  display: "swap",
+});
 
 const TwElementCom = dynamic(
   () => import("@/components/twElementCom/twElementCom"),
@@ -36,7 +44,7 @@ export default async function RootLayout({
         {/* <title>Amata Index</title> */}
         <link rel="icon" href="" />
       </head>
-      <body className={`${inter.className} `}>
+      <body className={roboto.className}>
         <BannerProvider>
           <AdProvider>
             <FilterContextProvider>

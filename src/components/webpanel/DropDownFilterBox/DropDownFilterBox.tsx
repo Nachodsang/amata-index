@@ -47,7 +47,8 @@ export default function DropDownFilterBox({
               selected &&
               selected?.find(
                 (i: any) =>
-                  i?.filterTitle === filterTitle && i?.filterType === filterType
+                  // i?.filterTitle === filterTitle && i?.filterType === filterType
+                  i?.filterID === _id
               )
             }
             type="checkbox"

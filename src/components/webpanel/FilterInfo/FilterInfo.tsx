@@ -37,16 +37,14 @@ export default function FilterInfo({
 
   const onCheckFilter = (title: any, type: any, id: any) => {
     // const newFilter = { filterTitle: title, filterType: type };
-    if (!selectedFilter.map((i: any) => i?.filterTitle).includes(title)) {
+    if (!selectedFilter.map((i: any) => i?.filterID).includes(id)) {
       // check if sent values already in the array
       setSelectedFilter([
         ...selectedFilter,
         { filterTitle: title, filterType: type, filterID: id },
       ]);
     } else {
-      setSelectedFilter(
-        selectedFilter.filter((i: any) => i?.filterTitle != title)
-      );
+      setSelectedFilter(selectedFilter.filter((i: any) => i?.filterID != id));
     }
   };
 

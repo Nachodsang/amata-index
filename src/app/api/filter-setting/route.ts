@@ -5,6 +5,7 @@ import {
   deleteFilter,
   onDeleteFilter,
   editFilterTitle,
+  editFilterType,
 } from "@/service/filterSettingService";
 import { NextResponse } from "next/server";
 
@@ -44,6 +45,15 @@ export async function PUT(req: Request) {
     );
   } else if (response.type === "delete") {
     return NextResponse.json(await onDeleteFilter(response?._id));
+  } else if (response.type === "editType") {
+    return NextResponse.json(
+      await editFilterType(
+        "filterType",
+        response?.filterValue,
+        "filterType",
+        response?.newValue
+      )
+    );
   } else {
     return NextResponse.json(
       await activeFilter(filterBy, response._id, "active", response.newValue)

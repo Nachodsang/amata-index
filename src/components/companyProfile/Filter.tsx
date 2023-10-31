@@ -3,11 +3,22 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { set } from "mongoose";
 import { useContext } from "react";
 import { BsCheck2Circle, BsCheckLg } from "react-icons/bs";
+import { FilterContext } from "@/contexts/FilterContext";
 
 export default function Filter({ companyData }: any) {
   const { filters } = companyData;
+  const { filtersFromMain }: any = useContext(FilterContext);
+  const mergeById = (a1: any, a2: any) =>
+    a1.map((itm: any) => ({
+      ...a2.find((item: any) => item.filterID === itm._id),
+      ...itm,
+    }));
+
+  const mergedArr = mergeById(filtersFromMain, filters).filter(
+    (i: any) => i?.filterID && i?.active
+  );
   const uniqueFilterTypes = Array.from(
-    new Set(filters.map((i: any) => i?.filterType))
+    new Set(mergedArr.map((i: any) => i?.filterType))
   );
   const { pageSetting }: any = useContext(PageSettingContext);
 
@@ -43,7 +54,7 @@ export default function Filter({ companyData }: any) {
                 <BsCheckLg size={25} />
                 <span className="text-lg font-semibold">{i}</span>
               </div>
-              {filters.map((j: any) => {
+              {mergedArr.map((j: any) => {
                 if (j?.filterType === i)
                   return (
                     <span className="text-xs ">

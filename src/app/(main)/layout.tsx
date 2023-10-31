@@ -11,6 +11,7 @@ import TopBar from "@/components/index/TopBar/TopBar";
 import Footer from "@/components/index/Footer/Footer";
 import { Kanit } from "next/font/google";
 
+
 const roboto = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],

@@ -85,3 +85,22 @@ export const onDeleteFilter = async (_id: any) => {
     return err;
   }
 };
+
+// edit filter type
+export const editFilterType = async (
+  filterBy: string,
+  filterValue: any,
+  updatingField: any,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { [updatingField]: newValue };
+
+  try {
+    const doc = await filterSettingModel.updateMany(filter, { $set: update });
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};

@@ -1,5 +1,16 @@
 "use client";
 import BounceLoader from "react-spinners/BounceLoader";
+import {
+  Input,
+  Timepicker,
+  initTE,
+  Datepicker,
+  Ripple,
+  Sidenav,
+  Dropdown,
+  Modal,
+  Carousel,
+} from "tw-elements";
 
 import _, { divide } from "lodash";
 import { useState, useEffect, useContext } from "react";
@@ -15,6 +26,7 @@ import { FaClipboardList } from "react-icons/fa";
 import { FilterContext } from "@/contexts/FilterContext";
 import { MdCreateNewFolder } from "react-icons/md";
 import DropDown from "@/components/webpanel/DropDown/DropDown";
+import { useRouter } from "next/navigation";
 export default function CompanyProfile() {
   const { filtersState }: any = useContext(FilterContext);
   const [typeState, setTypeState] = useState("ALL TYPE");
@@ -144,7 +156,11 @@ export default function CompanyProfile() {
       });
     }
   };
-
+  // const router = useRouter();
+  // useEffect(() => {
+  //   initTE({});
+  //   console.log("init tailwind el");
+  // }, [router]);
   useEffect(() => {
     setShowOnline("all");
     showDeleted ? fetchDeletedCompany() : fetchCompany();
