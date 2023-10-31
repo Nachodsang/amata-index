@@ -3,6 +3,8 @@ import {
   addFilter,
   activeFilter,
   deleteFilter,
+  onDeleteFilter,
+  editFilterTitle,
 } from "@/service/filterSettingService";
 import { NextResponse } from "next/server";
 
@@ -31,10 +33,22 @@ export async function PUT(req: Request) {
 
   const filterBy = "_id";
 
-
-  return NextResponse.json(
-    await activeFilter(filterBy, response._id, "active", response.newValue)
-  );
+  if (response.type === "edit") {
+    return NextResponse.json(
+      await editFilterTitle(
+        filterBy,
+        response._id,
+        response?.updatingField,
+        response.newValue
+      )
+    );
+  } else if (response.type === "delete") {
+    return NextResponse.json(await onDeleteFilter(response?._id));
+  } else {
+    return NextResponse.json(
+      await activeFilter(filterBy, response._id, "active", response.newValue)
+    );
+  }
 }
 
 // deletion

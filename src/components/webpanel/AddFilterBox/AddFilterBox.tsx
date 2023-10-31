@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import FilterCheckBox from "../FilterCheckBox/FilterCheckBox";
 import Input from "../Input/Input";
 import Swal from "sweetalert2";
+import { FilterContext } from "@/contexts/FilterContext";
 
 export default function AddFilterBox({
   label,
@@ -10,6 +11,10 @@ export default function AddFilterBox({
   onSave,
   category,
 }: any) {
+  const {
+    onDeleteWithConfirmation,
+    onEditWithConfirmation: onEditfilter,
+  }: any = useContext(FilterContext);
   const [input, setInput] = useState("");
   const onSaveInput = () => {
     if (input.length >= 2) {
@@ -30,9 +35,10 @@ export default function AddFilterBox({
       });
     }
   };
+
   return (
     <div className="w-[45%] rounded-xl border border-slate-200 p-6 ">
-      <div className="flex flex-col items-start justify-between">
+      <div className="flex flex-col items-start justify-betweenc ">
         {/* <label className="text-slate-300 text-sm text-center">{category}</label> */}
         <label className="w-full border-b border-slate-300 text-xl font-semibold">
           {label}
@@ -43,12 +49,17 @@ export default function AddFilterBox({
             return (
               i?.filterType === label &&
               i?.filterCategory === category && (
-                <FilterCheckBox
-                  _id={i?._id}
-                  title={i?.filterTitle}
-                  onCheckFilter={onCheckFilter}
-                  isCheck={i?.active}
-                />
+                <div className="  ">
+                  <FilterCheckBox
+                    key={i?._id}
+                    _id={i?._id}
+                    title={i?.filterTitle}
+                    onCheckFilter={onCheckFilter}
+                    isCheck={i?.active}
+                    onDelete={onDeleteWithConfirmation}
+                    onEditfilter={onEditfilter}
+                  />
+                </div>
               )
             );
           })}

@@ -42,6 +42,25 @@ export const activeFilter = async (
     return err;
   }
 };
+export const editFilterTitle = async (
+  filterBy: string,
+  filterValue: any,
+  updatingField: any,
+  newValue: boolean
+) => {
+  const filter = { [filterBy]: filterValue };
+  const update = { [updatingField]: newValue };
+
+  try {
+    const doc = await filterSettingModel.findOneAndUpdate(filter, update, {
+      new: true,
+    });
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
+};
 
 // delete Filter
 export const deleteFilter = async (filterBy: string, filterValue: string) => {
@@ -51,4 +70,18 @@ export const deleteFilter = async (filterBy: string, filterValue: string) => {
     });
     return { status: "200", message: "deletion complete", deletedValue: del };
   } catch (err) {}
+};
+
+export const onDeleteFilter = async (_id: any) => {
+  try {
+    //
+
+    const doc = await filterSettingModel.findByIdAndDelete(_id);
+
+    //
+
+    return { status: "200", message: "complete", updatedObj: doc };
+  } catch (err) {
+    return err;
+  }
 };
