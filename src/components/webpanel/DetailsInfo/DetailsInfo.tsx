@@ -47,7 +47,7 @@ export default function DetailsInfo({ state, setState, edit, content }: any) {
       </div>
       <div className="py-10 mb-4 flex flex-col gap-4">
         <div className="flex flex-col  items-start">
-          <label htmlFor="" className="font-semibold text-xl text-slate-700">
+          <label htmlFor="" className="text-lg  text-slate-600">
             SEO Description (short)
           </label>
           <textarea
@@ -65,7 +65,7 @@ export default function DetailsInfo({ state, setState, edit, content }: any) {
           ></textarea>
         </div>
         <div className="flex flex-col  items-start">
-          <label htmlFor="" className="font-semibold text-xl text-slate-700">
+          <label htmlFor="" className="text-lg  text-slate-600">
             SEO Description (full)
           </label>
           <textarea
@@ -85,9 +85,7 @@ export default function DetailsInfo({ state, setState, edit, content }: any) {
         {/* <Editor />
          */}
         <div className="w-full flex justify-start ">
-          <h1 className="text-slate-600 font-bold text-2xl">
-            Content Template
-          </h1>
+          <h1 className="text-lg  text-slate-600">Content Template</h1>
         </div>
         <EditHomePage
           state={detailsState}

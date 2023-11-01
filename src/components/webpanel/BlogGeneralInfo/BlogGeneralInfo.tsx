@@ -117,8 +117,8 @@ export default function BlogGeneralInfo({
     // );
     // companyReviewInput.update();
 
-    const languageInput = new Input(document.getElementById("language"));
-    languageInput.update();
+    // const languageInput = new Input(document.getElementById("language"));
+    // languageInput.update();
   }, [generalInfoState]);
   useEffect(() => {
     fetchCompany();
@@ -185,7 +185,7 @@ export default function BlogGeneralInfo({
                 id="blogUrl"
                 value={generalInfoState?.blogUrl}
                 placeholder="blog URL"
-                label={"**Blog URL"}
+                label={"**Blog URL / URL ของบล็อก"}
                 onChange={(e: any) =>
                   setGeneralInfoState({
                     ...generalInfoState,
@@ -200,7 +200,7 @@ export default function BlogGeneralInfo({
                 id="blogTitle"
                 value={state?.blogTitle}
                 placeholder="blog title"
-                label={"**Blog Title"}
+                label={"**Blog Title / ชื่อบล็อก"}
                 onChange={(e: any) =>
                   setState({ ...state, blogTitle: e.target.value })
                 }
@@ -217,7 +217,7 @@ export default function BlogGeneralInfo({
               /> */}
               <DropDown
                 filterList={blogTypes}
-                title={generalInfoState?.type || `TYPE*`}
+                title={generalInfoState?.type || `TYPE ประเภทบล็อก*`}
                 checkBox={false}
                 type="dropdown"
                 onChange={(e: any) =>
@@ -285,7 +285,9 @@ export default function BlogGeneralInfo({
               /> */}
               <DropDown
                 filterList={filterCategories}
-                title={generalInfoState?.industry || `prefered industry`}
+                title={
+                  generalInfoState?.industry || `prefered industry / อุตสาหกรรม`
+                }
                 checkBox={false}
                 type="dropdown"
                 onChange={(value: any) => {
@@ -301,7 +303,7 @@ export default function BlogGeneralInfo({
                 // edit: any
                 // category: any;
               />
-              <Ip
+              {/* <Ip
                 required={false}
                 id="language"
                 placeholder="language"
@@ -313,7 +315,7 @@ export default function BlogGeneralInfo({
                     language: e.target.value,
                   })
                 }
-              />
+              /> */}
             </div>
           </div>
         </div>

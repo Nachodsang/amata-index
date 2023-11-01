@@ -12,6 +12,7 @@ export interface IcompanySetting {
   gallery?: String[];
   status?: Boolean;
   deleted?: Boolean;
+  profileType?: String;
 
   edition?: Number;
 }
@@ -125,6 +126,7 @@ const companySettingSchema = new Schema(
     status: { type: Boolean, default: false },
     deleted: { type: Boolean, default: false },
     // link: { type: String, required: true },
+    profileType: { type: String, default: "basic" },
 
     edition: { type: Number },
     // gallery: [{ URL: { type: String }, order: { type: Number } }],

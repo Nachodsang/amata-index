@@ -211,7 +211,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="tel"
               value={contactInfoState?.tel}
-              label="Tel"
+              label="Tel / โทรศัพท์"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -226,7 +226,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="sms"
               value={contactInfoState?.sms}
-              label="SMS"
+              label="SMS / ข้อความ"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -241,7 +241,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="email"
               value={contactInfoState?.email}
-              label="E-mail"
+              label="E-mail / อีเมล์"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -256,7 +256,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="website"
               value={contactInfoState?.website}
-              label="Website"
+              label="Website / เว็ปไซต์"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -271,7 +271,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="facebook"
               value={contactInfoState?.facebook}
-              label="Facebook"
+              label="Facebook / เฟสบุ๊ค"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -286,7 +286,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="line"
               value={contactInfoState?.line}
-              label="Line"
+              label="Line / ไลน์ไอดี"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -301,7 +301,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="tambon"
               value={contactInfoState?.tambol}
-              label="Tambon"
+              label="Subdistrict / ตำบล"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -316,7 +316,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="district"
               value={contactInfoState?.district}
-              label="District/Ampur"
+              label="District / อำเภอ"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -343,7 +343,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
                 category=""
                 edit={edit}
                 selected={null}
-                title={contactInfoState?.province || "Province"}
+                title={contactInfoState?.province || "Province / จังหวัด"}
                 checkBox={false}
                 filterList={amataCities}
                 type="dropdown"
@@ -362,7 +362,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
               placeholder=""
               id="postcode"
               value={contactInfoState?.postcode}
-              label="Postcode"
+              label="Postcode / รหัสไปรษณีย์"
               onChange={(e: any) =>
                 setContactInfoState({
                   ...contactInfoState,
@@ -374,8 +374,8 @@ export default function ContactInfo({ state, setState, edit }: any) {
         </div>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Address(TH)
+            <label htmlFor="" className="text-lg  text-slate-600">
+              Address(TH) / ที่อยู่ภาษาไทย (ที่อยู่หลักสำหรับแสดงในหน้าข้อมูล)
             </label>
             <textarea
               value={contactInfoState?.addressTh}
@@ -392,8 +392,8 @@ export default function ContactInfo({ state, setState, edit }: any) {
             ></textarea>
           </div>
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Address(EN)
+            <label htmlFor="" className="text-lg  text-slate-600">
+              Address(EN) / ที่อยู่ภาษาอังกฤษ
             </label>
             <textarea
               value={contactInfoState?.addressEn}
@@ -410,8 +410,8 @@ export default function ContactInfo({ state, setState, edit }: any) {
             ></textarea>
           </div>
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Address(JP)
+            <label htmlFor="" className="text-lg  text-slate-600">
+              Address(JP) / ที่อยู่ภาษาญี่ปุ่น
             </label>
             <textarea
               value={contactInfoState?.addressJp}
@@ -428,8 +428,8 @@ export default function ContactInfo({ state, setState, edit }: any) {
             ></textarea>
           </div>
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="text-xl font-semibold text-slate-700">
-              Address(CN)
+            <label htmlFor="" className="text-lg  text-slate-600">
+              Address(CN) / ที่อยู่ภาษาจีน
             </label>
             <textarea
               value={contactInfoState?.addressCn}
@@ -446,7 +446,7 @@ export default function ContactInfo({ state, setState, edit }: any) {
             ></textarea>
           </div>
           <div className="flex flex-col items-start">
-            <label htmlFor="" className="text-xl font-semibold text-slate-700">
+            <label htmlFor="" className="text-lg  text-slate-600">
               Google Map (set width=&quot;100%&quot;)
             </label>
             <textarea

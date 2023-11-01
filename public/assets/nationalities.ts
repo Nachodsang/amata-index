@@ -260,3 +260,5 @@ export const amataCities = [
 ];
 
 export const blogTypes = ["FOR RENT", "FOR SALE", "RECRUITMENT"];
+
+export const companyProfileTypes = ["basic", "full"];

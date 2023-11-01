@@ -9,6 +9,7 @@ import {
   nationalities,
   amataCities,
   amataLocations,
+  companyProfileTypes,
 } from "../../../../public/assets/nationalities";
 import { FilterContext } from "@/contexts/FilterContext";
 // Initialization for ES Users
@@ -131,8 +132,8 @@ export default function GeneralInfo({
   // difference in edit and new
   useEffect(() => {
     if (edit && typeof window !== "undefined") {
-      const videoURLInput = new Input(document.getElementById("videoURL"));
-      videoURLInput.update();
+      // const videoURLInput = new Input(document.getElementById("videoURL"));
+      // videoURLInput.update();
       const profileUrlInput = new Input(document.getElementById("profileURL"));
       profileUrlInput.update();
       const companyNameEnInput = new Input(
@@ -228,7 +229,7 @@ export default function GeneralInfo({
             />
             {/* video */}
 
-            <Ip
+            {/* <Ip
               id="videoURL"
               label="Video URL"
               onChange={(e: any) => {
@@ -240,7 +241,7 @@ export default function GeneralInfo({
               value={generalInfoState?.video || ""}
               placeholder="...."
               required={false}
-            />
+            /> */}
           </div>
         </div>
 
@@ -261,6 +262,23 @@ export default function GeneralInfo({
               }}
               required={true}
             />
+            <div className="w-[30%]">
+              <DropDown
+                category=""
+                edit={edit}
+                selected={null}
+                title={state?.profileType || "Profile Type*"}
+                checkBox={false}
+                filterList={companyProfileTypes}
+                type="dropdown"
+                onChange={(value: any) => {
+                  setState({
+                    ...state,
+                    profileType: value,
+                  });
+                }}
+              />
+            </div>
             <div className="w-[30%]">
               <DropDown
                 category=""

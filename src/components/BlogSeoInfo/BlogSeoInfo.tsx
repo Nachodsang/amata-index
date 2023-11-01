@@ -40,9 +40,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
         <div className="text-2xl font-bold text-slate-700">SEO</div>
       </div>
       <div className="flex w-full flex-col gap-4  py-4">
-        <h1 className="text-xl text-start font-semibold text-slate-700">
-          Seo Keywords:
-        </h1>
+        <h1 className="text-lg  text-slate-600 text-start">Seo Keywords:</h1>
         <textarea
           value={seoState?.keyword}
           id="message"
@@ -70,9 +68,7 @@ export default function BlogSeoInfo({ state, setState, edit }: any) {
             ))}
           </div>
         )} */}
-        <h1 className="text-xl text-start font-semibold text-slate-700">
-          Description
-        </h1>
+        <h1 className="text-lg  text-slate-600 text-start">SEO Description</h1>
         <textarea
           value={seoState?.description}
           id="message"

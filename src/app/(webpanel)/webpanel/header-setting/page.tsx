@@ -248,12 +248,14 @@ export default function HeaderSettingPage() {
     <div className="min-h-[100vh] rounded-xl bg-white ">
       {/* container */}
       <div className="mx-auto  max-w-[1440px] px-4  py-6">
-        <h1 className="mb-4 text-center text-xl font-semibold  ">
+        <h1 className="mb-4 text-center text-xl font-semibold ">
           Page Setting
         </h1>
         {/* title setting */}
         <div className="flex flex-col items-start">
-          <label htmlFor="">Page Title</label>
+          <label htmlFor="" className="text-red-600 ">
+            Page Title / ชื่อเพจ*
+          </label>
           <Input
             required={true}
             onChange={updatePageTitle}
@@ -273,7 +275,9 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Description</label>
+          <label htmlFor="" className="text-red-600">
+            Description / คำอธิบายสำหรับหน้าแรก*
+          </label>
           <Input
             required={true}
             label=""
@@ -293,7 +297,17 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Description Color</label>
+          <div className="flex gap-2">
+            <label htmlFor="" className="text-slate-500">
+              Description Color / สีคำอธิบาย (Hex or RGB)
+            </label>
+            <div
+              className="px-10 text-white rounded-md"
+              style={{ backgroundColor: `${descriptionColor}` }}
+            >
+              {descriptionColor}
+            </div>
+          </div>
           <Input
             required={true}
             label=""
@@ -315,7 +329,17 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Theme Color (Hex or RGB)</label>
+          <div className="flex gap-2">
+            <label htmlFor="" className="text-slate-500">
+              Theme Color / สีธีม (Hex or RGB)
+            </label>
+            <div
+              className="px-10 text-white rounded-md"
+              style={{ backgroundColor: `${themeColor}` }}
+            >
+              {themeColor}
+            </div>
+          </div>
           <Input
             required={true}
             onChange={updateThemeColor}
@@ -335,7 +359,17 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Header Color (Hex or RGB)</label>
+          <div className="flex gap-2">
+            <label htmlFor="" className="text-slate-500">
+              Core Header Color / สีหลัก (Hex or RGB)
+            </label>
+            <div
+              className="px-10 text-white rounded-md"
+              style={{ backgroundColor: `${coreHeaderColor}` }}
+            >
+              {coreHeaderColor}
+            </div>
+          </div>
           <Input
             required={true}
             onChange={updateCoreHeaderColor}
@@ -355,7 +389,17 @@ export default function HeaderSettingPage() {
           </div>
         </div>
         <div className="flex flex-col items-start">
-          <label htmlFor="">Core Color (Hex or RGB)</label>
+          <div className="flex gap-2">
+            <label htmlFor="" className="text-slate-500">
+              Core Color / สีรอง (Hex or RGB)
+            </label>
+            <div
+              className="px-10 text-white rounded-md"
+              style={{ backgroundColor: `${coreColor}` }}
+            >
+              {coreColor}
+            </div>
+          </div>
           <Input
             required={true}
             onChange={updateCoreColor}
@@ -376,7 +420,9 @@ export default function HeaderSettingPage() {
         </div>
         <div className="flex flex-col items-start">
           <div className="w-full border-b border-slate-300 py-4 ">
-            <h1 className="text-start">Cover Image</h1>
+            <h1 className="text-start text-slate-700">
+              Cover Image / ภาพหน้าปก
+            </h1>
           </div>
           <div className="w-full py-4">
             {selectedImage ? (
@@ -432,7 +478,9 @@ export default function HeaderSettingPage() {
         {/* banner for blog page */}
         <div className="flex flex-col items-start">
           <div className="w-full border-b border-slate-300 py-4 ">
-            <h1 className="text-start">Top Banner (Blog Page)</h1>
+            <h1 className="text-start text-slate-700">
+              Top Banner (Blog Page) / แถบโฆษณาหน้าบล็อก(บน)
+            </h1>
           </div>
           <div className="w-full py-4">
             {topBannerImage ? (
@@ -478,7 +526,9 @@ export default function HeaderSettingPage() {
         </div>
         <div className="flex flex-col items-start">
           <div className="w-full border-b border-slate-300 py-4 ">
-            <h1 className="text-start">Footer Banner (Blog Page)</h1>
+            <h1 className="text-start text-slate-700">
+              Footer Banner (Blog Page) / แถบโฆษณาหน้าบล็อก(ล่าง)
+            </h1>
           </div>
           <div className="w-full py-4">
             {lowBannerImage ? (

@@ -76,8 +76,8 @@ export default function BlogDetailsInfo({
       </div>
       <div className="py-10 mb-4 flex flex-col gap-4">
         <div className="flex flex-col  items-start">
-          <label htmlFor="" className="font-semibold text-xl text-slate-700">
-            Article
+          <label htmlFor="" className="text-lg  text-slate-600 text-start">
+            Article / เนื้อหาโดยรวม
           </label>
           <textarea
             value={detailsState?.article}
@@ -96,8 +96,8 @@ export default function BlogDetailsInfo({
         {/* <Editor />
          */}
         <div className="w-full flex justify-start ">
-          <h1 className="text-slate-600 font-bold text-2xl">
-            Content Template
+          <h1 className="text-lg  text-slate-600 text-start">
+            Content Template / เพิ่มเนื้อหาสำหรับแสดงในหน้าบล็อก
           </h1>
         </div>
         <EditHomePage
@@ -146,7 +146,7 @@ export default function BlogDetailsInfo({
         {/* tbt */}
         {detailsState?.tags && (
           <div className="flex w-full flex-wrap items-center gap-2 ">
-            <h1 className="text-xl font-semibold text-slate-700">Tags: </h1>
+            <h1 className="text-lg  text-slate-600 text-start">Tags: </h1>
             {detailsState?.tags.map((i: any, index: any) => (
               <span
                 className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"

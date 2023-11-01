@@ -9,6 +9,7 @@ import {
   nationalities,
   amataCities,
   amataLocations,
+  companyProfileTypes,
 } from "../../../../public/assets/nationalities";
 
 import { FilterContext } from "@/contexts/FilterContext";
@@ -230,7 +231,7 @@ export default function GeneralInfoNew({
             />
             {/* video */}
 
-            <Ip
+            {/* <Ip
               id="videoURL"
               label="Video URL"
               onChange={(e: any) => {
@@ -242,7 +243,7 @@ export default function GeneralInfoNew({
               value={generalInfoState?.video || ""}
               placeholder="...."
               required={false}
-            />
+            /> */}
           </div>
         </div>
 
@@ -263,6 +264,23 @@ export default function GeneralInfoNew({
               }}
               required={true}
             />
+            <div className="w-[30%]">
+              <DropDown
+                category=""
+                edit={edit}
+                selected={null}
+                title={state?.profileType || "Profile Type*"}
+                checkBox={false}
+                filterList={companyProfileTypes}
+                type="dropdown"
+                onChange={(value: any) => {
+                  setState({
+                    ...state,
+                    profileType: value,
+                  });
+                }}
+              />
+            </div>
             <div className="w-[30%]">
               <DropDown
                 category=""

@@ -100,47 +100,63 @@ export default function FilterSettingPage() {
             category=""
           />
         </div>
-        <div className="text-start text-xl text-slate-500">New Category</div>
-        <div className="flex gap-2">
-          <Input
-            required={false}
-            placeholder="new filter type"
-            id="newFilterType"
-            value={newCategory}
-            label="New Category"
-            onChange={(e: any) => setNewCategory(e.target.value)}
-          />
-          <Input
-            required={false}
-            placeholder="new filter"
-            id="newFilter"
-            value={newFilterType}
-            label="Initial Filter Type"
-            onChange={(e: any) => setNewFilterType(e.target.value)}
-          />
-          <Input
-            required={false}
-            placeholder="new filter"
-            id="newFilter"
-            value={newFilterTitle}
-            label="Initial Filter Item"
-            onChange={(e: any) => setNewFilterTitle(e.target.value)}
-          />
-        </div>
-        <div className="flex justify-end">
-          <button
-            onClick={onSaveNewFilterType}
-            type="button"
-            className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
-          >
-            save
-          </button>
-        </div>
+        {!categoryState && (
+          <div>
+            <div className="text-start text-xl text-slate-500">
+              New Category / เพิ่มหมวดหมู่
+            </div>
+            <div className="flex gap-2">
+              <Input
+                required={true}
+                placeholder="new filter type"
+                id="newFilterType"
+                value={newCategory}
+                label="New Category / หมวดหมู่ใหม่*"
+                onChange={(e: any) => setNewCategory(e.target.value)}
+              />
+              <Input
+                required={true}
+                placeholder="new filter"
+                id="newFilter"
+                value={newFilterType}
+                label="Initial Filter Type / ประเภทฟิลเตอร์เริ่มต้น*"
+                onChange={(e: any) => setNewFilterType(e.target.value)}
+              />
+              <Input
+                required={true}
+                placeholder="new filter"
+                id="newFilter"
+                value={newFilterTitle}
+                label="Initial Filter Item / ฟิลเตอร์เริ่มต้น* "
+                onChange={(e: any) => setNewFilterTitle(e.target.value)}
+              />
+            </div>
+            <div className="flex justify-end">
+              <button
+                onClick={onSaveNewFilterType}
+                type="button"
+                className="hover:bg-success-600 focus:bg-success-600 active:bg-success-700 inline-block rounded bg-success px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]"
+              >
+                save
+              </button>
+            </div>
+          </div>
+        )}
         <div className="w-full h-1 rounded-xl bg-slate-100 my-4"></div>
         {categoryState && (
           <>
+            <div className="flex text-slate-700">
+              <label>
+                Existing Filter Types / ประเภทฟิลเตอร์ในหมวดหมู่นี้:{" "}
+              </label>
+              <div>
+                {filterTypes?.map((i: any) => (
+                  <span>{i}, </span>
+                ))}
+              </div>
+            </div>
             <div className="text-start text-xl text-slate-500">
-              New Filter Type
+              New Filter Type / เพิ่มประเภทฟิลเตอร์
             </div>
             <div className="flex gap-2">
               <Input
@@ -148,7 +164,7 @@ export default function FilterSettingPage() {
                 placeholder="new filter type"
                 id="newFilterType"
                 value={newType}
-                label="New Filter Type"
+                label="New Filter Type / ประเภทฟิลเตอร์เริ่มต้น"
                 onChange={(e: any) => setNewType(e.target.value)}
               />
               <Input
@@ -156,7 +172,7 @@ export default function FilterSettingPage() {
                 placeholder="new filter"
                 id="newFilter"
                 value={newTitle}
-                label="New Filter"
+                label="New Filter / ฟิลเตอร์เริ่มต้น"
                 onChange={(e: any) => setNewTitle(e.target.value)}
               />
             </div>

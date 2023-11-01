@@ -115,7 +115,7 @@ export default function AddFilterBox({
             placeholder="Add filter"
             id="addFilter"
             value={input}
-            label="Add Filter"
+            label="Add Filter / เพิ่มฟิลเตอร์"
             onChange={(e: any) => setInput(e.target.value)}
           />
           <div className="flex w-full justify-end">

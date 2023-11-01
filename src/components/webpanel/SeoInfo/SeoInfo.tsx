@@ -71,9 +71,7 @@ export default function SeoInfo({ state, setState, edit }: any) {
       <div className="flex w-full flex-col gap-4  py-4">
         {thKeywordState && (
           <div className="flex w-full flex-wrap items-center gap-2 ">
-            <h1 className="text-xl font-semibold text-slate-700">
-              Seo Keywords(TH):{" "}
-            </h1>
+            <h1 className="text-lg  text-slate-600">Seo Keywords(TH): </h1>
             {thKeywordState.map((i: any, index: any) => (
               <span
                 className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
@@ -96,9 +94,7 @@ export default function SeoInfo({ state, setState, edit }: any) {
       <div className="flex w-full flex-col gap-4  py-4">
         {enKeywordState && (
           <div className="flex w-full flex-wrap items-center gap-2 ">
-            <h1 className="text-xl font-semibold text-slate-700">
-              Seo Keywords(EN):{" "}
-            </h1>
+            <h1 className="text-lg  text-slate-600">Seo Keywords(EN): </h1>
             {enKeywordState.map((i: any, index: any) => (
               <span
                 className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
@@ -121,9 +117,7 @@ export default function SeoInfo({ state, setState, edit }: any) {
       <div className="flex w-full flex-col gap-4  py-4">
         {jpKeywordState && (
           <div className="flex w-full flex-wrap items-center gap-2 ">
-            <h1 className="text-xl font-semibold text-slate-700">
-              Seo Keywords(JP):{" "}
-            </h1>
+            <h1 className="text-lg  text-slate-600">Seo Keywords(JP): </h1>
             {jpKeywordState.map((i: any, index: any) => (
               <span
                 className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
@@ -146,9 +140,7 @@ export default function SeoInfo({ state, setState, edit }: any) {
       <div className="flex w-full flex-col gap-4  py-4">
         {cnKeywordState && (
           <div className="flex w-full flex-wrap items-center gap-2 ">
-            <h1 className="text-xl font-semibold text-slate-700">
-              Seo Keywords(CN):{" "}
-            </h1>
+            <h1 className="text-lg  text-slate-600">Seo Keywords(CN): </h1>
             {cnKeywordState.map((i: any, index: any) => (
               <span
                 className="rounded-2xl  bg-orange-600 px-4 py-2 text-sm font-semibold text-white"
