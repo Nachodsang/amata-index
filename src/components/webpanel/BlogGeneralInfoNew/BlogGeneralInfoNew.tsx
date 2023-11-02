@@ -262,8 +262,7 @@ export default function BlogGeneralInfoNew({
               <DropDown
                 filterList={filterCategories}
                 title={
-                  generalInfoState?.industry ||
-                  `prefered industry / อุตสาหกรรม`
+                  generalInfoState?.industry || `prefered industry / อุตสาหกรรม`
                 }
                 checkBox={false}
                 type="dropdown"

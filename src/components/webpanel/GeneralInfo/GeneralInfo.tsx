@@ -37,6 +37,11 @@ export default function GeneralInfo({
     industry: "",
     nationality: "",
     amataLocation: "",
+    managingDirector: "",
+    plantManager: "",
+    registeredCapital: "",
+    area: "",
+    employeeNo: "",
   };
   // tbt
   const [generalInfoState, setGeneralInfoState] = useState(
@@ -144,14 +149,24 @@ export default function GeneralInfo({
         document.getElementById("companyNameTh")
       );
       companyNameThInput.update();
-      const companyNameJpInput = new Input(
-        document.getElementById("companyNameJp")
+
+      const mdInput = new Input(document.getElementById("md"));
+      mdInput.update();
+
+      const plantManagerInput = new Input(
+        document.getElementById("plantManager")
       );
-      companyNameJpInput.update();
-      const companyNameCnInput = new Input(
-        document.getElementById("companyNameCn")
+      plantManagerInput.update();
+
+      const areaInput = new Input(document.getElementById("area"));
+      areaInput.update();
+      const registeredCapitalInput = new Input(
+        document.getElementById("registeredCapital")
       );
-      companyNameCnInput.update();
+      registeredCapitalInput.update();
+
+      const employeeNoInput = new Input(document.getElementById("employeeNo"));
+      employeeNoInput.update();
     }
   }, [generalInfoState]);
 
@@ -331,14 +346,14 @@ export default function GeneralInfo({
             </div>
             <div className="w-[30%] flex-col ">
               <Ip
-                id="companyNameJp"
+                id="md"
                 placeholder="...."
-                value={generalInfoState?.companyNameJp || ""}
-                label={`${envi} name(JP) / ชื่อภาษาญี่ปุ่น`}
+                value={generalInfoState?.managingDirector || ""}
+                label={`Managing Director / กรรมการผู้จัดการ`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
-                    companyNameJp: e.target.value,
+                    managingDirector: e.target.value,
                   });
                 }}
                 required={false}
@@ -348,14 +363,14 @@ export default function GeneralInfo({
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
               <Ip
-                id="companyNameCn"
+                id="plantManager"
                 placeholder="...."
-                value={generalInfoState?.companyNameCn || ""}
-                label={`${envi} name(CN) / ชื่อภาษาจีน`}
+                value={generalInfoState?.plantManager || ""}
+                label={`Plant Manager / ผู้จัดการโรงงาน`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
-                    companyNameCn: e.target.value,
+                    plantManager: e.target.value,
                   });
                 }}
                 required={false}
@@ -400,6 +415,54 @@ export default function GeneralInfo({
                     nationality: value,
                   });
                 }}
+              />
+            </div>
+          </div>
+          <div className="flex-flow flex w-full justify-between">
+            <div className="w-[30%]">
+              <Ip
+                id="employeeNo"
+                placeholder="...."
+                value={generalInfoState?.employeeNo || ""}
+                label={`No. of Employee / จำนวนพนักงาน`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    employeeNo: e.target.value,
+                  });
+                }}
+                required={false}
+              />
+            </div>
+
+            <div className="w-[30%]">
+              <Ip
+                id="registeredCapital"
+                placeholder="...."
+                value={generalInfoState?.registeredCapital || ""}
+                label={`Registered Capital / ทุนจดทะเบียน`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    registeredCapital: e.target.value,
+                  });
+                }}
+                required={false}
+              />
+            </div>
+            <div className="w-[30%] flex-col ">
+              <Ip
+                id="area"
+                placeholder="...."
+                value={generalInfoState?.area || ""}
+                label={`Land Area / พื้นที่`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    area: e.target.value,
+                  });
+                }}
+                required={false}
               />
             </div>
           </div>

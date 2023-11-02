@@ -137,6 +137,7 @@ export default function Entry({
         })
       : "";
   };
+
   return (
     <tr
       className={`${
@@ -162,14 +163,34 @@ export default function Entry({
           alt="Ad image"
         />
         {type === "company" ? (
-          <div className="">
-            <h1 className="text-base">{company}</h1>
-            <h1 className="text-xs">{companyNameTh}</h1>
+          <div className="flex flex-col items-start ">
+            <h1 className="text-xs">{company}</h1>
+            <h1 className="text-xs mb-2">{companyNameTh}</h1>
+            <div className="flex items-center gap-[1px]">
+              <h2 className="px-2 uppercase rounded-lg bg-[#641AE5] text-xs text-white">
+                {industry}
+              </h2>
+              <h2 className="px-2 uppercase rounded-lg bg-[#FACC16] text-xs text-white">
+                {item?.generalInfo?.nationality}
+              </h2>
+              <h2 className="px-2 uppercase rounded-lg bg-[#F87171] text-xs text-white">
+                {item?.generalInfo?.amataLocation}
+              </h2>
+              {item?.profileType === "full" ? (
+                <h2 className="px-2 uppercase rounded-lg bg-green-400 text-xs text-white">
+                  Full
+                </h2>
+              ) : (
+                <h2 className="px-2 uppercase rounded-lg bg-slate-400 text-xs text-white">
+                  Basic
+                </h2>
+              )}
+            </div>
           </div>
         ) : type === "blog" ? (
-          <div className="">
-            <h1 className="text-base">{title}</h1>
-            <h1 className="text-xs text-slate-600">
+          <div className="flex flex-col items-start">
+            <h1 className="text-xs">{title}</h1>
+            <h1 className="px-2 uppercase rounded-lg bg-[#641AE5] text-xs text-white">
               {item?.generalInfo?.type}
             </h1>
           </div>

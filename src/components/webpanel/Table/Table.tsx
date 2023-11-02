@@ -99,6 +99,7 @@ export default function Table({
                         order={edition}
                         type={type}
                         industry={generalInfo?.industry}
+                        item={i}
                       />
                     );
                   })}

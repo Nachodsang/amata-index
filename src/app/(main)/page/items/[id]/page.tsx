@@ -67,20 +67,23 @@ export default async function Page({ params }: { params: { id: string } }) {
             name="description"
             content={companyData?.details?.fullDescription}
           />
-          <TopBarItemPage />
+          <TopBarItemPage profileType={companyData?.profileType} />
 
           <Header companyData={companyData} />
-
-          <Content companyData={companyData} />
-          <Gallery companyData={companyData} />
-          <Filter companyData={companyData} />
-          {/* <Blogs
+          {companyData?.profileType === "full" && (
+            <>
+              <Content companyData={companyData} />
+              <Gallery companyData={companyData} />
+              <Filter companyData={companyData} />
+              {/* <Blogs
             blogList={blogs}
             companyData={companyData}
             allCompanyData={allCompanyData}
           /> */}
 
-          <Map companyData={companyData} />
+              <Map companyData={companyData} />
+            </>
+          )}
           <Footer companyData={companyData} blogList={blogs} />
         </div>
       ) : (

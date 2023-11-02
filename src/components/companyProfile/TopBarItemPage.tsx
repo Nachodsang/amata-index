@@ -5,7 +5,7 @@ import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../index/AmataLogo";
 
-export default function TopBarItemPage() {
+export default function TopBarItemPage({ type }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const [isShrink, setIsShrink] = useState(false);
@@ -34,21 +34,25 @@ export default function TopBarItemPage() {
               about
             </span>
           </Link>
-          <Link to="gallery" smooth={true} duration={500} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-              gallery
-            </span>
-          </Link>
-          <Link to="service" smooth={true} duration={750} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-              service
-            </span>
-          </Link>
-          {/* <Link to="blog" smooth={true} duration={1000} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-              blog
-            </span>
-          </Link> */}
+          {type === "full" && (
+            <>
+              <Link to="gallery" smooth={true} duration={500} offset={-75}>
+                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                  gallery
+                </span>
+              </Link>
+              <Link to="service" smooth={true} duration={750} offset={-75}>
+                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                  service
+                </span>
+              </Link>
+              <Link to="blog" smooth={true} duration={1000} offset={-75}>
+                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                  blog
+                </span>
+              </Link>
+            </>
+          )}
 
           <Link to="contact" smooth={true} duration={1000} offset={-75}>
             <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">

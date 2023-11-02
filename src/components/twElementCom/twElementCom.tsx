@@ -74,6 +74,7 @@ const TwElementCom = () => {
   useEffect(() => {
     initTE({
       Modal,
+      Input,
     });
     console.log("init tailwind el2");
   }, [pathName]);

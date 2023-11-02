@@ -39,6 +39,11 @@ export default function GeneralInfoNew({
     industry: "",
     nationality: "",
     amataLocation: "",
+    managingDirector: "",
+    plantManager: "",
+    registeredCapital: "",
+    area: "",
+    employeeNo: "",
   };
   // tbt
   const [generalInfoState, setGeneralInfoState] = useState(
@@ -333,14 +338,14 @@ export default function GeneralInfoNew({
             </div>
             <div className="w-[30%] flex-col ">
               <Ip
-                id="companyNameJp"
+                id="md"
                 placeholder="...."
-                value={generalInfoState?.companyNameJp || ""}
-                label={`${envi} name(JP) / ชื่อภาษาญี่ปุ่น`}
+                value={generalInfoState?.managingDirector || ""}
+                label={`Managing Director / กรรมการผู้จัดการ`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
-                    companyNameJp: e.target.value,
+                    managingDirector: e.target.value,
                   });
                 }}
                 required={false}
@@ -350,14 +355,14 @@ export default function GeneralInfoNew({
           <div className="flex-flow flex w-full justify-between">
             <div className="w-[30%]">
               <Ip
-                id="companyNameCn"
+                id="plantManager"
                 placeholder="...."
-                value={generalInfoState?.companyNameCn || ""}
-                label={`${envi} name(CN) / ชื่อภาษาจีน`}
+                value={generalInfoState?.plantManager || ""}
+                label={`Plant Manager / ผู้จัดการโรงงาน`}
                 onChange={(e: any) => {
                   setGeneralInfoState({
                     ...generalInfoState,
-                    companyNameCn: e.target.value,
+                    plantManager: e.target.value,
                   });
                 }}
                 required={false}
@@ -400,6 +405,54 @@ export default function GeneralInfoNew({
                     nationality: value,
                   });
                 }}
+              />
+            </div>
+          </div>
+          <div className="flex-flow flex w-full justify-between">
+            <div className="w-[30%]">
+              <Ip
+                id="employeeNo"
+                placeholder="...."
+                value={generalInfoState?.employeeNo || ""}
+                label={`No. of Employee / จำนวนพนักงาน`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    employeeNo: e.target.value,
+                  });
+                }}
+                required={false}
+              />
+            </div>
+
+            <div className="w-[30%]">
+              <Ip
+                id="registeredCapital"
+                placeholder="...."
+                value={generalInfoState?.registeredCapital || ""}
+                label={`Registered Capital / ทุนจดทะเบียน`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    registeredCapital: e.target.value,
+                  });
+                }}
+                required={false}
+              />
+            </div>
+            <div className="w-[30%] flex-col ">
+              <Ip
+                id="area"
+                placeholder="...."
+                value={generalInfoState?.area || ""}
+                label={`Land Area / พื้นที่`}
+                onChange={(e: any) => {
+                  setGeneralInfoState({
+                    ...generalInfoState,
+                    area: e.target.value,
+                  });
+                }}
+                required={false}
               />
             </div>
           </div>

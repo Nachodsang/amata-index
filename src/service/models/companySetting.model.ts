@@ -13,6 +13,11 @@ export interface IcompanySetting {
   status?: Boolean;
   deleted?: Boolean;
   profileType?: String;
+  managingDirector?: String;
+  plantManager?: String;
+  registeredCapital?: String;
+  employeeNo?: String;
+  area?: String;
 
   edition?: Number;
 }
@@ -157,6 +162,11 @@ const companySettingSchema = new Schema(
       industry: { type: String },
       nationality: { type: String },
       amataLocation: { type: String },
+      managingDirector: { type: String },
+      plantManager: { type: String },
+      registeredCapital: { type: String },
+      employeeNo: { type: String },
+      area: { type: String },
     },
     gallery: [{ type: String }],
     details: {
