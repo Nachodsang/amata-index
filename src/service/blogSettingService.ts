@@ -12,7 +12,7 @@ export const getBlogSetting = async () => {
 
 export const getSingleBlogSetting = async (link: any) => {
   const blogSetting = await blogSettingModel.findOne({
-    "generalInfo.blogUrl": link,
+    "blogGeneralInfo.blogUrl": link,
   });
 
   return { blogSetting };

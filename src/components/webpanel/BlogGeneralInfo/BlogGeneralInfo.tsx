@@ -59,7 +59,7 @@ export default function BlogGeneralInfo({
       response.data.companySetting
 
         .filter((i: any) => i?.deleted === false)
-        .map((i: any) => i?.generalInfo?.companyNameEn)
+        // .map((i: any) => i?.generalInfo?.companyNameEn)
         .sort()
     );
     setCompanyObjList(response.data.companySetting);
@@ -67,7 +67,7 @@ export default function BlogGeneralInfo({
   // const companyList = companyData.filter((i: any) => !i?.deleted);
   const onHandleSave = () => {
     if (edit) {
-      setState({ ...state, generalInfo: generalInfoState });
+      setState({ ...state, blogGeneralInfo: generalInfoState });
       Swal.fire({
         position: "center",
         icon: "success",
@@ -76,7 +76,7 @@ export default function BlogGeneralInfo({
         timer: 1500,
       });
     } else {
-      setState({ ...state, generalInfo: generalInfoState });
+      setState({ ...state, blogGeneralInfo: generalInfoState });
       Swal.fire({
         position: "center",
         icon: "success",
@@ -87,12 +87,16 @@ export default function BlogGeneralInfo({
     }
   };
 
-  const onSelectCompany = (e: any) => {
+  const onSelectCompany = (id: any, name: any) => {
     // const company: any = companyObjList?.find(
     //   (i: any) => i?.companyTitle === e
     // );
     // console.log(company, company?.generalInfo?.logo, e);
-    setState((prevState: any) => ({ ...prevState, company: e }));
+    setState((prevState: any) => ({
+      ...prevState,
+      companyID: id,
+      company: name,
+    }));
     // console.log("pause");
     // setGeneralInfoState((prevGeneralInfoState): any => ({
     //   ...prevGeneralInfoState,
@@ -100,7 +104,7 @@ export default function BlogGeneralInfo({
     // }));
   };
   useEffect(() => {
-    edit && state && setGeneralInfoState(state?.generalInfo);
+    edit && state && setGeneralInfoState(state?.blogGeneralInfo);
   }, [state]);
 
   useEffect(() => {
@@ -133,6 +137,7 @@ export default function BlogGeneralInfo({
   //   //   companyLogo: company?.generalInfo?.logo,
   //   // });
   // }, [state?.company]);
+  console.log(state?.companyID, state?.company);
 
   return (
     <div className="flex w-full flex-col gap-2 rounded-md border border-slate-300 bg-white p-4 shadow-sm">
@@ -284,18 +289,11 @@ export default function BlogGeneralInfo({
                 }
               /> */}
               <DropDown
-                filterList={filterCategories}
-                title={
-                  generalInfoState?.industry || `prefered industry / อุตสาหกรรม`
-                }
+                filterList={companyList}
+                title={state?.company || `company / บริษัท`}
                 checkBox={false}
-                type="dropdown"
-                onChange={(value: any) => {
-                  setGeneralInfoState({
-                    ...generalInfoState,
-                    industry: value,
-                  });
-                }}
+                type="objDropdown"
+                onChange={onSelectCompany}
                 selected={undefined}
                 edit={undefined}
                 category={undefined} // onChange: any

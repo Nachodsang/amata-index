@@ -15,6 +15,7 @@ import { ImLocation2 } from "react-icons/im";
 import { divide } from "lodash";
 export default function Header({ companyData }: any) {
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
+
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
     <div className="flex flex-col gap-10 py-10 ">
@@ -27,12 +28,17 @@ export default function Header({ companyData }: any) {
           />
         </div>
       ) : (
-        <div className="py-10 "></div>
+        <div className="h-auto overflow-hidden w-full bg-white ">
+          <img
+            src={pageSetting?.coverImage}
+            className="h-auto w-full max-h-[50vh] object-top object-cover"
+          />
+        </div>
       )}
       {/* company info */}
       <div
         id="about"
-        className="mx-auto flex desktop0:flex-row flex-col w-full max-w-[1270px] gap-4 px-4"
+        className="relative z-0  mx-auto flex desktop0:flex-row flex-col w-full max-w-[1270px] gap-4 px-4"
       >
         <div className="flex desktop0:w-[75%]  w-full flex-col tablet1:flex-row  gap-6 rounded-xl items-center bg-slate-200 p-6 shadow-lg">
           <div

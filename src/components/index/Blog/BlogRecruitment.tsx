@@ -16,9 +16,10 @@ export default function Blog({
   const { blogData: blogs }: any = useContext(CompanyContext);
 
   const blogData = blogs.filter(
-    (i: any) => i?.generalInfo?.type == "RECRUITMENT"
+    (i: any) => i?.blogGeneralInfo?.type == "RECRUITMENT"
   );
 
+  console.log(blogData);
   return (
     <div
       id="blog"
@@ -49,7 +50,7 @@ export default function Blog({
         <PaginatedItems
           items={blogData}
           itemsPerPage={8}
-          companyData={companyData}
+          // companyData={companyData}
         />
       </div>
     </div>

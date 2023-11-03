@@ -179,19 +179,21 @@ export default function BlogList() {
       showOnline === "online"
         ? setBlogListState(
             initialBlogState?.filter(
-              (i: any) => i?.generalInfo?.industry === typeState && i?.status
+              (i: any) =>
+                i?.blogGeneralInfo?.industry === typeState && i?.status
             )
           )
         : showOnline === "all"
         ? setBlogListState(
             initialBlogState?.filter(
-              (i: any) => i?.generalInfo?.industry === typeState
+              (i: any) => i?.blogGeneralInfo?.industry === typeState
             )
           )
         : showOnline === "offline"
         ? setBlogListState(
             initialBlogState?.filter(
-              (i: any) => i?.generalInfo?.industry === typeState && !i?.status
+              (i: any) =>
+                i?.blogGeneralInfo?.industry === typeState && !i?.status
             )
           )
         : "";

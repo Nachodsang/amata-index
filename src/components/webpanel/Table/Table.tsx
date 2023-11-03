@@ -115,7 +115,7 @@ export default function Table({
                       company,
 
                       edition,
-                      generalInfo,
+                      blogGeneralInfo: generalInfo,
                     } = i;
 
                     // convert date to local

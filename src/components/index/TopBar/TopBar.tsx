@@ -30,17 +30,17 @@ export default function TopBar() {
         </LinkNext>
         <div className="flex gap-4 text-white text-xs">
           <Link to="search" smooth={true} duration={500} offset={-150}>
-            <span className="hover:underline underline-offset-4 hover:cursor-pointer">
+            <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
               SEARCH
             </span>
           </Link>
           <Link to="list" smooth={true} duration={750} offset={-80}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
               {process.env.NEXT_PUBLIC_APP_KEY_WORD} List
             </span>
           </Link>
           <Link to="blog" smooth={true} duration={1000} offset={-40}>
-            <span className="hover:underline underline-offset-4 hover:cursor-pointer">
+            <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
               BLOG
             </span>
           </Link>

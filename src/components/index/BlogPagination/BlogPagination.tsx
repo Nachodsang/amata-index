@@ -5,7 +5,10 @@ import BlogCard from "../BlogCard/BlogCard";
 import { AiFillFastBackward, AiFillFastForward } from "react-icons/ai";
 import "./BlogPagination.css";
 
-function Items({ currentItems, companyData }: any) {
+function Items({
+  currentItems,
+}: // companyData
+any) {
   return (
     <div className="desktop0:grid-cols-4 tablet2:grid-cols-2 tablet2:grid flex flex-col items-center gap-y-4 gap-x-0">
       {currentItems &&
@@ -14,7 +17,7 @@ function Items({ currentItems, companyData }: any) {
             key={index}
             category={""}
             item={item}
-            companyList={companyData}
+            // companyList={companyData}
           />
         ))}
     </div>
@@ -50,7 +53,10 @@ export default function PaginatedItems({
 
   return (
     <>
-      <Items currentItems={currentItems} companyData={companyData} />
+      <Items
+        currentItems={currentItems}
+        //  companyData={companyData}
+      />
       <ReactPaginate
         activeClassName={"item active "}
         breakClassName={"item break-me "}

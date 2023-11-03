@@ -27,12 +27,17 @@ export default function Footer({ companyData, blogList }: any) {
             {companyData?.companyTitle}
           </h1>
           <div className="flex items-center justify-center text-center">
-            <ImLocation2 size={30} className="text-orange-500" />
+            {/* <ImLocation2
+              size={30}
+              className=""
+              style={{ color: `${pageSetting?.coreHeaderColor}` }}
+            /> */}
             <p>{companyData?.contacts?.addressTh}</p>
           </div>
         </div>
         <div className="flex w-full justify-center gap-4 ">
           <a
+            style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
             href={`tel:${companyData?.contacts?.tel}`}
             className="w-[40%] rounded-3xl bg-blue-700 px-6 py-2 text-center text-white"
           >
@@ -40,6 +45,7 @@ export default function Footer({ companyData, blogList }: any) {
           </a>
 
           <a
+            style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
             href={`mailto:${companyData?.contacts?.email}`}
             className="w-[40%] rounded-3xl bg-blue-700 px-6 py-2 text-center text-white"
           >
@@ -57,31 +63,52 @@ export default function Footer({ companyData, blogList }: any) {
                 <div className="justfy-center flex gap-4 ">
                   <a
                     href={companyData?.contacts?.website || null}
-                    className={`${
-                      companyData?.contacts?.website
-                        ? "text-orange-400"
-                        : "text-slate-400"
-                    }`}
+                    style={{
+                      color: `${
+                        companyData?.contacts?.website
+                          ? pageSetting?.coreColor
+                          : "#94A3B8"
+                      }`,
+                    }}
+                    // className={`${
+                    //   companyData?.contacts?.website
+                    //     ? "text-orange-400"
+                    //     : "text-slate-400"
+                    // }`}
                   >
                     <FaGlobeAmericas size={55} />
                   </a>
                   <a
                     href={companyData?.contacts?.line || null}
-                    className={`${
-                      companyData?.contacts?.line
-                        ? "text-orange-400"
-                        : "text-slate-400"
-                    }`}
+                    style={{
+                      color: `${
+                        companyData?.contacts?.line
+                          ? pageSetting?.coreColor
+                          : "#94A3B8"
+                      }`,
+                    }}
+                    // className={`${
+                    //   companyData?.contacts?.line
+                    //     ? "text-orange-400"
+                    //     : "text-slate-400"
+                    // }`}
                   >
                     <FaLine size={55} />
                   </a>
                   <a
                     href={companyData?.contacts?.facebook || null}
-                    className={`${
-                      companyData?.contacts?.facebook
-                        ? "text-orange-400"
-                        : "text-slate-400"
-                    }`}
+                    style={{
+                      color: `${
+                        companyData?.contacts?.facebook
+                          ? `${pageSetting?.coreColor}`
+                          : "#94A3B8"
+                      }`,
+                    }}
+                    // className={`${
+                    //   companyData?.contacts?.facebook
+                    //     ? "text-orange-400"
+                    //     : "text-slate-400"
+                    // }`}
                   >
                     <FaFacebook size={55} />
                   </a>

@@ -4,7 +4,7 @@ import { Interface } from "readline";
 export interface IblogSetting {
   _id?: Types.ObjectId;
   blogTitle?: String;
-  generalInfo?: IblogGeneralInfo;
+  blogGeneralInfo?: IblogGeneralInfo;
   //   filters?: IfilterInfo;
   details?: IdetailsInfo;
   //   contacts?: IcontactData;
@@ -13,6 +13,8 @@ export interface IblogSetting {
   status?: Boolean;
   edition?: Number;
   deleted?: Boolean;
+  companyID?: String;
+  company?: String;
 }
 // export interface IgalleryInfo {
 //   _id?: Types.ObjectId;
@@ -118,6 +120,7 @@ export interface IContent {
 const blogSettingSchema = new Schema(
   {
     blogTitle: { type: String, required: true },
+    companyID: { type: String },
     company: { type: String },
     // description: { type: String },
     // image: { type: String, required: true },
@@ -133,7 +136,7 @@ const blogSettingSchema = new Schema(
       description: { type: String },
     },
 
-    generalInfo: {
+    blogGeneralInfo: {
       blogUrl: { type: String },
 
       coverImage: { type: String },

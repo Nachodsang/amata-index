@@ -56,14 +56,30 @@ export default function BlogGeneralInfoNew({
       response.data.companySetting
 
         .filter((i: any) => i?.deleted === false)
-        .map((i: any) => i?.generalInfo?.companyNameEn)
+        // .map((i: any) => i?.generalInfo?.companyNameEn)
         .sort()
     );
+  };
+  const onSelectCompany = (id: any, name: any) => {
+    // const company: any = companyObjList?.find(
+    //   (i: any) => i?.companyTitle === e
+    // );
+    // console.log(company, company?.generalInfo?.logo, e);
+    setState((prevState: any) => ({
+      ...prevState,
+      companyID: id,
+      company: name,
+    }));
+    // console.log("pause");
+    // setGeneralInfoState((prevGeneralInfoState): any => ({
+    //   ...prevGeneralInfoState,
+    //   companyLogo: company?.generalInfo?.logo,
+    // }));
   };
   // const companyList = companyData.filter((i: any) => !i?.deleted);
   const onHandleSave = () => {
     if (edit) {
-      setState({ ...state, generalInfo: generalInfoState });
+      setState({ ...state, blogGeneralInfo: generalInfoState });
       Swal.fire({
         position: "center",
         icon: "success",
@@ -77,7 +93,7 @@ export default function BlogGeneralInfoNew({
         generalInfoState?.blogUrl &&
         generalInfoState?.type
       ) {
-        setState({ ...state, generalInfo: generalInfoState });
+        setState({ ...state, blogGeneralInfo: generalInfoState });
         Swal.fire({
           position: "center",
           icon: "success",
@@ -98,7 +114,7 @@ export default function BlogGeneralInfoNew({
   };
 
   useEffect(() => {
-    edit && state && setGeneralInfoState(state?.generalInfo);
+    edit && state && setGeneralInfoState(state?.blogGeneralInfo);
   }, [state]);
 
   //   useEffect(() => {
@@ -260,6 +276,19 @@ export default function BlogGeneralInfoNew({
                 }
               /> */}
               <DropDown
+                filterList={companyList}
+                title={state?.company || `company / บริษัท`}
+                checkBox={false}
+                type="objDropdown"
+                onChange={onSelectCompany}
+                selected={undefined}
+                edit={undefined}
+                category={undefined} // onChange: any
+                // selected: any
+                // edit: any
+                // category: any;
+              />
+              {/* <DropDown
                 filterList={filterCategories}
                 title={
                   generalInfoState?.industry || `prefered industry / อุตสาหกรรม`
@@ -278,7 +307,7 @@ export default function BlogGeneralInfoNew({
                 // selected: any
                 // edit: any
                 // category: any;
-              />
+              /> */}
               {/* <Ip
                 required={false}
                 id="language"

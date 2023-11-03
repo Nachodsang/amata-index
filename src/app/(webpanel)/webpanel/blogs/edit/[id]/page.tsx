@@ -20,7 +20,7 @@ export default function BlogEditPage({ params }: { params: { id: string } }) {
       const data = response.data;
 
       const thisBlog = data.blogSetting.find(
-        (i: any) => i?.generalInfo?.blogUrl === blogURL
+        (i: any) => i?.blogGeneralInfo?.blogUrl === blogURL
       );
 
       setBlogState(thisBlog);

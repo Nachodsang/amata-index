@@ -5,7 +5,7 @@ import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../index/AmataLogo";
 
-export default function TopBarItemPage({ type }: any) {
+export default function TopBarItemPage({ profileType, showBlog }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
   const [isShrink, setIsShrink] = useState(false);
@@ -30,32 +30,34 @@ export default function TopBarItemPage({ type }: any) {
         </LinkNext>
         <div className="flex gap-4 text-white text-xs">
           <Link to="about" smooth={true} duration={500} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
               about
             </span>
           </Link>
-          {type === "full" && (
+          {profileType === "full" && (
             <>
               <Link to="gallery" smooth={true} duration={500} offset={-75}>
-                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
                   gallery
                 </span>
               </Link>
               <Link to="service" smooth={true} duration={750} offset={-75}>
-                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
                   service
                 </span>
               </Link>
-              <Link to="blog" smooth={true} duration={1000} offset={-75}>
-                <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
-                  blog
-                </span>
-              </Link>
+              {showBlog && (
+                <Link to="blog" smooth={true} duration={1000} offset={-75}>
+                  <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
+                    blog
+                  </span>
+                </Link>
+              )}
             </>
           )}
 
           <Link to="contact" smooth={true} duration={1000} offset={-75}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
               contact
             </span>
           </Link>

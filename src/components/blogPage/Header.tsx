@@ -12,7 +12,7 @@ export default function BlogBody({ blogData, pageSetting }: any) {
       <div className="max-w-[1270px] mx-auto flex flex-col gap-10 items-center px-4">
         <div className="w-full rounded-xl shadow-xl overflow-hidden ">
           <img
-            src={blogData?.generalInfo?.coverImage}
+            src={blogData?.blogGeneralInfo?.coverImage}
             className="w-full h-auto "
           />
         </div>
@@ -20,7 +20,7 @@ export default function BlogBody({ blogData, pageSetting }: any) {
           <h1 className="text-5xl font-semibold ">{blogData?.blogTitle}</h1>
           <div className="flex justify-between w-full border-y-2 border-slate-200 py-4">
             <div className="text-slate-400">
-              By: {process.env.NEXT_PUBLIC_APP_NAME}
+              {blogData?.company || process.env.NEXT_PUBLIC_APP_NAME}
             </div>
             <div className="text-slate-400">Updated On: {localDate}</div>
           </div>

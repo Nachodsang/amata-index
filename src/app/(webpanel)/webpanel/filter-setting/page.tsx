@@ -150,8 +150,8 @@ export default function FilterSettingPage() {
                 Existing Filter Types / ประเภทฟิลเตอร์ในหมวดหมู่นี้:{" "}
               </label>
               <div>
-                {filterTypes?.map((i: any) => (
-                  <span>{i}, </span>
+                {filterTypes?.map((i: any, index: any) => (
+                  <span key={index}>{i}, </span>
                 ))}
               </div>
             </div>

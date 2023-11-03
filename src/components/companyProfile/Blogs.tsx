@@ -5,18 +5,18 @@ import BlogCard from "../index/BlogCard/BlogCard";
 import axios from "axios";
 import { useContext } from "react";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
+import { CompanyContext } from "@/contexts/CompanyContext";
 import PaginatedItems from "../index/BlogPagination/BlogPagination";
-export default function Blogs({ blogList, companyData, allCompanyData }: any) {
+export default function Blogs({ blogList, company, allCompanyData }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
 
   // same category items
-  const filteredBlogs = blogList.filter(
-    (i: any) => i?.generalInfo?.industry === companyData?.generalInfo?.industry
-  );
+
+  console.log(blogList);
   return (
     <div
       className={`w-full bg-slate-100 ${
-        filteredBlogs.length > 0 ? "block" : "hidden"
+        blogList.length > 0 ? "block" : "hidden"
       }`}
       id="blog"
     >
@@ -37,7 +37,7 @@ export default function Blogs({ blogList, companyData, allCompanyData }: any) {
             <BlogCard item={i} key={index} category={""} />
           ))} */}
         <PaginatedItems
-          items={filteredBlogs}
+          items={blogList}
           itemsPerPage={8}
           companyData={allCompanyData}
         />

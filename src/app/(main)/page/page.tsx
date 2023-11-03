@@ -12,13 +12,15 @@ import { FilterContext } from "@/contexts/FilterContext";
 import BlogRecruitment from "@/components/index/Blog/BlogRecruitment";
 
 export default function About() {
-  const { companyData }: any = useContext(CompanyContext);
+  const { companyData: companies }: any = useContext(CompanyContext);
   const [search, setSearch] = useState("");
   const [categoryState, setCategoryState] = useState("");
   const [clearFilter, setClearFilter] = useState(false);
   const [filtersConfirmed, setFiltersConfirmed] = useState({} as any);
   const [filtersApplied, setFiltersApplied] = useState([] as any);
   const { setNationalityState }: any = useContext(FilterContext);
+
+  const companyData = companies?.filter((i: any) => i?.status && !i?.deleted);
   const addFilter = (id: string, type: string, title: string) => {
     !filtersApplied.some((i: any) => i?.id === id)
       ? setFiltersApplied([...filtersApplied, { id, type, title }])
@@ -33,6 +35,7 @@ export default function About() {
     setSearch("");
     setNationalityState("");
   };
+
   const onSearchClick = () => {
     !search
       ? setFiltersConfirmed({

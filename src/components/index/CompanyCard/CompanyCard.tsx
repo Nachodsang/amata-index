@@ -19,6 +19,7 @@ export default function CompanyCard({
   gallery,
   profileUrl,
   industry,
+  item,
 }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const envi = process.env.NEXT_PUBLIC_APP_KEY_WORD;
@@ -36,52 +37,58 @@ export default function CompanyCard({
               />
             </div>
 
-            <div className="flex items-center gap-1 max-w-[150px] flex-col ">
-              <span className="text-xs text-gray-400 uppercase">
-                {nationality}
-              </span>
-              <span className="text-xs text-gray-400 uppercase">
-                {industry}
-              </span>
-            </div>
+            {item?.profileType === "full" && (
+              <div>
+                <div className="flex items-center gap-1 max-w-[150px] flex-col ">
+                  <span className="text-xs text-gray-400 uppercase">
+                    {nationality}
+                  </span>
+                  <span className="text-xs text-gray-400 uppercase">
+                    {industry}
+                  </span>
+                </div>
+              </div>
+            )}
 
-            <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
-              <div>
-                {website ? (
-                  <a href={website}>
-                    {" "}
-                    <FaGlobe size={28} fill="#17A2B8" />
-                  </a>
-                ) : (
-                  <a>
-                    {" "}
-                    <FaGlobe size={28} fill="#E5E7EB" />
-                  </a>
-                )}
+            {item?.profileType === "full" && (
+              <div className="desktop0:flex hidden justify-between w-[150px] gap-4">
+                <div>
+                  {website ? (
+                    <a href={website}>
+                      {" "}
+                      <FaGlobe size={28} fill="#17A2B8" />
+                    </a>
+                  ) : (
+                    <a>
+                      {" "}
+                      <FaGlobe size={28} fill="#E5E7EB" />
+                    </a>
+                  )}
+                </div>
+                <div>
+                  {facebook ? (
+                    <a href={facebook}>
+                      <FaFacebookSquare size={30} fill="#1B73E8" />
+                    </a>
+                  ) : (
+                    <a>
+                      <FaFacebookSquare size={30} fill="#E5E7EB" />
+                    </a>
+                  )}
+                </div>
+                <div>
+                  {line ? (
+                    <a href={line}>
+                      <FaLine size={30} fill="#33C152" />
+                    </a>
+                  ) : (
+                    <a>
+                      <FaLine size={30} fill="#E5E7EB" />
+                    </a>
+                  )}
+                </div>
               </div>
-              <div>
-                {facebook ? (
-                  <a href={facebook}>
-                    <FaFacebookSquare size={30} fill="#1B73E8" />
-                  </a>
-                ) : (
-                  <a>
-                    <FaFacebookSquare size={30} fill="#E5E7EB" />
-                  </a>
-                )}
-              </div>
-              <div>
-                {line ? (
-                  <a href={line}>
-                    <FaLine size={30} fill="#33C152" />
-                  </a>
-                ) : (
-                  <a>
-                    <FaLine size={30} fill="#E5E7EB" />
-                  </a>
-                )}
-              </div>
-            </div>
+            )}
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
@@ -92,32 +99,50 @@ export default function CompanyCard({
               <MdLocationPin size={20} />
               <span>{location}</span>
             </div>
-            <p
-              style={{
-                textOverflow: "ellipsis",
-                WebkitLineClamp: "3",
-                overflow: "hidden",
-                display: "-webkit-box",
-                lineHeight: "25px",
-                WebkitBoxOrient: "vertical",
-              }}
-              className=" overflow-hidden font-normal text-gray-500"
-            >
-              {details}
-            </p>
+            {item?.profileType === "full" ? (
+              <p
+                style={{
+                  textOverflow: "ellipsis",
+                  WebkitLineClamp: "3",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  lineHeight: "25px",
+                  WebkitBoxOrient: "vertical",
+                }}
+                className=" overflow-hidden font-normal text-gray-500"
+              >
+                {details}
+              </p>
+            ) : (
+              <p
+                style={{
+                  textOverflow: "ellipsis",
+                  WebkitLineClamp: "1",
+                  overflow: "hidden",
+                  display: "-webkit-box",
+                  lineHeight: "25px",
+                  WebkitBoxOrient: "vertical",
+                }}
+                className=" overflow-hidden font-normal text-gray-500"
+              >
+                {details}
+              </p>
+            )}
           </div>
           {/* more images */}
           <div className="w-[25%]  hidden desktop0:flex flex-col justify-center items-center gap-3 ">
-            <div className="w-full h-full flex flex-wrap desktop2:gap-3 desktop0:gap-2  ">
-              {gallery?.slice(0, 4).map((i: any, index: any) => (
-                <div
-                  key={index}
-                  className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden"
-                >
-                  <img src={i} className="w-full h-full object-cover " />
-                </div>
-              ))}
-            </div>
+            {item?.profileType === "full" && (
+              <div className="w-full h-full flex flex-wrap desktop2:gap-3 desktop0:gap-2  ">
+                {gallery?.slice(0, 4).map((i: any, index: any) => (
+                  <div
+                    key={index}
+                    className="desktop1:h-[80px] desktop1:w-[47%] desktop2:h-[100px] desktop2:w-[100px]  w-full h-[100px] rounded-md shadow-md overflow-hidden"
+                  >
+                    <img src={i} className="w-full h-full object-cover " />
+                  </div>
+                ))}
+              </div>
+            )}
             <Link
               href={profileUrl ? `page/items/${profileUrl}` : "no link"}
               className="w-full"

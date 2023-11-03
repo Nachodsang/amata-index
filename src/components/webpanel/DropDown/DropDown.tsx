@@ -83,6 +83,16 @@ export default function DropDown({
               onChange={onChange}
             />
           ))}
+        {type === "objDropdown" &&
+          filterList.map((i: any, index: any) => (
+            <DropDownFilterBox
+              edit={edit}
+              key={index}
+              checkBox={checkBox}
+              filterTitle={i?.generalInfo?.companyNameEn}
+              onChange={() => onChange(i?._id, i?.generalInfo?.companyNameEn)}
+            />
+          ))}
       </ul>
     </div>
   );

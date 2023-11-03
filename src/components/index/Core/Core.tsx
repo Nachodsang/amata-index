@@ -161,6 +161,7 @@ export default function Core({
                 const { generalInfo, details, _id, contacts, gallery } = i;
                 return (
                   <CompanyCard
+                    item={i}
                     companyTitle={generalInfo?.companyNameEn}
                     logo={generalInfo?.logo}
                     key={_id}

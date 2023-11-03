@@ -11,7 +11,6 @@ import TopBar from "@/components/index/TopBar/TopBar";
 import Footer from "@/components/index/Footer/Footer";
 import { Kanit } from "next/font/google";
 
-
 const roboto = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   style: ["normal", "italic"],
@@ -108,6 +107,12 @@ export default async function RootLayout({
   const companiesData = await fetchCompany();
   const filtersFromMain = await fetchFilter();
   const blogsData = await fetchBlog();
+  const mergeById = (a1: any, a2: any) =>
+    a1.map((itm: any) => ({
+      ...a2.find((item: any) => item._id === itm.companyID),
+      ...itm,
+    }));
+  const mergedBlogArr = mergeById(blogsData, companiesData);
   // const companyPageData = await fetchCompany();
 
   return (
@@ -120,7 +125,7 @@ export default async function RootLayout({
         <FilterContextProvider filtersFromMain={filtersFromMain}>
           <CompanyContextProvider
             companyData={companiesData}
-            blogData={blogsData}
+            blogData={mergedBlogArr}
           >
             <BannerProvider bannerPage={bannerData}>
               <AdProvider adsPage={adData}>

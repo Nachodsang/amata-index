@@ -9,16 +9,23 @@ import axios from "axios";
 export default function BlogCard({
   item,
   category,
-  companyList,
-}: {
+}: // companyList,
+{
   item: any;
   category: any;
-  companyList: any;
+  // companyList: any;
 }) {
   // const { companyData: cData }: any = useContext(CompanyContext);
   const [companyLogo, setCompanyLogo] = useState("");
   const { pageSetting }: any = useContext(PageSettingContext);
-  const { generalInfo, blogTitle, company, updatedAt, seo } = item;
+  const {
+    blogGeneralInfo: generalInfo,
+    blogTitle,
+    company,
+    updatedAt,
+    seo,
+    generalInfo: companyGeneralInfo,
+  } = item;
   // getting company image that matches each blog
   // const companyObject = cData?.find((i: any) => i?.companyTitle === company);
   // console.log(cData);
@@ -41,13 +48,13 @@ export default function BlogCard({
     .toString()
     .padStart(2, "0")}/${new Date(updatedAt).getFullYear()}`;
 
-  useEffect(() => {
-    // item && fetchCompany();
-    const blogCompany: any = companyList.find(
-      (i: any) => i?.companyTitle === company
-    );
-    setCompanyLogo(blogCompany?.generalInfo?.logo);
-  }, [companyList]);
+  // useEffect(() => {
+  //   // item && fetchCompany();
+  //   const blogCompany: any = companyList.find(
+  //     (i: any) => i?.companyTitle === company
+  //   );
+  //   setCompanyLogo(blogCompany?.generalInfo?.logo);
+  // }, [companyList]);
   // console.log(companyList);
   return (
     <Link
@@ -60,17 +67,27 @@ export default function BlogCard({
           <img
             style={{ border: `2px solid ${pageSetting?.themeColor}` }}
             className={`w-[50px] h-[50px] object-cover shadow-md border  rounded-full`}
-            // src={companyLogo || generalInfo?.coverImage}
-            src={"images/apple-icon-180x180.png" || generalInfo?.coverImage}
+            src={companyGeneralInfo?.logo || "images/apple-icon-180x180.png"}
+            // src={"images/apple-icon-180x180.png" || generalInfo?.coverImage}
           />
 
           <div className="flex flex-col gap-0">
-            <div className=" font-medium text-gray-400">
-              {generalInfo?.type}
+            <div
+              className=" font-xs text-gray-400"
+              style={{
+                textOverflow: "ellipsis",
+                WebkitLineClamp: "1",
+                overflow: "hidden",
+                display: "-webkit-box",
+                lineHeight: "25px",
+                WebkitBoxOrient: "vertical",
+              }}
+            >
+              {item?.companyTitle || generalInfo?.type}
               {/* {JSON.stringify(companyObject)} */}
             </div>
             <div className="uppercase overflow-hidden h-[1rem] text-xs  desktop0:text-xs text-gray-400">
-              {generalInfo?.industry}
+              {companyGeneralInfo?.industry || generalInfo?.industry}
             </div>
           </div>
         </div>
