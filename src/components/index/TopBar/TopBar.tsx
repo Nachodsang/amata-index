@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../AmataLogo";
+import GoogleTranslate from "../GooogleTranslate/GoogleTranslate";
+import { GoogleTranslate2 } from "../GoogleTranslate2/GoogleTranslate2";
 
 export default function TopBar() {
   const { pageSetting }: any = useContext(PageSettingContext);
@@ -45,6 +47,7 @@ export default function TopBar() {
             </span>
           </Link>
         </div>
+        <GoogleTranslate />
       </div>
     </div>
   );

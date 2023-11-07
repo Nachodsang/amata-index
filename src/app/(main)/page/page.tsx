@@ -10,6 +10,7 @@ import { CompanyContext } from "@/contexts/CompanyContext";
 import BlogForRent from "@/components/index/Blog/BlogForRent";
 import { FilterContext } from "@/contexts/FilterContext";
 import BlogRecruitment from "@/components/index/Blog/BlogRecruitment";
+import BlogNews from "@/components/index/Blog/BlogNews";
 
 export default function About() {
   const { companyData: companies }: any = useContext(CompanyContext);
@@ -77,9 +78,10 @@ export default function About() {
       <Banner category="factory" />
       <Core category="factory" filters={filtersConfirmed} />
       <AdSection />
-      <Blog category="factory" companyData={companyData} />
-      <BlogForRent category="factory" companyData={companyData} />
+      <BlogNews category="factory" companyData={companyData} />
       <BlogRecruitment category="factory" companyData={companyData} />
+      <BlogForRent category="factory" companyData={companyData} />
+      <Blog category="factory" companyData={companyData} />
     </div>
   );
 }

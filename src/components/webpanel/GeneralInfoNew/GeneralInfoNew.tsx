@@ -128,7 +128,7 @@ export default function GeneralInfoNew({
   };
 
   useEffect(() => {
-    if (state != null) {
+    if (edit && state != null) {
       setGeneralInfoState(state?.generalInfo);
     }
   }, [state]);

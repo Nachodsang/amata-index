@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../index/AmataLogo";
+import GoogleTranslate from "../index/GooogleTranslate/GoogleTranslate";
 
 export default function TopBarBlogPage({ blogData }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
@@ -32,6 +33,7 @@ export default function TopBarBlogPage({ blogData }: any) {
           <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
             {blogData?.blogTitle}
           </span>
+          <GoogleTranslate />
         </div>
       </div>
     </div>

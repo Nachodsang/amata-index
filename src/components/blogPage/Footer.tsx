@@ -36,7 +36,10 @@ export default function Footer({ pageSetting }: any) {
             <label>Email</label>
           </div>
         </div> */}
-        <img src={pageSetting?.footerBanner} className="w-full rounded-xl" />
+        <img
+          src={pageSetting?.footerBanner}
+          className="w-[75%] mx-auto rounded-xl"
+        />
       </div>
     </div>
   );

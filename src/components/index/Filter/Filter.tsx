@@ -111,6 +111,12 @@ export default function Filter({
     });
   };
 
+  // const onDropDownClick = () =>{
+  //    const elem = document.activeElement;
+  //    if (elem) {
+  //      elem?.blur();
+  //    }
+  // }
   //Expand Advance Search
   // const collapseAdvanceSearch = () => {
   //   setExpanded((prevExpanded) => !prevExpanded);
@@ -118,6 +124,9 @@ export default function Filter({
   //   onFoldDropDown();
   // };
   // Types Array
+  const onClickCategory = (i: any) => {
+    onFoldDropDown();
+  };
   const uniqueFilterTypes = new Set(
     filtersState
       .filter((i: any) => i?.filterCategory === categoryState)
@@ -238,6 +247,7 @@ export default function Filter({
             <div>
               <div className="flex flex-col gap-4 tablet2:flex-row desktop0:flex-row">
                 <div
+                  onClick={onClickCategory}
                   // {...getToggleProps({
                   //   onClick: () => {
                   //     collapseAdvanceSearch();
@@ -338,6 +348,7 @@ export default function Filter({
               })}
               {categoryState && (
                 <div
+                  onClick={onFoldDropDown}
                   // {...getToggleProps({
                   //   onClick: () => {
                   //     collapseAdvanceSearch();
@@ -362,6 +373,7 @@ export default function Filter({
                       <li
                         key={index}
                         className="text-slate-500 bg-white"
+                        // onClick={onDropDownClick}
                         onClick={() => setNationalityState(i)}
                       >
                         <p className="uppercase">{i}</p>

@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { CompanyContext } from "@/contexts/CompanyContext";
 import PaginatedItems from "../BlogPagination/BlogPagination";
 
-export default function Blog({
+export default function BlogNews({
   category,
   companyData,
 }: {
@@ -15,22 +15,21 @@ export default function Blog({
   const { pageSetting }: any = useContext(PageSettingContext);
   const { blogData: blogs }: any = useContext(CompanyContext);
 
-  const blogData = blogs.filter(
-    (i: any) => i?.blogGeneralInfo?.type == "FOR RENT"
-  );
+  const blogData = blogs.filter((i: any) => i?.blogGeneralInfo?.type == "NEWS");
 
+  // console.log(blogData);
   return (
     <div
       id="blog"
-      className="w-full py-10  px-6 relative bg-white "
-      // style={{
-      //   background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
-      // }}
+      className="w-full py-10 mt-10  px-6 relative bg-white "
+      //   style={{
+      //     background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
+      //   }}
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
         <div className="mb-5 flex flex-col w-fit">
-          <h1 className="text-4xl font-semibold mb-2 uppercase text-slate-600">
-            Property For Rent
+          <h1 className="text-4xl font-semibold mb-2 text-slate-600 uppercase">
+            News & Activities
           </h1>
           <div
             className=" h-1 "
@@ -49,7 +48,7 @@ export default function Blog({
         <PaginatedItems
           items={blogData}
           itemsPerPage={8}
-          companyData={companyData}
+          // companyData={companyData}
         />
       </div>
     </div>

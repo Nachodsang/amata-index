@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../index/AmataLogo";
+import GoogleTranslate from "../index/GooogleTranslate/GoogleTranslate";
 
 export default function TopBarItemPage({ profileType, showBlog }: any) {
   const { pageSetting }: any = useContext(PageSettingContext);
@@ -61,6 +62,7 @@ export default function TopBarItemPage({ profileType, showBlog }: any) {
               contact
             </span>
           </Link>
+          <GoogleTranslate />
         </div>
       </div>
     </div>

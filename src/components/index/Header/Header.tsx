@@ -58,7 +58,7 @@ export default function Header({
                   {pageSetting?.pageTitle}
                 </h1>
               </div>
-              <GoogleTranslate />
+              {/* <GoogleTranslate /> */}
               <div
                 className={`z-20 text-xl tablet1:text-2xl  desktop0:text-4xl w-full desktop0:w-[1000px]  rounded-xl `}
                 style={{

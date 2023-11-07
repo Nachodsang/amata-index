@@ -10,10 +10,10 @@ export default function BlogBody({ blogData, pageSetting }: any) {
   return (
     <div className="w-full py-10 mt-10">
       <div className="max-w-[1270px] mx-auto flex flex-col gap-10 items-center px-4">
-        <div className="w-full rounded-xl shadow-xl overflow-hidden ">
+        <div className="w-full rounded-xl shadow-xl overflow-hidden  ">
           <img
             src={blogData?.blogGeneralInfo?.coverImage}
-            className="w-full h-auto "
+            className="w-full mx-auto  h-auto "
           />
         </div>
         <div className="flex flex-col gap-6 items-start  w-full">
@@ -25,7 +25,10 @@ export default function BlogBody({ blogData, pageSetting }: any) {
             <div className="text-slate-400">Updated On: {localDate}</div>
           </div>
           {/* banner */}
-          <img src={pageSetting?.topBanner} className="w-full rounded-xl" />
+          <img
+            src={pageSetting?.topBanner}
+            className="w-[75%] rounded-xl mx-auto"
+          />
         </div>
       </div>
     </div>
