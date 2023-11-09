@@ -5,10 +5,13 @@ import { Link } from "react-scroll";
 import LinkNext from "next/link";
 import { AmataLogo } from "../AmataLogo";
 import GoogleTranslate from "../GooogleTranslate/GoogleTranslate";
+import { MdAccountCircle } from "react-icons/md";
 import { GoogleTranslate2 } from "../GoogleTranslate2/GoogleTranslate2";
+import { LogInContext } from "@/contexts/LogInContext";
 
 export default function TopBar() {
   const { pageSetting }: any = useContext(PageSettingContext);
+  const { setShow, show, logInState }: any = useContext(LogInContext);
 
   const [isShrink, setIsShrink] = useState(false);
   useEffect(() => {
@@ -24,6 +27,15 @@ export default function TopBar() {
       } fixed top-0 z-50 transition-all duration-500 px-4 shadow-md`}
     >
       <div className=" max-w-[1270px] mx-auto flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <GoogleTranslate />
+          <MdAccountCircle
+            onClick={() => setShow(!show)}
+            className="cursor-pointer hover:scale-105 transition-all"
+            size={40}
+            style={{ color: `${logInState?.isLoggedIn ? "green" : "white"}` }}
+          />
+        </div>
         <LinkNext href="/page">
           {/* <h1 className="text-xl font-bold text-white ">
             {process.env.NEXT_PUBLIC_APP_NAME}
@@ -47,7 +59,6 @@ export default function TopBar() {
             </span>
           </Link>
         </div>
-        <GoogleTranslate />
       </div>
     </div>
   );

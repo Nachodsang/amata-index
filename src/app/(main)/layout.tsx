@@ -10,6 +10,8 @@ import FilterContextProvider from "@/contexts/FilterContext";
 import TopBar from "@/components/index/TopBar/TopBar";
 import Footer from "@/components/index/Footer/Footer";
 import { Kanit } from "next/font/google";
+import LogInContextProvider from "@/contexts/LogInContext";
+import LogInModal from "@/components/index/LogInModal/LogInModal";
 
 const roboto = Kanit({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -122,23 +124,28 @@ export default async function RootLayout({
         <link rel="icon" href="/public/images/apple-icon-180x180.png" />
       </head>
       <body className={roboto.className}>
-        <FilterContextProvider filtersFromMain={filtersFromMain}>
-          <CompanyContextProvider
-            companyData={companiesData}
-            blogData={mergedBlogArr}
-          >
-            <BannerProvider bannerPage={bannerData}>
-              <AdProvider adsPage={adData}>
-                <PageSettingProvider pageSetting={pageSettingData.pageSetting}>
-                  {children}
+        <LogInContextProvider>
+          <FilterContextProvider filtersFromMain={filtersFromMain}>
+            <CompanyContextProvider
+              companyData={companiesData}
+              blogData={mergedBlogArr}
+            >
+              <BannerProvider bannerPage={bannerData}>
+                <AdProvider adsPage={adData}>
+                  <PageSettingProvider
+                    pageSetting={pageSettingData.pageSetting}
+                  >
+                    <LogInModal />
+                    {children}
 
-                  <Footer />
-                  <TwElementCom />
-                </PageSettingProvider>
-              </AdProvider>
-            </BannerProvider>
-          </CompanyContextProvider>
-        </FilterContextProvider>
+                    <Footer />
+                    <TwElementCom />
+                  </PageSettingProvider>
+                </AdProvider>
+              </BannerProvider>
+            </CompanyContextProvider>
+          </FilterContextProvider>
+        </LogInContextProvider>
       </body>
     </html>
   );
