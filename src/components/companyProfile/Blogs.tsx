@@ -12,7 +12,6 @@ export default function Blogs({ blogList, company, allCompanyData }: any) {
 
   // same category items
 
-  console.log(blogList);
   return (
     <div
       className={`w-full bg-slate-100 ${

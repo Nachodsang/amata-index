@@ -68,7 +68,6 @@ const TwElementCom = () => {
       // Modal,
       Carousel,
     });
-    console.log("init tailwind el");
   }, [router, Link]);
 
   useEffect(() => {
@@ -76,7 +75,6 @@ const TwElementCom = () => {
       Modal,
       Input,
     });
-    console.log("init tailwind el2");
   }, [pathName]);
   const init = () => {
     initTE({ Input });

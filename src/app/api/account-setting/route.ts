@@ -1,16 +1,17 @@
-import { createAccount, logIn } from "@/service/accountService";
+import { createAccount, getUser, logIn } from "@/service/accountService";
 import { NextResponse } from "next/server";
 
-// export async function GET() {
-//   // connecting db
-//   const response = await getAd();
-//   // setTitle();
+export async function GET(req: Request) {
+  // connecting db
+  const response = await getUser(req);
+  // setTitle();
 
-//   // res.status(200).json({ getTitle });
-//   return NextResponse.json(response);
+  // res.status(200).json({ getTitle });
 
-//   // return NextResponse.json(getTitle());
-// }
+  return NextResponse.json(response);
+
+  // return NextResponse.json(getTitle());
+}
 
 export async function POST(req: Request) {
   const res = await req.json();
@@ -19,6 +20,8 @@ export async function POST(req: Request) {
     // const response = await req.json();
 
     return NextResponse.json(await createAccount(res));
+  } else if (res?.type == "checkLogIn") {
+    return NextResponse.json(await getUser(res));
   } else {
     return NextResponse.json(await logIn(res?.userName, res?.password));
   }

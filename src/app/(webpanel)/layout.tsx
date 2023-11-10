@@ -8,6 +8,7 @@ import AdProvider from "@/contexts/AdContext";
 import FilterContextProvider from "@/contexts/FilterContext";
 import axios from "axios";
 import BannerProvider from "@/contexts/bannerContext";
+import LogInContextProvider from "@/contexts/LogInContext";
 import { Kanit } from "next/font/google";
 
 const roboto = Kanit({
@@ -45,21 +46,23 @@ export default async function RootLayout({
         <link rel="icon" href="" />
       </head>
       <body className={roboto.className}>
-        <BannerProvider>
-          <AdProvider>
-            <FilterContextProvider>
-              <PageSettingProvider>
-                {/* {children} */}
-                {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
-                {/* <MenuColumn /> */}
-                <SideNav _children={children} />
-                {/* {children} */}
-                {/* </div> */}
-              </PageSettingProvider>
-            </FilterContextProvider>
-          </AdProvider>
-        </BannerProvider>
-        <TwElementCom />
+        <LogInContextProvider>
+          <BannerProvider>
+            <AdProvider>
+              <FilterContextProvider>
+                <PageSettingProvider>
+                  {/* {children} */}
+                  {/* <div className="bg-gray-200 h-[100vh] w-[300px]"> */}
+                  {/* <MenuColumn /> */}
+                  <SideNav _children={children} />
+                  {/* {children} */}
+                  {/* </div> */}
+                </PageSettingProvider>
+              </FilterContextProvider>
+            </AdProvider>
+          </BannerProvider>
+          <TwElementCom />
+        </LogInContextProvider>
       </body>
     </html>
   );

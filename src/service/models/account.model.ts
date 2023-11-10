@@ -8,11 +8,12 @@ export interface Iaccount {
   firstName?: String;
   lastName?: String;
   userName?: String;
-  password?: Ipassword;
+  password?: String;
   email?: String;
 
   image?: String;
   status?: Boolean;
+  role?: String;
 
   deleted?: Boolean;
 }
@@ -27,13 +28,15 @@ const accountSchema = new Schema(
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
     userName: { type: String, required: true },
-    password: {
-      iv: { type: String, required: true },
-      encryptedData: { type: String, required: true },
-    },
+    // password: {
+    //   iv: { type: String, required: true },
+    //   encryptedData: { type: String, required: true },
+    // },
+    password: { type: String, required: true },
     email: { type: String, required: true },
     companyTitle: { type: String },
     companyID: { type: String },
+    role: { type: String, default: "member" },
 
     image: { type: String, required: false },
 

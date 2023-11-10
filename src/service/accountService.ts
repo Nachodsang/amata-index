@@ -43,19 +43,46 @@ async function decrypt(text: any) {
   return decrypted.toString();
 }
 
+export const getUser = async (req: any) => {
+  const checkUserName = await accountSettingModel.findOne({
+    _id: req?._id,
+
+    deleted: false,
+  });
+
+  return checkUserName;
+};
+
 export const createAccount = async (req: Iaccount) => {
   const encryptedPassword = encrypt(req?.password);
   const data = req;
+  const checkUserName = await accountSettingModel.findOne({
+    userName: data?.userName,
+
+    deleted: false,
+  });
+
+  const checkEmail = await accountSettingModel.findOne({
+    email: data?.email,
+
+    deleted: false,
+  });
   const account = new accountSettingModel(data);
 
   let status: any = "";
-  try {
-    await account.save();
-    return { status: "200", message: "complete", addedValue: account };
-  } catch (err) {
-    console.log(err);
-    return (status = err);
+
+  if (checkEmail || checkUserName) {
+    return { status: "200", error: "duplicate username or email" };
+  } else {
+    try {
+      await account.save();
+      return { status: "200", message: "complete", addedValue: account };
+    } catch (err) {
+      console.log(err);
+      return (status = err);
+    }
   }
+
   //   try {
   //     await account.save();
   //     console.log(1234);
