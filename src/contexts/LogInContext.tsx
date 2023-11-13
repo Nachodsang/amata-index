@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { createContext, useEffect, useState, useContext } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 export const LogInContext = createContext({});
@@ -13,6 +13,7 @@ export default function LogInContextProvider({ children }: any) {
   const [show, setShow] = useState(false);
   const [registerField, setRegisterField] = useState({});
   const [logInState, setLogInState] = useState({});
+  const router = useRouter();
   const onLogIn = async () => {
     const userName = logInField?.userName;
     const password = logInField?.password;
@@ -47,6 +48,7 @@ export default function LogInContextProvider({ children }: any) {
         _id,
         role,
       });
+      router.push(`/page/member/${_id}`);
       // setLogInState({logIn:true, userName:response?.data})
     } else if (response?.data?.error == "user not found") {
       console.log("NOT FOUND");
@@ -86,6 +88,7 @@ export default function LogInContextProvider({ children }: any) {
         });
         window.localStorage.removeItem("user");
         setLogInState({});
+        router.push("/page");
       }
     });
   };

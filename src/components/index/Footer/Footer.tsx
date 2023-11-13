@@ -9,7 +9,7 @@ export default function Footer() {
   const { pageSetting }: any = useContext(PageSettingContext);
   return (
     <div
-      className="w-full bg-green-200 py-10 text-white px-4"
+      className="w-full bg-green-200 py-10 text-white px-4 relative z-20"
       style={{ backgroundColor: `${pageSetting?.coreColor}` }}
     >
       <div className="max-w-[1270px] mx-auto flex justify-between items-center flex-col tablet1:flex-row">

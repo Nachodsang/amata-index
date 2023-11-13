@@ -87,6 +87,7 @@ export default function LogInModal({ link }: any) {
                     {/* <span className="label-text-alt">Top Right label</span> */}
                   </label>
                   <input
+                    onKeyDown={(e) => e.key === "Enter" && onLogIn()}
                     onChange={(e: any) =>
                       setLogInField({ ...logInField, password: e.target.value })
                     }
