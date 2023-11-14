@@ -9,6 +9,7 @@ import {
 } from "react-icons/md";
 import { LogInContext } from "@/contexts/LogInContext";
 import { useContext } from "react";
+import { logIn } from "@/service/accountService";
 export const AccountDropDown = ({ logInState }: any) => {
   const { show, setShow, onLogOut }: any = useContext(LogInContext);
   return (
@@ -31,19 +32,20 @@ export const AccountDropDown = ({ logInState }: any) => {
               </h1>
             </li>
             <li className="text-slate-500">
-              <div className="flex items-center gap-1">
+              <Link
+                href={`/page/member/${logInState?._id}`}
+                className="flex items-center gap-1"
+              >
                 <MdFavoriteBorder size={20} />
-                <a>Member</a>
-              </div>
+                <span>Member</span>
+              </Link>
             </li>
             {logInState?.role == "admin" && (
               <li className="text-slate-500">
-                <div className="flex items-center gap-1">
+                <Link href="/webpanel" className="flex items-center gap-1">
                   <AiFillSetting size={20} />
-                  <Link className="text-slate-500" href="/webpanel">
-                    Webpanel
-                  </Link>
-                </div>
+                  <span className="text-slate-500">Webpanel</span>
+                </Link>
               </li>
             )}
             <li className="text-slate-500 ">
@@ -53,7 +55,10 @@ export const AccountDropDown = ({ logInState }: any) => {
               </div>
             </li>
 
-            <li onClick={onLogOut} className="bg-red-400 rounded-xl text-white">
+            <li
+              onClick={() => onLogOut(false)}
+              className="bg-red-400 rounded-xl text-white"
+            >
               <div className="flex items-center gap-1">
                 <MdLogout size={20} />
                 <button>SIGN OUT</button>

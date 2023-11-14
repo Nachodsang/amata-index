@@ -172,7 +172,7 @@ export default function SideNav({ _children }: any) {
               </li>
               <li className="relative">
                 <button
-                  onClick={onLogOut}
+                  onClick={() => onLogOut(true)}
                   className={`bg-red-400 w-full justify-center text-white flex h-12 cursor-pointer items-center truncate rounded-[5px] px-6 py-4 text-[0.875rem]  outline-none transition duration-300 ease-linear hover:bg-red-600 hover:text-white hover:outline-none   focus:outline-none active:bg-slate-50 active:text-inherit active:outline-none data-[te-sidenav-state-active]:text-inherit data-[te-sidenav-state-focus]:outline-none motion-reduce:transition-none dark:text-gray-300  `}
                   data-te-sidenav-link-ref
                 >

@@ -114,7 +114,7 @@ export default function LogInWebpanel({ link }: any) {
               </div>
 
               <button
-                onClick={onLogIn}
+                onClick={() => onLogIn(true)}
                 className={`bg-[rgb(36,120,92)] hover:bg-green-600 w-full py-2   transition-all rounded-xl text-white`}
               >
                 Sign In

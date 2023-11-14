@@ -14,7 +14,7 @@ export default function LogInContextProvider({ children }: any) {
   const [registerField, setRegisterField] = useState({});
   const [logInState, setLogInState] = useState({});
   const router = useRouter();
-  const onLogIn = async () => {
+  const onLogIn = async (webpanel: any) => {
     const userName = logInField?.userName;
     const password = logInField?.password;
     const response = await axios.post(URL, { userName, password });
@@ -48,7 +48,7 @@ export default function LogInContextProvider({ children }: any) {
         _id,
         role,
       });
-      router.push(`/page/member/${_id}`);
+      !webpanel && router.push(`/page/member/${_id}`);
       // setLogInState({logIn:true, userName:response?.data})
     } else if (response?.data?.error == "user not found") {
       console.log("NOT FOUND");
@@ -70,7 +70,7 @@ export default function LogInContextProvider({ children }: any) {
     }
   };
 
-  const onLogOut = () => {
+  const onLogOut = (webpanel: any) => {
     Swal.fire({
       title: "Are you sure",
       text: "You want to sign out?",
@@ -88,7 +88,7 @@ export default function LogInContextProvider({ children }: any) {
         });
         window.localStorage.removeItem("user");
         setLogInState({});
-        router.push("/page");
+        !webpanel && router.push("/page");
       }
     });
   };
