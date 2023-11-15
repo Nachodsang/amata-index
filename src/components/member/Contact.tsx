@@ -123,8 +123,8 @@ export default function Contact({ show, setShow }: any) {
               </div>
             </label>
             <div className="w-full h-[300px] overflow-scroll flex flex-col gap-[2px]">
-              {list?.map((i: any) => (
-                <ContactCard item={i} />
+              {list?.map((i: any, index: any) => (
+                <ContactCard item={i} key={index} />
               ))}
             </div>
           </div>

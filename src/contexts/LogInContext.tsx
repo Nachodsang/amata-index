@@ -48,7 +48,7 @@ export default function LogInContextProvider({ children }: any) {
         _id,
         role,
       });
-      !webpanel && router.push(`/page/member/${_id}`);
+      !webpanel && role === "member" && router.push(`/page/member/${_id}`);
       // setLogInState({logIn:true, userName:response?.data})
     } else if (response?.data?.error == "user not found") {
       console.log("NOT FOUND");

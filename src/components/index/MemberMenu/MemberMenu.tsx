@@ -2,6 +2,7 @@
 
 import Contact from "@/components/member/Contact";
 import { LogInContext } from "@/contexts/LogInContext";
+import Link from "next/link";
 import { useContext, useState } from "react";
 export const MemberMenu = ({ member }: any) => {
   const { onLogOut }: any = useContext(LogInContext);
@@ -98,7 +99,8 @@ export const MemberMenu = ({ member }: any) => {
           >
             <label className="text-white text-xl"> Coupon (Coming Soon)</label>
           </div>
-          <div
+          <Link
+            href={"/page/blogs-category/property-for-sale"}
             style={{
               background: ` linear-gradient(rgba(36, 120, 92, 0.8), rgba(256, 256, 256, 0.3)), url("/member/forsale.jpg") `,
               backgroundRepeat: "no-repeat",
@@ -109,8 +111,9 @@ export const MemberMenu = ({ member }: any) => {
             className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
           >
             <label className="text-white text-xl"> Land for Sale</label>
-          </div>
-          <div
+          </Link>
+          <Link
+            href={"/page/blogs-category/property-for-rent"}
             style={{
               background: ` linear-gradient(rgba(36, 120, 92, 0.8), rgba(256, 256, 256, 0.3)), url("/member/forrent.jpg") `,
               backgroundRepeat: "no-repeat",
@@ -121,7 +124,7 @@ export const MemberMenu = ({ member }: any) => {
             className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
           >
             <label className="text-white text-xl"> Land for Rent</label>
-          </div>
+          </Link>
           <div
             style={{
               background: ` linear-gradient(rgba(36, 120, 92, 0.8), rgba(256, 256, 256, 0.3)), url("/member/keys.jpg") `,

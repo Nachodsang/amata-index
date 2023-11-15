@@ -67,7 +67,7 @@ export default function BlogCard({
           <img
             style={{ border: `2px solid ${pageSetting?.themeColor}` }}
             className={`w-[50px] h-[50px] object-cover shadow-md border  rounded-full`}
-            src={companyGeneralInfo?.logo || "images/apple-icon-180x180.png"}
+            src={companyGeneralInfo?.logo || "/images/apple-icon-180x180.png"}
             // src={"images/apple-icon-180x180.png" || generalInfo?.coverImage}
           />
 

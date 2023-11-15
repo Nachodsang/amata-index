@@ -21,7 +21,7 @@ export default function ContactCard({ item }: any) {
         <div className="flex flex-col">
           <span className="font-semibold">{item?.nameTh}</span>
 
-          <span>{item?.nameEn}</span>
+          <span className="font-semibold">{item?.nameEn}</span>
           <span>{item?.address}</span>
           <span>{item?.tel}</span>
         </div>

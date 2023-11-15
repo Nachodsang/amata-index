@@ -35,7 +35,7 @@ export default function LogInModal({ link }: any) {
     <div
       //   onClick={() => setShow(!show)}
       className={`${
-        !show ? "bottom-[100%]" : "bottom-0"
+        !show ? "bottom-[200%]" : "bottom-0"
       } w-full h-[100vh] bg-black/60 fixed  left-0 transition-all duration-700 z-[50] `}
     >
       <div className="desktop0:w-[40%] w-[80%] px-4 h-[300px] absolute top-[30%] left-[50%] translate-x-[-50%]  rounded-xl  tablet1:bg-slate-100 z-[20]">

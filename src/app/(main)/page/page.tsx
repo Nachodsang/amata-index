@@ -78,10 +78,18 @@ export default function About() {
       <Banner category="factory" />
       <Core category="factory" filters={filtersConfirmed} />
       <AdSection />
-      <BlogNews category="factory" companyData={companyData} />
-      <BlogRecruitment category="factory" companyData={companyData} />
-      <BlogForRent category="factory" companyData={companyData} />
-      <Blog category="factory" companyData={companyData} />
+      <BlogNews itemPerPage={4} category="factory" companyData={companyData} />
+      <BlogRecruitment
+        itemPerPage={4}
+        category="factory"
+        companyData={companyData}
+      />
+      <BlogForRent
+        itemPerPage={4}
+        category="factory"
+        companyData={companyData}
+      />
+      <Blog itemPerPage={4} category="factory" companyData={companyData} />
     </div>
   );
 }

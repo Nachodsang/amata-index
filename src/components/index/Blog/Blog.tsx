@@ -4,13 +4,16 @@ import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { useContext, useState } from "react";
 import { CompanyContext } from "@/contexts/CompanyContext";
 import PaginatedItems from "../BlogPagination/BlogPagination";
+import Link from "next/link";
 
 export default function Blog({
   category,
   companyData,
+  itemPerPage,
 }: {
   category: string;
   companyData: any;
+  itemPerPage: number;
 }) {
   const { pageSetting }: any = useContext(PageSettingContext);
   const { blogData: blogs }: any = useContext(CompanyContext);
@@ -29,9 +32,12 @@ export default function Blog({
     >
       <div className="mx-auto max-w-[1270px] px-4 pt-4  ">
         <div className="mb-5 flex flex-col w-fit">
-          <h1 className="text-4xl font-semibold mb-2 uppercase text-slate-600">
+          <Link
+            href="/page/blogs-category/property-for-sale"
+            className="text-4xl font-semibold mb-2 uppercase text-slate-600"
+          >
             Property For Sale
-          </h1>
+          </Link>
           <div
             className=" h-1 "
             style={{
@@ -48,7 +54,7 @@ export default function Blog({
         {/* {JSON.stringify(blogData)} */}
         <PaginatedItems
           items={blogData}
-          itemsPerPage={8}
+          itemsPerPage={itemPerPage}
           companyData={companyData}
         />
       </div>
