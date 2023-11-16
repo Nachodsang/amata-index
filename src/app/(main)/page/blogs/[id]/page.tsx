@@ -9,25 +9,33 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
   const blog = params.id;
 
   const fetchSingleBlog = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/blog-item?id=${blog}`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blog-item?id=${blog}`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
 
-    const data = await response.json();
-    return data.blogSetting;
+      const data = await response.json();
+      return data.blogSetting;
+    } catch (err) {
+      console.log(err);
+    }
   };
   const blogData = await fetchSingleBlog();
 
   const fetchPageSetting = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
-    );
-    const data = await response.json();
-    return data.pageSetting;
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
+      );
+      const data = await response.json();
+      return data.pageSetting;
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   if (!blogData || !blogData?.status || blogData?.deleted) {

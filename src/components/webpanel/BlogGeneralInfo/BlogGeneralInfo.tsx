@@ -51,18 +51,22 @@ export default function BlogGeneralInfo({
   };
 
   const fetchCompany = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+      );
 
-    setCompanyList(
-      response.data.companySetting
+      setCompanyList(
+        response.data.companySetting
 
-        .filter((i: any) => i?.deleted === false)
-        // .map((i: any) => i?.generalInfo?.companyNameEn)
-        .sort()
-    );
-    setCompanyObjList(response.data.companySetting);
+          .filter((i: any) => i?.deleted === false)
+          // .map((i: any) => i?.generalInfo?.companyNameEn)
+          .sort()
+      );
+      setCompanyObjList(response.data.companySetting);
+    } catch (err) {
+      console.log(err);
+    }
   };
   // const companyList = companyData.filter((i: any) => !i?.deleted);
   const onHandleSave = () => {

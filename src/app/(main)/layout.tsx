@@ -35,73 +35,103 @@ export const metadata = {
 };
 
 const fetchBanner = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
-    {
-      cache: "no-store",
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
+      {
+        cache: "no-store",
+      }
+    );
 
-  const data = await response.json();
-  const displayedBanners = data
-    .filter((i: any) => i?.status)
-    .sort((a: any, b: any) => a.edition - b.edition);
-  return displayedBanners;
+    const data = await response.json();
+    const displayedBanners = data
+      .filter((i: any) => i?.status)
+      .sort((a: any, b: any) => a.edition - b.edition);
+    return displayedBanners;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const fetchAdTry = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
-    {
-      cache: "no-store",
-    }
-  );
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+      {
+        cache: "no-store",
+      }
+    );
 
-  const data = await response.json();
-  const displayedAds = data
-    .filter((i: any) => i?.status)
-    .sort((a: any, b: any) => a.edition - b.edition);
-  return displayedAds;
+    const data = await response.json();
+    const displayedAds = data
+      .filter((i: any) => i?.status)
+      .sort((a: any, b: any) => a.edition - b.edition);
+    return displayedAds;
+  } catch (err) {
+    console.log(err);
+  }
 };
-// fetchPageSetting
-const fetchPageSetting = async () => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`,
-    {
-      cache: "no-store",
-      // next: { revalidate: 5 },
-    }
-  );
-  const data = await response.json();
 
-  return data;
-};
 const fetchFilter = async () => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`
-  );
-  return response?.data?.filters;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`
+    );
+    return response?.data?.filters;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const fetchCompany = async () => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-  );
-  return response?.data?.companySetting;
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+    );
+    return response?.data?.companySetting;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 const fetchBlog = async () => {
-  const response = await axios.get(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
-  );
-  return response?.data?.blogSetting?.filter(
-    (i: any) => i?.status && !i?.deleted
-  );
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+    );
+    return response?.data?.blogSetting?.filter(
+      (i: any) => i?.status && !i?.deleted
+    );
+  } catch (err) {
+    console.log(err);
+  }
 };
+
+// fetchPageSetting
+export const fetchPageSetting = async () => {
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
+      // , {
+      //   cache: "no-store",
+      //   // next: { revalidate: 5 },
+
+      // }
+    );
+    const data = await response.json();
+
+    return data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export default async function RootLayout({
   children,
+  result,
 }: {
   children: React.ReactNode;
+  result: any;
 }) {
   const pageSettingData = await fetchPageSetting();
   const adData = await fetchAdTry();
@@ -133,7 +163,7 @@ export default async function RootLayout({
               <BannerProvider bannerPage={bannerData}>
                 <AdProvider adsPage={adData}>
                   <PageSettingProvider
-                    pageSetting={pageSettingData.pageSetting}
+                    pageSetting={pageSettingData?.pageSetting}
                   >
                     <LogInModal />
                     {children}

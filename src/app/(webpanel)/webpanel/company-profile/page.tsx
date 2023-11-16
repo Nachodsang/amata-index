@@ -44,34 +44,42 @@ export default function CompanyProfile() {
   filterCategories.unshift("ALL TYPE");
 
   const fetchCompany = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+      );
 
-    setInitialCompanyList(
-      response.data.companySetting
-        .sort((a: any, b: any) => {
-          const dateA = new Date(a.updatedAt);
-          const dateB = new Date(b.updatedAt);
-          return dateB.getTime() - dateA.getTime();
-        })
-        .filter((i: any) => i?.deleted === false)
-    );
+      setInitialCompanyList(
+        response.data.companySetting
+          .sort((a: any, b: any) => {
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            return dateB.getTime() - dateA.getTime();
+          })
+          .filter((i: any) => i?.deleted === false)
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
   const fetchDeletedCompany = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+      );
 
-    setInitialCompanyList(
-      response.data.companySetting
-        .sort((a: any, b: any) => {
-          const dateA = new Date(a.updatedAt);
-          const dateB = new Date(b.updatedAt);
-          return dateB.getTime() - dateA.getTime();
-        })
-        .filter((i: any) => i?.deleted)
-    );
+      setInitialCompanyList(
+        response.data.companySetting
+          .sort((a: any, b: any) => {
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            return dateB.getTime() - dateA.getTime();
+          })
+          .filter((i: any) => i?.deleted)
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const onClickSearch = () => {

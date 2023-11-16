@@ -33,6 +33,7 @@ export default function PageSettingProvider({ children, pageSetting }: any) {
   useEffect(() => {
     pageSettingFetch();
   }, []);
+
   //   const pageSettingCon = { pageSetting, updatePageSetting, testContext };
   return (
     <PageSettingContext.Provider

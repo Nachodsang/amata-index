@@ -32,39 +32,47 @@ export default function BlogList() {
   const filterCategories = Array.from(uniqueFilterCategories);
   filterCategories.unshift("ALL TYPE");
   const fetchBlog = async () => {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
-      {
-        method: "GET",
-        cache: "no-store",
-      }
-    );
-    const data = await response.json();
-    setInitialBlogState(
-      data?.blogSetting
-        ?.sort((a: any, b: any) => {
-          const dateA = new Date(a.updatedAt);
-          const dateB = new Date(b.updatedAt);
-          return dateB.getTime() - dateA.getTime();
-        })
-        .filter((i: any) => i?.deleted === false)
-    );
-    // (data?.blogSetting);
+    try {
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
+      const data = await response.json();
+      setInitialBlogState(
+        data?.blogSetting
+          ?.sort((a: any, b: any) => {
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            return dateB.getTime() - dateA.getTime();
+          })
+          .filter((i: any) => i?.deleted === false)
+      );
+      // (data?.blogSetting);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const fetchDeletedBlog = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+      );
 
-    setInitialBlogState(
-      response.data.blogSetting
-        .sort((a: any, b: any) => {
-          const dateA = new Date(a.updatedAt);
-          const dateB = new Date(b.updatedAt);
-          return dateB.getTime() - dateA.getTime();
-        })
-        .filter((i: any) => i?.deleted)
-    );
+      setInitialBlogState(
+        response.data.blogSetting
+          .sort((a: any, b: any) => {
+            const dateA = new Date(a.updatedAt);
+            const dateB = new Date(b.updatedAt);
+            return dateB.getTime() - dateA.getTime();
+          })
+          .filter((i: any) => i?.deleted)
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   // change blog status

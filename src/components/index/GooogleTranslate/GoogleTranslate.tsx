@@ -22,14 +22,12 @@ export default function GoogleTranslate() {
 
           // autoDisplay: false,
           includedLanguages:
-            "en,ar,zh-CN,zh-TW,fr,de,hi,id,it,ko,lo,ms,pt,pa,ru,es,ta,vi,da,sv,no",
+            "jp,en,ar,zh-CN,zh-TW,fr,de,hi,id,it,ko,lo,ms,pt,pa,ru,es,ta,vi,da,sv,no",
           layout: (window as any).google.translate.TranslateElement.InlineLayout
             .SIMPLE,
         },
         "google_translate_element"
       );
-
-      console.log("year", count);
     }
   };
 

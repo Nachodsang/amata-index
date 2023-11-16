@@ -11,7 +11,6 @@ import Swal from "sweetalert2";
 import { ImBin } from "react-icons/im";
 import { HiStatusOnline } from "react-icons/hi";
 
-
 export default function BannerList() {
   const [searchState, setSearchState] = useState("");
   const {
@@ -25,19 +24,22 @@ export default function BannerList() {
   const [showOnline, setShowOnline] = useState(false);
   const [showDeleted, setShowDeleted] = useState(false);
 
-
   const banners = b.sort((a: any, b: any) => {
     const dateA = new Date(a.updatedAt);
     const dateB = new Date(b.updatedAt);
     return dateB.getTime() - dateA.getTime();
   });
   const fetchDeletedBanner = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`
+      );
 
-    const data = response?.data?.filter((i: any) => i?.deleted);
-    setBannerState(data);
+      const data = response?.data?.filter((i: any) => i?.deleted);
+      setBannerState(data);
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onMoveItemToRecycleBin = async (id: string, newStatus: boolean) => {
     try {

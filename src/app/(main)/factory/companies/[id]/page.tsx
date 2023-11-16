@@ -11,29 +11,37 @@ import ShareModal from "@/components/companyProfile/ShareModal";
 import TopBarItemPage from "@/components/companyProfile/TopBarItemPage";
 
 const fetchCompany = async (company: string) => {
-  const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-item?id=${company}`,
+  try {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-item?id=${company}`,
 
-    {
-      cache: "no-store",
-      // next: { revalidate: 5 },
-    }
-  );
-  const data = await response.json();
+      {
+        cache: "no-store",
+        // next: { revalidate: 5 },
+      }
+    );
+    const data = await response.json();
 
-  return data?.companySetting;
+    return data?.companySetting;
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export default async function Page({ params }: { params: { id: string } }) {
   const company = params.id;
   // fetchCompanyProfile
   const fetchBlog = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
-    );
-    return response?.data?.blogSetting?.filter(
-      (i: any) => i?.status && !i?.deleted
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+      );
+      return response?.data?.blogSetting?.filter(
+        (i: any) => i?.status && !i?.deleted
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const blogs = await fetchBlog();

@@ -41,37 +41,53 @@ export default function Entry({
   };
 
   const onDeleteCompanyFromDb = async () => {
-    const response = fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ _id: _id, type: "deleteF" }),
-      }
-    );
+    try {
+      const response = fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ _id: _id, type: "deleteF" }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onDeleteBlogFromDb = async () => {
-    const response = fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`, {
-      method: "PUT",
-      body: JSON.stringify({ _id: _id, type: "deleteF" }),
-    });
+    try {
+      const response = fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`, {
+        method: "PUT",
+        body: JSON.stringify({ _id: _id, type: "deleteF" }),
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onDeleteAdFromDb = async () => {
-    const response = fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ _id: _id, type: "deleteF" }),
-      }
-    );
+    try {
+      const response = fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ _id: _id, type: "deleteF" }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onDeleteBannerFromDb = async () => {
-    const response = fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
-      {
-        method: "PUT",
-        body: JSON.stringify({ _id: _id, type: "deleteF" }),
-      }
-    );
+    try {
+      const response = fetch(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
+        {
+          method: "PUT",
+          body: JSON.stringify({ _id: _id, type: "deleteF" }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const OnClickDeleteFromDb = () => {

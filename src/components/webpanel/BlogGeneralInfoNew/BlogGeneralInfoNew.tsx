@@ -48,17 +48,21 @@ export default function BlogGeneralInfoNew({
   };
 
   const fetchCompany = async () => {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+      );
 
-    setCompanyList(
-      response.data.companySetting
+      setCompanyList(
+        response.data.companySetting
 
-        .filter((i: any) => i?.deleted === false)
-        // .map((i: any) => i?.generalInfo?.companyNameEn)
-        .sort()
-    );
+          .filter((i: any) => i?.deleted === false)
+          // .map((i: any) => i?.generalInfo?.companyNameEn)
+          .sort()
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
   const onSelectCompany = (id: any, name: any) => {
     // const company: any = companyObjList?.find(
