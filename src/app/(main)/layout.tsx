@@ -35,95 +35,71 @@ export const metadata = {
 };
 
 const fetchBanner = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
-      {
-        cache: "no-store",
-      }
-    );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/banner-setting`,
+    {
+      cache: "no-store",
+    }
+  );
 
-    const data = await response.json();
-    const displayedBanners = data
-      .filter((i: any) => i?.status)
-      .sort((a: any, b: any) => a.edition - b.edition);
-    return displayedBanners;
-  } catch (err) {
-    console.log(err);
-  }
+  const data = await response.json();
+  const displayedBanners = data
+    .filter((i: any) => i?.status)
+    .sort((a: any, b: any) => a.edition - b.edition);
+  return displayedBanners;
 };
 
 const fetchAdTry = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
-      {
-        cache: "no-store",
-      }
-    );
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/ad-setting`,
+    {
+      cache: "no-store",
+    }
+  );
 
-    const data = await response.json();
-    const displayedAds = data
-      .filter((i: any) => i?.status)
-      .sort((a: any, b: any) => a.edition - b.edition);
-    return displayedAds;
-  } catch (err) {
-    console.log(err);
-  }
+  const data = await response.json();
+  const displayedAds = data
+    .filter((i: any) => i?.status)
+    .sort((a: any, b: any) => a.edition - b.edition);
+  return displayedAds;
 };
 
 const fetchFilter = async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`
-    );
-    return response?.data?.filters;
-  } catch (err) {
-    console.log(err);
-  }
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/filter-setting`
+  );
+  return response?.data?.filters;
 };
 
 const fetchCompany = async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
-    );
-    return response?.data?.companySetting;
-  } catch (err) {
-    console.log(err);
-  }
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/company-setting`
+  );
+  return response?.data?.companySetting;
 };
 
 const fetchBlog = async () => {
-  try {
-    const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
-    );
-    return response?.data?.blogSetting?.filter(
-      (i: any) => i?.status && !i?.deleted
-    );
-  } catch (err) {
-    console.log(err);
-  }
+  const response = await axios.get(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/blogs`
+  );
+  return response?.data?.blogSetting?.filter(
+    (i: any) => i?.status && !i?.deleted
+  );
 };
 
 // fetchPageSetting
 export const fetchPageSetting = async () => {
-  try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
-      // , {
-      //   cache: "no-store",
-      //   // next: { revalidate: 5 },
+  const response = await fetch(
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
+    // , {
+    //   cache: "no-store",
+    //   // next: { revalidate: 5 },
 
-      // }
-    );
-    const data = await response.json();
+    // }
+  );
+  const data = await response.json();
 
-    return data;
-  } catch (err) {
-    console.log(err);
-  }
+  return data;
 };
 
 export default async function RootLayout({

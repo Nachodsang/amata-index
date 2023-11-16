@@ -50,7 +50,7 @@ export default function About() {
   // (filtersConfirmed);
   return (
     <div>
-      <Header
+      {/* <Header
         category="factory"
         filtersApplied={filtersApplied}
         setFiltersApplied={addFilter}
@@ -62,10 +62,10 @@ export default function About() {
         search={search}
         setSearch={setSearch}
         onMiniClear={onClearFilterByType}
-      />
-      <Banner category="factory" />
-      <Core category="factory" filters={filtersConfirmed} />
-      <AdSection />
+      /> */}
+      {/* <Banner category="factory" /> */}
+      {/* <Core category="factory" filters={filtersConfirmed} /> */}
+      {/* <AdSection /> */}
       {/* <Blog category="factory" /> */}
     </div>
   );
