@@ -90,12 +90,11 @@ const fetchBlog = async () => {
 // fetchPageSetting
 export const fetchPageSetting = async () => {
   const response = await fetch(
-    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`
-    // , {
-    //   cache: "no-store",
-    //   // next: { revalidate: 5 },
-
-    // }
+    `${process.env.NEXT_PUBLIC_APP_URL}/api/page-setting`,
+    {
+      cache: "no-store",
+      // next: { revalidate: 5 },
+    }
   );
   const data = await response.json();
 

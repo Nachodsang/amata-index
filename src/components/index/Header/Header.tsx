@@ -35,7 +35,7 @@ export default function Header({
   const { pageSetting }: any = useContext(PageSettingContext);
 
   return (
-    <div className="relative w-full ">
+    <div className="relative w-full mt-16 ">
       <div
         style={{
           background: ` linear-gradient(rgba(0, 0, 0, 0), rgb(255, 255, 255)), url(${pageSetting?.coverImage}) `,
@@ -43,7 +43,7 @@ export default function Header({
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className={`object-cover  absolute top-0 z-0 h-[35vh] tablet1:h-[50vh] tablet2:h-[60]  desktop0:h-[80vh]  w-full bg-cover  bg-no-repeat `}
+        className={` object-cover  absolute top-0 z-0 h-[35vh] tablet1:h-[50vh] tablet2:h-[60]  desktop0:h-[80vh]  w-full bg-cover  bg-no-repeat `}
       ></div>
       {/* padding to fit cover photo */}
       <div className=" px-6 pt-[300px] relative z-20">
@@ -53,18 +53,18 @@ export default function Header({
               <div className="z-20  ">
                 <h1
                   style={{ backgroundColor: `${pageSetting?.themeColor}` }}
-                  className={`rounded-xl px-6 py-4 text-2xl desktop0:text-6xl  tablet1:text-3xl  capitalize text-white`}
+                  className={`rounded-xl px-6 py-4 text-2xl desktop0:text-5xl  tablet1:text-2xl  capitalize text-white`}
                 >
                   {pageSetting?.pageTitle}
                 </h1>
               </div>
               {/* <GoogleTranslate /> */}
               <div
-                className={`z-20 text-xl tablet1:text-2xl  desktop0:text-4xl w-full desktop0:w-[1000px]  rounded-xl `}
+                className={`z-20 text-xl tablet1:text-xl  desktop0:text-2xl w-full desktop0:w-[1000px]  rounded-xl `}
                 style={{
                   color: `${pageSetting?.descriptionTextColor}`,
                   // backgroundColor: `${pageSetting?.themeColor}`,
-                  opacity: ".7",
+                  // opacity: ".7",
                 }}
               >
                 {pageSetting?.description}
