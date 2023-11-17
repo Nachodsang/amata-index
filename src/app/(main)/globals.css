@@ -65,3 +65,9 @@ input[type="checkbox"] {
 .goog-te-gadget-simple {
   display: flex;
 }
+
+:root,
+[data-theme] {
+  background-color: white;
+  color: hsl(var(--bc) / var(--tw-text-opacity, 1));
+}
