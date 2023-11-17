@@ -22,7 +22,7 @@ export default function GoogleTranslate() {
 
           // autoDisplay: false,
           includedLanguages:
-            "jp,en,ar,zh-CN,zh-TW,fr,de,hi,id,it,ko,lo,ms,pt,pa,ru,es,ta,vi,da,sv,no",
+            "ja,en,ar,zh-CN,zh-TW,fr,de,hi,id,it,ko,lo,ms,pt,pa,ru,es,ta,vi,da,sv,no",
           layout: (window as any).google.translate.TranslateElement.InlineLayout
             .SIMPLE,
         },

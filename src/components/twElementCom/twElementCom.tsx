@@ -13,8 +13,10 @@ import {
 } from "tw-elements";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import { LogInContext } from "@/contexts/LogInContext";
 const TwElementCom = () => {
+  const { logInState }: any = useContext(LogInContext);
   const instanceMode = Sidenav.getInstance(
     document.getElementById("sidenav-2")
   );
@@ -61,7 +63,7 @@ const TwElementCom = () => {
       Input,
       Timepicker,
       Datepicker,
-      Sidenav,
+
       Ripple,
       Dropdown,
 
@@ -74,8 +76,10 @@ const TwElementCom = () => {
     initTE({
       Modal,
       Input,
+      Sidenav,
     });
-  }, [pathName]);
+    console.log("1234");
+  }, [pathName, logInState]);
   const init = () => {
     initTE({ Input });
   };
