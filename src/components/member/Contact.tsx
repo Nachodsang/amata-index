@@ -52,10 +52,10 @@ export default function Contact({ show, setShow }: any) {
         !show ? "bottom-[-200%]" : "bottom-0"
       } w-full h-[100vh] bg-black/60 fixed  left-0 transition-all duration-700 z-[50] `}
     >
-      <div className="desktop0:w-[40%] w-[80%] px-10 py-10 absolute top-[20%] left-[50%] translate-x-[-50%]  rounded-xl  bg-slate-100 z-[20]">
+      <div className="desktop1:w-[50%] w-[90%] px-10 py-10 absolute top-[20%] left-[50%] translate-x-[-50%]  rounded-xl  bg-slate-100 z-[20]">
         <div className="relative w-full h-full flex flex-col items-center justify-center gap-4">
           <div
-            className="text-slate-500 absolute top-0 right-0 hover:cursor-pointer hidden tablet1:block"
+            className="text-slate-500 absolute top-0 right-0 hover:cursor-pointer "
             onClick={() => setShow(!show)}
           >
             <RxCross2 size={30} />
