@@ -30,7 +30,7 @@ export default function CompanyCard({
         <div className="flex p-4 w-full  h-full ">
           {/* thubnail & button */}
           <div className="desktop2:w-[20%] desktop1:w-[17%] destop0:w-[15%] flex flex-col align-start gap-4">
-            <div className="w-[150px] h-[150px] p-1 border-1 border shadow-md rounded-md">
+            <div className="w-[100px] h-[100px] tablet1:w-[150px] tablet1:h-[150px] p-1 border-1 border shadow-md rounded-md">
               <img
                 src={logo}
                 className="w-full h-full object-cover rounded-md "
@@ -92,12 +92,12 @@ export default function CompanyCard({
           </div>
           {/* details */}
           <div className="desktop0:w-[55%] flex flex-col gap-4 py-1 pl-10 pr-6">
-            <h1 className="font-semibold text-xl text-gray-700">
+            <h1 className="font-semibold text-sm tablet1:text-xl  text-gray-700">
               {companyTitle}
             </h1>
             <div className="text-blue-500 flex gap-1">
               <MdLocationPin size={20} />
-              <span>{location}</span>
+              <span className="text-">{location}</span>
             </div>
             {item?.profileType === "full" ? (
               <p
@@ -109,7 +109,7 @@ export default function CompanyCard({
                   lineHeight: "25px",
                   WebkitBoxOrient: "vertical",
                 }}
-                className=" overflow-hidden font-normal text-gray-500"
+                className=" overflow-hidden text-sm tablet1:text-base font-normal text-gray-500"
               >
                 {details}
               </p>
@@ -123,7 +123,7 @@ export default function CompanyCard({
                   lineHeight: "25px",
                   WebkitBoxOrient: "vertical",
                 }}
-                className=" overflow-hidden font-normal text-gray-500"
+                className=" overflow-hidden  text-sm tablet1:text-base font-normal text-gray-500"
               >
                 {details}
               </p>

@@ -15,8 +15,9 @@ export const AccountDropDown = ({ logInState }: any) => {
   return (
     <>
       {logInState?.isLoggedIn ? (
-        <div className="dropdown dropdown-hover">
+        <div className="dropdown  desktop0:dropdown-hover">
           <MdAccountCircle
+            tabIndex={0}
             // onClick={() => setShow(!show)}
             className="cursor-pointer hover:scale-105 transition-all text-green-100"
             size={40}
@@ -33,6 +34,7 @@ export const AccountDropDown = ({ logInState }: any) => {
             </li>
             <li className="text-slate-500">
               <Link
+                scroll={true}
                 href={`/page/member/${logInState?._id}`}
                 className="flex items-center gap-1"
               >

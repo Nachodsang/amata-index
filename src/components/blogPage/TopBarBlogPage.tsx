@@ -29,8 +29,8 @@ export default function TopBarBlogPage({ blogData }: any) {
           </h1> */}
           <AmataLogo />
         </LinkNext>
-        <div className="flex gap-4 text-white text-lg font-semibold">
-          <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer">
+        <div className="flex flex-col items-end  ">
+          <span className="hidden tablet2:flex text-white font-semibold text-xs tablet2:text-base uppercase hover:underline underline-offset-4 hover:cursor-pointer">
             {blogData?.blogTitle}
           </span>
           <GoogleTranslate />

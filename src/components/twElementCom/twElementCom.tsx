@@ -78,7 +78,6 @@ const TwElementCom = () => {
       Input,
       Sidenav,
     });
-    console.log("1234");
   }, [pathName, logInState]);
   const init = () => {
     initTE({ Input });

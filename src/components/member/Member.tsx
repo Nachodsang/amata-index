@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { useContext, useEffect, useState } from "react";
 import { MemberMenu } from "../index/MemberMenu/MemberMenu";
+import ScrollToTop from "../index/ScrollToTop/ScrollToTop";
 export default function Member({ _id }: any) {
   const [redirectState, setRedirectState] = useState(false);
   const { pageSetting }: any = useContext(PageSettingContext);
@@ -19,9 +20,10 @@ export default function Member({ _id }: any) {
       setRedirectState(true);
     }, 5000);
   }, []);
-  console.log(redirectState);
+
   return (
     <>
+      <ScrollToTop />
       <div
         className="w-full h-[100vh] fixed top-0 left-0 z-0 mt-10 mb-[-4px] mx-[-4px]"
         style={{

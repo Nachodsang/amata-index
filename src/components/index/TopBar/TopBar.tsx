@@ -1,4 +1,5 @@
 "use client";
+import { usePathname } from "next/navigation";
 import { PageSettingContext } from "@/contexts/PageSettingContext";
 import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
@@ -22,11 +23,13 @@ export default function TopBar() {
   const { setShow, show, logInState, onLogOut }: any = useContext(LogInContext);
 
   const [isShrink, setIsShrink] = useState(false);
+  const pathName = usePathname();
   useEffect(() => {
     window.addEventListener("scroll", () => {
       window.scrollY > 30 ? setIsShrink(true) : setIsShrink(false);
     });
   });
+
   return (
     <div
       style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
@@ -34,44 +37,46 @@ export default function TopBar() {
         isShrink ? "py-2" : "py-4"
       } fixed top-0 z-50 transition-all duration-500 px-4 shadow-md`}
     >
-      <div className=" max-w-[1270px] mx-auto flex justify-between items-center">
-        <div className="flex items-center gap-2">
+      <div className="max-w-[1270px] mx-auto flex flex-row-reverse tablet1:flex-row justify-between items-center">
+        <div className="flex items-center tablet1:gap-2 gap-[2px] flex-row-reverse tablet1:flex-row">
           <GoogleTranslate />
           <AccountDropDown logInState={logInState} />
         </div>
         <LinkNext href="/page">
           <AmataLogo />
         </LinkNext>
-        <div className="flex gap-4 text-white text-xs">
-          <Lsc to="search" smooth={true} duration={500} offset={-150}>
-            <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
-              SEARCH
-            </span>
-          </Lsc>
-          <Lsc to="list" smooth={true} duration={750} offset={-80}>
-            <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
-              {process.env.NEXT_PUBLIC_APP_KEY_WORD} List
-            </span>
-          </Lsc>
-          <Lsc to="blog" smooth={true} duration={1000} offset={-40}>
-            <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
-              BLOG
-            </span>
-          </Lsc>
-          {logInState?.isLoggedIn ? (
-            <LinkNext href={`/page/member/${logInState?._id}`}>
+        {!pathName.includes("member") && (
+          <div className="  hidden tablet1:flex  gap-4 text-white text-xs">
+            <Lsc to="search" smooth={true} duration={500} offset={-150}>
               <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
-                MEMBER
+                SEARCH
               </span>
-            </LinkNext>
-          ) : (
-            <button onClick={() => setShow(!show)}>
+            </Lsc>
+            <Lsc to="list" smooth={true} duration={750} offset={-80}>
+              <span className="uppercase hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
+                {process.env.NEXT_PUBLIC_APP_KEY_WORD} List
+              </span>
+            </Lsc>
+            <Lsc to="blog" smooth={true} duration={1000} offset={-40}>
               <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
-                MEMBER
+                BLOG
               </span>
-            </button>
-          )}
-        </div>
+            </Lsc>
+            {logInState?.isLoggedIn ? (
+              <LinkNext href={`/page/member/${logInState?._id}`} scroll={true}>
+                <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
+                  MEMBER
+                </span>
+              </LinkNext>
+            ) : (
+              <button onClick={() => setShow(!show)}>
+                <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
+                  MEMBER
+                </span>
+              </button>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );

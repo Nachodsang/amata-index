@@ -113,7 +113,7 @@ export default function Header({ companyData }: any) {
         </div>
 
         <div className="flex desktop0:w-[35%] w-full flex-col gap-4 rounded-xl bg-slate-200 p-8 shadow-lg ">
-          <div className="border-b-2 border-white py-4 flex flex-col tablet1:flex-row desktop0:flex-col gap-4">
+          <div className="tablet1:overflow-scroll overflow-auto desktop0:overflow-auto  border-b-2 border-white py-4 flex flex-col tablet1:flex-row desktop0:flex-col gap-4">
             <button
               style={{ backgroundColor: `${pageSetting?.coreHeaderColor}` }}
               className="w-full rounded-2xl  py-2 font-semibold text-white flex justify-start items-center px-10 gap-6"
