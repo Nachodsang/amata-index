@@ -103,7 +103,7 @@ export default function Contact({ show, setShow }: any) {
                   placeholder=". . . . . . "
                   className={`
                   
-                    input input-bordered w-full  bg-slate-200 text-slate-700`}
+                    input input-bordered w-full  bg-[rgba(212,219,193,0.3)] text-slate-700`}
                 />
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function Contact({ show, setShow }: any) {
             </label>
             <div className="w-full h-[300px] overflow-scroll flex flex-col gap-[2px]">
               {list?.map((i: any, index: any) => (
-                <ContactCard item={i} key={index} />
+                <ContactCard item={i} key={index} index={index} />
               ))}
             </div>
           </div>

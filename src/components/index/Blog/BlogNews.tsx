@@ -24,7 +24,7 @@ export default function BlogNews({
   return (
     <div
       id="blog"
-      className="w-full py-10 mt-10  px-6 relative bg-white "
+      className="w-full py-10   px-6 relative bg-white "
       //   style={{
       //     background: `linear-gradient(180deg, ${pageSetting?.coreColor}00 0%,  ${pageSetting?.coreColor}50 100%)`,
       //   }}

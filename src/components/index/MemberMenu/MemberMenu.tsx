@@ -4,6 +4,7 @@ import Contact from "@/components/member/Contact";
 import { LogInContext } from "@/contexts/LogInContext";
 import Link from "next/link";
 import { useContext, useState } from "react";
+import { FaUsers } from "react-icons/fa";
 export const MemberMenu = ({ member }: any) => {
   const { onLogOut }: any = useContext(LogInContext);
 
@@ -11,8 +12,11 @@ export const MemberMenu = ({ member }: any) => {
 
   return (
     <div className="py-14 bg-slate-200/80 relative z-10 mx-auto mb-10 mt-24 rounded-3xl max-w-[1270px] p-6 w-full">
-      <div className="flex flex-col gap-10 ">
-        <h1 className="w-full text-center text-4xl text-slate-600">Member</h1>
+      <div className="flex flex-col gap-6 text-[rgb(36,120,92)]">
+        <div className="flex items-center w-full gap-2">
+          <FaUsers size={50} />
+          <h1 className="w-full text-4xl ">Member</h1>
+        </div>
         <div className="w-full flex flex-col tablet1:flex-row justify-between items-center text-slate-700 border-b-2 py-6 border-[rgb(36,120,92)]">
           <h1>
             Welcome Back!{" "}

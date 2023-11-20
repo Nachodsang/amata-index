@@ -10,7 +10,7 @@ export default function BlogBody({ blogData, pageSetting }: any) {
   return (
     <div className="w-full pt-24">
       <div className="max-w-[1270px] mx-auto flex flex-col gap-10 items-center px-4">
-        <div className="w-[85%] rounded-xl shadow-xl overflow-hidden  ">
+        <div className="w-[85%] rounded-xl shadow-xl overflow-hidden border-2  border-[rgb(36,120,92)] ">
           <img
             src={blogData?.blogGeneralInfo?.coverImage}
             className="w-full mx-auto  h-auto "

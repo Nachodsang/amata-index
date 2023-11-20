@@ -23,14 +23,14 @@ export default function Page({ params }: { params: { id: string } }) {
   return (
     <div className="mt-10">
       <TopBar />
-      <div className="min-h-[100vh] ">
+      <div className="min-h-[100vh] pt-10">
         <div className="h-auto overflow-hidden w-full bg-white ">
           <img
             src={pageSetting?.coverImage}
             className="h-auto w-full max-h-[50vh] object-top object-cover"
           />
         </div>
-        <div className="max-w-[1440px] mx-auto py-6 ">
+        <div className="max-w-[1440px] mx-auto ">
           {type === "property-for-rent" && (
             <BlogForRent
               itemPerPage={20}

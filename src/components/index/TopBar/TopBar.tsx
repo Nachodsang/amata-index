@@ -42,11 +42,11 @@ export default function TopBar() {
           <GoogleTranslate />
           <AccountDropDown logInState={logInState} />
         </div>
-        <LinkNext href="/page">
+        <LinkNext href="/page" className="tablet2:translate-x-[20%]">
           <AmataLogo />
         </LinkNext>
         {!pathName.includes("member") && (
-          <div className="  hidden tablet1:flex  gap-4 text-white text-xs">
+          <div className="  hidden tablet2:flex  gap-4 text-white text-xs">
             <Lsc to="search" smooth={true} duration={500} offset={-150}>
               <span className="hover:underline underline-offset-4 hover:cursor-pointer transition-all duration-500">
                 SEARCH

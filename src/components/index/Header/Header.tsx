@@ -43,7 +43,7 @@ export default function Header({
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
-        className={` object-cover  absolute top-0 z-0 h-[35vh] tablet1:h-[50vh] tablet2:h-[60]  desktop0:h-[80vh]  w-full bg-cover  bg-no-repeat `}
+        className={` object-cover  absolute top-0 z-0 h-[35vh] tablet1:h-[100vh] tablet2:h-[100vh]  desktop0:h-[80vh]  w-full bg-cover  bg-no-repeat `}
       ></div>
       {/* padding to fit cover photo */}
       <div className=" px-6 tablet1:pt-[300px] pt-[100px] relative z-20">

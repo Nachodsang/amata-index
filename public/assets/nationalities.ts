@@ -317,6 +317,7 @@ export const contactBook = [
     address: "",
     type: "emergency",
     location: "",
+    logo: "dhamaratsamee.jpg",
   },
   {
     nameTh: "อมตะ บี กริม พาวเวอร์",
@@ -326,6 +327,7 @@ export const contactBook = [
     address: "",
     type: "facility",
     location: "",
+    logo: "bgrim.jpg",
   },
   {
     nameTh: "ไฟฟ้าชลบุรี",
@@ -335,6 +337,7 @@ export const contactBook = [
     address: "",
     type: "facility",
     location: "",
+    logo: "pea.jpg",
   },
   {
     nameTh: "ไฟฟ้าพานทอง",
@@ -344,6 +347,7 @@ export const contactBook = [
     address: "",
     type: "facility",
     location: "",
+    logo: "pea.jpg",
   },
   {
     nameTh: "สถานีตำรวจภูธรชลบุรี",
@@ -353,6 +357,7 @@ export const contactBook = [
     address: "",
     type: "police",
     location: "",
+    logo: "thaiPolice.jpg",
   },
   {
     nameTh: "สถานีตำรวจภูธรพานทอง",
@@ -363,6 +368,7 @@ export const contactBook = [
       "89 หมู่ 4 ถนน พานทอง-หัวไผ่ ตำบลพานทอง อำเภอพานทอง, จังหวัดชลบุรี 20160",
     type: "police",
     location: "",
+    logo: "thaiPolice.jpg",
   },
   {
     nameTh: "สถานีตำรวจภูธรดอนหัวฬ่อ",
@@ -372,6 +378,7 @@ export const contactBook = [
     address: "99/9 ม.7 ต.ดอนหัวฬ่อ อ.เมือง จ.ชลบุรี 20000",
     type: "police",
     location: "",
+    logo: "thaiPolice.jpg",
   },
   {
     nameTh: "สถานีตำรวจภูธรบางปะกง",
@@ -381,6 +388,7 @@ export const contactBook = [
     address: "18/18 หมู่ที่ 7 ต.หนองข้างคอก. อ.เมืองชลบุรี จ.ชลบุรี 20000",
     type: "police",
     location: "",
+    logo: "thaiPolice.jpg",
   },
   {
     nameTh: "โรงพยาบาลวิภาราม อมตะนคร",
@@ -390,6 +398,7 @@ export const contactBook = [
     address: "700/888 หมู่ 1 ต.คลองตำหรุ อ.เมืองชลบุรี จ.ชลบุรี 20000",
     type: "hospital",
     location: "Chonburi",
+    logo: "vibharam.jpg",
   },
   {
     nameTh: "โรงพยาบาลเอกชล1",
@@ -399,6 +408,7 @@ export const contactBook = [
     address: "",
     type: "hospital",
     location: "",
+    logo: "aikchol.png",
   },
   {
     nameTh: "โรงพยาบาลเอกชล2",
@@ -408,6 +418,7 @@ export const contactBook = [
     address: "",
     type: "hospital",
     location: "",
+    logo: "aikchol.png",
   },
   {
     nameTh: "โรงพยาบาลสมิติเวช ชลบุรี",
@@ -418,6 +429,7 @@ export const contactBook = [
       "888/88 หมู่ที่ 3 ถ.สุขุมวิท ต.บ้านสวน อ.เมืองชลบุรี จ.ชลบุรี 20000",
     type: "hospital",
     location: "",
+    logo: "samitivijChon.jpg",
   },
   {
     nameTh: "เทศบาลพานทอง",
@@ -427,6 +439,7 @@ export const contactBook = [
     address: "038 451 467",
     type: "government",
     location: "",
+    logo: "panthong.jpg",
   },
   {
     nameTh: "เทศบาลคลองตำหรุ",
@@ -436,6 +449,7 @@ export const contactBook = [
     address: "",
     type: "government",
     location: "",
+    logo: "tamru.jpg",
   },
   {
     nameTh: "เทศบาลดอนหัวฬ่อ",
@@ -445,6 +459,7 @@ export const contactBook = [
     address: "",
     type: "government",
     location: "",
+    logo: "donHuaLo.png",
   },
   {
     nameTh: "เทศบาลเมืองชลบุรี",
@@ -454,5 +469,6 @@ export const contactBook = [
     address: "",
     type: "government",
     location: "",
+    logo: "chonburiLogo.png",
   },
 ];
