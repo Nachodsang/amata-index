@@ -25,7 +25,7 @@ export default function Blog({
   return (
     <div
       id="blog"
-      className="w-full pt-6 pb-10 mt-10  px-6 relative bg-slate-100/80 "
+      className="w-full py-10   px-6 relative bg-slate-100/80 "
       // style={{
       //   background: `${pageSetting?.coreColor}`,
       // }}

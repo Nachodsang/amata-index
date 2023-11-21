@@ -11,6 +11,7 @@ import BlogForRent from "@/components/index/Blog/BlogForRent";
 import { FilterContext } from "@/contexts/FilterContext";
 import BlogRecruitment from "@/components/index/Blog/BlogRecruitment";
 import BlogNews from "@/components/index/Blog/BlogNews";
+import Link from "next/link";
 
 export default function About() {
   const { companyData: companies }: any = useContext(CompanyContext);
@@ -90,6 +91,29 @@ export default function About() {
         companyData={companyData}
       />
       <Blog itemPerPage={4} category="factory" companyData={companyData} />
+      {/* footer image */}
+      <div
+        style={{
+          background: ` linear-gradient(rgba(246,210,112, 0.1), rgba(246,210,112, 0.1)), url("/coverImages/amataDriveWay.png") `,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+        className={`relative object-cover w-full h-[70vh] bg-cover  bg-no-repeat `}
+      >
+        <div className="absolute top-[60%] left-[50%] flex flex-col items-center translate-x-[-50%] gap-6">
+          <div className="text-white text-xl tablet2:text-2xl desktop0:text-4xl flex flex-col items-center">
+            <span>Start building the Future </span>
+            <span className="text-[rgb(27,120,82)]">with Amata</span>
+          </div>
+          <Link
+            href="https://www.amata.com/contact"
+            className="bg-[rgb(9,120,82)] text-base text-white px-6 py-2 rounded-full"
+          >
+            Talk with Our Consultants
+          </Link>
+        </div>
+      </div>
     </div>
   );
 }
