@@ -3,6 +3,7 @@ import { MdEmergency, MdLocalHospital, MdLocalPolice } from "react-icons/md";
 import { RiGovernmentFill, RiWaterFlashFill } from "react-icons/ri";
 import { SlCallOut } from "react-icons/sl";
 
+
 export default function CouponCard({ item, index }: any) {
   return (
     <div
@@ -34,7 +35,7 @@ export default function CouponCard({ item, index }: any) {
             {item?.type == "facility" && (
               <RiWaterFlashFill size={20} color="#0CD9FF" />
             )}
-            <span className="font-semibold text-xl text-white tablet2:text-slate-500">
+            <span className="font-semibold text-xl text-white tablet2:text-[rgb(36,120,92)]">
               {item?.couponName}
             </span>
           </div>
