@@ -1,6 +1,7 @@
 "use client";
 
 import Contact from "@/components/member/Contact";
+import Coupon from "@/components/member/Coupon";
 import { LogInContext } from "@/contexts/LogInContext";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -9,6 +10,7 @@ export const MemberMenu = ({ member }: any) => {
   const { onLogOut }: any = useContext(LogInContext);
 
   const [showContact, setShowContact] = useState(false);
+  const [showCoupon, setShowCoupon] = useState(false);
 
   return (
     <div className="py-14 bg-slate-200/80 relative z-10 mx-auto mb-10 mt-24 rounded-3xl max-w-[1270px] p-6 w-full">
@@ -45,14 +47,14 @@ export const MemberMenu = ({ member }: any) => {
               backgroundPosition: "center",
               //   filter: "blur(1px)",
             }}
-            className=" rounded-xl py-24 text-center relative hover:cursor-pointer hover:scale-[101%] transition-all"
+            className=" rounded-xl py-24 text-center relative hover:cursor-pointer transition-all"
           >
-            <label className="text-white text-xl">
+            <label className="text-white text-xl hover:cursor-pointer">
               Maintenance & Emergency
             </label>
           </div>
           <div
-            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
+            className="bg-white rounded-xl py-24 text-center  transition-all"
             style={{
               background: ` linear-gradient(rgba(36, 120, 92, 0.8), rgba(256, 256, 256, 0.3)), url("/member/qna.jpg") `,
               backgroundRepeat: "no-repeat",
@@ -61,7 +63,7 @@ export const MemberMenu = ({ member }: any) => {
               //   filter: "blur(1px)",
             }}
           >
-            <label className="text-white text-xl">Q&A</label>
+            <label className="text-white text-xl ">Q&A (Coming Soon)</label>
           </div>
           <div
             className="bg-slate-100 rounded-xl py-24 text-center   transition-all"
@@ -73,7 +75,10 @@ export const MemberMenu = ({ member }: any) => {
               //   filter: "blur(1px)",
             }}
           >
-            <label className="text-white text-xl"> Webinar (Coming Soon)</label>
+            <label className="text-white text-xl ">
+              {" "}
+              Webinar (Coming Soon)
+            </label>
           </div>
           <div
             className="bg-slate-100 rounded-xl py-24 text-center  transition-all"
@@ -99,9 +104,13 @@ export const MemberMenu = ({ member }: any) => {
               backgroundPosition: "center",
               //   filter: "blur(1px)",
             }}
-            className="bg-white rounded-xl py-24 text-center  transition-all"
+            onClick={() => setShowCoupon(!showCoupon)}
+            className="bg-white rounded-xl py-24 text-center  transition-all hover:cursor-pointer"
           >
-            <label className="text-white text-xl"> Coupon (Coming Soon)</label>
+            <label className="text-white text-xl hover:cursor-pointer">
+              {" "}
+              Coupon
+            </label>
           </div>
           <Link
             href={"/page/blogs-category/property-for-sale"}
@@ -112,9 +121,12 @@ export const MemberMenu = ({ member }: any) => {
               backgroundPosition: "center",
               //   filter: "blur(1px)",
             }}
-            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
+            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer transition-all"
           >
-            <label className="text-white text-xl"> Land for Sale</label>
+            <label className="text-white text-xl hover:cursor-pointer">
+              {" "}
+              Land for Sale
+            </label>
           </Link>
           <Link
             href={"/page/blogs-category/property-for-rent"}
@@ -125,9 +137,12 @@ export const MemberMenu = ({ member }: any) => {
               backgroundPosition: "center",
               //   filter: "blur(1px)",
             }}
-            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
+            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer transition-all"
           >
-            <label className="text-white text-xl"> Land for Rent</label>
+            <label className="text-white text-xl hover:cursor-pointer">
+              {" "}
+              Land for Rent
+            </label>
           </Link>
           <div
             style={{
@@ -137,9 +152,12 @@ export const MemberMenu = ({ member }: any) => {
               backgroundPosition: "center",
               //   filter: "blur(1px)",
             }}
-            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer hover:scale-[101%] transition-all"
+            className="bg-white rounded-xl py-24 text-center hover:cursor-pointer transition-all"
           >
-            <label className="text-white text-xl"> Manage My Account</label>
+            <label className="text-white text-xl hover:cursor-pointer">
+              {" "}
+              Manage My Account
+            </label>
           </div>
         </div>
         <div className="flex justify-end w-full">
@@ -152,6 +170,7 @@ export const MemberMenu = ({ member }: any) => {
         </div>
       </div>
       <Contact show={showContact} setShow={setShowContact} />
+      <Coupon show={showCoupon} setShow={setShowCoupon} />
     </div>
   );
 };

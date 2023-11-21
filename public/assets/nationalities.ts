@@ -267,7 +267,7 @@ export const contactBook = [
   {
     nameTh: "ศูนย์รักษาความปลอดภัยอมตะนคร",
     nameEn: "Amata Security Center",
-    tel: "",
+    tel: "038 213 191",
     lineID: "",
     address: "",
     type: "emergency",
@@ -276,7 +276,7 @@ export const contactBook = [
   {
     nameTh: "ศูนย์ดับเพลิงอมตะนคร",
     nameEn: "Amata City Fire Department",
-    tel: "",
+    tel: "038 213 009",
     lineID: "",
     address: "",
     type: "emergency",
@@ -285,7 +285,7 @@ export const contactBook = [
   {
     nameTh: "สำนักงานอมตะนคร",
     nameEn: "Amata City Office",
-    tel: "",
+    tel: "038 939 007",
     lineID: "",
     address: "",
     type: "facility",
@@ -294,7 +294,7 @@ export const contactBook = [
   {
     nameTh: "บริษัท อมตะ ฟาซิลิตี้ เซอร์วิส จำกัด",
     nameEn: "AMATA FACILITY SERVICES CO., LTD.",
-    tel: "",
+    tel: "038 938 007",
     lineID: "",
     address: "700/2 หมู่ที่ 1 ตำบลคลองตำหรุ อำเภอเมืองชลบุรี จ.ชลบุรี 20000",
     type: "facility",
@@ -303,7 +303,7 @@ export const contactBook = [
   {
     nameTh: "บริษัท อมตะ วอเตอร์ จำกัด",
     nameEn: "AMATA WATER COMPANY LIMITED",
-    tel: "",
+    tel: "038 939 007",
     lineID: "",
     address: "700/2 หมู่ที่ 1 ตำบลคลองตำหรุ อำเภอเมืองชลบุรี จ.ชลบุรี 20000",
     type: "facility",
@@ -470,5 +470,54 @@ export const contactBook = [
     type: "government",
     location: "",
     logo: "chonburiLogo.png",
+  },
+];
+
+// Coupon List
+
+export const couponList = [
+  {
+    couponName: "10% Off On Weekdays!",
+    nameEn: "Hotel Nikko Amata City Chonburi",
+    tel: "",
+    lineID: "",
+    address: "",
+    type: "residence",
+    logo: "nikkoLogo.jpg",
+    image: "hotelNikko.jpg",
+    location: "",
+  },
+  {
+    couponName: "Special deal for 1 year rent contract!",
+    nameEn: "Amata Mansion Service",
+    tel: "",
+    lineID: "",
+    address: "",
+    type: "residence",
+    logo: "amataMansionFront.jpg",
+    image: "amataMansionRoom.webp",
+    location: "",
+  },
+  {
+    couponName: "Special Lunch Set!",
+    nameEn: "Nippon Tei Japanese Restaurant Amata",
+    tel: "",
+    lineID: "",
+    address: "",
+    type: "food",
+    logo: "nipponteiLogo.png",
+    image: "nipponteiFood.jpg",
+    location: "",
+  },
+  {
+    couponName: "Club Membership Deal!",
+    nameEn: "Amata Spring Country Club",
+    tel: "",
+    lineID: "",
+    address: "",
+    type: "leisure",
+    logo: "amataSpringLogo.png",
+    image: "amata-spring.jpg",
+    location: "",
   },
 ];
