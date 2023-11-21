@@ -101,14 +101,14 @@ export default function About() {
         }}
         className={`relative object-cover w-full h-[70vh] bg-cover  bg-no-repeat `}
       >
-        <div className="absolute top-[60%] left-[50%] flex flex-col items-center translate-x-[-50%] gap-6">
-          <div className="text-white text-xl tablet2:text-2xl desktop0:text-4xl flex flex-col items-center">
+        <div className="absolute top-[60%] w-full left-[50%] flex flex-col items-center translate-x-[-50%] gap-6">
+          <div className="text-white text-2xl desktop0:text-4xl flex flex-col items-center">
             <span>Start building the Future </span>
             <span className="text-[rgb(27,120,82)]">with Amata</span>
           </div>
           <Link
             href="https://www.amata.com/contact"
-            className="bg-[rgb(9,120,82)] text-base text-white px-6 py-2 rounded-full"
+            className="bg-[rgb(9,120,82)] text-base text-white px-6  py-2 rounded-full"
           >
             Talk with Our Consultants
           </Link>
