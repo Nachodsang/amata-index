@@ -109,9 +109,11 @@ export default function About() {
           </div>
           <Link
             href="https://www.amata.com/contact"
-            className="bg-[rgb(9,120,82)] text-base text-white px-6  py-2 rounded-full flex items-center gap-1"
+            className="bg-[rgb(9,120,82)] text-base text-white px-6 hover:bg-[#005d40] transition-all py-2 rounded-full flex items-center gap-1"
           >
-            <label>Talk with Our Consultants</label>
+            <label className="hover:cursor-pointer">
+              Talk with Our Consultants
+            </label>
             <MdArrowForward size={23} />
           </Link>
         </div>
