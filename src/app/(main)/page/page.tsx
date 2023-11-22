@@ -35,12 +35,18 @@ export default function About() {
     setFiltersApplied((prev: any) => prev.filter((i: any) => i?.type !== type));
   };
   const onResetFilter = () => {
-    setClearFilter(!clearFilter);
-    setFiltersApplied([]);
-    setSearch("");
-    setNationalityState("");
-    setCategoryState("");
-    message.success(`Filter Reset`);
+    setSearchSpin(true);
+    setTimeout(() => {
+      setSearchSpin(false);
+    }, 400);
+    setTimeout(() => {
+      setClearFilter(!clearFilter);
+      setFiltersApplied([]);
+      setSearch("");
+      setNationalityState("");
+      setCategoryState("");
+      message.success(`Filter Reset`);
+    }, 400);
   };
 
   const onSearchClick = () => {
