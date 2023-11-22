@@ -71,3 +71,13 @@ input[type="checkbox"] {
   background-color: white;
   color: hsl(var(--bc) / var(--tw-text-opacity, 1));
 }
+
+.ant-dropdown-menu {
+  max-height: 250px;
+  overflow: scroll;
+}
+
+.ant-dropdown-menu-title-content {
+  color: #999999;
+  font-weight: 500;
+}

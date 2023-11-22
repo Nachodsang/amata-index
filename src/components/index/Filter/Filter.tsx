@@ -11,6 +11,7 @@ import { RxTriangleLeft, RxTriangleDown } from "react-icons/rx";
 import CheckboxDropdown from "../CheckboxDropdown/CheckboxDropdown";
 import { FilterContext } from "@/contexts/FilterContext";
 import { nationalities } from "../../../../public/assets/nationalities";
+import AntDropDown from "../AntDropDown/AntDropDown";
 
 const nationalityList = nationalities.map((i: any) => i?.Nationality);
 
@@ -139,6 +140,7 @@ export default function Filter({
     filtersState.map((i: any) => i?.filterCategory)
   );
   const filterCategories = Array.from(uniqueFilterCategories);
+
   const [isFullFilter, setIsFullfilter] = useState(false);
   useEffect(() => {
     const initialFilter = () => {
@@ -246,48 +248,13 @@ export default function Filter({
             {/* inputs */}
             <div>
               <div className="flex flex-col gap-4 tablet2:flex-row desktop0:flex-row">
-                <div
-                  onClick={onClickCategory}
-                  // {...getToggleProps({
-                  //   onClick: () => {
-                  //     collapseAdvanceSearch();
-                  //   },
-                  // })}
-                  className="dropdown dropdown-bottom  flex w-full items-center justify-center rounded-3xl border border-[rgb(2,131,206)]   outline-none ring-[rgb(2,131,206)] transition-all  hover:cursor-pointer  hover:text-black focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
-                >
-                  <label
-                    tabIndex={0}
-                    className="hover:bg-[rgb(2,131,206)] justify-between rounded-3xl px-2 py-1 hover:text-white w-full text-center  text-[rgb(2,131,206)] flex hover:cursor-pointer "
-                  >
-                    <h1 className="uppercase">
-                      {categoryState || "Advance Search"}
-                    </h1>
-                    <RxTriangleDown size={20} className="" />
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="max-h-[400px] block overflow-scroll dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
-                  >
-                    {filterCategories?.map((i: any, index: any) => (
-                      <li
-                        key={index}
-                        className="text-slate-500 bg-white"
-                        onClick={() => setCategoryState(i)}
-                      >
-                        <p className="uppercase">{i}</p>
-                      </li>
-                    ))}
-                  </ul>
-                  {/* Advance Search */}
-                  {/* <RxTriangleLeft
-                    size={20}
-                    className={`${advanceSearch ? "hidden" : "flex"}`}
-                  />
-                  <RxTriangleDown
-                    size={20}
-                    className={`${advanceSearch ? "flex" : "hidden"}`}
-                  /> */}
-                </div>
+                <AntDropDown
+                  title={"Categories"}
+                  list={filterCategories}
+                  state={categoryState}
+                  setState={setCategoryState}
+                  onFoldDropDown={onFoldDropDown}
+                />
 
                 <input
                   type="text"
@@ -347,51 +314,16 @@ export default function Filter({
                 );
               })}
               {categoryState && (
-                <div
-                  onClick={onFoldDropDown}
-                  // {...getToggleProps({
-                  //   onClick: () => {
-                  //     collapseAdvanceSearch();
-                  //   },
-                  // })}
-                  className="dropdown dropdown-bottom flex w-full items-center justify-center rounded-3xl border  text-slate-400  ring-[rgb(2,131,206)]   outline-none  transition-all  hover:cursor-pointer   focus:ring-2 tablet2:w-[30%] desktop0:w-[30%] "
-                >
-                  <label
-                    tabIndex={0}
-                    className=" justify-between rounded-3xl px-2 py-1 w-full text-center   flex hover:cursor-pointer "
-                  >
-                    <h1 className="text-base">
-                      {nationalityState || "Nationality"}
-                    </h1>
-                    <RxTriangleDown size={20} className="" />
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="max-h-[400px] block overflow-scroll dropdown-content z-20 menu p-2 shadow bg-white rounded-box  "
-                  >
-                    {nationalityList?.map((i: any, index: any) => (
-                      <li
-                        key={index}
-                        className="text-slate-500 bg-white"
-                        // onClick={onDropDownClick}
-                        onClick={() => setNationalityState(i)}
-                      >
-                        <p className="uppercase">{i}</p>
-                      </li>
-                    ))}
-                  </ul>
-                  {/* Advance Search */}
-                  {/* <RxTriangleLeft
-                    size={20}
-                    className={`${advanceSearch ? "hidden" : "flex"}`}
-                  />
-                  <RxTriangleDown
-                    size={20}
-                    className={`${advanceSearch ? "flex" : "hidden"}`}
-                  /> */}
-                </div>
+                <AntDropDown
+                  title={"Nationalities"}
+                  list={nationalityList}
+                  state={nationalityState}
+                  setState={setNationalityState}
+                  onFoldDropDown={onFoldDropDown}
+                />
               )}
             </div>
+
             {filterTypes.map((i: any, index: any) => (
               <CheckboxDropdown
                 key={index}
