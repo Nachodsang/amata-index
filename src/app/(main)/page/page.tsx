@@ -37,6 +37,7 @@ export default function About() {
     setFiltersApplied([]);
     setSearch("");
     setNationalityState("");
+    setCategoryState("");
   };
 
   const onSearchClick = () => {
