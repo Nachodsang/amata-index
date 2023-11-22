@@ -13,8 +13,10 @@ import BlogRecruitment from "@/components/index/Blog/BlogRecruitment";
 import BlogNews from "@/components/index/Blog/BlogNews";
 import Link from "next/link";
 import { MdArrowForward } from "react-icons/md";
+import { message } from "antd";
 
 export default function About() {
+  const [searchSpin, setSearchSpin] = useState(false);
   const { companyData: companies }: any = useContext(CompanyContext);
   const [search, setSearch] = useState("");
   const [categoryState, setCategoryState] = useState("");
@@ -38,22 +40,29 @@ export default function About() {
     setSearch("");
     setNationalityState("");
     setCategoryState("");
+    message.success(`Filter Reset`);
   };
 
   const onSearchClick = () => {
-    !search
-      ? setFiltersConfirmed({
-          ...filtersConfirmed,
-          search: search,
-          category: categoryState,
-          filters: filtersApplied.map((i: any) => i?.id),
-        })
-      : setFiltersConfirmed({
-          ...filtersConfirmed,
-          search: search,
-          category: categoryState,
-          filters: filtersApplied.map((i: any) => i?.id),
-        });
+    setSearchSpin(true);
+    setTimeout(() => {
+      setSearchSpin(false);
+    }, 500);
+    setTimeout(() => {
+      !search
+        ? setFiltersConfirmed({
+            ...filtersConfirmed,
+            search: search,
+            category: categoryState,
+            filters: filtersApplied.map((i: any) => i?.id),
+          })
+        : setFiltersConfirmed({
+            ...filtersConfirmed,
+            search: search,
+            category: categoryState,
+            filters: filtersApplied.map((i: any) => i?.id),
+          });
+    }, 500);
   };
   useEffect(() => {
     setFiltersConfirmed({});
@@ -119,6 +128,13 @@ export default function About() {
           </Link>
         </div>
       </div>
+      {searchSpin && (
+        <div className=" fixed top-[50%] left-[50%] translate-x-[-50%] z-[60]  h-[100vh]">
+          <div className="m-auto">
+            <span className="loading loading-spinner text-success w-[100px]"></span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
