@@ -144,7 +144,7 @@ export default function CompanyCard({
               </div>
             )}
             <Link
-              href={profileUrl ? `page/items/${profileUrl}` : "no link"}
+              href={profileUrl ? `/page/items/${profileUrl}` : "no link"}
               className="w-full"
             >
               <button
@@ -157,7 +157,7 @@ export default function CompanyCard({
           </div>
         </div>
         <div className="px-4">
-          <Link href={profileUrl ? `page/items/${profileUrl}` : "no link"}>
+          <Link href={profileUrl ? `/page/items/${profileUrl}` : "no link"}>
             <button
               style={{ backgroundColor: `${pageSetting?.themeColor}` }}
               className={` desktop0:hidden px-4 py-2 w-full rounded-2xl text-white`}
